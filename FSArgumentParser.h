@@ -39,6 +39,6 @@ extern const struct FSAPErrorDictKeys {
 
 @interface FSArgumentParser : NSObject
 
-+ (FSArgumentPackage *)parseArguments:(NSArray *)args withSignatures:(NSArray *)signatures error:(NSError **)error;
++ (FSArgumentPackage *)parseArguments:(NSArray *)args withSignatures:(NSArray *)signatures error:(__autoreleasing NSError **)error;
 
 @end

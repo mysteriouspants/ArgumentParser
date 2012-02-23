@@ -34,7 +34,7 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
 
 @implementation FSArgumentParser
 
-+ (FSArgumentPackage *)parseArguments:(NSArray *)_args withSignatures:(NSArray *)signatures error:(NSError **)error
++ (FSArgumentPackage *)parseArguments:(NSArray *)_args withSignatures:(NSArray *)signatures error:(__autoreleasing NSError **)error
 {
     NSMutableArray * args = [_args mutableCopy];
     
