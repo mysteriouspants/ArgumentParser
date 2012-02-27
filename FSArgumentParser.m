@@ -55,7 +55,16 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
             if (signature2==signature) return; // duh they're going to match!
             NSMutableCharacterSet * signature_shortnames = [signature.shortNames mutableCopy];
             [signature_shortnames formIntersectionWithCharacterSet:signature2.shortNames];
-            if ([signature_shortnames hasMemberInPlane:0]) {
+            BOOL shortname_conflict=NO;
+            for (unichar t = 0;
+                 t < 256;
+                 ++t) {
+                if ([signature_shortnames characterIsMember:t]) {
+                    shortname_conflict = YES;
+                    break;
+                }
+            }
+            if (shortname_conflict) {
                 *signature2_stop = YES;
                 *signature_stop = YES;
                 *error = [NSError errorWithDomain:kFSAPErrorDomain code:OverlappingArgument userInfo:[NSDictionary dictionaryWithObjectsAndKeys:signature_shortnames, FSAPErrorDictKeys.OverlappingArgumentName,

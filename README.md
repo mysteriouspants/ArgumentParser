@@ -6,8 +6,10 @@ A short, awesome, and *really useful* tool for rapidly parsing command-line argu
     
       [FSArgumentSignature argumentSignatureAsFlag:@"f" longNames:@"force" multipleAllowed:YES],
       [FSArgumentSignature argumentSignatureAsFlag:@"s" longNames:@"soft" multipleAllowed:NO],
-      [FSArgumentSignature argumentSignatureAsNamedArgument:nil longNames:@"output-file" required:YES multipleAllowed:NO],
-      [FSArgumentSignature argumentSignatureAsNamedArgument:@"i" longNames:@"input-file" required:YES multipleAllowed:YES],
+      [FSArgumentSignature argumentSignatureAsNamedArgument:nil
+        longNames:@"output-file" required:YES multipleAllowed:NO],
+      [FSArgumentSignature argumentSignatureAsNamedArgument:@"i"
+        longNames:@"input-file" required:YES multipleAllowed:YES],
       
       nil];
       
@@ -59,6 +61,25 @@ Now, I have several ways to work with this:
     mytool -io file1 file2
     
 So the ordering of short flags determines the interpretation of the arguments. So `io` is the opposite of `oi`, etc. ¿Comprendé?
+
+## Descriptions
+
+You can also declare your flag descriptions inline:
+
+    [FSArgumentSignature argumentSignatureAsFlag:@"
+      longNames:@"verbose"
+      multipleAllowed:YES
+      description:@"-v --verbose much speaking to annoy people."]
+    
+From there, it's pretty easy to emit something:
+
+    [signatures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        printf("%s\n", [[obj descriptionWithLocale:nil indent:1] UTF8String]);
+    }];
+
+You can also use a block or delegate callback if you want a different way to specify description messages instead of right there as a straight string.
+
+The description messages are formatted to indent if you like (by using `descriptionWithLocale:indent:`) and they try to detect the current terminal width and then word-wrap while keeping the indent. It's pretty cool, so you should try making a really long description and seeing what it does.
 
 ## Why bother?
 
