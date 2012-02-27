@@ -1,17 +1,13 @@
 # FSArgumentParser
 
-A short, mostly wrong, but *really useful* tool for rapidly parsing command-line arguments in a declarative manner using Objective-C.
+A short, awesome, and *really useful* tool for rapidly parsing command-line arguments in a declarative manner using Objective-C.
 
     NSArray * signatures = [NSArray arrayWithObjects:
     
-      [FSArgumentSignature argumentSignatureWithNames:
-        [NSArray arrayWithObjects:@"-f", @"--force", nil]      flag:YES required:NO  multipleAllowed:YES],
-      [FSArgumentSignature argumentSignatureWithNames:
-        [NSArray arrayWithObjects:@"-s", @"--soft", nil]       flag:YES required:NO  multipleAllowed:NO ],
-      [FSArgumentSignature argumentSignatureWithNames:
-        [NSArray arrayWithObject:@"--output-file"]             flag:NO  required:YES multipleAllowed:NO ],
-      [FSArgumentSignature argumentSignatureWithNames:
-        [NSArray arrayWithObjects:@"--input-file", @"-i", nil] flag:NO required:YES  multipleAllowed:YES],
+      [FSArgumentSignature argumentSignatureAsFlag:@"f" longNames:@"force" multipleAllowed:YES],
+      [FSArgumentSignature argumentSignatureAsFlag:@"s" longNames:@"soft" multipleAllowed:NO],
+      [FSArgumentSignature argumentSignatureAsNamedArgument:nil longNames:@"output-file" required:YES multipleAllowed:NO],
+      [FSArgumentSignature argumentSignatureAsNamedArgument:@"i" longNames:@"input-file" required:YES multipleAllowed:YES],
       
       nil];
       
@@ -31,7 +27,7 @@ A short, mostly wrong, but *really useful* tool for rapidly parsing command-line
     // force flag set?
     
     NSUInteger howMuchForce = [[arguments.flags objectForKey:[signatures objectAtIndex:0]] unsignedIntegerValue];
-    // how much force is set? eg. -f -f will yield 2. Ain't that spiffy?
+    // how much force is set? eg. -ff will yield 2. Ain't that spiffy?
     
     NSString * outputFileName = [arguments.namedArguments objectForKey:[signatures objectAtIndex:2]];
     // because multiple is not allowed, this is guaranteed to be either nil or a single string. Because it's
@@ -45,3 +41,32 @@ A short, mostly wrong, but *really useful* tool for rapidly parsing command-line
     // signature, it'll end up here, too.
     
 Because it's declarative, the objective is to declare your arguments characteristics in as few places as possible. It also passes some fairly decent errors at you when it dies.
+
+## Spiffy
+
+I've spent some time to make this actually pretty darn spiffy. For example, how are multiple named arguments handled when they're short names? For example:
+
+    [FSArgumentSignature argumentSignatureAsNamedArgument:@"i" longNames:@"if" required:YES multipleAllowed:NO],
+    [FSArgumentSignature argumentSignatureAsNamedArgument:@"o" longNames:@"of" required:YES multipleAllowed:NO],
+    
+Now, I have several ways to work with this:
+
+          # the long way
+    mytool --if file1 --of file2
+          # the shorter way
+    mytool -i file1 -o file2
+          # the spiffy way
+    mytool -io file1 file2
+    
+So the ordering of short flags determines the interpretation of the arguments. So `io` is the opposite of `oi`, etc. ¿Comprendé?
+
+## Why bother?
+
+It's a fair sight easier than parsing args by hand. This can handle a lot of the annoying things for you. For instance:
+
+* Is a required argument missing?
+* Is there a value missing that should be attached to a known argument?
+
+## So?
+
+Overall it's just total awesomeness, saving you time and helping you declare your arguments in a single place.

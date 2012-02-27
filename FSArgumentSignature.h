@@ -14,9 +14,14 @@
 @interface FSArgumentSignature : NSObject
 
 /**
- * All of the names that this argument can be referenced by, with their leading dashes.
+ * All the characters this signature will respond to as short flags. Eg: -v or something.
  */
-@property (readwrite, strong) NSArray *             names;
+@property (readwrite, strong) NSCharacterSet * shortNames;
+
+/**
+ * All the names this signature will responds to as long names. Eg: --verbose or something.
+ */
+@property (readwrite, strong) NSArray * longNames;
 
 /**
  * Sets whether the argument is treated as a flag; if it is, then its presence indicates yes. If the flag isn't found, then it means no. There is no trailing data after a flag.
@@ -34,8 +39,22 @@
 @property (readwrite, assign, getter = isMultipleAllowed) BOOL multipleAllowed;
 
 /**
- * Convenience constructor.
+ * Create a new argument signature that behaves as a boolean flag.
+ *
+ * @param shortName A string, array, set, or character set describing all the characters that this signature responds to.
+ * @param longNames A string, array, or set describing all the long names this signature responds to.
+ * @param multipleAllowed Tells the parser to explode if more than one of this flag is found.
  */
-+ (id)argumentSignatureWithNames:(NSArray *)names flag:(BOOL)flag required:(BOOL)required multipleAllowed:(BOOL)multipleAllowed;
++ (id)argumentSignatureAsFlag:(id)shortName longNames:(id)longNames multipleAllowed:(BOOL)multipleAllowed;
+
+/**
+ * Create a new argument signature that behaves as a named argument.
+ *
+ * @param shortName A string, array, set, or character set describing all the characters that this signature responds to.
+ * @param longNames A string, array, or set describing all the long names this signature responds to.
+ * @param required Scream bloody murder if this argument isn't found.
+ * @param multipleAllowed Tells the parser to explode if more than one of this argument is found.
+ */
++ (id)argumentSignatureAsNamedArgument:(id)shortName longNames:(id)longNames required:(BOOL)required multipleAllowed:(BOOL)multipleAllowed;
 
 @end

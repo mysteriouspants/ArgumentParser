@@ -23,9 +23,11 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
     .TooManyOfThisSignature = @"tooManyOfThisSignature",
     .CountOfTooManySignatures = @"countOfTooManySignatures",
     
-    .MissingSignatureOfType = @"missingSignatureOfType",
+    .MissingTheseSignatures = @"missingTheseSignatures",
     
-    .ArgumentOfTypeMissingValue = @"argumentOfTypeMissingValue"
+    .ArgumentOfTypeMissingValue = @"argumentOfTypeMissingValue",
+    
+    .UnknownSignature = @"unknownSignature"
 };
 
 @interface FSArgumentPackage (__nice_constructor__)
@@ -49,79 +51,173 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
     
     // check for conflicting signatures
     [signatures enumerateObjectsUsingBlock:^(FSArgumentSignature * signature, NSUInteger signature_idx, BOOL *signature_stop) {
-        [signature.names enumerateObjectsUsingBlock:^(NSString * name, NSUInteger name_idx, BOOL *name_stop) {
-            [signatures enumerateObjectsUsingBlock:^(FSArgumentSignature * compared_signature, NSUInteger compared_signature_idx, BOOL *compared_signature_stop) {
-                if (compared_signature == signature) return; // duh they're going to match!
-                if ([compared_signature.names containsObject:name]) {
+        [signatures enumerateObjectsUsingBlock:^(FSArgumentSignature * signature2, NSUInteger signature2_idx, BOOL *signature2_stop) {
+            if (signature2==signature) return; // duh they're going to match!
+            NSMutableCharacterSet * signature_shortnames = [signature.shortNames mutableCopy];
+            [signature_shortnames formIntersectionWithCharacterSet:signature2.shortNames];
+            if ([signature_shortnames hasMemberInPlane:0]) {
+                *signature2_stop = YES;
+                *signature_stop = YES;
+                *error = [NSError errorWithDomain:kFSAPErrorDomain code:OverlappingArgument userInfo:[NSDictionary dictionaryWithObjectsAndKeys:signature_shortnames, FSAPErrorDictKeys.OverlappingArgumentName,
+                                                                                                      signature, FSAPErrorDictKeys.OverlappingArgumentSignature1,
+                                                                                                      signature2, FSAPErrorDictKeys.OverlappingArgumentSignature2, nil]];
+            }
+        }];
+        if (*signature_stop==YES) return; // just die now
+        [signature.longNames enumerateObjectsUsingBlock:^(NSString * longName, NSUInteger longName_idx, BOOL *longName_stop) {
+            [signatures enumerateObjectsUsingBlock:^(FSArgumentSignature * signature2, NSUInteger signature2_idx, BOOL *signature2_stop) {
+                if (signature==signature2) return; // duh they're going to match!
+                if ([signature2.longNames containsObject:longName]) {
                     // stop
                     *signature_stop = YES;
-                    *name_stop = YES;
-                    *compared_signature_stop = YES;
-                    
-                    *error = [NSError errorWithDomain:kFSAPErrorDomain code:OverlappingArgument userInfo:[NSDictionary dictionaryWithObjectsAndKeys:name, FSAPErrorDictKeys.OverlappingArgumentName,
+                    *longName_stop = YES;
+                    *signature2_stop = YES;
+                    *error = [NSError errorWithDomain:kFSAPErrorDomain code:OverlappingArgument userInfo:[NSDictionary dictionaryWithObjectsAndKeys:longName, FSAPErrorDictKeys.OverlappingArgumentName,
                                                                                                           signature, FSAPErrorDictKeys.OverlappingArgumentSignature1,
-                                                                                                          compared_signature, FSAPErrorDictKeys.OverlappingArgumentSignature2, nil]];
+                                                                                                          signature2, FSAPErrorDictKeys.OverlappingArgumentSignature2, nil]];
                 }
             }];
         }];
     }]; if (*error) return nil;
     
+    NSMutableSet * flagSignatures = [[NSMutableSet alloc] init];
+    NSMutableCharacterSet * flagCharacters = [[NSMutableCharacterSet alloc] init];
+    NSMutableArray * flagNames = [[NSMutableArray alloc] init];
+    NSMutableSet * notFlagSignatures = [[NSMutableSet alloc] init];
+    [signatures enumerateObjectsUsingBlock:^(FSArgumentSignature * obj, NSUInteger idx, BOOL *stop) {
+        if (obj.isFlag) {
+            [flagSignatures addObject:obj];
+            [flagCharacters formUnionWithCharacterSet:obj.shortNames];
+            [flagNames addObjectsFromArray:obj.longNames];
+        }
+        else [notFlagSignatures addObject:obj];
+    }];
+    
     NSMutableDictionary * flags = [[NSMutableDictionary alloc] init];
     NSMutableDictionary * namedArguments = [[NSMutableDictionary alloc] init];
+    NSMutableArray * unnamedArguments = [[NSMutableArray alloc] init];
     
-    // arguments first
-    [[signatures filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FSArgumentSignature * evaluatedObject, NSDictionary *bindings) {
-        if ([evaluatedObject isFlag]) return NO;
-        return YES;
-    }]] enumerateObjectsUsingBlock:^(FSArgumentSignature * signature, NSUInteger idx, BOOL *stop) {
-        NSIndexSet * matchingFlags = [args indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-            return [signature.names containsObject:obj];
-        }];
-        if (![signature isMultipleAllowed]&&[matchingFlags count]>1) {
-            *stop = YES;
-            *error = [NSError errorWithDomain:kFSAPErrorDomain code:TooManySignatures userInfo:[NSDictionary dictionaryWithObjectsAndKeys:signature, FSAPErrorDictKeys.TooManyOfThisSignature,
-                                                                                                [NSNumber numberWithUnsignedInteger:[matchingFlags count]], FSAPErrorDictKeys.CountOfTooManySignatures, nil]];
-        } else if ([signature isRequired]&&[matchingFlags count]==0) {
-            *stop = YES;
-            *error = [NSError errorWithDomain:kFSAPErrorDomain code:MissingSignature userInfo:[NSDictionary dictionaryWithObject:signature forKey:FSAPErrorDictKeys.MissingSignatureOfType]];
-        }
-        NSMutableIndexSet * toKill = [[NSMutableIndexSet alloc] init];
-        [matchingFlags enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *index_stop) {
-            if (idx+1 == [args count]) { // array index out of bounds
-                *index_stop = YES;
-                *stop = YES;
-                *error = [NSError errorWithDomain:kFSAPErrorDomain code:ArgumentMissingValue userInfo:[NSDictionary dictionaryWithObject:signature forKey:FSAPErrorDictKeys.ArgumentOfTypeMissingValue]];
+    NSRegularExpression * flagDetector = [NSRegularExpression regularExpressionWithPattern:@"^[\\-][^\\-]*$" options:0 error:error];
+    if (*error) return nil;
+    NSRegularExpression * namedArgumentDetector = [NSRegularExpression regularExpressionWithPattern:@"^[\\-]{2}.*$" options:8 error:error];
+    if (*error) return nil;
+    
+    while (0<[args count]) {
+        NSString * arg = [args objectAtIndex:0];
+        [args removeObjectAtIndex:0];
+        if (0<[flagDetector numberOfMatchesInString:arg options:0 range:NSMakeRange(0, [arg length])]) {
+            NSMutableString * mutable_arg = [arg mutableCopy];
+            // chop off the first dash
+            [mutable_arg deleteCharactersInRange:NSMakeRange(0, 1)];
+            while (0<[mutable_arg length]) {
+                unichar c = [mutable_arg characterAtIndex:0];
+                if ([flagCharacters characterIsMember:c]) {
+                    FSArgumentSignature * as = [[flagSignatures filteredSetUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FSArgumentSignature * evaluatedObject, NSDictionary *bindings) {
+                        if ([evaluatedObject.shortNames characterIsMember:c]) return YES;
+                        else return NO;
+                    }]] anyObject];
+                    if (!as) {
+                        *error = [NSError errorWithDomain:kFSAPErrorDomain code:UnknownArgument userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithChar:c] forKey:FSAPErrorDictKeys.UnknownSignature]];
+                        return nil;
+                    }
+                    NSNumber * count = [flags objectForKey:as];
+                    if (count==nil) count = [NSNumber numberWithUnsignedInteger:0];
+                    else if (!as.isMultipleAllowed) {
+                        *error = [NSError errorWithDomain:kFSAPErrorDomain code:TooManySignatures userInfo:[NSDictionary dictionaryWithObject:as forKey:FSAPErrorDictKeys.TooManyOfThisSignature]];
+                        return nil;
+                    }
+                    count = [NSNumber numberWithUnsignedInteger:[count unsignedIntegerValue]+1];
+                    [flags setObject:count forKey:as];
+                } else { // it's a named argument
+                    FSArgumentSignature * as = [[notFlagSignatures filteredSetUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FSArgumentSignature * evaluatedObject, NSDictionary *bindings) {
+                        if ([evaluatedObject.shortNames characterIsMember:c]) return YES;
+                        else return NO;
+                    }]] anyObject];
+                    if (!as) {
+                        *error = [NSError errorWithDomain:kFSAPErrorDomain code:UnknownArgument userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithChar:c] forKey:FSAPErrorDictKeys.UnknownSignature]];
+                        return nil;
+                    }
+                    if (0<[args count]) {
+                        *error = [NSError errorWithDomain:kFSAPErrorDomain code:ArgumentMissingValue userInfo:[NSDictionary dictionaryWithObject:as forKey:FSAPErrorDictKeys.ArgumentOfTypeMissingValue]];
+                        return nil;
+                    }
+                    id value = [namedArguments objectForKey:as];
+                    if (value&&!as.isMultipleAllowed) {
+                        *error = [NSError errorWithDomain:kFSAPErrorDomain code:TooManySignatures userInfo:[NSDictionary dictionaryWithObject:as forKey:FSAPErrorDictKeys.TooManyOfThisSignature]];
+                        return nil;
+                    }
+                    if (!value&&as.isMultipleAllowed) value = [NSMutableArray array];
+                    if (as.isMultipleAllowed) [value addObject:[args objectAtIndex:0]];
+                    else value = [args objectAtIndex:0];
+                    [namedArguments setObject:value forKey:as];
+                    [args removeObjectAtIndex:0];
+                }
+                [mutable_arg deleteCharactersInRange:NSMakeRange(0, 1)];
             }
-            NSString * arg = [args objectAtIndex:idx+1];
-            if ([namedArguments objectForKey:signature]==nil && [signature isMultipleAllowed])
-                [namedArguments setObject:[NSMutableArray array] forKey:signature];
-            if ([signature isMultipleAllowed]) [[namedArguments objectForKey:signature] addObject:arg];
-            else [namedArguments setObject:arg forKey:signature];
-            [toKill addIndexesInRange:NSMakeRange(idx, 1)];
-        }];
-        [args removeObjectsAtIndexes:toKill];
-    }]; if (*error) return nil;
-    
-    // flags next
-    [[signatures filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FSArgumentSignature * evaluatedObject, NSDictionary *bindings) {
-        return [evaluatedObject isFlag];
-    }]] enumerateObjectsUsingBlock:^(FSArgumentSignature * signature, NSUInteger idx, BOOL *stop) {
-        NSIndexSet * matchingFlags = [args indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-            return [signature.names containsObject:obj];
-        }];
-        if (![signature isMultipleAllowed]&&[matchingFlags count]>1) {
-            *stop = YES;
-            *error = [NSError errorWithDomain:kFSAPErrorDomain code:TooManySignatures userInfo:[NSDictionary dictionaryWithObjectsAndKeys:signature, FSAPErrorDictKeys.TooManyOfThisSignature,
-                                                                                                [NSNumber numberWithUnsignedInteger:[matchingFlags count]], FSAPErrorDictKeys.CountOfTooManySignatures, nil]];
-        } else if ([signature isRequired]&&[matchingFlags count]==0) {
-            *stop = YES;
-            *error = [NSError errorWithDomain:kFSAPErrorDomain code:MissingSignature userInfo:[NSDictionary dictionaryWithObject:signature forKey:FSAPErrorDictKeys.MissingSignatureOfType]];
+        } else if (0<[namedArgumentDetector numberOfMatchesInString:arg options:0 range:NSMakeRange(0, [arg length])]) {
+            NSMutableString * mutable_arg = [arg mutableCopy];
+            // chop off the first two dashes
+            [mutable_arg deleteCharactersInRange:NSMakeRange(0, 2)];
+            if ([flagNames containsObject:mutable_arg]) {
+                // just a flag
+                FSArgumentSignature * as = [[flagSignatures filteredSetUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FSArgumentSignature * evaluatedObject, NSDictionary *bindings) {
+                    if ([evaluatedObject.longNames containsObject:mutable_arg]) return YES;
+                    else return NO;
+                }]] anyObject];
+                if (!as) {
+                    *error = [NSError errorWithDomain:kFSAPErrorDomain code:UnknownArgument userInfo:[NSDictionary dictionaryWithObject:mutable_arg forKey:FSAPErrorDictKeys.UnknownSignature]];
+                    return nil;
+                }
+                NSNumber * count = [flags objectForKey:as];
+                if (count==nil) count = [NSNumber numberWithUnsignedInteger:0];
+                else if (!as.isMultipleAllowed) {
+                    *error = [NSError errorWithDomain:kFSAPErrorDomain code:TooManySignatures userInfo:[NSDictionary dictionaryWithObject:as forKey:FSAPErrorDictKeys.TooManyOfThisSignature]];
+                    return nil;
+                }
+                count = [NSNumber numberWithUnsignedInteger:[count unsignedIntegerValue]+1];
+                [flags setObject:count forKey:as];
+            } else { // it's a named argument
+                FSArgumentSignature * as = [[notFlagSignatures filteredSetUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FSArgumentSignature * evaluatedObject, NSDictionary *bindings) {
+                    if ([evaluatedObject.longNames containsObject:mutable_arg]) return YES;
+                    else return NO;
+                }]] anyObject];
+                if (!as) {
+                    *error = [NSError errorWithDomain:kFSAPErrorDomain code:UnknownArgument userInfo:[NSDictionary dictionaryWithObject:mutable_arg forKey:FSAPErrorDictKeys.UnknownSignature]];
+                    return nil;
+                }
+                if (0<[args count]) {
+                    *error = [NSError errorWithDomain:kFSAPErrorDomain code:ArgumentMissingValue userInfo:[NSDictionary dictionaryWithObject:as forKey:FSAPErrorDictKeys.ArgumentOfTypeMissingValue]];
+                    return nil;
+                }
+                id value = [namedArguments objectForKey:as];
+                if (value&&!as.isMultipleAllowed) {
+                    *error = [NSError errorWithDomain:kFSAPErrorDomain code:TooManySignatures userInfo:[NSDictionary dictionaryWithObject:as forKey:FSAPErrorDictKeys.TooManyOfThisSignature]];
+                    return nil;
+                }
+                if (!value&&as.isMultipleAllowed) value = [NSMutableArray array];
+                if (as.isMultipleAllowed) [value addObject:[args objectAtIndex:0]];
+                else value = [args objectAtIndex:0];
+                [namedArguments setObject:value forKey:as];
+                [args removeObject:0];
+            }
+        } else {
+            // unnamed arg
+            [unnamedArguments addObject:arg];
         }
-        [flags setObject:[NSNumber numberWithUnsignedInteger:[matchingFlags count]] forKey:signature];
-        [args removeObjectsAtIndexes:matchingFlags];
-     }];
+    }
     
-    return [FSArgumentPackage argumentPackageWithFlags:[flags copy] namedArguments:[namedArguments copy] unnamedArguments:[args copy]];
+    NSMutableSet * allFoundArguments = [[NSMutableSet alloc] initWithArray:[flags allKeys]];
+    [allFoundArguments addObjectsFromArray:[namedArguments allKeys]];
+    NSMutableSet * allRequriedSignatures = [[NSMutableSet alloc] initWithArray:[signatures filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FSArgumentSignature * evaluatedObject, NSDictionary *bindings) {
+        return evaluatedObject.isRequired;
+    }]]];
+    [allRequriedSignatures minusSet:allFoundArguments];
+    if (0<[allRequriedSignatures count]) {
+        *error = [NSError errorWithDomain:kFSAPErrorDomain code:MissingSignatures userInfo:[NSDictionary dictionaryWithObject:allRequriedSignatures forKey:FSAPErrorDictKeys.MissingTheseSignatures]];
+        return nil;
+    }
+    
+    return [FSArgumentPackage argumentPackageWithFlags:[flags copy] namedArguments:[namedArguments copy] unnamedArguments:[unnamedArguments copy]];
 }
 
 @end
