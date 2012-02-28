@@ -22,6 +22,11 @@
 		DACF2F0D14FD3BED0097C754 /* FSArgumentSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */; };
 		DACF2F0E14FD3BED0097C754 /* FSArgumentSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */; };
 		DACF2F0F14FD3BED0097C754 /* FSArgumentSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */; };
+		DACF2F1614FD75AC0097C754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACF2EC814FD3B2F0097C754 /* Foundation.framework */; };
+		DACF2F2514FD78D70097C754 /* chocolat-app.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F2114FD75FD0097C754 /* chocolat-app.m */; };
+		DACF2F2614FD78E70097C754 /* FSArgumentPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */; };
+		DACF2F2714FD78EA0097C754 /* FSArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */; };
+		DACF2F2814FD78EE0097C754 /* FSArgumentSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,6 +57,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		DACF2F1214FD75AC0097C754 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +83,8 @@
 		DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSArgumentParser.m; sourceTree = SOURCE_ROOT; };
 		DACF2F0514FD3BED0097C754 /* FSArgumentSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSArgumentSignature.h; sourceTree = SOURCE_ROOT; };
 		DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSArgumentSignature.m; sourceTree = SOURCE_ROOT; };
+		DACF2F1414FD75AC0097C754 /* chocolat-app-example */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "chocolat-app-example"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DACF2F2114FD75FD0097C754 /* chocolat-app.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "chocolat-app.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +112,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DACF2F1114FD75AC0097C754 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DACF2F1614FD75AC0097C754 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -114,6 +138,7 @@
 				DACF2EC414FD3B2F0097C754 /* example */,
 				DACF2EDF14FD3B630097C754 /* long-desc */,
 				DACF2EF214FD3B7A0097C754 /* spiffy */,
+				DACF2F1414FD75AC0097C754 /* chocolat-app-example */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -132,6 +157,7 @@
 				DACF2EFF14FD3B840097C754 /* spiffy.m */,
 				DACF2EEC14FD3B710097C754 /* long-desc.m */,
 				DACF2ECB14FD3B2F0097C754 /* desc.m */,
+				DACF2F2114FD75FD0097C754 /* chocolat-app.m */,
 				DACF2F0114FD3BED0097C754 /* FSArgumentPackage.h */,
 				DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */,
 				DACF2F0314FD3BED0097C754 /* FSArgumentParser.h */,
@@ -205,6 +231,23 @@
 			productReference = DACF2EF214FD3B7A0097C754 /* spiffy */;
 			productType = "com.apple.product-type.tool";
 		};
+		DACF2F1314FD75AC0097C754 /* chocolat-app-example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DACF2F1E14FD75AC0097C754 /* Build configuration list for PBXNativeTarget "chocolat-app-example" */;
+			buildPhases = (
+				DACF2F1014FD75AC0097C754 /* Sources */,
+				DACF2F1114FD75AC0097C754 /* Frameworks */,
+				DACF2F1214FD75AC0097C754 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "chocolat-app-example";
+			productName = "chocolat-app-example";
+			productReference = DACF2F1414FD75AC0097C754 /* chocolat-app-example */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -229,6 +272,7 @@
 				DACF2EC314FD3B2F0097C754 /* desc */,
 				DACF2EDE14FD3B630097C754 /* long-desc */,
 				DACF2EF114FD3B7A0097C754 /* spiffy */,
+				DACF2F1314FD75AC0097C754 /* chocolat-app-example */,
 			);
 		};
 /* End PBXProject section */
@@ -264,6 +308,17 @@
 				DACF2F0914FD3BED0097C754 /* FSArgumentPackage.m in Sources */,
 				DACF2F0C14FD3BED0097C754 /* FSArgumentParser.m in Sources */,
 				DACF2F0F14FD3BED0097C754 /* FSArgumentSignature.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DACF2F1014FD75AC0097C754 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DACF2F2514FD78D70097C754 /* chocolat-app.m in Sources */,
+				DACF2F2614FD78E70097C754 /* FSArgumentPackage.m in Sources */,
+				DACF2F2714FD78EA0097C754 /* FSArgumentParser.m in Sources */,
+				DACF2F2814FD78EE0097C754 /* FSArgumentSignature.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +426,24 @@
 			};
 			name = Release;
 		};
+		DACF2F1F14FD75AC0097C754 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "example/example-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DACF2F2014FD75AC0097C754 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "example/example-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -405,6 +478,14 @@
 			buildConfigurations = (
 				DACF2EFD14FD3B7A0097C754 /* Debug */,
 				DACF2EFE14FD3B7A0097C754 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DACF2F1E14FD75AC0097C754 /* Build configuration list for PBXNativeTarget "chocolat-app-example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DACF2F1F14FD75AC0097C754 /* Debug */,
+				DACF2F2014FD75AC0097C754 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

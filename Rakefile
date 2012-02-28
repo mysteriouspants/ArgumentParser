@@ -9,6 +9,7 @@ PRODUCTS = {
   :desc => 'example/desc.m',
   :'long-desc' => 'example/long-desc.m',
   :spiffy => 'example/spiffy.m',
+  :'chocolat-app' => 'example/chocolat-app.m',
 }
 
 CFLAGS = [

@@ -89,6 +89,10 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
         }];
     }]; if (*error) return nil;
     
+    NSMutableDictionary * flags = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary * namedArguments = [[NSMutableDictionary alloc] init];
+    NSMutableArray * unnamedArguments = [[NSMutableArray alloc] init];
+    
     NSMutableSet * flagSignatures = [[NSMutableSet alloc] init];
     NSMutableCharacterSet * flagCharacters = [[NSMutableCharacterSet alloc] init];
     NSMutableArray * flagNames = [[NSMutableArray alloc] init];
@@ -98,13 +102,10 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
             [flagSignatures addObject:obj];
             [flagCharacters formUnionWithCharacterSet:obj.shortNames];
             [flagNames addObjectsFromArray:obj.longNames];
+            [flags setObject:[NSNumber numberWithUnsignedInteger:0] forKey:obj];
         }
         else [notFlagSignatures addObject:obj];
     }];
-    
-    NSMutableDictionary * flags = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary * namedArguments = [[NSMutableDictionary alloc] init];
-    NSMutableArray * unnamedArguments = [[NSMutableArray alloc] init];
     
     NSRegularExpression * flagDetector = [NSRegularExpression regularExpressionWithPattern:@"^[\\-][^\\-]*$" options:0 error:error];
     if (*error) return nil;
@@ -131,7 +132,7 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
                     }
                     NSNumber * count = [flags objectForKey:as];
                     if (count==nil) count = [NSNumber numberWithUnsignedInteger:0];
-                    else if (!as.isMultipleAllowed) {
+                    else if (!as.isMultipleAllowed&&[count unsignedIntegerValue]>1) {
                         *error = [NSError errorWithDomain:kFSAPErrorDomain code:TooManySignatures userInfo:[NSDictionary dictionaryWithObject:as forKey:FSAPErrorDictKeys.TooManyOfThisSignature]];
                         return nil;
                     }

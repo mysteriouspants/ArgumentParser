@@ -33,6 +33,8 @@ int main (int argc, const char * argv[]) {
             [signatures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 printf("%s\n", [[obj descriptionWithLocale:nil indent:1] UTF8String]);
             }];
+        } else {
+            printf("%s\n", [[arguments.flags description] UTF8String]);
         }
     
     }
