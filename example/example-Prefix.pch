@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'example' target in the 'example' project
+// Prefix header for all source files of all the freakin targets because I'm freakin lazy!
 //
 
 #ifdef __OBJC__

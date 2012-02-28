@@ -1,6 +1,6 @@
 //
 //  FSArgumentSignature.m
-//  fs-dataman
+//  FSArgumentParser
 //
 //  Created by Christopher Miller on 2/22/12.
 //  Copyright (c) 2012 Christopher Miller. All rights reserved.
@@ -179,7 +179,13 @@ NSArray * __fsargs_coalesceToArray(id);
 - (BOOL)isEqual:(id)object
 {
     if (![object isKindOfClass:[self class]]) return NO;
-    else return [self hash]==[object hash];
+    FSArgumentSignature * _object = (FSArgumentSignature *)object;
+    if (_object.flag != _flag) return NO;
+    if (_object.required != _required) return NO;
+    if (_object.multipleAllowed != _required) return NO;
+    if (_object.longNames != _longNames) return NO;
+    if (_object.shortNames != _shortNames) return NO;
+    return YES;
 }
 
 - (BOOL)isEqualTo:(id)object
