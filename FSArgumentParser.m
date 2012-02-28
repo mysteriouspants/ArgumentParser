@@ -146,7 +146,7 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
                         *error = [NSError errorWithDomain:kFSAPErrorDomain code:UnknownArgument userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithChar:c] forKey:FSAPErrorDictKeys.UnknownSignature]];
                         return nil;
                     }
-                    if (0<[args count]) {
+                    if (0==[args count]) {
                         *error = [NSError errorWithDomain:kFSAPErrorDomain code:ArgumentMissingValue userInfo:[NSDictionary dictionaryWithObject:as forKey:FSAPErrorDictKeys.ArgumentOfTypeMissingValue]];
                         return nil;
                     }
@@ -194,7 +194,7 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
                     *error = [NSError errorWithDomain:kFSAPErrorDomain code:UnknownArgument userInfo:[NSDictionary dictionaryWithObject:mutable_arg forKey:FSAPErrorDictKeys.UnknownSignature]];
                     return nil;
                 }
-                if (0<[args count]) {
+                if (0==[args count]) {
                     *error = [NSError errorWithDomain:kFSAPErrorDomain code:ArgumentMissingValue userInfo:[NSDictionary dictionaryWithObject:as forKey:FSAPErrorDictKeys.ArgumentOfTypeMissingValue]];
                     return nil;
                 }

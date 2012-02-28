@@ -11,12 +11,12 @@
 @class FSArgumentPackage;
 
 enum FSArgumentParserErrorCodes {
-    ImpureSignatureArray, //! something in the signature array with isn't an FSArgumentSignature
-    OverlappingArgument, //! some arguments in the signature array which share the same flag
-    TooManySignatures, //! more than one signature that doesn't allow multiple signatures per invocation
-    MissingSignatures, //! missing flag or argument which is marked as required
-    ArgumentMissingValue, //! all arguments need a value, and this one is missing that value
-    UnknownArgument, //! this argument doesn't have a matching signature
+    ImpureSignatureArray=0, //! something in the signature array with isn't an FSArgumentSignature
+    OverlappingArgument=1, //! some arguments in the signature array which share the same flag
+    TooManySignatures=2, //! more than one signature that doesn't allow multiple signatures per invocation
+    MissingSignatures=3, //! missing flag or argument which is marked as required
+    ArgumentMissingValue=4, //! all arguments need a value, and this one is missing that value
+    UnknownArgument=5, //! this argument doesn't have a matching signature
 };
 
 extern const NSString * kFSAPErrorDomain;

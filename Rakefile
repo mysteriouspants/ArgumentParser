@@ -7,7 +7,8 @@ LD = CC
 PRODUCTS = {
   # exe => src
   :desc => 'example/desc.m',
-  :'long-desc' => 'example/long-desc.m'
+  :'long-desc' => 'example/long-desc.m',
+  :spiffy => 'example/spiffy.m',
 }
 
 CFLAGS = [

@@ -1,0 +1,414 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DACF2EC914FD3B2F0097C754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACF2EC814FD3B2F0097C754 /* Foundation.framework */; };
+		DACF2ECC14FD3B2F0097C754 /* desc.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2ECB14FD3B2F0097C754 /* desc.m */; };
+		DACF2EE114FD3B630097C754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACF2EC814FD3B2F0097C754 /* Foundation.framework */; };
+		DACF2EED14FD3B710097C754 /* long-desc.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2EEC14FD3B710097C754 /* long-desc.m */; };
+		DACF2EF414FD3B7A0097C754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACF2EC814FD3B2F0097C754 /* Foundation.framework */; };
+		DACF2F0014FD3B840097C754 /* spiffy.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2EFF14FD3B840097C754 /* spiffy.m */; };
+		DACF2F0714FD3BED0097C754 /* FSArgumentPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */; };
+		DACF2F0814FD3BED0097C754 /* FSArgumentPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */; };
+		DACF2F0914FD3BED0097C754 /* FSArgumentPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */; };
+		DACF2F0A14FD3BED0097C754 /* FSArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */; };
+		DACF2F0B14FD3BED0097C754 /* FSArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */; };
+		DACF2F0C14FD3BED0097C754 /* FSArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */; };
+		DACF2F0D14FD3BED0097C754 /* FSArgumentSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */; };
+		DACF2F0E14FD3BED0097C754 /* FSArgumentSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */; };
+		DACF2F0F14FD3BED0097C754 /* FSArgumentSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DACF2EC214FD3B2F0097C754 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		DACF2EDD14FD3B630097C754 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		DACF2EF014FD3B7A0097C754 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		DACF2EC414FD3B2F0097C754 /* example */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = example; sourceTree = BUILT_PRODUCTS_DIR; };
+		DACF2EC814FD3B2F0097C754 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DACF2ECB14FD3B2F0097C754 /* desc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = desc.m; sourceTree = "<group>"; };
+		DACF2ECE14FD3B2F0097C754 /* example-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "example-Prefix.pch"; sourceTree = "<group>"; };
+		DACF2EDF14FD3B630097C754 /* long-desc */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "long-desc"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DACF2EEC14FD3B710097C754 /* long-desc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "long-desc.m"; sourceTree = "<group>"; };
+		DACF2EF214FD3B7A0097C754 /* spiffy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = spiffy; sourceTree = BUILT_PRODUCTS_DIR; };
+		DACF2EFF14FD3B840097C754 /* spiffy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spiffy.m; sourceTree = "<group>"; };
+		DACF2F0114FD3BED0097C754 /* FSArgumentPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSArgumentPackage.h; sourceTree = SOURCE_ROOT; };
+		DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSArgumentPackage.m; sourceTree = SOURCE_ROOT; };
+		DACF2F0314FD3BED0097C754 /* FSArgumentParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSArgumentParser.h; sourceTree = SOURCE_ROOT; };
+		DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSArgumentParser.m; sourceTree = SOURCE_ROOT; };
+		DACF2F0514FD3BED0097C754 /* FSArgumentSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSArgumentSignature.h; sourceTree = SOURCE_ROOT; };
+		DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSArgumentSignature.m; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DACF2EC114FD3B2F0097C754 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DACF2EC914FD3B2F0097C754 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DACF2EDC14FD3B630097C754 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DACF2EE114FD3B630097C754 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DACF2EEF14FD3B7A0097C754 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DACF2EF414FD3B7A0097C754 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DACF2EB914FD3B2F0097C754 = {
+			isa = PBXGroup;
+			children = (
+				DACF2ECA14FD3B2F0097C754 /* example */,
+				DACF2EC714FD3B2F0097C754 /* Frameworks */,
+				DACF2EC514FD3B2F0097C754 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DACF2EC514FD3B2F0097C754 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DACF2EC414FD3B2F0097C754 /* example */,
+				DACF2EDF14FD3B630097C754 /* long-desc */,
+				DACF2EF214FD3B7A0097C754 /* spiffy */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DACF2EC714FD3B2F0097C754 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DACF2EC814FD3B2F0097C754 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DACF2ECA14FD3B2F0097C754 /* example */ = {
+			isa = PBXGroup;
+			children = (
+				DACF2EFF14FD3B840097C754 /* spiffy.m */,
+				DACF2EEC14FD3B710097C754 /* long-desc.m */,
+				DACF2ECB14FD3B2F0097C754 /* desc.m */,
+				DACF2F0114FD3BED0097C754 /* FSArgumentPackage.h */,
+				DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */,
+				DACF2F0314FD3BED0097C754 /* FSArgumentParser.h */,
+				DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */,
+				DACF2F0514FD3BED0097C754 /* FSArgumentSignature.h */,
+				DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */,
+				DACF2ECD14FD3B2F0097C754 /* Supporting Files */,
+			);
+			path = example;
+			sourceTree = "<group>";
+		};
+		DACF2ECD14FD3B2F0097C754 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DACF2ECE14FD3B2F0097C754 /* example-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DACF2EC314FD3B2F0097C754 /* desc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DACF2ED314FD3B2F0097C754 /* Build configuration list for PBXNativeTarget "desc" */;
+			buildPhases = (
+				DACF2EC014FD3B2F0097C754 /* Sources */,
+				DACF2EC114FD3B2F0097C754 /* Frameworks */,
+				DACF2EC214FD3B2F0097C754 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = desc;
+			productName = example;
+			productReference = DACF2EC414FD3B2F0097C754 /* example */;
+			productType = "com.apple.product-type.tool";
+		};
+		DACF2EDE14FD3B630097C754 /* long-desc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DACF2EE914FD3B630097C754 /* Build configuration list for PBXNativeTarget "long-desc" */;
+			buildPhases = (
+				DACF2EDB14FD3B630097C754 /* Sources */,
+				DACF2EDC14FD3B630097C754 /* Frameworks */,
+				DACF2EDD14FD3B630097C754 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "long-desc";
+			productName = "long-desc";
+			productReference = DACF2EDF14FD3B630097C754 /* long-desc */;
+			productType = "com.apple.product-type.tool";
+		};
+		DACF2EF114FD3B7A0097C754 /* spiffy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DACF2EFC14FD3B7A0097C754 /* Build configuration list for PBXNativeTarget "spiffy" */;
+			buildPhases = (
+				DACF2EEE14FD3B7A0097C754 /* Sources */,
+				DACF2EEF14FD3B7A0097C754 /* Frameworks */,
+				DACF2EF014FD3B7A0097C754 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = spiffy;
+			productName = spiffy;
+			productReference = DACF2EF214FD3B7A0097C754 /* spiffy */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DACF2EBB14FD3B2F0097C754 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = FSDEV;
+			};
+			buildConfigurationList = DACF2EBE14FD3B2F0097C754 /* Build configuration list for PBXProject "example" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DACF2EB914FD3B2F0097C754;
+			productRefGroup = DACF2EC514FD3B2F0097C754 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DACF2EC314FD3B2F0097C754 /* desc */,
+				DACF2EDE14FD3B630097C754 /* long-desc */,
+				DACF2EF114FD3B7A0097C754 /* spiffy */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DACF2EC014FD3B2F0097C754 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DACF2ECC14FD3B2F0097C754 /* desc.m in Sources */,
+				DACF2F0714FD3BED0097C754 /* FSArgumentPackage.m in Sources */,
+				DACF2F0A14FD3BED0097C754 /* FSArgumentParser.m in Sources */,
+				DACF2F0D14FD3BED0097C754 /* FSArgumentSignature.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DACF2EDB14FD3B630097C754 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DACF2EED14FD3B710097C754 /* long-desc.m in Sources */,
+				DACF2F0814FD3BED0097C754 /* FSArgumentPackage.m in Sources */,
+				DACF2F0B14FD3BED0097C754 /* FSArgumentParser.m in Sources */,
+				DACF2F0E14FD3BED0097C754 /* FSArgumentSignature.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DACF2EEE14FD3B7A0097C754 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DACF2F0014FD3B840097C754 /* spiffy.m in Sources */,
+				DACF2F0914FD3BED0097C754 /* FSArgumentPackage.m in Sources */,
+				DACF2F0C14FD3BED0097C754 /* FSArgumentParser.m in Sources */,
+				DACF2F0F14FD3BED0097C754 /* FSArgumentSignature.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DACF2ED114FD3B2F0097C754 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		DACF2ED214FD3B2F0097C754 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		DACF2ED414FD3B2F0097C754 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "example/example-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DACF2ED514FD3B2F0097C754 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "example/example-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		DACF2EEA14FD3B630097C754 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "example/example-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DACF2EEB14FD3B630097C754 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "example/example-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		DACF2EFD14FD3B7A0097C754 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "example/example-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DACF2EFE14FD3B7A0097C754 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "example/example-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DACF2EBE14FD3B2F0097C754 /* Build configuration list for PBXProject "example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DACF2ED114FD3B2F0097C754 /* Debug */,
+				DACF2ED214FD3B2F0097C754 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DACF2ED314FD3B2F0097C754 /* Build configuration list for PBXNativeTarget "desc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DACF2ED414FD3B2F0097C754 /* Debug */,
+				DACF2ED514FD3B2F0097C754 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DACF2EE914FD3B630097C754 /* Build configuration list for PBXNativeTarget "long-desc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DACF2EEA14FD3B630097C754 /* Debug */,
+				DACF2EEB14FD3B630097C754 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DACF2EFC14FD3B7A0097C754 /* Build configuration list for PBXNativeTarget "spiffy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DACF2EFD14FD3B7A0097C754 /* Debug */,
+				DACF2EFE14FD3B7A0097C754 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DACF2EBB14FD3B2F0097C754 /* Project object */;
+}
