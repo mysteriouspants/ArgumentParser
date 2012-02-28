@@ -8,17 +8,13 @@
 
 #import "FSArgumentSignature.h"
 
+#import <CommonCrypto/CommonDigest.h>
+
 #include <stdio.h>
 #include <sys/ioctl.h>
 
 NSCharacterSet * __fsargs_coalesceToCharacterSet(id);
 NSArray * __fsargs_coalesceToArray(id);
-
-@interface FSArgumentSignature ()
-
-@property (readwrite, assign) NSUInteger parentHash;
-
-@end
 
 @implementation FSArgumentSignature
 
@@ -32,23 +28,21 @@ NSArray * __fsargs_coalesceToArray(id);
 @synthesize signatureDescriptionDelegateMethod=_signatureDescriptionDelegateMethod;
 @synthesize signatureDescriptionBlock=_signatureDescriptionBlock;
 
-@synthesize parentHash=_parentHash;
-
 #pragma mark Flag Signature Constructors
 
 + (id)argumentSignatureAsFlag:(id)shortName longNames:(id)longNames multipleAllowed:(BOOL)multipleAllowed description:(NSString *)description delegate:(id)delegate selector:(SEL)selector block:(NSString *(^)())block
 {
     FSArgumentSignature * siggy = [[[self class] alloc] init];
     if (!siggy) return siggy;
-    siggy.flag = YES;
-    siggy.multipleAllowed = multipleAllowed;
-    siggy.required = NO;
-    siggy.shortNames = __fsargs_coalesceToCharacterSet(shortName);
-    siggy.longNames = __fsargs_coalesceToArray(longNames);
-    siggy.signatureDescription = description;
-    siggy.signatureDescriptionDelegate = delegate;
-    siggy.signatureDescriptionDelegateMethod = selector;
-    siggy.signatureDescriptionBlock = block;
+    siggy->_flag = YES;
+    siggy->_multipleAllowed = multipleAllowed;
+    siggy->_required = NO;
+    siggy->_shortNames = __fsargs_coalesceToCharacterSet(shortName);
+    siggy->_longNames = __fsargs_coalesceToArray(longNames);
+    siggy->_signatureDescription = description;
+    siggy->_signatureDescriptionDelegate = delegate;
+    siggy->_signatureDescriptionDelegateMethod = selector;
+    siggy->_signatureDescriptionBlock = block;
     return siggy;
 }
 + (id)argumentSignatureAsFlag:(id)shortName longNames:(id)longNames multipleAllowed:(BOOL)multipleAllowed {
@@ -70,15 +64,15 @@ NSArray * __fsargs_coalesceToArray(id);
 {
     FSArgumentSignature * siggy = [[[self class] alloc] init];
     if (!siggy) return siggy;
-    siggy.flag = NO;
-    siggy.multipleAllowed = multipleAllowed;
-    siggy.required = required;
-    siggy.shortNames = __fsargs_coalesceToCharacterSet(shortName);
-    siggy.longNames = __fsargs_coalesceToArray(longNames);
-    siggy.signatureDescription = description;
-    siggy.signatureDescriptionDelegate = delegate;
-    siggy.signatureDescriptionDelegateMethod = selector;
-    siggy.signatureDescriptionBlock = block;
+    siggy->_flag = NO;
+    siggy->_multipleAllowed = multipleAllowed;
+    siggy->_required = required;
+    siggy->_shortNames = __fsargs_coalesceToCharacterSet(shortName);
+    siggy->_longNames = __fsargs_coalesceToArray(longNames);
+    siggy->_signatureDescription = description;
+    siggy->_signatureDescriptionDelegate = delegate;
+    siggy->_signatureDescriptionDelegateMethod = selector;
+    siggy->_signatureDescriptionBlock = block;
     return siggy;
 }
 + (id)argumentSignatureAsNamedArgument:(id)shortName longNames:(id)longNames required:(BOOL)required multipleAllowed:(BOOL)multipleAllowed {
@@ -170,16 +164,15 @@ NSArray * __fsargs_coalesceToArray(id);
 - (id)copy
 {
     FSArgumentSignature * copy = [[FSArgumentSignature alloc] init];
-    copy.flag = _flag;
-    copy.shortNames = _shortNames;
-    copy.longNames = _longNames;
-    copy.required = _required;
-    copy.multipleAllowed = _multipleAllowed;
-    copy.signatureDescription = _signatureDescription;
-    copy.signatureDescriptionDelegate = _signatureDescriptionDelegate;
-    copy.signatureDescriptionDelegateMethod = _signatureDescriptionDelegateMethod;
-    copy.signatureDescriptionBlock = _signatureDescriptionBlock;
-    copy.parentHash = [self hash];
+    copy->_flag = _flag;
+    copy->_shortNames = _shortNames;
+    copy->_longNames = _longNames;
+    copy->_required = _required;
+    copy->_multipleAllowed = _multipleAllowed;
+    copy->_signatureDescription = _signatureDescription;
+    copy->_signatureDescriptionDelegate = _signatureDescriptionDelegate;
+    copy->_signatureDescriptionDelegateMethod = _signatureDescriptionDelegateMethod;
+    copy->_signatureDescriptionBlock = _signatureDescriptionBlock;
     return copy;
 }
 
@@ -202,8 +195,20 @@ NSArray * __fsargs_coalesceToArray(id);
 
 - (NSUInteger)hash
 {
-    if (self.parentHash==0) return [super hash];
-    else return self.parentHash;
+    CC_MD5_CTX md5;
+    CC_MD5_Init(&md5);
+    NSUInteger flags=0;
+    flags=_flag;flags=flags<<1;flags|=_required;flags=flags<<1;flags|=_multipleAllowed;
+    CC_MD5_Update(&md5, (const void*)&flags, sizeof(NSUInteger));
+    NSUInteger shortnameshash = [_shortNames hash];
+    CC_MD5_Update(&md5, (const void*)&shortnameshash, sizeof(NSUInteger));
+    for (NSString * s in _longNames) {
+        NSUInteger longnamehash = [s hash];
+        CC_MD5_Update(&md5, (const void*)&longnamehash, sizeof(NSUInteger));
+    }
+    unsigned char* md5_final = (unsigned char*)malloc(sizeof(unsigned char)*CC_MD5_DIGEST_LENGTH);
+    CC_MD5_Final(md5_final, &md5);
+    return *((NSUInteger *)md5_final);
 }
 
 @end

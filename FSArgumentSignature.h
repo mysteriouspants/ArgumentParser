@@ -16,27 +16,27 @@
 /**
  * All the characters this signature will respond to as short flags. Eg: -v or something.
  */
-@property (readwrite, strong) NSCharacterSet * shortNames;
+@property (readonly, strong) NSCharacterSet * shortNames;
 
 /**
  * All the names this signature will responds to as long names. Eg: --verbose or something.
  */
-@property (readwrite, strong) NSArray * longNames;
+@property (readonly, strong) NSArray * longNames;
 
 /**
  * Sets whether the argument is treated as a flag; if it is, then its presence indicates yes. If the flag isn't found, then it means no. There is no trailing data after a flag.
  */
-@property (readwrite, assign, getter = isFlag) BOOL flag;
+@property (readonly, assign, getter = isFlag) BOOL flag;
 
 /**
  * Sets whether this argument is required or not. If it is, then the parser will scream and complain if it is not found.
  */
-@property (readwrite, assign, getter = isRequired) BOOL required;
+@property (readonly, assign, getter = isRequired) BOOL required;
 
 /**
  * Set whether more than one of this argument is allowed. If multiple arguments are not allowed, then the parser fails. In the case of multiple flags, the parser increments the flag count.
  */
-@property (readwrite, assign, getter = isMultipleAllowed) BOOL multipleAllowed;
+@property (readonly, assign, getter = isMultipleAllowed) BOOL multipleAllowed;
 
 /**
  * What do I say when you ask me for help documentation?
