@@ -68,7 +68,7 @@ Look at the file `example/spiffy.m` for an example, and try running it with thos
 
 You can also declare your flag descriptions inline:
 
-    [FSArgumentSignature argumentSignatureAsFlag:@"
+    [FSArgumentSignature argumentSignatureAsFlag:@"v"
       longNames:@"verbose"
       multipleAllowed:YES
       description:@"-v --verbose much speaking to annoy people."]
