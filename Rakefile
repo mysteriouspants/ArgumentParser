@@ -6,7 +6,8 @@ LD = CC
 
 PRODUCTS = {
   # exe => src
-  :desc => 'desc.m'
+  :desc => 'example/desc.m',
+  :'long-desc' => 'example/long-desc.m'
 }
 
 CFLAGS = [
@@ -36,7 +37,7 @@ PRODUCTS.each do |product, source|
   object_files = O_FILES - (PRODUCTS.values - [source]).map{|f|f.ext('.o')}
   desc "Build executable for '#{product}'"
   file product => object_files do |t|
-    sh "#{LD} #{LIBS} #{object_files} -o #{t.name}"
+    sh "#{LD} #{LIBS} #{object_files} -o bin/#{t.name}"
   end
 end
   
