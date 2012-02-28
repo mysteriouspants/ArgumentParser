@@ -54,13 +54,15 @@ I've spent some time to make this actually pretty darn spiffy. For example, how 
 Now, I have several ways to work with this:
 
           # the long way
-    mytool --if file1 --of file2
+    spiffy --if file1 --of file2
           # the shorter way
-    mytool -i file1 -o file2
+    spiffy -i file1 -o file2
           # the spiffy way
-    mytool -io file1 file2
+    spiffy -io file1 file2
     
 So the ordering of short flags determines the interpretation of the arguments. So `io` is the opposite of `oi`, etc. ¿Comprendé?
+
+Look at the file `example/spiffy.m` for an example, and try running it with those arguments. You can build the examples using the Rakefile.
 
 ## Descriptions
 
@@ -81,6 +83,8 @@ You can also use a block or delegate callback if you want a different way to spe
 
 The description messages are formatted to indent if you like (by using `descriptionWithLocale:indent:`) and they try to detect the current terminal width and then word-wrap while keeping the indent. It's pretty cool, so you should try making a really long description and seeing what it does.
 
+Look at the file `example/desc.m` for a demonstration; the file `example/long-desc.m` shows how it detects the terminal width.You can build the examples using the Rakefile.
+
 ## Why bother?
 
 It's a fair sight easier than parsing args by hand. This can handle a lot of the annoying things for you. For instance:
@@ -91,3 +95,57 @@ It's a fair sight easier than parsing args by hand. This can handle a lot of the
 ## So?
 
 Overall it's just total awesomeness, saving you time and helping you declare your arguments in a single place.
+
+## Examples? We got examples!
+
+If you have the following:
+
+* Xcode 4.3 with command-line tools installed
+* Ruby and Rake (I suggest RVM and RBX)
+* The Rake gem (comes with RBX)
+
+Then you're armed and fully operational to start building the example code!
+
+    > rake all
+    clang FSArgumentPackage.m -DDEBUG -std=c99 -fobjc-arc -I ./ -g -c -o FSArgumentPackage.o
+    clang FSArgumentParser.m -DDEBUG -std=c99 -fobjc-arc -I ./ -g -c -o FSArgumentParser.o
+    clang FSArgumentSignature.m -DDEBUG -std=c99 -fobjc-arc -I ./ -g -c -o FSArgumentSignature.o
+    clang example/desc.m -DDEBUG -std=c99 -fobjc-arc -I ./ -g -c -o example/desc.o
+    clang -framework Foundation FSArgumentPackage.o FSArgumentParser.o FSArgumentSignature.o example/desc.o -o bin/desc
+    clang example/long-desc.m -DDEBUG -std=c99 -fobjc-arc -I ./ -g -c -o example/long-desc.o
+    clang -framework Foundation FSArgumentPackage.o FSArgumentParser.o FSArgumentSignature.o example/long-desc.o -o bin/long-desc
+    clang example/spiffy.m -DDEBUG -std=c99 -fobjc-arc -I ./ -g -c -o example/spiffy.o
+    clang -framework Foundation FSArgumentPackage.o FSArgumentParser.o FSArgumentSignature.o example/spiffy.o -o bin/spiffy
+    > bin/desc -h
+    Example program with help flag!
+    
+        Flag responding to -h and --help; required:NO multipleAllowed:NO
+        Argument responding to -o and --out-file; required:NO multipleAllowed:YES
+    > bin/long-desc -h
+    Example program with help flag!
+    
+        Flag responding to -h and --help; required:NO multipleAllowed:NO
+        -o file --out-file file (not required) specify zero or more output files. I'
+        m not really sure why you'd want to pipe the output to more than one file, b
+        ut the main point of this is to show how the program can wrap really long li
+        nes without screwing up the indentation.
+    > bin/spiffy -h
+    Example program with help flag!
+    
+        Flag responding to -h and --help; required:NO multipleAllowed:NO
+        Argument responding to -i and --if; required:YES multipleAllowed:NO
+        Argument responding to -o and --of; required:YES multipleAllowed:NO
+    
+    Oh, PS, there was an error: {
+        missingTheseSignatures = "{(\n        Argument responding to -i and --if; required:YES multipleAllowed:NO,\n        Argument responding to -o and --of; required:YES multipleAllowed:NO\n)}";
+    }
+    > bin/spiffy -io file0 file1
+    Example program:
+      Input File: file0
+      OutputFile: file1
+
+Kinda neat, no?
+
+### One other note
+
+I'd like to point out that the output of `spiffy -h` demonstrates how you still get an argument package back when you're missing required flags. This is a slight modification designed to allow you to detect help flags. So, if you wanted to have different error handling code that doesn't just spit out the help stuff.

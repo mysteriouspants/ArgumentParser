@@ -221,12 +221,13 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
         return evaluatedObject.isRequired;
     }]]];
     [allRequriedSignatures minusSet:allFoundArguments];
+    FSArgumentPackage * pkg = [FSArgumentPackage argumentPackageWithFlags:[flags copy] namedArguments:[namedArguments copy] unnamedArguments:[unnamedArguments copy]];
     if (0<[allRequriedSignatures count]) {
         *error = [NSError errorWithDomain:kFSAPErrorDomain code:MissingSignatures userInfo:[NSDictionary dictionaryWithObject:allRequriedSignatures forKey:FSAPErrorDictKeys.MissingTheseSignatures]];
-        return nil;
+        return pkg;
     }
     
-    return [FSArgumentPackage argumentPackageWithFlags:[flags copy] namedArguments:[namedArguments copy] unnamedArguments:[unnamedArguments copy]];
+    return pkg;
 }
 
 @end

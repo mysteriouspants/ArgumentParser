@@ -45,4 +45,7 @@ end
 CLEAN.include("**/*.o")
 CLOBBER.include(PRODUCTS.keys)
   
-task :default => 'desc'
+desc 'build them all!'
+task :all => PRODUCTS.keys
+  
+task :default => 'all'
