@@ -28,6 +28,9 @@ A short, awesome, and *really useful* tool for rapidly parsing command-line argu
     BOOL forceFlag = [[arguments.flags objectForKey:[signatures objectAtIndex:0]] boolValue]; // do I have the
     // force flag set?
     
+    forceFlag = [arguments boolValueOfFlag:@"f"]; // this works
+    forceFlag = [arguments boolValueOfFlag:[signatures objectAtIndex:0]]; // but this is less stringly-typed
+    
     NSUInteger howMuchForce = [[arguments.flags objectForKey:[signatures objectAtIndex:0]] unsignedIntegerValue];
     // how much force is set? eg. -ff will yield 2. Ain't that spiffy?
     
