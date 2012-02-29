@@ -17,6 +17,7 @@ CFLAGS = [
   '-std=c99',
   '-fobjc-arc',
   '-I ./',
+  '-include example/example-Prefix.pch',
 ].join(' ')
 
 LIBS = [

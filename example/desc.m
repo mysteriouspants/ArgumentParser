@@ -16,10 +16,10 @@
 
 int main (int argc, const char * argv[]) {
     @autoreleasepool {
-        NSArray * signatures = [[NSArray alloc] initWithObjects:
-                                [FSArgumentSignature argumentSignatureAsFlag:@"h" longNames:@"help" multipleAllowed:NO],
-                                [FSArgumentSignature argumentSignatureAsNamedArgument:@"o" longNames:@"out-file" required:NO multipleAllowed:YES],
-                                nil];
+        FSArgumentSignature
+            * helpSig = [FSArgumentSignature argumentSignatureAsFlag:@"h" longNames:@"help" multipleAllowed:NO],
+            * outFileSig = [FSArgumentSignature argumentSignatureAsNamedArgument:@"o" longNames:@"out-file" required:NO multipleAllowed:YES];
+        NSArray * signatures = [[NSArray alloc] initWithObjects:helpSig, outFileSig, nil];
     
         NSError * err;
         FSArgumentPackage * arguments = [FSArgumentParser parseArguments:[[NSProcessInfo processInfo] arguments]
@@ -27,7 +27,7 @@ int main (int argc, const char * argv[]) {
                                                                    error:&err];
         if (err) { NSLog(@"%@", err); return -1; }
         
-        if ([[arguments.flags objectForKey:[signatures objectAtIndex:0]] boolValue]==YES) {
+        if ([arguments boolValueOfFlag:helpSig]==YES) {
             printf("Example program with help flag!\n\n");
             
             [signatures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
