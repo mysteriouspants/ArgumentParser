@@ -2,16 +2,15 @@
 
 A short, awesome, and *really useful* tool for rapidly parsing command-line arguments in a declarative manner using Objective-C.
 
-    NSArray * signatures = [NSArray arrayWithObjects:
-    
-      [FSArgumentSignature argumentSignatureAsFlag:@"f" longNames:@"force" multipleAllowed:YES],
-      [FSArgumentSignature argumentSignatureAsFlag:@"s" longNames:@"soft" multipleAllowed:NO],
-      [FSArgumentSignature argumentSignatureAsNamedArgument:nil
+    FSArgumentSignature
+      * force = [FSArgumentSignature argumentSignatureAsFlag:@"f" longNames:@"force" multipleAllowed:YES],
+      * soft = [FSArgumentSignature argumentSignatureAsFlag:@"s" longNames:@"soft" multipleAllowed:NO],
+      * outputFile = [FSArgumentSignature argumentSignatureAsNamedArgument:nil
         longNames:@"output-file" required:YES multipleAllowed:NO],
-      [FSArgumentSignature argumentSignatureAsNamedArgument:@"i"
-        longNames:@"input-file" required:YES multipleAllowed:YES],
+      * inputFile = [FSArgumentSignature argumentSignatureAsNamedArgument:@"i"
+        longNames:@"input-file" required:YES multipleAllowed:YES];
       
-      nil];
+    NSArray * signatures = [NSArray arrayWithObjects:force, soft, outputFile, inputFile, nil];
       
     NSError * error;
     FSArgumentPackage * arguments = [FSArgumentParser parseArguments:[[NSProcessInfo processInfo] arguments] 
@@ -25,20 +24,21 @@ A short, awesome, and *really useful* tool for rapidly parsing command-line argu
     
     // arguments now has all the information you could want!
     
-    BOOL forceFlag = [[arguments.flags objectForKey:[signatures objectAtIndex:0]] boolValue]; // do I have the
+    BOOL forceFlag = [[arguments.flags objectForKey:force] boolValue]; // do I have the
     // force flag set?
     
     forceFlag = [arguments boolValueOfFlag:@"f"]; // this works
-    forceFlag = [arguments boolValueOfFlag:[signatures objectAtIndex:0]]; // but this is less stringly-typed
+    forceFlag = [arguments boolValueOfFlag:force]; // but this is less stringly-typed, therefore better
     
-    NSUInteger howMuchForce = [[arguments.flags objectForKey:[signatures objectAtIndex:0]] unsignedIntegerValue];
+    NSUInteger howMuchForce = [[arguments.flags objectForKey:force] unsignedIntegerValue];
     // how much force is set? eg. -ff will yield 2. Ain't that spiffy?
+    howMuchForce = [arguments unsignedIntegerValueOfFlag:@"f"]; // that works as expected, too!
     
-    NSString * outputFileName = [arguments.namedArguments objectForKey:[signatures objectAtIndex:2]];
+    NSString * outputFileName = [arguments.namedArguments objectForKey:outputFile];
     // because multiple is not allowed, this is guaranteed to be either nil or a single string. Because it's
     // required, you can be guaranteed this will not be nil.
     
-    NSArray * inputFiles = [arguments.namedArguments objectForKey:[signatures objectAtIndex:3]];
+    NSArray * inputFiles = [arguments.namedArguments objectForKey:inputFile];
     // because multiple is allowed, this is always going to be an array, even if there's only one object.
     
     NSArray * otherArgs = arguments.unnamedArguments; // these are all the other things that aren't flags and
@@ -122,12 +122,12 @@ Then you're armed and fully operational to start building the example code!
     > bin/desc -h
     Example program with help flag!
     
-        Flag responding to -h and --help; required:NO multipleAllowed:NO
-        Argument responding to -o and --out-file; required:NO multipleAllowed:YES
+        -h --help required:NO  multipleAllowed:NO
+        -o --out-file <value> required:NO  multipleAllowed:YES
     > bin/long-desc -h
     Example program with help flag!
     
-        Flag responding to -h and --help; required:NO multipleAllowed:NO
+        -h --help required:NO  multipleAllowed:NO
         -o file --out-file file (not required) specify zero or more output files. I'
         m not really sure why you'd want to pipe the output to more than one file, b
         ut the main point of this is to show how the program can wrap really long li
@@ -135,14 +135,21 @@ Then you're armed and fully operational to start building the example code!
     > bin/spiffy -h
     Example program with help flag!
     
-        Flag responding to -h and --help; required:NO multipleAllowed:NO
-        Argument responding to -i and --if; required:YES multipleAllowed:NO
-        Argument responding to -o and --of; required:YES multipleAllowed:NO
+        -h --help required:NO  multipleAllowed:NO
+        -i --if <value> required:YES multipleAllowed:NO
+        -o --of <value> required:YES multipleAllowed:NO
     
     Oh, PS, there was an error: {
-        missingTheseSignatures = "{(\n        Argument responding to -i and --if; required:YES multipleAllowed:NO,\n        Argument responding to -o and --of; required:YES multipleAllowed:NO\n)}";
+        missingTheseSignatures =     (
+            "-i --if <value> required:YES multipleAllowed:NO",
+            "-o --of <value> required:YES multipleAllowed:NO"
+        );
     }
     > bin/spiffy -io file0 file1
+    Example program:
+      Input File: file0
+      OutputFile: file1
+    > bin/spiffy -i -o file0 file1 
     Example program:
       Input File: file0
       OutputFile: file1

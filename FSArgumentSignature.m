@@ -91,6 +91,10 @@ NSArray * __charactersFromCharacterSet(NSCharacterSet *);
 
 #pragma mark Help Output
 
+- (NSString *)descriptionWithLocale:(id)locale {
+    return [self description];
+}
+
 - (NSString *)descriptionWithLocale:(id)locale indent:(NSUInteger)level {
     struct ttysize ts;
     ioctl(0, TIOCGWINSZ, &ts);
@@ -133,10 +137,6 @@ NSArray * __charactersFromCharacterSet(NSCharacterSet *);
     [s appendString:[arr componentsJoinedByString:@"\n"]];
     
     return s;
-}
-
-- (NSString *)descriptionWithLocale:(id)locale {
-    return [self description];
 }
 
 - (NSString *)description {
