@@ -15,6 +15,7 @@
 
 NSCharacterSet * __fsargs_coalesceToCharacterSet(id);
 NSArray * __fsargs_coalesceToArray(id);
+NSArray * __charactersFromCharacterSet(NSCharacterSet *);
 
 @implementation FSArgumentSignature
 
@@ -110,19 +111,7 @@ NSArray * __fsargs_coalesceToArray(id);
     else if (self.signatureDescriptionDelegate && self.signatureDescriptionDelegateMethod) original = [self.signatureDescriptionDelegate performSelector:self.signatureDescriptionDelegateMethod];
 #pragma clang diagnostic pop
     else if (self.signatureDescriptionBlock) original = self.signatureDescriptionBlock();
-    else {
-        NSMutableArray * characterSetDesc = [[NSMutableArray alloc] init];
-        for (unichar c = 0;
-             c < 256;
-             ++c)
-            if ([self.shortNames characterIsMember:c]) [characterSetDesc addObject:[NSString stringWithFormat:@"-%c", c]];
-        original = [NSMutableString stringWithFormat:@"%@ responding to %@ and --%@; required:%@ multipleAllowed:%@",
-                    (self.isFlag)?@"Flag":@"Argument",
-                    [characterSetDesc componentsJoinedByString:@", "],
-                    [self.longNames componentsJoinedByString:@", --"],
-                    (self.isRequired)?@"YES":@"NO",
-                    (self.isMultipleAllowed)?@"YES":@"NO"];
-    }
+    else original = [self descriptionWithLocale:locale];
     NSMutableArray * arr = [[NSMutableArray alloc] init];
     [original enumerateSubstringsInRange:NSMakeRange(0, [original length]) options:NSStringEnumerationByParagraphs usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
         NSMutableString * s2 = [[NSMutableString alloc] init];
@@ -147,11 +136,25 @@ NSArray * __fsargs_coalesceToArray(id);
 }
 
 - (NSString *)descriptionWithLocale:(id)locale {
-    return [self descriptionWithLocale:nil indent:0];
+    return [self description];
 }
 
 - (NSString *)description {
-    return [self descriptionWithLocale:nil indent:0];
+    NSArray * characterSetDesc = __charactersFromCharacterSet(self.shortNames);
+    NSMutableString * s = [[NSMutableString alloc] init];
+    [characterSetDesc enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [s appendFormat:@"-%@ ", obj];
+    }];
+    [self.longNames enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [s appendFormat:@"--%@ ", obj];
+    }];
+    if (!self.isFlag) {
+        [s appendString:@"<value> "];
+    }
+    [s appendFormat:@"required:%@ multipleAllowed:%@",
+     _required?@"YES":@"NO ",
+     _multipleAllowed?@"YES":@"NO"];
+    return s;
 }
 
 #pragma mark NSCopying
@@ -178,14 +181,9 @@ NSArray * __fsargs_coalesceToArray(id);
 
 - (BOOL)isEqual:(id)object
 {
-    if (![object isKindOfClass:[self class]]) return NO;
-    FSArgumentSignature * _object = (FSArgumentSignature *)object;
-    if (_object.flag != _flag) return NO;
-    if (_object.required != _required) return NO;
-    if (_object.multipleAllowed != _required) return NO;
-    if (_object.longNames != _longNames) return NO;
-    if (_object.shortNames != _shortNames) return NO;
-    return YES;
+    if (![object isKindOfClass:[self class]])
+        return NO;
+    return [self hash]==[object hash];
 }
 
 - (BOOL)isEqualTo:(id)object
@@ -266,4 +264,13 @@ NSArray * __fsargs_coalesceToArray(id o) {
     else if ([o isKindOfClass:[NSString class]]) return [NSArray arrayWithObject:o];
     else if ([o isKindOfClass:[NSSet class]]||[o isKindOfClass:[NSOrderedSet class]]) return [o allObjects];
     else return [NSArray arrayWithObject:[o description]];
+}
+
+NSArray * __charactersFromCharacterSet(NSCharacterSet * characterSet) {
+    NSMutableArray * a = [NSMutableArray array];
+    for (unichar c = 0;
+         c < 256;
+         ++c)
+        if ([characterSet characterIsMember:c]) [a addObject:[NSString stringWithFormat:@"%c", c]];
+    return [a copy];
 }

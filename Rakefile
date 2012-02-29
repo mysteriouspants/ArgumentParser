@@ -17,7 +17,6 @@ CFLAGS = [
   '-std=c99',
   '-fobjc-arc',
   '-I ./',
-  '-g'
 ].join(' ')
 
 LIBS = [

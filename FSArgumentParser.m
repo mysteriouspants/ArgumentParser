@@ -109,7 +109,9 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
     
     NSRegularExpression * flagDetector = [NSRegularExpression regularExpressionWithPattern:@"^[\\-][^\\-]*$" options:0 error:error];
     if (*error) return nil;
-    NSRegularExpression * namedArgumentDetector = [NSRegularExpression regularExpressionWithPattern:@"^[\\-]{2}.*$" options:8 error:error];
+    NSRegularExpression * namedArgumentDetector = [NSRegularExpression regularExpressionWithPattern:@"^[\\-]{2}.*$" options:0 error:error];
+    if (*error) return nil;
+    NSRegularExpression * isntValueDetector = [NSRegularExpression regularExpressionWithPattern:@"^\\-" options:0 error:error];
     if (*error) return nil;
     
     while (0<[args count]) {
@@ -147,7 +149,14 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
                         *error = [NSError errorWithDomain:kFSAPErrorDomain code:UnknownArgument userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithChar:c] forKey:FSAPErrorDictKeys.UnknownSignature]];
                         return nil;
                     }
-                    if (0==[args count]) {
+                    __block NSUInteger valueLocation=NSNotFound;
+                    [args enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL *stop) {
+                        if ([isntValueDetector numberOfMatchesInString:obj options:0 range:NSMakeRange(0, [obj length])]==0) {
+                            valueLocation = idx;
+                            *stop = YES;
+                        }
+                    }];
+                    if (0==[args count]||valueLocation==NSNotFound) {
                         *error = [NSError errorWithDomain:kFSAPErrorDomain code:ArgumentMissingValue userInfo:[NSDictionary dictionaryWithObject:as forKey:FSAPErrorDictKeys.ArgumentOfTypeMissingValue]];
                         return nil;
                     }
@@ -157,10 +166,10 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
                         return nil;
                     }
                     if (!value&&as.isMultipleAllowed) value = [NSMutableArray array];
-                    if (as.isMultipleAllowed) [value addObject:[args objectAtIndex:0]];
-                    else value = [args objectAtIndex:0];
+                    if (as.isMultipleAllowed) [value addObject:[args objectAtIndex:valueLocation]];
+                    else value = [args objectAtIndex:valueLocation];
                     [namedArguments setObject:value forKey:as];
-                    [args removeObjectAtIndex:0];
+                    [args removeObjectAtIndex:valueLocation];
                 }
                 [mutable_arg deleteCharactersInRange:NSMakeRange(0, 1)];
             }
@@ -195,7 +204,14 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
                     *error = [NSError errorWithDomain:kFSAPErrorDomain code:UnknownArgument userInfo:[NSDictionary dictionaryWithObject:mutable_arg forKey:FSAPErrorDictKeys.UnknownSignature]];
                     return nil;
                 }
-                if (0==[args count]) {
+                __block NSUInteger valueLocation = NSNotFound;
+                [args enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL *stop) {
+                    if ([isntValueDetector numberOfMatchesInString:obj options:0 range:NSMakeRange(0, [obj length])]==0) {
+                        valueLocation = idx;
+                        *stop = YES;
+                    }
+                }];
+                if (0==[args count]||valueLocation==NSNotFound) {
                     *error = [NSError errorWithDomain:kFSAPErrorDomain code:ArgumentMissingValue userInfo:[NSDictionary dictionaryWithObject:as forKey:FSAPErrorDictKeys.ArgumentOfTypeMissingValue]];
                     return nil;
                 }
@@ -205,10 +221,10 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
                     return nil;
                 }
                 if (!value&&as.isMultipleAllowed) value = [NSMutableArray array];
-                if (as.isMultipleAllowed) [value addObject:[args objectAtIndex:0]];
-                else value = [args objectAtIndex:0];
+                if (as.isMultipleAllowed) [value addObject:[args objectAtIndex:valueLocation]];
+                else value = [args objectAtIndex:valueLocation];
                 [namedArguments setObject:value forKey:as];
-                [args removeObject:0];
+                [args removeObjectAtIndex:valueLocation];
             }
         } else {
             // unnamed arg
@@ -216,15 +232,15 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
         }
     }
     
-    NSMutableSet * allFoundArguments = [[NSMutableSet alloc] initWithArray:[flags allKeys]];
+    NSMutableArray * allFoundArguments = [[NSMutableArray alloc] initWithArray:[flags allKeys]];
     [allFoundArguments addObjectsFromArray:[namedArguments allKeys]];
-    NSMutableSet * allRequriedSignatures = [[NSMutableSet alloc] initWithArray:[signatures filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FSArgumentSignature * evaluatedObject, NSDictionary *bindings) {
-        return evaluatedObject.isRequired;
+    NSMutableArray * allRequiredSignatures = [NSMutableArray arrayWithArray:[signatures filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FSArgumentSignature * evaluatedObject, NSDictionary *bindings) {        
+        return evaluatedObject.isRequired && ![allFoundArguments containsObject:evaluatedObject];
     }]]];
-    [allRequriedSignatures minusSet:allFoundArguments];
+    
     FSArgumentPackage * pkg = [FSArgumentPackage argumentPackageWithFlags:[flags copy] namedArguments:[namedArguments copy] unnamedArguments:[unnamedArguments copy]];
-    if (0<[allRequriedSignatures count]) {
-        *error = [NSError errorWithDomain:kFSAPErrorDomain code:MissingSignatures userInfo:[NSDictionary dictionaryWithObject:allRequriedSignatures forKey:FSAPErrorDictKeys.MissingTheseSignatures]];
+    if (0<[allRequiredSignatures count]) {
+        *error = [NSError errorWithDomain:kFSAPErrorDomain code:MissingSignatures userInfo:[NSDictionary dictionaryWithObject:allRequiredSignatures forKey:FSAPErrorDictKeys.MissingTheseSignatures]];
         return pkg;
     }
     
