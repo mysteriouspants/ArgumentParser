@@ -16,7 +16,7 @@ CFLAGS = [
   '-DDEBUG',
   '-std=c99',
   '-fobjc-arc',
-  '-I ./',
+  '-I ArgumentParser',
   '-include example/example-Prefix.pch',
 ].join(' ')
 
@@ -24,7 +24,7 @@ LIBS = [
   '-framework Foundation'
 ].join(' ')
 
-OBJC_SOURCES = FileList['*.m', 'example/*.m']
+OBJC_SOURCES = FileList['ArgumentParser/*.m', 'example/*.m']
 O_FILES = OBJC_SOURCES.ext('.o')
 
 rule '.o' => ['.m'] do |t|
