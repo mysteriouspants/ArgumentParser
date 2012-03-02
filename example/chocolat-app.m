@@ -62,10 +62,10 @@ int main(int argc, const char * argv[])
             exit(-1);
         } else {
             // handle the other args
-            NSArray * filesToOpen = arguments.unnamedArguments;
-            BOOL doAsync = [arguments boolValueOfFlag:asyncSig];
-            BOOL doWait = [arguments boolValueOfFlag:waitSig];
-            BOOL doNotReactivate = [arguments boolValueOfFlag:noReactivationSig];
+            __unused NSArray * filesToOpen = arguments.unnamedArguments;
+            __unused BOOL doAsync = [arguments boolValueOfFlag:asyncSig];
+            __unused BOOL doWait = [arguments boolValueOfFlag:waitSig];
+            __unused BOOL doNotReactivate = [arguments boolValueOfFlag:noReactivationSig];
             
             // do other things related to the app
         }
