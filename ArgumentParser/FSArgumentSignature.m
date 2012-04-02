@@ -24,6 +24,7 @@ NSArray * __charactersFromCharacterSet(NSCharacterSet *);
 @synthesize flag=_flag;
 @synthesize required=_required;
 @synthesize multipleAllowed=_multipleAllowed;
+@synthesize exclusive=_exclusive;
 @synthesize signatureDescription=_signatureDescription;
 @synthesize signatureDescriptionDelegate=_signatureDescriptionDelegate;
 @synthesize signatureDescriptionDelegateMethod=_signatureDescriptionDelegateMethod;
@@ -38,6 +39,7 @@ NSArray * __charactersFromCharacterSet(NSCharacterSet *);
     siggy->_flag = YES;
     siggy->_multipleAllowed = multipleAllowed;
     siggy->_required = NO;
+    siggy->_exclusive = NO;
     siggy->_shortNames = __fsargs_coalesceToCharacterSet(shortName);
     siggy->_longNames = __fsargs_coalesceToArray(longNames);
     siggy->_signatureDescription = description;
@@ -59,6 +61,45 @@ NSArray * __charactersFromCharacterSet(NSCharacterSet *);
     return [[self class] argumentSignatureAsFlag:shortName longNames:longNames multipleAllowed:multipleAllowed description:nil delegate:nil selector:nil block:block];
 }
 
+#pragma mark Exclusive Flag Constructors
+
++ (id)argumentSignatureAsExclusiveFlag:(id)shortName longNames:(id)longNames description:(NSString *)description delegate:(id)delegate selector:(SEL)selector block:(NSString *(^)())block
+{
+    FSArgumentSignature * siggy = [[[self class] alloc] init];
+    if (!siggy) return siggy;
+    siggy->_flag = YES;
+    siggy->_multipleAllowed = NO;
+    siggy->_required = NO;
+    siggy->_exclusive = YES;
+    siggy->_shortNames = __fsargs_coalesceToCharacterSet(shortName);
+    siggy->_longNames = __fsargs_coalesceToArray(longNames);
+    siggy->_signatureDescription = description;
+    siggy->_signatureDescriptionDelegate = delegate;
+    siggy->_signatureDescriptionDelegateMethod = selector;
+    siggy->_signatureDescriptionBlock = block;
+    return siggy;
+}
+
++ (id)argumentSignatureAsExclusiveFlag:(id)shortName longNames:(id)longNames
+{
+    return [[self class] argumentSignatureAsExclusiveFlag:shortName longNames:longNames description:nil delegate:nil selector:nil block:nil];
+}
+
++ (id)argumentSignatureAsExclusiveFlag:(id)shortName longNames:(id)longNames description:(NSString *)description
+{
+    return [[self class] argumentSignatureAsExclusiveFlag:shortName longNames:longNames description:description delegate:nil selector:nil block:nil];
+}
+
++ (id)argumentSignatureAsExclusiveFlag:(id)shortName longNames:(id)longNames delegate:(id)delegate selector:(SEL)selector
+{
+    return [[self class] argumentSignatureAsExclusiveFlag:shortName longNames:longNames description:nil delegate:delegate selector:selector block:nil];
+}
+
++ (id)argumentSignatureAsExclusiveFlag:(id)shortName longNames:(id)longNames block:(NSString *(^)())block
+{
+    return [[self class] argumentSignatureAsExclusiveFlag:shortName longNames:longNames description:nil delegate:nil selector:nil block:block];
+}
+
 #pragma mark Named Argument Signature Constructors
 
 + (id)argumentSignatureAsNamedArgument:(id)shortName longNames:(id)longNames required:(BOOL)required multipleAllowed:(BOOL)multipleAllowed description:(NSString *)description delegate:(id)delegate selector:(SEL)selector block:(NSString *(^)())block 
@@ -68,6 +109,7 @@ NSArray * __charactersFromCharacterSet(NSCharacterSet *);
     siggy->_flag = NO;
     siggy->_multipleAllowed = multipleAllowed;
     siggy->_required = required;
+    siggy->_exclusive = NO;
     siggy->_shortNames = __fsargs_coalesceToCharacterSet(shortName);
     siggy->_longNames = __fsargs_coalesceToArray(longNames);
     siggy->_signatureDescription = description;

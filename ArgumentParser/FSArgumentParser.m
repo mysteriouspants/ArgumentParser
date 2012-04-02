@@ -189,7 +189,7 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
                 }
                 NSNumber * count = [flags objectForKey:as];
                 if (count==nil) count = [NSNumber numberWithUnsignedInteger:0];
-                else if (!as.isMultipleAllowed) {
+                else if (!as.isMultipleAllowed && [count unsignedIntegerValue]>0) {
                     *error = [NSError errorWithDomain:kFSAPErrorDomain code:TooManySignatures userInfo:[NSDictionary dictionaryWithObject:as forKey:FSAPErrorDictKeys.TooManyOfThisSignature]];
                     return nil;
                 }
@@ -239,7 +239,18 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
     }]]];
     
     FSArgumentPackage * pkg = [FSArgumentPackage argumentPackageWithFlags:[flags copy] namedArguments:[namedArguments copy] unnamedArguments:[unnamedArguments copy]];
-    if (0<[allRequiredSignatures count]) {
+    // check for an exclusive signature
+    NSArray * allExclusiveArguments = [signatures filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FSArgumentSignature * signature, NSDictionary *bindings) {
+        return [signature isExclusive]==YES;
+    }]];
+    BOOL hasExclusiveArgument = NO;
+    for (FSArgumentSignature * signature in allExclusiveArguments)
+        if ([pkg boolValueOfFlag:signature]) {
+            hasExclusiveArgument = YES;
+            break;
+        }
+    
+    if (0<[allRequiredSignatures count]&&!hasExclusiveArgument) {
         *error = [NSError errorWithDomain:kFSAPErrorDomain code:MissingSignatures userInfo:[NSDictionary dictionaryWithObject:allRequiredSignatures forKey:FSAPErrorDictKeys.MissingTheseSignatures]];
         return pkg;
     }

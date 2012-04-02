@@ -39,6 +39,11 @@
 @property (readonly, assign, getter = isMultipleAllowed) BOOL multipleAllowed;
 
 /**
+ * An exclusive argument causes all other "required" arguments to NOT cause errors if and only if this argument is present. Other arguments are parsed and returned, but you should check for the presence of exclusive arguments first.
+ */
+@property (readonly, assign, getter = isExclusive) BOOL exclusive;
+
+/**
  * What do I say when you ask me for help documentation?
  */
 @property (readwrite, strong) NSString * signatureDescription;
@@ -81,6 +86,11 @@
  * Create a new argument signature that behaves as a boolean flag and call a block to obtain help output.
  */
 + (id)argumentSignatureAsFlag:(id)shortName longNames:(id)longNames multipleAllowed:(BOOL)multipleAllowed block:(NSString *(^)())block;
+
++ (id)argumentSignatureAsExclusiveFlag:(id)shortName longNames:(id)longNames;
++ (id)argumentSignatureAsExclusiveFlag:(id)shortName longNames:(id)longNames description:(NSString *)description;
++ (id)argumentSignatureAsExclusiveFlag:(id)shortName longNames:(id)longNames delegate:(id)delegate selector:(SEL)selector;
++ (id)argumentSignatureAsExclusiveFlag:(id)shortName longNames:(id)longNames block:(NSString *(^)())block;
 
 /**
  * Create a new argument signature that behaves as a named argument.
