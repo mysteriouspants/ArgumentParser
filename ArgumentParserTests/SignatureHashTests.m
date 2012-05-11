@@ -21,6 +21,7 @@
     FSCountedArgument * c0_copy = [c0 copy];
     FSCountedArgument * c1 = [FSCountedArgument countedArgumentWithSwitches:@"v" longAliases:@"verbose" allowMultipleInvocations:false];
     FSCountedArgument * c2 = [FSCountedArgument countedArgumentWithSwitches:@"f" longAliases:@"file" allowMultipleInvocations:false];
+    FSCountedArgument * c3 = [FSCountedArgument countedArgumentWithSwitches:@"v" longAliases:[NSString stringWithFormat:@"%@%@", @"ver", @"bose"] allowMultipleInvocations:false]; // should make it a different string in memory, too. I just want to check this to be sure. If it's right here, then it'll be correct in the other three tests, too.
     
     STAssertEquals([c0 hash], [c0_copy hash], @"For some reason c0 has a different hash from c0_copy.");
     STAssertTrue([c0 isEqual:c0_copy], @"c0 isn't equal to its copy.");
@@ -30,6 +31,9 @@
     
     STAssertFalse([c0 hash] == [c2 hash], @"c0 has the same hash has c2, which it shouldn't.");
     STAssertFalse([c0 isEqual:c2], @"c0 is somehow equal to c2; it shouldn't be.");
+    
+    STAssertEquals([c0 hash], [c3 hash], @"For some reason c0 has a different hash from c3.");
+    STAssertTrue([c0 isEqual:c3], @"c0 isn't equal to its twin, c3.");
 }
 
 - (void)testValuedArgument
