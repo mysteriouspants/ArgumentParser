@@ -34,7 +34,7 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
 + (id)argumentPackageWithFlags:(NSDictionary *)flags namedArguments:(NSDictionary *)namedArguments unnamedArguments:(NSArray *)unnamedArguments;
 @end
 
-void IncrementCountOfKeyInDictionary(NSDictionary *, id); // used to increment flag counts
+void IncrementCountOfKeyInDictionary(NSMutableDictionary *, id); // used to increment flag counts
 NSUInteger CountOfKeyInDictionary(NSDictionary *, id); // used to find the count; just an easy convenience method
 
 @implementation FSArgumentParser
@@ -212,7 +212,7 @@ NSUInteger CountOfKeyInDictionary(NSDictionary *, id); // used to find the count
 
                     // increment the count for this flag
                     IncrementCountOfKeyInDictionary(flags, as); // step 4.2.1.1
-                    else if (!as.isMultipleAllowed&&CountOfKeyInDictionary(flags, as)>1) { // step 4.2.1.2
+                    if (!as.isMultipleAllowed&&CountOfKeyInDictionary(flags, as)>1) { // step 4.2.1.2
                         *error = [NSError errorWithDomain:kFSAPErrorDomain code:TooManySignatures userInfo:[NSDictionary dictionaryWithObject:as forKey:FSAPErrorDictKeys.TooManyOfThisSignature]];
                         return nil;
                     }
@@ -270,7 +270,7 @@ NSUInteger CountOfKeyInDictionary(NSDictionary *, id); // used to find the count
 
                 // increment the count for this flag
                 IncrementCountOfKeyInDictionary(flags, as); // step 4.3.1.1
-                else if (!as.isMultipleAllowed&&CountOfKeyInDictionary(flags, as)>1) { // step 4.3.1.2
+                if (!as.isMultipleAllowed&&CountOfKeyInDictionary(flags, as)>1) { // step 4.3.1.2
                     *error = [NSError errorWithDomain:kFSAPErrorDomain code:TooManySignatures userInfo:[NSDictionary dictionaryWithObject:as forKey:FSAPErrorDictKeys.TooManyOfThisSignature]];
                     return nil;
                 }
@@ -360,7 +360,7 @@ NSUInteger CountOfKeyInDictionary(NSDictionary *, id); // used to find the count
 }
 @end
 
-void IncrementCountOfKeyInDictionary(NSDictionary * dictionary, id key)
+void IncrementCountOfKeyInDictionary(NSMutableDictionary * dictionary, id key)
 {
     NSNumber * number = [dictionary objectForKey:key];
     NSCAssert(number!=nil, @"No value for %@, which is the old model. Try and do better next time!", key); // just make sure it's there; used to be an initialize to zero, but I'd rather be sure that things are being initialized beforehand

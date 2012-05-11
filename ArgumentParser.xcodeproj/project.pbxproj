@@ -7,27 +7,62 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA00447C155D94FF0028A012 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA00447B155D94FF0028A012 /* Cocoa.framework */; };
+		DA00448E155D94FF0028A012 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA00448D155D94FF0028A012 /* SenTestingKit.framework */; };
+		DA00448F155D94FF0028A012 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA00447B155D94FF0028A012 /* Cocoa.framework */; };
+		DA004492155D94FF0028A012 /* ArgumentParser.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA00447A155D94FF0028A012 /* ArgumentParser.dylib */; };
+		DA004498155D94FF0028A012 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA004496155D94FF0028A012 /* InfoPlist.strings */; };
+		DA00449B155D94FF0028A012 /* ArgumentParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA00449A155D94FF0028A012 /* ArgumentParserTests.m */; };
+		DA0044A2155D950A0028A012 /* FSArgumentPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */; };
+		DA0044A3155D950E0028A012 /* FSArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */; };
+		DA0044A4155D95110028A012 /* FSArgumentSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */; };
 		DACF2EC914FD3B2F0097C754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACF2EC814FD3B2F0097C754 /* Foundation.framework */; };
 		DACF2ECC14FD3B2F0097C754 /* desc.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2ECB14FD3B2F0097C754 /* desc.m */; };
 		DACF2EE114FD3B630097C754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACF2EC814FD3B2F0097C754 /* Foundation.framework */; };
 		DACF2EED14FD3B710097C754 /* long-desc.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2EEC14FD3B710097C754 /* long-desc.m */; };
 		DACF2EF414FD3B7A0097C754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACF2EC814FD3B2F0097C754 /* Foundation.framework */; };
 		DACF2F0014FD3B840097C754 /* spiffy.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2EFF14FD3B840097C754 /* spiffy.m */; };
-		DACF2F0714FD3BED0097C754 /* FSArgumentPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */; };
-		DACF2F0814FD3BED0097C754 /* FSArgumentPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */; };
-		DACF2F0914FD3BED0097C754 /* FSArgumentPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */; };
-		DACF2F0A14FD3BED0097C754 /* FSArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */; };
-		DACF2F0B14FD3BED0097C754 /* FSArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */; };
-		DACF2F0C14FD3BED0097C754 /* FSArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */; };
-		DACF2F0D14FD3BED0097C754 /* FSArgumentSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */; };
-		DACF2F0E14FD3BED0097C754 /* FSArgumentSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */; };
-		DACF2F0F14FD3BED0097C754 /* FSArgumentSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */; };
 		DACF2F1614FD75AC0097C754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACF2EC814FD3B2F0097C754 /* Foundation.framework */; };
 		DACF2F2514FD78D70097C754 /* chocolat-app.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F2114FD75FD0097C754 /* chocolat-app.m */; };
-		DACF2F2614FD78E70097C754 /* FSArgumentPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */; };
-		DACF2F2714FD78EA0097C754 /* FSArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */; };
-		DACF2F2814FD78EE0097C754 /* FSArgumentSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DA004490155D94FF0028A012 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DACF2EBB14FD3B2F0097C754 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA004479155D94FF0028A012;
+			remoteInfo = ArgumentParser;
+		};
+		DA0044A5155D951C0028A012 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DACF2EBB14FD3B2F0097C754 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA004479155D94FF0028A012;
+			remoteInfo = ArgumentParser;
+		};
+		DA0044A7155D95270028A012 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DACF2EBB14FD3B2F0097C754 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA004479155D94FF0028A012;
+			remoteInfo = ArgumentParser;
+		};
+		DA0044A9155D952C0028A012 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DACF2EBB14FD3B2F0097C754 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA004479155D94FF0028A012;
+			remoteInfo = ArgumentParser;
+		};
+		DA0044AB155D95310028A012 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DACF2EBB14FD3B2F0097C754 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA004479155D94FF0028A012;
+			remoteInfo = ArgumentParser;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		DACF2EC214FD3B2F0097C754 /* CopyFiles */ = {
@@ -69,6 +104,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DA00447A155D94FF0028A012 /* ArgumentParser.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = ArgumentParser.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA00447B155D94FF0028A012 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		DA00447E155D94FF0028A012 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		DA00447F155D94FF0028A012 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		DA004480155D94FF0028A012 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DA004483155D94FF0028A012 /* ArgumentParser-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ArgumentParser-Prefix.pch"; sourceTree = "<group>"; };
+		DA00448C155D94FF0028A012 /* ArgumentParserTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArgumentParserTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA00448D155D94FF0028A012 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		DA004495155D94FF0028A012 /* ArgumentParserTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ArgumentParserTests-Info.plist"; sourceTree = "<group>"; };
+		DA004497155D94FF0028A012 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DA004499155D94FF0028A012 /* ArgumentParserTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArgumentParserTests.h; sourceTree = "<group>"; };
+		DA00449A155D94FF0028A012 /* ArgumentParserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArgumentParserTests.m; sourceTree = "<group>"; };
 		DACF2EC414FD3B2F0097C754 /* example */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = example; path = desc; sourceTree = BUILT_PRODUCTS_DIR; };
 		DACF2EC814FD3B2F0097C754 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DACF2ECB14FD3B2F0097C754 /* desc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = desc.m; sourceTree = "<group>"; };
@@ -88,6 +135,24 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DA004477155D94FF0028A012 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA00447C155D94FF0028A012 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA004488155D94FF0028A012 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA00448E155D94FF0028A012 /* SenTestingKit.framework in Frameworks */,
+				DA00448F155D94FF0028A012 /* Cocoa.framework in Frameworks */,
+				DA004492155D94FF0028A012 /* ArgumentParser.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DACF2EC114FD3B2F0097C754 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -123,10 +188,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DA00447D155D94FF0028A012 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DA00447E155D94FF0028A012 /* AppKit.framework */,
+				DA00447F155D94FF0028A012 /* CoreData.framework */,
+				DA004480155D94FF0028A012 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		DA004481155D94FF0028A012 /* ArgumentParser */ = {
+			isa = PBXGroup;
+			children = (
+				DACF2F0114FD3BED0097C754 /* FSArgumentPackage.h */,
+				DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */,
+				DACF2F0314FD3BED0097C754 /* FSArgumentParser.h */,
+				DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */,
+				DACF2F0514FD3BED0097C754 /* FSArgumentSignature.h */,
+				DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */,
+				DA004482155D94FF0028A012 /* Supporting Files */,
+			);
+			path = ArgumentParser;
+			sourceTree = "<group>";
+		};
+		DA004482155D94FF0028A012 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DA004483155D94FF0028A012 /* ArgumentParser-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DA004493155D94FF0028A012 /* ArgumentParserTests */ = {
+			isa = PBXGroup;
+			children = (
+				DA004499155D94FF0028A012 /* ArgumentParserTests.h */,
+				DA00449A155D94FF0028A012 /* ArgumentParserTests.m */,
+				DA004494155D94FF0028A012 /* Supporting Files */,
+			);
+			path = ArgumentParserTests;
+			sourceTree = "<group>";
+		};
+		DA004494155D94FF0028A012 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DA004495155D94FF0028A012 /* ArgumentParserTests-Info.plist */,
+				DA004496155D94FF0028A012 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		DACF2EB914FD3B2F0097C754 = {
 			isa = PBXGroup;
 			children = (
 				DACF2ECA14FD3B2F0097C754 /* example */,
+				DA004481155D94FF0028A012 /* ArgumentParser */,
+				DA004493155D94FF0028A012 /* ArgumentParserTests */,
 				DACF2EC714FD3B2F0097C754 /* Frameworks */,
 				DACF2EC514FD3B2F0097C754 /* Products */,
 			);
@@ -139,6 +257,8 @@
 				DACF2EDF14FD3B630097C754 /* long-desc */,
 				DACF2EF214FD3B7A0097C754 /* spiffy */,
 				DACF2F1414FD75AC0097C754 /* chocolat-app-example */,
+				DA00447A155D94FF0028A012 /* ArgumentParser.dylib */,
+				DA00448C155D94FF0028A012 /* ArgumentParserTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -147,6 +267,9 @@
 			isa = PBXGroup;
 			children = (
 				DACF2EC814FD3B2F0097C754 /* Foundation.framework */,
+				DA00447B155D94FF0028A012 /* Cocoa.framework */,
+				DA00448D155D94FF0028A012 /* SenTestingKit.framework */,
+				DA00447D155D94FF0028A012 /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -158,12 +281,6 @@
 				DACF2EEC14FD3B710097C754 /* long-desc.m */,
 				DACF2ECB14FD3B2F0097C754 /* desc.m */,
 				DACF2F2114FD75FD0097C754 /* chocolat-app.m */,
-				DACF2F0114FD3BED0097C754 /* FSArgumentPackage.h */,
-				DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */,
-				DACF2F0314FD3BED0097C754 /* FSArgumentParser.h */,
-				DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */,
-				DACF2F0514FD3BED0097C754 /* FSArgumentSignature.h */,
-				DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */,
 				DACF2ECD14FD3B2F0097C754 /* Supporting Files */,
 			);
 			path = example;
@@ -179,7 +296,53 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		DA004478155D94FF0028A012 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		DA004479155D94FF0028A012 /* ArgumentParser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA00449C155D94FF0028A012 /* Build configuration list for PBXNativeTarget "ArgumentParser" */;
+			buildPhases = (
+				DA004476155D94FF0028A012 /* Sources */,
+				DA004477155D94FF0028A012 /* Frameworks */,
+				DA004478155D94FF0028A012 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ArgumentParser;
+			productName = ArgumentParser;
+			productReference = DA00447A155D94FF0028A012 /* ArgumentParser.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		DA00448B155D94FF0028A012 /* ArgumentParserTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA00449F155D94FF0028A012 /* Build configuration list for PBXNativeTarget "ArgumentParserTests" */;
+			buildPhases = (
+				DA004487155D94FF0028A012 /* Sources */,
+				DA004488155D94FF0028A012 /* Frameworks */,
+				DA004489155D94FF0028A012 /* Resources */,
+				DA00448A155D94FF0028A012 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DA004491155D94FF0028A012 /* PBXTargetDependency */,
+			);
+			name = ArgumentParserTests;
+			productName = ArgumentParserTests;
+			productReference = DA00448C155D94FF0028A012 /* ArgumentParserTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		DACF2EC314FD3B2F0097C754 /* desc */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DACF2ED314FD3B2F0097C754 /* Build configuration list for PBXNativeTarget "desc" */;
@@ -191,6 +354,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				DA0044A6155D951C0028A012 /* PBXTargetDependency */,
 			);
 			name = desc;
 			productName = example;
@@ -208,6 +372,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				DA0044A8155D95270028A012 /* PBXTargetDependency */,
 			);
 			name = "long-desc";
 			productName = "long-desc";
@@ -225,6 +390,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				DA0044AA155D952C0028A012 /* PBXTargetDependency */,
 			);
 			name = spiffy;
 			productName = spiffy;
@@ -242,6 +408,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				DA0044AC155D95310028A012 /* PBXTargetDependency */,
 			);
 			name = "chocolat-app-example";
 			productName = "chocolat-app-example";
@@ -257,7 +424,7 @@
 				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = FSDEV;
 			};
-			buildConfigurationList = DACF2EBE14FD3B2F0097C754 /* Build configuration list for PBXProject "example" */;
+			buildConfigurationList = DACF2EBE14FD3B2F0097C754 /* Build configuration list for PBXProject "ArgumentParser" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -273,19 +440,63 @@
 				DACF2EDE14FD3B630097C754 /* long-desc */,
 				DACF2EF114FD3B7A0097C754 /* spiffy */,
 				DACF2F1314FD75AC0097C754 /* chocolat-app-example */,
+				DA004479155D94FF0028A012 /* ArgumentParser */,
+				DA00448B155D94FF0028A012 /* ArgumentParserTests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		DA004489155D94FF0028A012 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA004498155D94FF0028A012 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DA00448A155D94FF0028A012 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		DA004476155D94FF0028A012 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA0044A2155D950A0028A012 /* FSArgumentPackage.m in Sources */,
+				DA0044A3155D950E0028A012 /* FSArgumentParser.m in Sources */,
+				DA0044A4155D95110028A012 /* FSArgumentSignature.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA004487155D94FF0028A012 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA00449B155D94FF0028A012 /* ArgumentParserTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DACF2EC014FD3B2F0097C754 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				DACF2ECC14FD3B2F0097C754 /* desc.m in Sources */,
-				DACF2F0714FD3BED0097C754 /* FSArgumentPackage.m in Sources */,
-				DACF2F0A14FD3BED0097C754 /* FSArgumentParser.m in Sources */,
-				DACF2F0D14FD3BED0097C754 /* FSArgumentSignature.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,9 +505,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DACF2EED14FD3B710097C754 /* long-desc.m in Sources */,
-				DACF2F0814FD3BED0097C754 /* FSArgumentPackage.m in Sources */,
-				DACF2F0B14FD3BED0097C754 /* FSArgumentParser.m in Sources */,
-				DACF2F0E14FD3BED0097C754 /* FSArgumentSignature.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,9 +513,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DACF2F0014FD3B840097C754 /* spiffy.m in Sources */,
-				DACF2F0914FD3BED0097C754 /* FSArgumentPackage.m in Sources */,
-				DACF2F0C14FD3BED0097C754 /* FSArgumentParser.m in Sources */,
-				DACF2F0F14FD3BED0097C754 /* FSArgumentSignature.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,15 +521,97 @@
 			buildActionMask = 2147483647;
 			files = (
 				DACF2F2514FD78D70097C754 /* chocolat-app.m in Sources */,
-				DACF2F2614FD78E70097C754 /* FSArgumentPackage.m in Sources */,
-				DACF2F2714FD78EA0097C754 /* FSArgumentParser.m in Sources */,
-				DACF2F2814FD78EE0097C754 /* FSArgumentSignature.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		DA004491155D94FF0028A012 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA004479155D94FF0028A012 /* ArgumentParser */;
+			targetProxy = DA004490155D94FF0028A012 /* PBXContainerItemProxy */;
+		};
+		DA0044A6155D951C0028A012 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA004479155D94FF0028A012 /* ArgumentParser */;
+			targetProxy = DA0044A5155D951C0028A012 /* PBXContainerItemProxy */;
+		};
+		DA0044A8155D95270028A012 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA004479155D94FF0028A012 /* ArgumentParser */;
+			targetProxy = DA0044A7155D95270028A012 /* PBXContainerItemProxy */;
+		};
+		DA0044AA155D952C0028A012 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA004479155D94FF0028A012 /* ArgumentParser */;
+			targetProxy = DA0044A9155D952C0028A012 /* PBXContainerItemProxy */;
+		};
+		DA0044AC155D95310028A012 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA004479155D94FF0028A012 /* ArgumentParser */;
+			targetProxy = DA0044AB155D95310028A012 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DA004496155D94FF0028A012 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA004497155D94FF0028A012 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		DA00449D155D94FF0028A012 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ArgumentParser/ArgumentParser-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DA00449E155D94FF0028A012 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ArgumentParser/ArgumentParser-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		DA0044A0155D94FF0028A012 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ArgumentParser/ArgumentParser-Prefix.pch";
+				INFOPLIST_FILE = "ArgumentParserTests/ArgumentParserTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		DA0044A1155D94FF0028A012 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ArgumentParser/ArgumentParser-Prefix.pch";
+				INFOPLIST_FILE = "ArgumentParserTests/ArgumentParserTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		DACF2ED114FD3B2F0097C754 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -447,7 +734,23 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DACF2EBE14FD3B2F0097C754 /* Build configuration list for PBXProject "example" */ = {
+		DA00449C155D94FF0028A012 /* Build configuration list for PBXNativeTarget "ArgumentParser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA00449D155D94FF0028A012 /* Debug */,
+				DA00449E155D94FF0028A012 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DA00449F155D94FF0028A012 /* Build configuration list for PBXNativeTarget "ArgumentParserTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA0044A0155D94FF0028A012 /* Debug */,
+				DA0044A1155D94FF0028A012 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DACF2EBE14FD3B2F0097C754 /* Build configuration list for PBXProject "ArgumentParser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DACF2ED114FD3B2F0097C754 /* Debug */,
