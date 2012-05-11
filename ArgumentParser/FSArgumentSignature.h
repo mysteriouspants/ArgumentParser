@@ -33,7 +33,9 @@
 /** If this argument is found and nullifies required arguments, extend this nullification downward (through positiveInjectors) by this many levels, or NSNotFound for inifinite. */
 @property (assign) NSUInteger nullifyRequiredDescendentPropagation;
 
-/** If this is not nil, then this block will be called to retrieve special text given for the description of the signature. The current signature is the argument. */
-@property (copy) NSString * (^descriptionHelper) (FSArgumentSignature *);
+/** If this is not nil, then this block will be called to retrieve special text given for the description of the signature. The arguments are the current signature, the indent level, and the current terminal width (if available). */
+@property (copy) NSString * (^descriptionHelper) (FSArgumentSignature *, NSUInteger, NSUInteger);
+
+- (NSString *)descriptionForHelp:(NSUInteger)indent terminalWidth:(NSUInteger)width;
 
 @end

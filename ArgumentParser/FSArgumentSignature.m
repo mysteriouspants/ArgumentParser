@@ -26,6 +26,11 @@
 
 @synthesize descriptionHelper = _descriptionHelper;
 
+- (NSString *)descriptionForHelp:(NSUInteger)indent terminalWidth:(NSUInteger)width
+{
+    return [NSString stringWithFormat:@"Hey, you found the root object. This isn't actually supposed to be an argument though, just a kind of pure virtual class. It isn't really, so you haven't done anything wrong though."];
+}
+
 #pragma mark Internal
 
 - (void)internal_updateMD5:(CC_MD5_CTX *)md5

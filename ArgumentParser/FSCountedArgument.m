@@ -50,6 +50,55 @@
     return __fsargs_charactersFromCharacterSetAsString(_switchAliases);
 }
 
+#pragma mark FSArgumentSignature
+
+- (NSString *)descriptionForHelp:(NSUInteger)indent terminalWidth:(NSUInteger)width
+{
+    if (self.descriptionHelper)
+        return self.descriptionHelper(self, indent, width);
+    
+    if (width < 20) width = 20; // just make sure
+    
+    NSMutableString * prefix = [NSMutableString stringWithCapacity:indent*2];
+    for (NSUInteger i = 0;
+         i < indent;
+         ++i) [prefix appendString:@" "];
+    
+    NSMutableArray * switches = [[self switchAliasesAsArray] mutableCopy];
+    for (NSUInteger i = 0;
+         i < [switches count];
+         ++i) {
+        NSString * character = [switches objectAtIndex:i];
+        [switches replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"-%@", character]];
+    }
+    
+    NSString * unmangled = [NSString stringWithFormat:@"%@ %@\nallowsMultipleInvocations: %@\nnullifiesRequired: %@\nnullifiesRequiredAncestorPropagation: %lu\nnullifiesRequiredDescendentPropagation: %lu", [switches componentsJoinedByString:@" "], [[_longAliases allObjects] componentsJoinedByString:@" "], _shouldAllowMultipleInvocations?@"true":@"false", [self nullifyRequired]?@"true":@"false", [self nullifyRequiredAncestorPropagation], [self nullifyRequiredDescendentPropagation]];
+    
+    NSMutableString * s = [NSMutableString string];
+    NSUInteger chunkAtLength = width - indent * 2;
+    [unmangled enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+        // chunkify at chunkAtLength and then append using @"\n" as the componentsJoinedByString
+        // someone please shoot the Engrish in the above line
+        NSMutableArray * a = [NSMutableArray arrayWithCapacity:[line length]/chunkAtLength +1];
+        for (NSUInteger i = 0;
+             i < [line length];
+             i += chunkAtLength) {
+            NSUInteger length = chunkAtLength;
+            if (i + length > [line length])
+                length = [line length] - i;
+            [a addObject:[NSString stringWithFormat:@"%@%@", prefix, [line substringWithRange:NSMakeRange(i, length)]]];
+        }
+        [s appendString:[a componentsJoinedByString:@"\n"]];
+        [s appendString:@"\n"];
+    }];
+    
+    for (FSArgumentSignature * signature in [self injectedArguments]) {
+        [s appendString:[signature descriptionForHelp:indent+1 terminalWidth:width]];
+    }
+    
+    return [s copy];
+}
+
 #pragma mark NSCopying
 
 - (id)copy
