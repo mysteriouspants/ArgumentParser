@@ -44,6 +44,17 @@ NSUInteger CountOfKeyInDictionary(NSDictionary *, id); // used to find the count
  * 1. Scan the signature array for purity. If there's an object which doesn't implement FSArgumentSignature, then an error is thrown.
  * 2. Scan the signature array for conflicting signatures. This means that if we have two different signature objects which want the same flag, we'll be able to throw an error.
  * 3. Sort the signatures into two groups: flags and named arguments. This makes lookup during scanning slightly easier.
+ * 4. Iterate over the arguments:
+ *  4.1. Take the first argument.
+ *  4.2. If it's a flag.... (eg. -f and NOT --f):
+ *      4.2.1. If that flag corresponds to an actual flag:
+ *          4.2.1.1. Increment that signature's flag count
+ *          4.2.1.2. If that signature's flag count is greater than 1 AND that signature doesn't allow multiple invocations, throw an error
+ *      4.2.2. Else, that flag corresponds to a named argument:
+ *          4.2.2.1. Pop forward on the argument array until an argument matches the isntSignature regex.
+ *          4.2.2.2. Take that argument. It's now the value of the flagged argument.
+ *          4.2.2.3. If that signature's flag doesn't allow multiple invocations, and there's more than one value in that argument, throw an error
+ *
  */
 + (FSArgumentPackage *)parseArguments:(NSArray *)_args withSignatures:(NSArray *)signatures error:(__autoreleasing NSError **)error
 {
@@ -161,12 +172,12 @@ NSUInteger CountOfKeyInDictionary(NSDictionary *, id); // used to find the count
     if (*error) return nil;
     
     /* this begins the biggest piece of evil ever. comments have been added for entertainment purposes */
-    while (0<[args count]) { // we use a wonky iteration because we're tearing elements out of the array during iteration. Thus we can't use fast enumeration. Once an element is parsed (sorted into a bucket, either a flag increment, named argument value, or as an unnamed argument) it's removed from the source array which means that it's done. Gone. Boom. Parsed. When everything is gone (0==[args count]) then it's considered parsed. ¿Comprendé?
+    while (0<[args count]) { // we use a wonky iteration because we're tearing elements out of the array during iteration. Thus we can't use fast enumeration. Once an element is parsed (sorted into a bucket, either a flag increment, named argument value, or as an unnamed argument) it's removed from the source array which means that it's done. Gone. Boom. Parsed. When everything is gone (0==[args count]) then it's considered parsed. ¿Comprendé? Anyway, see step 4
 
-        NSString * arg = [args objectAtIndex:0]; // this is the root arg we'll be working with this iteration. We may pull other args later
+        NSString * arg = [args objectAtIndex:0]; // this is the root arg we'll be working with this iteration. We may pull other args later. See step 4.1
         [args removeObjectAtIndex:0];
 
-        if (0<[flagDetector numberOfMatchesInString:arg options:0 range:NSMakeRange(0, [arg length])]) { // if this is a flag, eg. a -f instead of a --file
+        if (0<[flagDetector numberOfMatchesInString:arg options:0 range:NSMakeRange(0, [arg length])]) { // if this is a flag, eg. a -f instead of a --file. see step 4.2
 
             /* Because flags can have many bretheren and sisteren in their invocations (eg. -cfg is equivalent to -c -f -g) we need to treat each flag individually. */
 
