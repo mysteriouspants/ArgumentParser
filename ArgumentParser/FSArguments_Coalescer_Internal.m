@@ -72,11 +72,20 @@ NSSet * __fsargs_coalesceToSet(id o) {
     else return [NSSet setWithObject:o];
 }
 
-NSArray * __charactersFromCharacterSet(NSCharacterSet * characterSet) {
+NSArray * __fsargs_charactersFromCharacterSetAsArray(NSCharacterSet * characterSet) {
     NSMutableArray * a = [NSMutableArray array];
     for (unichar c = 0;
          c < 256;
          ++c)
         if ([characterSet characterIsMember:c]) [a addObject:[NSString stringWithFormat:@"%c", c]];
     return [a copy];
+}
+
+NSString * __fsargs_charactersFromCharacterSetAsString(NSCharacterSet * characterSet) {
+    NSMutableString * s = [NSMutableString stringWithCapacity:10];
+    for (unichar c = 0;
+         c < 256;
+         ++c)
+        if ([characterSet characterIsMember:c]) [s appendFormat:@"%c", c];
+    return [s copy];
 }

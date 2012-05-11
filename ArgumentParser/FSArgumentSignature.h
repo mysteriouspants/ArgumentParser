@@ -23,10 +23,8 @@
  */
 @interface FSArgumentSignature : NSObject < NSCopying >
 
-/** If this argument is invoked, inject this set of argument signatures into the parser. */
-@property (strong) NSSet * positiveInjectors;
-/** If this argument is NOT invoked, inject this set of argument signatures into the parser. */
-@property (strong) NSSet * negativeInjectors;
+/** If this argument is invoked, inject this set of argument signatures into the current parser. */
+@property (strong) NSSet * injectedArguments;
 
 /** If this argument is found, ignore the "required" attributes of all named arguments. */
 @property (assign) bool nullifyRequired;
@@ -34,5 +32,8 @@
 @property (assign) NSUInteger nullifyRequiredAncestorPropagation;
 /** If this argument is found and nullifies required arguments, extend this nullification downward (through positiveInjectors) by this many levels, or NSNotFound for inifinite. */
 @property (assign) NSUInteger nullifyRequiredDescendentPropagation;
+
+/** If this is not nil, then this block will be called to retrieve special text given for the description of the signature. The current signature is the argument. */
+@property (copy) NSString * (^descriptionHelper) (FSArgumentSignature *);
 
 @end

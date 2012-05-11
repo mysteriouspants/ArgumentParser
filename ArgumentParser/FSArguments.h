@@ -10,6 +10,9 @@
 #define _FSArguments_h
 
 #import "FSArgumentSignature.h"
+#import "FSCountedArgument.h"
+#import "FSValuedArgument.h"
+#import "FSCommandArgument.h"
 #import "FSArgumentParser.h"
 #import "FSArgumentPackage.h"
 

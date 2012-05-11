@@ -18,12 +18,13 @@
 
 @implementation FSArgumentSignature
 
-@synthesize positiveInjectors = _positiveInjectors;
-@synthesize negativeInjectors = _negativeInjectors;
+@synthesize injectedArguments = _injectedArguments;
 
 @synthesize nullifyRequired = _nullifyRequired;
 @synthesize nullifyRequiredAncestorPropagation = _nullifyRequiredAncestorPropagation;
 @synthesize nullifyRequiredDescendentPropagation = _nullifyRequiredDescendentPropagation;
+
+@synthesize descriptionHelper = _descriptionHelper;
 
 #pragma mark Internal
 
@@ -40,8 +41,7 @@
 {
     FSArgumentSignature * copy = [[[self class] alloc] init];
     
-    copy->_positiveInjectors = _positiveInjectors;
-    copy->_negativeInjectors = _negativeInjectors;
+    copy->_injectedArguments = _injectedArguments;
     copy->_nullifyRequired = _nullifyRequired;
     copy->_nullifyRequiredAncestorPropagation = _nullifyRequiredAncestorPropagation;
     copy->_nullifyRequiredDescendentPropagation = _nullifyRequiredDescendentPropagation;
@@ -75,6 +75,11 @@
         return [object hash] == [self hash];
     else
         return NO;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%@:%p>", NSStringFromClass([self class]), self];
 }
 
 @end

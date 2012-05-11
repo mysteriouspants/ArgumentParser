@@ -68,6 +68,18 @@
     return self;
 }
 
+#pragma mark FSExplicitArgument
+
+- (NSArray *)switchAliasesAsArray
+{
+    return __fsargs_charactersFromCharacterSetAsArray(_switchAliases);
+}
+
+- (NSString *)switchAliasesAsString
+{
+    return __fsargs_charactersFromCharacterSetAsString(_switchAliases);
+}
+
 #pragma mark NSCopying
 
 - (id)copy
@@ -111,6 +123,11 @@
     unsigned char* md5_final = (unsigned char*)malloc(sizeof(unsigned char)*CC_MD5_DIGEST_LENGTH);
     CC_MD5_Final(md5_final, &md5);
     return *((NSUInteger *)md5_final);
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%@:%p switches:%@ longAliases:%@ shouldAllowMultipleInvocations:%@ required:%@ valuesPerInvocation:%lu shouldGrabBeyondBarrier:%@>", NSStringFromClass([self class]), self, __fsargs_charactersFromCharacterSetAsString(_switchAliases), [[_longAliases allObjects] componentsJoinedByString:@","], _shouldAllowMultipleInvocations?@"true":@"false", _required?@"true":@"false", _valuesPerInvocation, _shouldGrabBeyondBarrier?@"true":@"false"];
 }
 
 @end

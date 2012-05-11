@@ -11,4 +11,5 @@
 NSCharacterSet * __fsargs_coalesceToCharacterSet(id);
 NSArray * __fsargs_coalesceToArray(id);
 NSSet * __fsargs_coalesceToSet(id);
-NSArray * __charactersFromCharacterSet(NSCharacterSet *);
+NSArray * __fsargs_charactersFromCharacterSetAsArray(NSCharacterSet *);
+NSString * __fsargs_charactersFromCharacterSetAsString(NSCharacterSet *);

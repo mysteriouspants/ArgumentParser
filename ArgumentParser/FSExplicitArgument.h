@@ -15,4 +15,9 @@
 
 @property (assign) bool shouldAllowMultipleInvocations;
 
+/** Helper for generating documentation. */
+- (NSArray *)switchAliasesAsArray;
+/** Helper for generating documentation. */
+- (NSString *)switchAliasesAsString;
+
 @end

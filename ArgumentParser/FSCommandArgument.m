@@ -67,4 +67,9 @@
     return *((NSUInteger *)md5_final);
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%@:%p aliases:%@>", NSStringFromClass([self class]), self, [[_aliases allObjects] componentsJoinedByString:@","]];
+}
+
 @end
