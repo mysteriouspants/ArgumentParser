@@ -34,6 +34,9 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
 + (id)argumentPackageWithFlags:(NSDictionary *)flags namedArguments:(NSDictionary *)namedArguments unnamedArguments:(NSArray *)unnamedArguments;
 @end
 
+void IncrementCountOfKeyInDictionary(NSDictionary *, id); // used to increment flag counts
+NSUInteger CountOfKeyInDictionary(NSDictionary *, id); // used to find the count; just an easy convenience method
+
 @implementation FSArgumentParser
 
 /* This is a scary function which scans the argument array for items that can be extracted using the provided signatures. The overall process is:
@@ -167,28 +170,27 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
 
             /* Because flags can have many bretheren and sisteren in their invocations (eg. -cfg is equivalent to -c -f -g) we need to treat each flag individually. */
 
-            for (NSUInteger i = 1; // starting at 1 ignores the prefixed -
+            for (NSUInteger i = 1; // starting at 1 ignores the prefixed 
                     i < [arg length];
                     ++i) {
                 unichar c = [arg characterAtIndex:i];
 
-                if ([flagCharacters characterIsMember:c]) {
+                if ([flagCharacters characterIsMember:c]) { // This detects whether this is a flag (a boolean or counted, non-capturing signature)
                     FSArgumentSignature * as = [[flagSignatures filteredSetUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FSArgumentSignature * evaluatedObject, NSDictionary *bindings) {
                         if ([evaluatedObject.shortNames characterIsMember:c]) return YES;
                         else return NO;
-                    }]] anyObject];
-                    if (!as) {
+                    }]] anyObject]; // grab the specific flag using the filter.
+                    if (!as) { // if there ain't no flag throw an error (numerically impossible, but it could happen if there's a memory leak or some other kind of inconsistency)
                         *error = [NSError errorWithDomain:kFSAPErrorDomain code:UnknownArgument userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithChar:c] forKey:FSAPErrorDictKeys.UnknownSignature]];
                         return nil;
                     }
-                    NSNumber * count = [flags objectForKey:as];
-                    if (count==nil) count = [NSNumber numberWithUnsignedInteger:0];
-                    else if (!as.isMultipleAllowed&&[count unsignedIntegerValue]>1) {
+
+                    // increment the count for this flag
+                    IncrementCountOfKeyInDictionary(flags, as);
+                    else if (!as.isMultipleAllowed&&CountOfKeyInDictionary(flags, as)>1) {
                         *error = [NSError errorWithDomain:kFSAPErrorDomain code:TooManySignatures userInfo:[NSDictionary dictionaryWithObject:as forKey:FSAPErrorDictKeys.TooManyOfThisSignature]];
                         return nil;
                     }
-                    count = [NSNumber numberWithUnsignedInteger:[count unsignedIntegerValue]+1];
-                    [flags setObject:count forKey:as];
                 } else { // it's a named argument
                     FSArgumentSignature * as = [[notFlagSignatures filteredSetUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FSArgumentSignature * evaluatedObject, NSDictionary *bindings) {
                         if ([evaluatedObject.shortNames characterIsMember:c]) return YES;
@@ -235,14 +237,13 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
                     *error = [NSError errorWithDomain:kFSAPErrorDomain code:UnknownArgument userInfo:[NSDictionary dictionaryWithObject:mutable_arg forKey:FSAPErrorDictKeys.UnknownSignature]];
                     return nil;
                 }
-                NSNumber * count = [flags objectForKey:as];
-                if (count==nil) count = [NSNumber numberWithUnsignedInteger:0];
-                else if (!as.isMultipleAllowed && [count unsignedIntegerValue]>0) {
+
+                // increment the count for this flag
+                IncrementCountOfKeyInDictionary(flags, as);
+                else if (!as.isMultipleAllowed&&CountOfKeyInDictionary(flags, as)>1) {
                     *error = [NSError errorWithDomain:kFSAPErrorDomain code:TooManySignatures userInfo:[NSDictionary dictionaryWithObject:as forKey:FSAPErrorDictKeys.TooManyOfThisSignature]];
                     return nil;
                 }
-                count = [NSNumber numberWithUnsignedInteger:[count unsignedIntegerValue]+1];
-                [flags setObject:count forKey:as];
             } else { // it's a named argument
                 FSArgumentSignature * as = [[notFlagSignatures filteredSetUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FSArgumentSignature * evaluatedObject, NSDictionary *bindings) {
                     if ([evaluatedObject.longNames containsObject:mutable_arg]) return YES;
@@ -319,3 +320,18 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
     return toReturn;
 }
 @end
+
+void IncrementCountOfKeyInDictionary(NSDictionary * dictionary, id key)
+{
+    NSNumber * number = [dictionary objectForKey:key];
+    NSCAssert(number!=nil, @"No value for %@, which is the old model. Try and do better next time!", key); // just make sure it's there; used to be an initialize to zero, but I'd rather be sure that things are being initialized beforehand
+    [dictionary setObject:[NSNumber numberWithUnsignedInteger:[number unsignedIntegerValue]+1]
+                   forKey:key];
+}
+
+NSUInteger CountOfKeyInDictionary(NSDictionary * dict, id key)
+{
+    NSNumber * number = [dict objectForKey:key];
+    if (number) return [number unsignedIntegerValue];
+    else return NSNotFound;
+}
