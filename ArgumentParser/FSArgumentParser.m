@@ -36,11 +36,17 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
 
 @implementation FSArgumentParser
 
+/* This is a scary function which scans the argument array for items that can be extracted using the provided signatures. The overall process is:
+ *
+ * 1. Scan the signature array for purity. If there's an object which doesn't implement FSArgumentSignature, then an error is thrown.
+ * 2. Scan the signature array for conflicting signatures. This means that if we have two different signature objects which want the same flag, we'll be able to throw an error.
+ * 3. Sort the signatures into two groups: flags and named arguments. This makes lookup during scanning slightly easier.
+ */
 + (FSArgumentPackage *)parseArguments:(NSArray *)_args withSignatures:(NSArray *)signatures error:(__autoreleasing NSError **)error
 {
     NSMutableArray * args = [_args mutableCopy];
     
-    // check for purity in signature array
+    /* check for purity in signature array */ // see step 1
     [signatures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         if (![obj isKindOfClass:[FSArgumentSignature class]]) {
             *error = [NSError errorWithDomain:kFSAPErrorDomain code:ImpureSignatureArray userInfo:[NSDictionary dictionaryWithObjectsAndKeys:obj, FSAPErrorDictKeys.ImpureSignatureObject,
@@ -49,8 +55,11 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
         }
     }]; if (*error) return nil;
     
-    // check for conflicting signatures
+    /* check for conflicting signatures */ // see step 2 
     [signatures enumerateObjectsUsingBlock:^(FSArgumentSignature * signature, NSUInteger signature_idx, BOOL *signature_stop) {
+	
+	/* scan the shortnames for conflicts */
+	
         [signatures enumerateObjectsUsingBlock:^(FSArgumentSignature * signature2, NSUInteger signature2_idx, BOOL *signature2_stop) {
             if (signature2==signature) return; // duh they're going to match!
             NSMutableCharacterSet * signature_shortnames = [signature.shortNames mutableCopy];
@@ -73,6 +82,9 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
             }
         }];
         if (*signature_stop==YES) return; // just die now
+
+	/* scan the long names for conflicts */
+
         [signature.longNames enumerateObjectsUsingBlock:^(NSString * longName, NSUInteger longName_idx, BOOL *longName_stop) {
             [signatures enumerateObjectsUsingBlock:^(FSArgumentSignature * signature2, NSUInteger signature2_idx, BOOL *signature2_stop) {
                 if (signature==signature2) return; // duh they're going to match!
@@ -89,40 +101,77 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
         }];
     }]; if (*error) return nil;
     
-    NSMutableDictionary * flags = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary * namedArguments = [[NSMutableDictionary alloc] init];
-    NSMutableArray * unnamedArguments = [[NSMutableArray alloc] init];
-    
-    NSMutableSet * flagSignatures = [[NSMutableSet alloc] init];
-    NSMutableCharacterSet * flagCharacters = [[NSMutableCharacterSet alloc] init];
-    NSMutableArray * flagNames = [[NSMutableArray alloc] init];
-    NSMutableSet * notFlagSignatures = [[NSMutableSet alloc] init];
+    // these little darlings get to be copied over into the final argument package
+    NSMutableDictionary * flags = [[NSMutableDictionary alloc] init]; /* These are all flags that have been set. It's empty now, but gets populated with false values later. */
+    NSMutableDictionary * namedArguments = [[NSMutableDictionary alloc] init]; /* These are all named arguments. It's supposed to be empty. */
+    NSMutableArray * unnamedArguments = [[NSMutableArray alloc] init]; /* Unnamed arguments are essentially everything that is left over after the detected arguments are found.
+                                                                        * They will be in the order of how they were originally found in the array. */
+    /* the following are sorted bits from the signatures array */
+    NSMutableSet * flagSignatures = [[NSMutableSet alloc] init]; // all the flag signatures
+    NSMutableCharacterSet * flagCharacters = [[NSMutableCharacterSet alloc] init]; // all the flag characters. If the character is in this set, congrats! it's a flag
+    NSMutableArray * flagNames = [[NSMutableArray alloc] init]; // All the flag names, eg. names that correspond to a flag signature. If the string is in this array, congrats! it's a flag
+    NSMutableSet * notFlagSignatures = [[NSMutableSet alloc] init]; // if it ain't a flag, then it's in this signature array.
+    // actually perform the sorting. see step 3
     [signatures enumerateObjectsUsingBlock:^(FSArgumentSignature * obj, NSUInteger idx, BOOL *stop) {
         if (obj.isFlag) {
             [flagSignatures addObject:obj];
             [flagCharacters formUnionWithCharacterSet:obj.shortNames];
             [flagNames addObjectsFromArray:obj.longNames];
-            [flags setObject:[NSNumber numberWithUnsignedInteger:0] forKey:obj];
+            [flags setObject:[NSNumber numberWithUnsignedInteger:0] forKey:obj]; // initialize the value of the flag to false.
+            /* a note on implementation decisions:
+             * 
+             * I have chosen it such that every single flag shall be false. If the flag does not appear at all, it's false. It used to be in a previous iteration that it would be nil, which is a very bad idea. it created obnoxious nil checks which had to be reinterpreted as false, etc. it was just bad.
+             *
+             * this is a lot better.
+             */
         }
-        else [notFlagSignatures addObject:obj];
+        else [notFlagSignatures addObject:obj]; // seems obvious, right?
     }];
     
+    // these are some regexen that define whether or not a given string (from the arg array) is a flag, named argument, or isn't a value.
+
+    // Matches -anything, but NOT --anything.
     NSRegularExpression * flagDetector = [NSRegularExpression regularExpressionWithPattern:@"^[\\-][^\\-]*$" options:0 error:error];
-    if (*error) return nil;
+    if (*error) return nil; // asplode if my regexen fails
+    // Match --anything, but NOT -anything. Ain't that spiffy?
     NSRegularExpression * namedArgumentDetector = [NSRegularExpression regularExpressionWithPattern:@"^[\\-]{2}.*$" options:0 error:error];
     if (*error) return nil;
+    /* This is a general catch-all that signifies that something ISN'T a value and should be ignored by the value grabber.
+     *
+     * In explainum: consider the following invocation:
+     *
+     *   foo -cfg --no-bar file.txt
+     *
+     * Imagine for a moment that the -f is a named argument. The parser is going to want to pop forward and grab '--no-bar' as the value. HOWEVER, because --no-bar doesn't match the isntValueDetector, it's excluded. So the parser will move forward again to file.txt (which makes more sense, right?) Just nod your head, because it makes a lot more sense.
+     *
+     * In the event that a stupid invocation is given, like, say, this:
+     *
+     *   foo -cfg --no-bar
+     *
+     * The scanner will perform reliably and tell you that there is no value given to the -f argument. As a note, how would you pass in a file that begins with a dash?
+     *
+     *   foo -cfg ./--no-bar.txt
+     *
+     * I know, smart-ass answer, but hey... it's what you do.
+     */
     NSRegularExpression * isntValueDetector = [NSRegularExpression regularExpressionWithPattern:@"^\\-" options:0 error:error];
     if (*error) return nil;
     
-    while (0<[args count]) {
-        NSString * arg = [args objectAtIndex:0];
+    /* this begins the biggest piece of evil ever. comments have been added for entertainment purposes */
+    while (0<[args count]) { // we use a wonky iteration because we're tearing elements out of the array during iteration. Thus we can't use fast enumeration. Once an element is parsed (sorted into a bucket, either a flag increment, named argument value, or as an unnamed argument) it's removed from the source array which means that it's done. Gone. Boom. Parsed. When everything is gone (0==[args count]) then it's considered parsed. ¿Comprendé?
+
+        NSString * arg = [args objectAtIndex:0]; // this is the root arg we'll be working with this iteration. We may pull other args later
         [args removeObjectAtIndex:0];
-        if (0<[flagDetector numberOfMatchesInString:arg options:0 range:NSMakeRange(0, [arg length])]) {
-            NSMutableString * mutable_arg = [arg mutableCopy];
-            // chop off the first dash
-            [mutable_arg deleteCharactersInRange:NSMakeRange(0, 1)];
-            while (0<[mutable_arg length]) {
-                unichar c = [mutable_arg characterAtIndex:0];
+
+        if (0<[flagDetector numberOfMatchesInString:arg options:0 range:NSMakeRange(0, [arg length])]) { // if this is a flag, eg. a -f instead of a --file
+
+            /* Because flags can have many bretheren and sisteren in their invocations (eg. -cfg is equivalent to -c -f -g) we need to treat each flag individually. */
+
+            for (NSUInteger i = 1; // starting at 1 ignores the prefixed -
+                    i < [arg length];
+                    ++i) {
+                unichar c = [arg characterAtIndex:i];
+
                 if ([flagCharacters characterIsMember:c]) {
                     FSArgumentSignature * as = [[flagSignatures filteredSetUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FSArgumentSignature * evaluatedObject, NSDictionary *bindings) {
                         if ([evaluatedObject.shortNames characterIsMember:c]) return YES;
@@ -171,7 +220,6 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
                     [namedArguments setObject:value forKey:as];
                     [args removeObjectAtIndex:valueLocation];
                 }
-                [mutable_arg deleteCharactersInRange:NSMakeRange(0, 1)];
             }
         } else if (0<[namedArgumentDetector numberOfMatchesInString:arg options:0 range:NSMakeRange(0, [arg length])]) {
             NSMutableString * mutable_arg = [arg mutableCopy];
