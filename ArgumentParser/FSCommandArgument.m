@@ -8,6 +8,7 @@
 
 #import "FSCommandArgument.h"
 #import "FSArgumentSignature_Internal.h"
+#import "FSArguments_Coalescer_Internal.h"
 
 // used in computing the hash value
 #import <CommonCrypto/CommonDigest.h>
@@ -15,6 +16,22 @@
 @implementation FSCommandArgument
 
 @synthesize aliases = _aliases;
+
++ (id)commandArgumentWithAliases:(id)aliases
+{
+    return [[self alloc] initWithAliases:aliases];
+}
+
+- (id)initWithAliases:(id)aliases
+{
+    self = [super init];
+    
+    if (self) {
+        _aliases = __fsargs_coalesceToSet(aliases);
+    }
+    
+    return self;
+}
 
 #pragma mark NSCopying
 

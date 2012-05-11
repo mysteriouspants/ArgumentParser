@@ -17,4 +17,7 @@
 
 @property (assign) bool shouldAllowMultipleInvocations;
 
++ (id)countedArgumentWithSwitches:(id)switchAliases longAliases:(id)longAliases allowMultipleInvocations:(bool)shouldAllowMultipleInvocations;
+- (id)initWithSwitches:(id)switchAliases longAliases:(id)longAliases allowMultipleInvocations:(bool)shouldAllowMultipleInvocations;
+
 @end

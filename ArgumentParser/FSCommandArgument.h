@@ -14,4 +14,7 @@
 /** Any of these will trigger this command argument. This is found in the original arguments as a normal string with no leading dashes. */
 @property (strong) NSSet * aliases;
 
++ (id)commandArgumentWithAliases:(id)aliases;
+- (id)initWithAliases:(id)aliases;
+
 @end

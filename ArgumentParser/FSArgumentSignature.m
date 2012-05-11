@@ -7,6 +7,11 @@
 //
 
 #import "FSArgumentSignature.h"
+#import "FSArgumentSignature_Internal.h"
+#import "FSExplicitArgument.h"
+#import "FSCountedArgument.h"
+#import "FSValuedArgument.h"
+#import "FSCommandArgument.h"
 
 // used in computing the hash value
 #import <CommonCrypto/CommonDigest.h>
@@ -50,6 +55,19 @@
 }
 
 #pragma mark NSObject
+
+- (id)init
+{
+    self = [super init];
+    
+    if (self) {
+        _nullifyRequired = false;
+        _nullifyRequiredAncestorPropagation = 0;
+        _nullifyRequiredDescendentPropagation = 0;
+    }
+    
+    return self;
+}
 
 - (BOOL)isEqual:(id)object
 {

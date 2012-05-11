@@ -8,6 +8,7 @@
 
 #import "FSCountedArgument.h"
 #import "FSArgumentSignature_Internal.h"
+#import "FSArguments_Coalescer_Internal.h"
 
 // used in computing the hash value
 #import <CommonCrypto/CommonDigest.h>
@@ -18,6 +19,24 @@
 @synthesize longAliases = _longAliases;
 
 @synthesize shouldAllowMultipleInvocations = _shouldAllowMultipleInvocations;
+
++ (id)countedArgumentWithSwitches:(id)switchAliases longAliases:(id)longAliases allowMultipleInvocations:(bool)shouldAllowMultipleInvocations
+{
+    return [[self alloc] initWithSwitches:switchAliases longAliases:longAliases allowMultipleInvocations:shouldAllowMultipleInvocations];
+}
+
+- (id)initWithSwitches:(id)switchAliases longAliases:(id)longAliases allowMultipleInvocations:(bool)shouldAllowMultipleInvocations
+{
+    self = [super init];
+    
+    if (self) {
+        _switchAliases = __fsargs_coalesceToCharacterSet(switchAliases);
+        _longAliases = __fsargs_coalesceToSet(longAliases);
+        _shouldAllowMultipleInvocations = shouldAllowMultipleInvocations;
+    }
+    
+    return self;
+}
 
 #pragma mark NSCopying
 

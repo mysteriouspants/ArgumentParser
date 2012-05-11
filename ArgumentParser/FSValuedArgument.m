@@ -8,6 +8,7 @@
 
 #import "FSValuedArgument.h"
 #import "FSArgumentSignature_Internal.h"
+#import "FSArguments_Coalescer_Internal.h"
 
 // used in computing the hash value
 #import <CommonCrypto/CommonDigest.h>
@@ -24,6 +25,48 @@
 @synthesize valuesPerInvocation = _valuesPerInvocation;
 
 @synthesize shouldGrabBeyondBarrier = _shouldGrabBeyondBarrier;
+
++ (id)valuedArgumentWithSwitches:(id)switchAliases longAliases:(id)longAliases allowsMultipleInvocations:(bool)shouldAllowMultipleInvocations required:(bool)required
+{
+    return [[self alloc] initWithSwitches:switchAliases longAliases:longAliases allowMultipleInvocations:shouldAllowMultipleInvocations required:required];
+}
+
++ (id)valuedArgumentWithSwitches:(id)switchAliases longAliases:(id)longAliases allowsMultipleInvocations:(bool)shouldAllowMultipleInvocations required:(bool)required valuesPerInvocation:(NSUInteger)valuesPerInvocation grabBeyondBarrier:(bool)shouldGrabBeyondBarrier
+{
+    return [[self alloc] initWithSwitches:switchAliases longAliases:longAliases allowMultipleInvocations:shouldAllowMultipleInvocations required:required valuesPerInvocation:valuesPerInvocation grabBeyondBarrier:shouldGrabBeyondBarrier];
+}
+
+- (id)initWithSwitches:(id)switchAliases longAliases:(id)longAliases allowMultipleInvocations:(bool)shouldAllowMultipleInvocations required:(bool)required
+{
+    self = [super init];
+    
+    if (self) {
+        _switchAliases = __fsargs_coalesceToCharacterSet(switchAliases);
+        _longAliases = __fsargs_coalesceToSet(longAliases);
+        _shouldAllowMultipleInvocations = shouldAllowMultipleInvocations;
+        _required = required;
+        _valuesPerInvocation = 1;
+        _shouldGrabBeyondBarrier = false;
+    }
+    
+    return self;
+}
+
+- (id)initWithSwitches:(id)switchAliases longAliases:(id)longAliases allowMultipleInvocations:(bool)shouldAllowMultipleInvocations required:(bool)required valuesPerInvocation:(NSUInteger)valuesPerInvocation grabBeyondBarrier:(bool)shouldGrabBeyondBarrier
+{
+    self = [super init];
+    
+    if (self) {
+        _switchAliases = __fsargs_coalesceToCharacterSet(switchAliases);
+        _longAliases = __fsargs_coalesceToSet(longAliases);
+        _shouldAllowMultipleInvocations = shouldAllowMultipleInvocations;
+        _required = required;
+        _valuesPerInvocation = valuesPerInvocation;
+        _shouldGrabBeyondBarrier = shouldAllowMultipleInvocations;
+    }
+    
+    return self;
+}
 
 #pragma mark NSCopying
 

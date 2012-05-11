@@ -10,12 +10,12 @@
 
 #import "FSArgumentSignature.h"
 
-FSArgumentSignature * __argumentSignatureInArrayRespondingToString(NSArray *, NSString *);
+//FSArgumentSignature * __argumentSignatureInArrayRespondingToString(NSArray *, NSString *);
 
-BOOL FSAPNotFound = -1;
+//BOOL FSAPNotFound = -1;
 
 @implementation FSArgumentPackage
-
+/*
 @synthesize flags = _flags;
 @synthesize namedArguments = _namedArguments;
 @synthesize unnamedArguments = _unnamedArguments;
@@ -45,10 +45,10 @@ BOOL FSAPNotFound = -1;
     else s = __argumentSignatureInArrayRespondingToString([_namedArguments allKeys], name);
     if (!s) return nil;
     else return [_namedArguments objectForKey:s];
-}
+}*/
 
 @end
-
+/*
 FSArgumentSignature * __argumentSignatureInArrayRespondingToString(NSArray * a, NSString * s) {
     __block FSArgumentSignature * sig;
     __block BOOL shouldTreatAsLongName = [s length]>1;
@@ -68,3 +68,4 @@ FSArgumentSignature * __argumentSignatureInArrayRespondingToString(NSArray * a, 
     }];
     return sig;
 }
+*/

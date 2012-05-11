@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class FSArgumentPackage;
+/*@class FSArgumentPackage;
 
 enum FSArgumentParserErrorCodes {
     ImpureSignatureArray=0, //! something in the signature array with isn't an FSArgumentSignature
@@ -38,10 +38,10 @@ extern const struct FSAPErrorDictKeys {
     __unsafe_unretained NSString * ArgumentOfTypeMissingValue; //! every argument needs a value, and this one is missing
     // UnknownArgument
     __unsafe_unretained NSString * UnknownSignature; //! Either the character (NSNumber *) or string (NSString *) that isn't matched by any known FSArgumentSignature *
-} FSAPErrorDictKeys;
+} FSAPErrorDictKeys;*/
 
 @interface FSArgumentParser : NSObject
 
-+ (FSArgumentPackage *)parseArguments:(NSArray *)args withSignatures:(NSArray *)signatures error:(__autoreleasing NSError **)error;
+//+ (FSArgumentPackage *)parseArguments:(NSArray *)args withSignatures:(NSArray *)signatures error:(__autoreleasing NSError **)error;
 
 @end

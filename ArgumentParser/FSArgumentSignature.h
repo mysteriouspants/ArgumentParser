@@ -18,6 +18,8 @@
  * 3. Command arguments. These are special strings which trigger something like a boolean switch, but don't need to be preceded by dashes.
  * 
  * Everything that remains is left as a simple array of strings.
+ *
+ * You are free to modify these objects as much as you want, but they must not be modified during parsing or undefined behavior will ensue.
  */
 @interface FSArgumentSignature : NSObject < NSCopying >
 

@@ -10,7 +10,7 @@
 #import "FSArgumentPackage.h"
 #import "FSArgumentSignature.h"
 
-NSString * kFSAPErrorDomain = @"net.fsdev.argument_parser";
+/*NSString * kFSAPErrorDomain = @"net.fsdev.argument_parser";
 
 const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
     .ImpureSignatureObject = @"impureSignatureObject",
@@ -35,7 +35,7 @@ const struct FSAPErrorDictKeys FSAPErrorDictKeys = {
 @end
 
 void IncrementCountOfKeyInDictionary(NSMutableDictionary *, id); // used to increment flag counts
-NSUInteger CountOfKeyInDictionary(NSDictionary *, id); // used to find the count; just an easy convenience method
+NSUInteger CountOfKeyInDictionary(NSDictionary *, id); // used to find the count; just an easy convenience method*/
 
 @implementation FSArgumentParser
 
@@ -69,25 +69,25 @@ NSUInteger CountOfKeyInDictionary(NSDictionary *, id); // used to find the count
  * 8. Coalesce the found elements into an FSArgumentPackage *
  * 9. Return the result
  */
-+ (FSArgumentPackage *)parseArguments:(NSArray *)_args withSignatures:(NSArray *)signatures error:(__autoreleasing NSError **)error
+/*+ (FSArgumentPackage *)parseArguments:(NSArray *)_args withSignatures:(NSArray *)signatures error:(__autoreleasing NSError **)error
 {
-    NSMutableArray * args = [_args mutableCopy];
+    NSMutableArray * args = [_args mutableCopy];*/
     
     /* check for purity in signature array */ // see step 1
-    [signatures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    /*[signatures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         if (![obj isKindOfClass:[FSArgumentSignature class]]) {
             *error = [NSError errorWithDomain:kFSAPErrorDomain code:ImpureSignatureArray userInfo:[NSDictionary dictionaryWithObjectsAndKeys:obj, FSAPErrorDictKeys.ImpureSignatureObject,
                                                                                                    [NSNumber numberWithUnsignedInteger:idx], FSAPErrorDictKeys.ImpureSignatureLocation, nil]];
             *stop = YES;
         }
-    }]; if (*error) return nil;
+    }]; if (*error) return nil;*/
     
     /* check for conflicting signatures */ // see step 2 
-    [signatures enumerateObjectsUsingBlock:^(FSArgumentSignature * signature, NSUInteger signature_idx, BOOL *signature_stop) {
+    /*[signatures enumerateObjectsUsingBlock:^(FSArgumentSignature * signature, NSUInteger signature_idx, BOOL *signature_stop) {*/
 	
 	/* scan the shortnames for conflicts */
 	
-        [signatures enumerateObjectsUsingBlock:^(FSArgumentSignature * signature2, NSUInteger signature2_idx, BOOL *signature2_stop) {
+        /*[signatures enumerateObjectsUsingBlock:^(FSArgumentSignature * signature2, NSUInteger signature2_idx, BOOL *signature2_stop) {
             if (signature2==signature) return; // duh they're going to match!
             NSMutableCharacterSet * signature_shortnames = [signature.shortNames mutableCopy];
             [signature_shortnames formIntersectionWithCharacterSet:signature2.shortNames];
@@ -108,11 +108,11 @@ NSUInteger CountOfKeyInDictionary(NSDictionary *, id); // used to find the count
                                                                                                       signature2, FSAPErrorDictKeys.OverlappingArgumentSignature2, nil]];
             }
         }];
-        if (*signature_stop==YES) return; // just die now
+        if (*signature_stop==YES) return; */// just die now
 
 	/* scan the long names for conflicts */
 
-        [signature.longNames enumerateObjectsUsingBlock:^(NSString * longName, NSUInteger longName_idx, BOOL *longName_stop) {
+        /*[signature.longNames enumerateObjectsUsingBlock:^(NSString * longName, NSUInteger longName_idx, BOOL *longName_stop) {
             [signatures enumerateObjectsUsingBlock:^(FSArgumentSignature * signature2, NSUInteger signature2_idx, BOOL *signature2_stop) {
                 if (signature==signature2) return; // duh they're going to match!
                 if ([signature2.longNames containsObject:longName]) {
@@ -126,43 +126,43 @@ NSUInteger CountOfKeyInDictionary(NSDictionary *, id); // used to find the count
                 }
             }];
         }];
-    }]; if (*error) return nil;
+    }]; if (*error) return nil;*/
     
     // these little darlings get to be copied over into the final argument package
-    NSMutableDictionary * flags = [[NSMutableDictionary alloc] init]; /* These are all flags that have been set. It's empty now, but gets populated with false values later. */
-    NSMutableDictionary * namedArguments = [[NSMutableDictionary alloc] init]; /* These are all named arguments. It's supposed to be empty. */
-    NSMutableArray * unnamedArguments = [[NSMutableArray alloc] init]; /* Unnamed arguments are essentially everything that is left over after the detected arguments are found.
-                                                                        * They will be in the order of how they were originally found in the array. */
+//    NSMutableDictionary * flags = [[NSMutableDictionary alloc] init]; /* These are all flags that have been set. It's empty now, but gets populated with false values later. */
+//    NSMutableDictionary * namedArguments = [[NSMutableDictionary alloc] init]; /* These are all named arguments. It's supposed to be empty. */
+//    NSMutableArray * unnamedArguments = [[NSMutableArray alloc] init]; /* Unnamed arguments are essentially everything that is left over after the detected arguments are found.
+//                                                                        * They will be in the order of how they were originally found in the array. */
     /* the following are sorted bits from the signatures array */
-    NSMutableSet * flagSignatures = [[NSMutableSet alloc] init]; // all the flag signatures
-    NSMutableCharacterSet * flagCharacters = [[NSMutableCharacterSet alloc] init]; // all the flag characters. If the character is in this set, congrats! it's a flag
-    NSMutableArray * flagNames = [[NSMutableArray alloc] init]; // All the flag names, eg. names that correspond to a flag signature. If the string is in this array, congrats! it's a flag
-    NSMutableSet * notFlagSignatures = [[NSMutableSet alloc] init]; // if it ain't a flag, then it's in this signature array.
+//    NSMutableSet * flagSignatures = [[NSMutableSet alloc] init]; // all the flag signatures
+//    NSMutableCharacterSet * flagCharacters = [[NSMutableCharacterSet alloc] init]; // all the flag characters. If the character is in this set, congrats! it's a flag
+//    NSMutableArray * flagNames = [[NSMutableArray alloc] init]; // All the flag names, eg. names that correspond to a flag signature. If the string is in this array, congrats! it's a flag
+//    NSMutableSet * notFlagSignatures = [[NSMutableSet alloc] init]; // if it ain't a flag, then it's in this signature array.
     // actually perform the sorting. see step 3
-    [signatures enumerateObjectsUsingBlock:^(FSArgumentSignature * obj, NSUInteger idx, BOOL *stop) {
+    /*[signatures enumerateObjectsUsingBlock:^(FSArgumentSignature * obj, NSUInteger idx, BOOL *stop) {
         if (obj.isFlag) {
             [flagSignatures addObject:obj];
             [flagCharacters formUnionWithCharacterSet:obj.shortNames];
             [flagNames addObjectsFromArray:obj.longNames];
-            [flags setObject:[NSNumber numberWithUnsignedInteger:0] forKey:obj]; // initialize the value of the flag to false.
+            [flags setObject:[NSNumber numberWithUnsignedInteger:0] forKey:obj]; */// initialize the value of the flag to false.
             /* a note on implementation decisions:
              * 
              * I have chosen it such that every single flag shall be false. If the flag does not appear at all, it's false. It used to be in a previous iteration that it would be nil, which is a very bad idea. it created obnoxious nil checks which had to be reinterpreted as false, etc. it was just bad.
              *
              * this is a lot better.
              */
-        }
+        /*}
         else [notFlagSignatures addObject:obj]; // seems obvious, right?
-    }];
+    }];*/
     
     // these are some regexen that define whether or not a given string (from the arg array) is a flag, named argument, or isn't a value.
 
     // Matches -anything, but NOT --anything.
-    NSRegularExpression * flagDetector = [NSRegularExpression regularExpressionWithPattern:@"^[\\-][^\\-]*$" options:0 error:error];
+    /*NSRegularExpression * flagDetector = [NSRegularExpression regularExpressionWithPattern:@"^[\\-][^\\-]*$" options:0 error:error];
     if (*error) return nil; // asplode if my regexen fails
     // Match --anything, but NOT -anything. Ain't that spiffy?
     NSRegularExpression * namedArgumentDetector = [NSRegularExpression regularExpressionWithPattern:@"^[\\-]{2}.*$" options:0 error:error];
-    if (*error) return nil;
+    if (*error) return nil;*/
     /* This is a general catch-all that signifies that something ISN'T a value and should be ignored by the value grabber.
      *
      * In explainum: consider the following invocation:
@@ -181,20 +181,20 @@ NSUInteger CountOfKeyInDictionary(NSDictionary *, id); // used to find the count
      *
      * I know, smart-ass answer, but hey... it's what you do.
      */
-    NSRegularExpression * isntValueDetector = [NSRegularExpression regularExpressionWithPattern:@"^\\-" options:0 error:error];
-    if (*error) return nil;
+    /*NSRegularExpression * isntValueDetector = [NSRegularExpression regularExpressionWithPattern:@"^\\-" options:0 error:error];
+    if (*error) return nil;*/
     
     /* this begins the biggest piece of evil ever. comments have been added for entertainment purposes */
-    while (0<[args count]) { // we use a wonky iteration because we're tearing elements out of the array during iteration. Thus we can't use fast enumeration. Once an element is parsed (sorted into a bucket, either a flag increment, named argument value, or as an unnamed argument) it's removed from the source array which means that it's done. Gone. Boom. Parsed. When everything is gone (0==[args count]) then it's considered parsed. ¿Comprendé? Anyway, see step 4
+    /*while (0<[args count]) { // we use a wonky iteration because we're tearing elements out of the array during iteration. Thus we can't use fast enumeration. Once an element is parsed (sorted into a bucket, either a flag increment, named argument value, or as an unnamed argument) it's removed from the source array which means that it's done. Gone. Boom. Parsed. When everything is gone (0==[args count]) then it's considered parsed. ¿Comprendé? Anyway, see step 4
 
         NSString * arg = [args objectAtIndex:0]; // this is the root arg we'll be working with this iteration. We may pull other args later. See step 4.1
         [args removeObjectAtIndex:0];
 
-        if (0<[flagDetector numberOfMatchesInString:arg options:0 range:NSMakeRange(0, [arg length])]) { // if this is a flag, eg. a -f instead of a --file. see step 4.2
+        if (0<[flagDetector numberOfMatchesInString:arg options:0 range:NSMakeRange(0, [arg length])]) {*/ // if this is a flag, eg. a -f instead of a --file. see step 4.2
 
             /* Because flags can have many bretheren and sisteren in their invocations (eg. -cfg is equivalent to -c -f -g) we need to treat each flag individually. */
 
-            for (NSUInteger i = 1; // starting at 1 ignores the prefixed 
+            /*for (NSUInteger i = 1; // starting at 1 ignores the prefixed 
                  i < [arg length];
                  ++i) { // iteration, see step 4.2
 
@@ -343,11 +343,11 @@ NSUInteger CountOfKeyInDictionary(NSDictionary *, id); // used to find the count
         return pkg;
     }
     
-    return pkg; // step 9
-}
+    return pkg; */ // step 9
+//}
 
 @end
-
+/*
 @implementation FSArgumentPackage (__nice_constructor__)
 + (id)argumentPackageWithFlags:(NSDictionary *)flags namedArguments:(NSDictionary *)namedArguments unnamedArguments:(NSArray *)unnamedArguments
 {
@@ -374,3 +374,4 @@ NSUInteger CountOfKeyInDictionary(NSDictionary * dict, id key)
     if (number) return [number unsignedIntegerValue];
     else return NSNotFound;
 }
+*/

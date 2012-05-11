@@ -30,7 +30,20 @@
  *     foo -c 1 2 -f 3
  *
  * However, given the same signature with shouldGrabBeyondBarrier set to true, the same invocation would succeed and grab the 3 and add it to c.
+ *
+ * It is important to note that this only applies to disconnected value lists. So, if shouldGrabBeyondBarrier is false, this will still work:
+ *
+ *     foo --file -v 1
+ *
+ * But this won't:
+ *
+ *     foo --files 1 -v 2
  */
 @property (assign) bool shouldGrabBeyondBarrier;
+
++ (id)valuedArgumentWithSwitches:(id)switchAliases longAliases:(id)longAliases allowsMultipleInvocations:(bool)shouldAllowMultipleInvocations required:(bool)required;
++ (id)valuedArgumentWithSwitches:(id)switchAliases longAliases:(id)longAliases allowsMultipleInvocations:(bool)shouldAllowMultipleInvocations required:(bool)required valuesPerInvocation:(NSUInteger)valuesPerInvocation grabBeyondBarrier:(bool)shouldGrabBeyondBarrier;
+- (id)initWithSwitches:(id)switchAliases longAliases:(id)longAliases allowMultipleInvocations:(bool)shouldAllowMultipleInvocations required:(bool)required;
+- (id)initWithSwitches:(id)switchAliases longAliases:(id)longAliases allowMultipleInvocations:(bool)shouldAllowMultipleInvocations required:(bool)required valuesPerInvocation:(NSUInteger)valuesPerInvocation grabBeyondBarrier:(bool)shouldGrabBeyondBarrier;
 
 @end
