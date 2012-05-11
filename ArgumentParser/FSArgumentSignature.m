@@ -48,15 +48,19 @@ NSArray * __charactersFromCharacterSet(NSCharacterSet *);
     siggy->_signatureDescriptionBlock = block;
     return siggy;
 }
+
 + (id)argumentSignatureAsFlag:(id)shortName longNames:(id)longNames multipleAllowed:(BOOL)multipleAllowed {
     return [[self class] argumentSignatureAsFlag:shortName longNames:longNames multipleAllowed:multipleAllowed description:nil delegate:nil selector:nil block:nil];
 }
+
 + (id)argumentSignatureAsFlag:(id)shortName longNames:(id)longNames multipleAllowed:(BOOL)multipleAllowed description:(NSString *)description {
     return [[self class] argumentSignatureAsFlag:shortName longNames:longNames multipleAllowed:multipleAllowed description:description delegate:nil selector:nil block:nil];
 }
+
 + (id)argumentSignatureAsFlag:(id)shortName longNames:(id)longNames multipleAllowed:(BOOL)multipleAllowed delegate:(id)delegate selector:(SEL)selector {
     return [[self class] argumentSignatureAsFlag:shortName longNames:longNames multipleAllowed:multipleAllowed description:nil delegate:delegate selector:selector block:nil];
 }
+
 + (id)argumentSignatureAsFlag:(id)shortName longNames:(id)longNames multipleAllowed:(BOOL)multipleAllowed block:(NSString *(^)())block {
     return [[self class] argumentSignatureAsFlag:shortName longNames:longNames multipleAllowed:multipleAllowed description:nil delegate:nil selector:nil block:block];
 }

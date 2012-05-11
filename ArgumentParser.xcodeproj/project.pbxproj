@@ -16,6 +16,7 @@
 		DA0044A2155D950A0028A012 /* FSArgumentPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */; };
 		DA0044A3155D950E0028A012 /* FSArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */; };
 		DA0044A4155D95110028A012 /* FSArgumentSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */; };
+		DA0044AE155D966F0028A012 /* FSArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0044AD155D966F0028A012 /* FSArguments.h */; };
 		DACF2EC914FD3B2F0097C754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACF2EC814FD3B2F0097C754 /* Foundation.framework */; };
 		DACF2ECC14FD3B2F0097C754 /* desc.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2ECB14FD3B2F0097C754 /* desc.m */; };
 		DACF2EE114FD3B630097C754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACF2EC814FD3B2F0097C754 /* Foundation.framework */; };
@@ -116,6 +117,7 @@
 		DA004497155D94FF0028A012 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DA004499155D94FF0028A012 /* ArgumentParserTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArgumentParserTests.h; sourceTree = "<group>"; };
 		DA00449A155D94FF0028A012 /* ArgumentParserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArgumentParserTests.m; sourceTree = "<group>"; };
+		DA0044AD155D966F0028A012 /* FSArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSArguments.h; sourceTree = "<group>"; };
 		DACF2EC414FD3B2F0097C754 /* example */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = example; path = desc; sourceTree = BUILT_PRODUCTS_DIR; };
 		DACF2EC814FD3B2F0097C754 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DACF2ECB14FD3B2F0097C754 /* desc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = desc.m; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 		DA004481155D94FF0028A012 /* ArgumentParser */ = {
 			isa = PBXGroup;
 			children = (
+				DA0044AD155D966F0028A012 /* FSArguments.h */,
 				DACF2F0114FD3BED0097C754 /* FSArgumentPackage.h */,
 				DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */,
 				DACF2F0314FD3BED0097C754 /* FSArgumentParser.h */,
@@ -301,6 +304,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA0044AE155D966F0028A012 /* FSArguments.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

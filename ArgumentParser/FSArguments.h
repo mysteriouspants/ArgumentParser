@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 FSDEV. All rights reserved.
 //
 
-#ifndef IRCKit_FSArguments_h
-#define IRCKit_FSArguments_h
+#ifndef _FSArguments_h
+#define _FSArguments_h
 
 #import "FSArgumentSignature.h"
 #import "FSArgumentParser.h"
