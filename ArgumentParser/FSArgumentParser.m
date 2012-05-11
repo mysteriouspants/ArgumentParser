@@ -63,7 +63,11 @@ NSUInteger CountOfKeyInDictionary(NSDictionary *, id); // used to find the count
  *          4.3.2.2. Take that argument. It's now the value of the flagged argument.
  *          4.3.2.3. If that signature's flag doesn't allow multiple invocations, AND there's more than one value in that argument, throw an error
  *  4.4. Finally, it's just a regular string. Append it to the unnamed arguments array.
- *
+ * 5. Collect all found arguments
+ * 6. If any required argument isn't in the found arguments, throw an error
+ * 7. If any exclusive argument is found (an argument which invalidates the "if any required argument isn't found" bit) then don't throw that error. (spaghetti thinking, but not actually spaghetti code).
+ * 8. Coalesce the found elements into an FSArgumentPackage *
+ * 9. Return the result
  */
 + (FSArgumentPackage *)parseArguments:(NSArray *)_args withSignatures:(NSArray *)signatures error:(__autoreleasing NSError **)error
 {
@@ -309,18 +313,24 @@ NSUInteger CountOfKeyInDictionary(NSDictionary *, id); // used to find the count
             [unnamedArguments addObject:arg];
         }
     }
-    
+   
+    // step 5 
     NSMutableArray * allFoundArguments = [[NSMutableArray alloc] initWithArray:[flags allKeys]];
     [allFoundArguments addObjectsFromArray:[namedArguments allKeys]];
+
+    // step 6
     NSMutableArray * allRequiredSignatures = [NSMutableArray arrayWithArray:[signatures filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FSArgumentSignature * evaluatedObject, NSDictionary *bindings) {        
         return evaluatedObject.isRequired && ![allFoundArguments containsObject:evaluatedObject];
     }]]];
     
+    // step 8
     FSArgumentPackage * pkg = [FSArgumentPackage argumentPackageWithFlags:[flags copy] namedArguments:[namedArguments copy] unnamedArguments:[unnamedArguments copy]];
-    // check for an exclusive signature
+
+    // check for an exclusive signature, step 7
     NSArray * allExclusiveArguments = [signatures filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FSArgumentSignature * signature, NSDictionary *bindings) {
         return [signature isExclusive]==YES;
     }]];
+
     BOOL hasExclusiveArgument = NO;
     for (FSArgumentSignature * signature in allExclusiveArguments)
         if ([pkg boolValueOfFlag:signature]) {
@@ -333,7 +343,7 @@ NSUInteger CountOfKeyInDictionary(NSDictionary *, id); // used to find the count
         return pkg;
     }
     
-    return pkg;
+    return pkg; // step 9
 }
 
 @end
