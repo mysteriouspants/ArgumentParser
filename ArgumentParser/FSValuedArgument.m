@@ -9,6 +9,7 @@
 #import "FSValuedArgument.h"
 #import "FSArgumentSignature_Internal.h"
 #import "FSArguments_Coalescer_Internal.h"
+#import "NSString+Indenter.h"
 
 // used in computing the hash value
 #import <CommonCrypto/CommonDigest.h>
@@ -78,6 +79,39 @@
 - (NSString *)switchAliasesAsString
 {
     return __fsargs_charactersFromCharacterSetAsString(_switchAliases);
+}
+
+#pragma mark FSArgumentSignature
+
+- (NSString *)descriptionForHelp:(NSUInteger)indent terminalWidth:(NSUInteger)width
+{
+    if (self.descriptionHelper)
+        return self.descriptionHelper(self, indent, width);
+    
+    if (width < 20) width = 20; // just make sure
+    
+    NSMutableString * prefix = [NSMutableString stringWithCapacity:indent*2];
+    for (NSUInteger i = 0;
+         i < indent * 2;
+         ++i) [prefix appendString:@" "];
+    
+    NSMutableArray * switches = [[self switchAliasesAsArray] mutableCopy];
+    for (NSUInteger i = 0;
+         i < [switches count];
+         ++i) {
+        NSString * character = [switches objectAtIndex:i];
+        [switches replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"-%@", character]];
+    }
+    
+    NSString * unmangled = [NSString stringWithFormat:@"%@ %@\nallowsMultipleInvocations: %@\nrequired: %@\nvaluesPerInvocation: %lu\nshouldGrabBeyondBarrier: %@\nnullifiesRequired: %@\nnullifiesRequiredAncestorPropagation: %lu\nnullifiesRequiredDescendentPropagation: %lu", [switches componentsJoinedByString:@" "], [[_longAliases allObjects] componentsJoinedByString:@" "], _shouldAllowMultipleInvocations?@"true":@"false", _required?@"true":@"false", _valuesPerInvocation, _shouldGrabBeyondBarrier?@"true":@"false", [self nullifyRequired]?@"true":@"false", [self nullifyRequiredAncestorPropagation], [self nullifyRequiredDescendentPropagation]];
+    
+    NSMutableString * s = [unmangled fsargs_mutableStringByIndentingToWidth:indent*2 lineLength:width];
+    
+    for (FSArgumentSignature * signature in [self injectedArguments]) {
+        [s appendString:[signature descriptionForHelp:indent+1 terminalWidth:width]];
+    }
+    
+    return [s copy];
 }
 
 #pragma mark NSCopying

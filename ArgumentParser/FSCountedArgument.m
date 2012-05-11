@@ -9,6 +9,7 @@
 #import "FSCountedArgument.h"
 #import "FSArgumentSignature_Internal.h"
 #import "FSArguments_Coalescer_Internal.h"
+#import "NSString+Indenter.h"
 
 // used in computing the hash value
 #import <CommonCrypto/CommonDigest.h>
@@ -61,7 +62,7 @@
     
     NSMutableString * prefix = [NSMutableString stringWithCapacity:indent*2];
     for (NSUInteger i = 0;
-         i < indent;
+         i < indent * 2;
          ++i) [prefix appendString:@" "];
     
     NSMutableArray * switches = [[self switchAliasesAsArray] mutableCopy];
@@ -74,23 +75,7 @@
     
     NSString * unmangled = [NSString stringWithFormat:@"%@ %@\nallowsMultipleInvocations: %@\nnullifiesRequired: %@\nnullifiesRequiredAncestorPropagation: %lu\nnullifiesRequiredDescendentPropagation: %lu", [switches componentsJoinedByString:@" "], [[_longAliases allObjects] componentsJoinedByString:@" "], _shouldAllowMultipleInvocations?@"true":@"false", [self nullifyRequired]?@"true":@"false", [self nullifyRequiredAncestorPropagation], [self nullifyRequiredDescendentPropagation]];
     
-    NSMutableString * s = [NSMutableString string];
-    NSUInteger chunkAtLength = width - indent * 2;
-    [unmangled enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
-        // chunkify at chunkAtLength and then append using @"\n" as the componentsJoinedByString
-        // someone please shoot the Engrish in the above line
-        NSMutableArray * a = [NSMutableArray arrayWithCapacity:[line length]/chunkAtLength +1];
-        for (NSUInteger i = 0;
-             i < [line length];
-             i += chunkAtLength) {
-            NSUInteger length = chunkAtLength;
-            if (i + length > [line length])
-                length = [line length] - i;
-            [a addObject:[NSString stringWithFormat:@"%@%@", prefix, [line substringWithRange:NSMakeRange(i, length)]]];
-        }
-        [s appendString:[a componentsJoinedByString:@"\n"]];
-        [s appendString:@"\n"];
-    }];
+    NSMutableString * s = [unmangled fsargs_mutableStringByIndentingToWidth:indent*2 lineLength:width];
     
     for (FSArgumentSignature * signature in [self injectedArguments]) {
         [s appendString:[signature descriptionForHelp:indent+1 terminalWidth:width]];

@@ -9,6 +9,7 @@
 #import "FSCommandArgument.h"
 #import "FSArgumentSignature_Internal.h"
 #import "FSArguments_Coalescer_Internal.h"
+#import "NSString+Indenter.h"
 
 // used in computing the hash value
 #import <CommonCrypto/CommonDigest.h>
@@ -31,6 +32,31 @@
     }
     
     return self;
+}
+
+#pragma mark NSArgumentSignature
+
+- (NSString *)descriptionForHelp:(NSUInteger)indent terminalWidth:(NSUInteger)width
+{
+    if (self.descriptionHelper)
+        return self.descriptionHelper(self, indent, width);
+    
+    if (width < 20) width = 20; // just make sure
+    
+    NSMutableString * prefix = [NSMutableString stringWithCapacity:indent*2];
+    for (NSUInteger i = 0;
+         i < indent;
+         ++i) [prefix appendString:@" "];
+    
+    NSString * unmangled = [NSString stringWithFormat:@"%@\nnullifiesRequired: %@\nnullifiesRequiredAncestorPropagation: %lu\nnullifiesRequiredDescendentPropagation: %lu", [[_aliases allObjects] componentsJoinedByString:@" "], [self nullifyRequired]?@"true":@"false", [self nullifyRequiredAncestorPropagation], [self nullifyRequiredDescendentPropagation]];
+    
+    NSMutableString * s = [unmangled fsargs_mutableStringByIndentingToWidth:indent*2 lineLength:width];
+    
+    for (FSArgumentSignature * signature in [self injectedArguments]) {
+        [s appendString:[signature descriptionForHelp:indent+1 terminalWidth:width]];
+    }
+    
+    return [s copy];
 }
 
 #pragma mark NSCopying
