@@ -17,6 +17,12 @@
 		DA0044A3155D950E0028A012 /* FSArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */; };
 		DA0044A4155D95110028A012 /* FSArgumentSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */; };
 		DA0044AE155D966F0028A012 /* FSArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0044AD155D966F0028A012 /* FSArguments.h */; };
+		DA0044B1155D99FF0028A012 /* FSCountedArgument.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0044AF155D99FF0028A012 /* FSCountedArgument.h */; };
+		DA0044B2155D99FF0028A012 /* FSCountedArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044B0155D99FF0028A012 /* FSCountedArgument.m */; };
+		DA0044B7155D9B2F0028A012 /* FSValuedArgument.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0044B5155D9B2F0028A012 /* FSValuedArgument.h */; };
+		DA0044B8155D9B2F0028A012 /* FSValuedArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044B6155D9B2F0028A012 /* FSValuedArgument.m */; };
+		DA0044BB155D9C850028A012 /* FSCommandArgument.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0044B9155D9C850028A012 /* FSCommandArgument.h */; };
+		DA0044BC155D9C850028A012 /* FSCommandArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044BA155D9C850028A012 /* FSCommandArgument.m */; };
 		DACF2EC914FD3B2F0097C754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACF2EC814FD3B2F0097C754 /* Foundation.framework */; };
 		DACF2ECC14FD3B2F0097C754 /* desc.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2ECB14FD3B2F0097C754 /* desc.m */; };
 		DACF2EE114FD3B630097C754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACF2EC814FD3B2F0097C754 /* Foundation.framework */; };
@@ -118,6 +124,14 @@
 		DA004499155D94FF0028A012 /* ArgumentParserTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArgumentParserTests.h; sourceTree = "<group>"; };
 		DA00449A155D94FF0028A012 /* ArgumentParserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArgumentParserTests.m; sourceTree = "<group>"; };
 		DA0044AD155D966F0028A012 /* FSArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSArguments.h; sourceTree = "<group>"; };
+		DA0044AF155D99FF0028A012 /* FSCountedArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCountedArgument.h; sourceTree = "<group>"; };
+		DA0044B0155D99FF0028A012 /* FSCountedArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCountedArgument.m; sourceTree = "<group>"; };
+		DA0044B4155D9A370028A012 /* FSExplicitArgument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSExplicitArgument.h; sourceTree = "<group>"; };
+		DA0044B5155D9B2F0028A012 /* FSValuedArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSValuedArgument.h; sourceTree = "<group>"; };
+		DA0044B6155D9B2F0028A012 /* FSValuedArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSValuedArgument.m; sourceTree = "<group>"; };
+		DA0044B9155D9C850028A012 /* FSCommandArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCommandArgument.h; sourceTree = "<group>"; };
+		DA0044BA155D9C850028A012 /* FSCommandArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCommandArgument.m; sourceTree = "<group>"; };
+		DA0044BD155DA32E0028A012 /* FSArgumentSignature_Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSArgumentSignature_Internal.h; sourceTree = "<group>"; };
 		DACF2EC414FD3B2F0097C754 /* example */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = example; path = desc; sourceTree = BUILT_PRODUCTS_DIR; };
 		DACF2EC814FD3B2F0097C754 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DACF2ECB14FD3B2F0097C754 /* desc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = desc.m; sourceTree = "<group>"; };
@@ -204,12 +218,11 @@
 			isa = PBXGroup;
 			children = (
 				DA0044AD155D966F0028A012 /* FSArguments.h */,
+				DA0044B3155D9A050028A012 /* Signatures */,
 				DACF2F0114FD3BED0097C754 /* FSArgumentPackage.h */,
 				DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */,
 				DACF2F0314FD3BED0097C754 /* FSArgumentParser.h */,
 				DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */,
-				DACF2F0514FD3BED0097C754 /* FSArgumentSignature.h */,
-				DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */,
 				DA004482155D94FF0028A012 /* Supporting Files */,
 			);
 			path = ArgumentParser;
@@ -240,6 +253,23 @@
 				DA004496155D94FF0028A012 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DA0044B3155D9A050028A012 /* Signatures */ = {
+			isa = PBXGroup;
+			children = (
+				DACF2F0514FD3BED0097C754 /* FSArgumentSignature.h */,
+				DA0044BD155DA32E0028A012 /* FSArgumentSignature_Internal.h */,
+				DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */,
+				DA0044B4155D9A370028A012 /* FSExplicitArgument.h */,
+				DA0044AF155D99FF0028A012 /* FSCountedArgument.h */,
+				DA0044B0155D99FF0028A012 /* FSCountedArgument.m */,
+				DA0044B5155D9B2F0028A012 /* FSValuedArgument.h */,
+				DA0044B6155D9B2F0028A012 /* FSValuedArgument.m */,
+				DA0044B9155D9C850028A012 /* FSCommandArgument.h */,
+				DA0044BA155D9C850028A012 /* FSCommandArgument.m */,
+			);
+			name = Signatures;
 			sourceTree = "<group>";
 		};
 		DACF2EB914FD3B2F0097C754 = {
@@ -305,6 +335,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA0044AE155D966F0028A012 /* FSArguments.h in Headers */,
+				DA0044B1155D99FF0028A012 /* FSCountedArgument.h in Headers */,
+				DA0044B7155D9B2F0028A012 /* FSValuedArgument.h in Headers */,
+				DA0044BB155D9C850028A012 /* FSCommandArgument.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +518,9 @@
 				DA0044A2155D950A0028A012 /* FSArgumentPackage.m in Sources */,
 				DA0044A3155D950E0028A012 /* FSArgumentParser.m in Sources */,
 				DA0044A4155D95110028A012 /* FSArgumentSignature.m in Sources */,
+				DA0044B2155D99FF0028A012 /* FSCountedArgument.m in Sources */,
+				DA0044B8155D9B2F0028A012 /* FSValuedArgument.m in Sources */,
+				DA0044BC155D9C850028A012 /* FSCommandArgument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
