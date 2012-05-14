@@ -3,159 +3,82 @@
 A short, awesome, and *really useful* tool for rapidly parsing command-line arguments in a declarative manner using Objective-C.
 
     FSArgumentSignature
-      * force = [FSArgumentSignature argumentSignatureAsFlag:@"f" longNames:@"force" multipleAllowed:YES],
-      * soft = [FSArgumentSignature argumentSignatureAsFlag:@"s" longNames:@"soft" multipleAllowed:NO],
-      * outputFile = [FSArgumentSignature argumentSignatureAsNamedArgument:nil
-        longNames:@"output-file" required:YES multipleAllowed:NO],
-      * inputFile = [FSArgumentSignature argumentSignatureAsNamedArgument:@"i"
-        longNames:@"input-file" required:YES multipleAllowed:YES];
+      * force = [FSArgumentSignature argumentSignatureWithFormat:@"[-f --force]"],
+      * soft = [FSArgumentSignature argumentSignatureWithFormat:@"[-s --soft]"],
+      * outputFile = [FSArgumentSignature argumentSignatureWithFormat:@"[-o --output-file of]=",
+      * inputFile = [FSArgumentSignature argumentSignatureWithFormat:@"[-i --input-file if]={1,}"];
       
     NSArray * signatures = [NSArray arrayWithObjects:force, soft, outputFile, inputFile, nil];
       
-    NSError * error;
-    FSArgumentPackage * arguments = [FSArgumentParser parseArguments:[[NSProcessInfo processInfo] arguments] 
-                                                      withSignatures:signatures
-                                                               error:&error];
-    
-    if (error) {
-      NSLog(@"Error! %@", error);
-      exit(-1);
-    }
-    
-    // arguments now has all the information you could want!
-    
-    BOOL forceFlag = [[arguments.flags objectForKey:force] boolValue]; // do I have the
-    // force flag set?
-    
-    forceFlag = [arguments boolValueOfFlag:@"f"]; // this works
-    forceFlag = [arguments boolValueOfFlag:force]; // but this is less stringly-typed, therefore better
-    
-    NSUInteger howMuchForce = [[arguments.flags objectForKey:force] unsignedIntegerValue];
-    // how much force is set? eg. -ff will yield 2. Ain't that spiffy?
-    howMuchForce = [arguments unsignedIntegerValueOfFlag:@"f"]; // that works as expected, too!
-    
-    NSString * outputFileName = [arguments.namedArguments objectForKey:outputFile];
-    // because multiple is not allowed, this is guaranteed to be either nil or a single string. Because it's
-    // required, you can be guaranteed this will not be nil.
-    
-    NSArray * inputFiles = [arguments.namedArguments objectForKey:inputFile];
-    // because multiple is allowed, this is always going to be an array, even if there's only one object.
-    
-    NSArray * otherArgs = arguments.unnamedArguments; // these are all the other things that aren't flags and
-    // aren't named by a flag. If there's something flag-like in the command-line arguments which isn't a known
-    // signature, it'll end up here, too.
-    
-Because it's declarative, the objective is to declare your arguments characteristics in as few places as possible. It also passes some fairly decent errors at you when it dies.
+    // TODO: pending rewrite
 
-## Spiffy
+## Features: It Just Works
 
-I've spent some time to make this actually pretty darn spiffy. For example, how are multiple named arguments handled when they're short names? For example:
+You're probably already excited about the nice format ctors, which are admittedly a nice touch. But the real power of FSArgumentParser is on the command line. It's designed to "just work" in a variety of situations.
 
-    [FSArgumentSignature argumentSignatureAsNamedArgument:@"i" longNames:@"if" required:YES multipleAllowed:NO],
-    [FSArgumentSignature argumentSignatureAsNamedArgument:@"o" longNames:@"of" required:YES multipleAllowed:NO],
-    
-Now, I have several ways to work with this:
+### Flag Grouping
 
-          # the long way
-    spiffy --if file1 --of file2
-          # the shorter way
+It seems natural to us: we like to group flags together. `tar -cvvf`, anyone? FSArgumentParser understands that quite well.
+
+### Equals Signs
+
+Some tools require an equals sign for value assignment (`foo -f=t` works, but `foo -f t` doesn't). FSArgumentParser doesn't mind either formats.
+
+### Multiple Values in a Group
+
+Supposing you have two or more flags that require values, how does that work? FSArgumentParser gives you two ways to work:
+
+        # the long way
     spiffy -i file1 -o file2
-          # the spiffy way
+        # the lazy way
     spiffy -io file1 file2
     
-So the ordering of short flags determines the interpretation of the arguments. So `io` is the opposite of `oi`, etc. ¿Comprendé?
+Personally, I prefer the lazy way. The values are assigned respective to the order of the flags in the group.
 
-Look at the file `example/spiffy.m` for an example, and try running it with those arguments. You can build the examples using the Rakefile.
+### Many Values per Argument
+
+New in this version is the ability to have more than one value per time an argument is invoked. You define the number of arguments per invocation as a range, minimum to maximum.
+
+    FSArgumentSignature * files =
+        [FSArgumentSignature argumentSignatureWithFormat:@"[-f --files]={1,5}"];
+        
+And boom, you can specify between one and five files per time you use the `-f` flag. You might think that this could be a little awkward if you have a flag group with two flags that take multiple arguments. Well, it isn't. FSArgumentParser understands "value barriers," which segragate between lists of values. A value barrier is either two dashes (`--`), or any other kind of argument invocation. So, given the following:
+
+    FSArgumentSignature
+      *inFiles = [FSArgumentSignature argumentSignatureWithFormat:@"[-f --input-files]={1,5}"],
+      *outputFiles = [FSArgumentSignature argumentSignatureWithFormat:@"[-o --output-files]={1,5}"];
+    
+    // on the command line:
+    
+    foo -ofv ouput1 output2 output3 -- input1 input2 input3 input4 # use the double-dash to separate
+    foo -of ouput1 output2 output3 -v input1 input2 input3 input4 # use the verbose flag to separate
+    
+See how it "just works" for you?
+
+### Undecorated Arguments
+
+Who here is in love with how the `dd` utility takes its arguments? So perhaps not many, but FSArgumentParser understands that, too.
+
+    foo if=infile of=outfile
+    
+Is perfectly valid. This can also be used to create "subcommands."
+
+    foo commit -Am "Why are you reinventing git?"
+    
+### Argument Injection
+
+Wouldn't it be nice to build out a tree of possible arguments, with some arguments which are scanned if and only if a certain argument is present? So thought I, which is why the following invocation could be created like this:
+    
+    foo commit -Am "Why are you reinventing git?"
+    
+    // can be accomplished with
+    
+    FSArgumentSignature * commitSubcommand =
+      [FSArgumentSignature argumentSignatureWithFormat:@"[commit]"];
+    [commitSubcommand setInjectedSignatures:[NSSet setWithObjects:
+      [FSArgumentSignature argumentSignatureWithFormat:@"[-A --all]"],
+      [FSArgumentSignature argumentSignatureWithFormat:@"[-m --commit-message]="], nil]];
 
 ## Descriptions
 
-You can also declare your flag descriptions inline:
-
-    [FSArgumentSignature argumentSignatureAsFlag:@"v"
-      longNames:@"verbose"
-      multipleAllowed:YES
-      description:@"-v --verbose much speaking to annoy people."]
-    
-From there, it's pretty easy to emit something:
-
-    [signatures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        printf("%s\n", [[obj descriptionWithLocale:nil indent:1] UTF8String]);
-    }];
-
-You can also use a block or delegate callback if you want a different way to specify description messages instead of right there as a straight string.
-
-The description messages are formatted to indent if you like (by using `descriptionWithLocale:indent:`) and they try to detect the current terminal width and then word-wrap while keeping the indent. It's pretty cool, so you should try making a really long description and seeing what it does.
-
-Look at the file `example/desc.m` for a demonstration; the file `example/long-desc.m` shows how it detects the terminal width.You can build the examples using the Rakefile.
-
-## Why bother?
-
-It's a fair sight easier than parsing args by hand. This can handle a lot of the annoying things for you. For instance:
-
-* Is a required argument missing?
-* Is there a value missing that should be attached to a known argument?
-
-## So?
-
-Overall it's just total awesomeness, saving you time and helping you declare your arguments in a single place.
-
-## Examples? We got examples!
-
-If you have the following:
-
-* Xcode 4.3 with command-line tools installed
-* Ruby and Rake (I suggest RVM and RBX)
-* The Rake gem (comes with RBX)
-
-Then you're armed and fully operational to start building the example code!
-
-    > rake all
-    clang FSArgumentPackage.m -DDEBUG -std=c99 -fobjc-arc -I ./ -g -c -o FSArgumentPackage.o
-    clang FSArgumentParser.m -DDEBUG -std=c99 -fobjc-arc -I ./ -g -c -o FSArgumentParser.o
-    clang FSArgumentSignature.m -DDEBUG -std=c99 -fobjc-arc -I ./ -g -c -o FSArgumentSignature.o
-    clang example/desc.m -DDEBUG -std=c99 -fobjc-arc -I ./ -g -c -o example/desc.o
-    clang -framework Foundation FSArgumentPackage.o FSArgumentParser.o FSArgumentSignature.o example/desc.o -o bin/desc
-    clang example/long-desc.m -DDEBUG -std=c99 -fobjc-arc -I ./ -g -c -o example/long-desc.o
-    clang -framework Foundation FSArgumentPackage.o FSArgumentParser.o FSArgumentSignature.o example/long-desc.o -o bin/long-desc
-    clang example/spiffy.m -DDEBUG -std=c99 -fobjc-arc -I ./ -g -c -o example/spiffy.o
-    clang -framework Foundation FSArgumentPackage.o FSArgumentParser.o FSArgumentSignature.o example/spiffy.o -o bin/spiffy
-    > bin/desc -h
-    Example program with help flag!
-    
-        -h --help required:NO  multipleAllowed:NO
-        -o --out-file <value> required:NO  multipleAllowed:YES
-    > bin/long-desc -h
-    Example program with help flag!
-    
-        -h --help required:NO  multipleAllowed:NO
-        -o file --out-file file (not required) specify zero or more output files. I'
-        m not really sure why you'd want to pipe the output to more than one file, b
-        ut the main point of this is to show how the program can wrap really long li
-        nes without screwing up the indentation.
-    > bin/spiffy -h
-    Example program with help flag!
-    
-        -h --help required:NO  multipleAllowed:NO
-        -i --if <value> required:YES multipleAllowed:NO
-        -o --of <value> required:YES multipleAllowed:NO
-    
-    Oh, PS, there was an error: {
-        missingTheseSignatures =     (
-            "-i --if <value> required:YES multipleAllowed:NO",
-            "-o --of <value> required:YES multipleAllowed:NO"
-        );
-    }
-    > bin/spiffy -io file0 file1
-    Example program:
-      Input File: file0
-      OutputFile: file1
-    > bin/spiffy -i -o file0 file1 
-    Example program:
-      Input File: file0
-      OutputFile: file1
-
-Kinda neat, no?
-
-### One other note
-
-I'd like to point out that the output of `spiffy -h` demonstrates how you still get an argument package back when you're missing required flags. This is a slight modification designed to allow you to detect help flags. So, if you wanted to have different error handling code that doesn't just spit out the help stuff.
+TODO: Fixup descriptions

@@ -26,6 +26,8 @@
 		DA0044C7155DC1160028A012 /* NSString+Indenter.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0044C5155DC1160028A012 /* NSString+Indenter.h */; };
 		DA0044C8155DC1160028A012 /* NSString+Indenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044C6155DC1160028A012 /* NSString+Indenter.m */; };
 		DAA595031561A4B80063A5B4 /* SignatureFormatConstructionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA595021561A4B80063A5B4 /* SignatureFormatConstructionTests.m */; };
+		DAA595071561B3610063A5B4 /* FSArgumentParser.podspec in Resources */ = {isa = PBXBuildFile; fileRef = DAA595051561B3610063A5B4 /* FSArgumentParser.podspec */; };
+		DAA595081561B3610063A5B4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DAA595061561B3610063A5B4 /* README.md */; };
 		DACF2EC914FD3B2F0097C754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACF2EC814FD3B2F0097C754 /* Foundation.framework */; };
 		DACF2ECC14FD3B2F0097C754 /* desc.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2ECB14FD3B2F0097C754 /* desc.m */; };
 		DACF2EE114FD3B630097C754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACF2EC814FD3B2F0097C754 /* Foundation.framework */; };
@@ -137,6 +139,8 @@
 		DA0044C6155DC1160028A012 /* NSString+Indenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Indenter.m"; sourceTree = "<group>"; };
 		DAA595011561A4B80063A5B4 /* SignatureFormatConstructionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureFormatConstructionTests.h; sourceTree = "<group>"; };
 		DAA595021561A4B80063A5B4 /* SignatureFormatConstructionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureFormatConstructionTests.m; sourceTree = "<group>"; };
+		DAA595051561B3610063A5B4 /* FSArgumentParser.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FSArgumentParser.podspec; path = ../FSArgumentParser.podspec; sourceTree = "<group>"; };
+		DAA595061561B3610063A5B4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		DACF2EC414FD3B2F0097C754 /* example */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = example; path = desc; sourceTree = BUILT_PRODUCTS_DIR; };
 		DACF2EC814FD3B2F0097C754 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DACF2ECB14FD3B2F0097C754 /* desc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = desc.m; sourceTree = "<group>"; };
@@ -241,6 +245,7 @@
 		DA004482155D94FF0028A012 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DAA595051561B3610063A5B4 /* FSArgumentParser.podspec */,
 				DA004483155D94FF0028A012 /* ArgumentParser-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -284,6 +289,7 @@
 		DACF2EB914FD3B2F0097C754 = {
 			isa = PBXGroup;
 			children = (
+				DAA595061561B3610063A5B4 /* README.md */,
 				DACF2ECA14FD3B2F0097C754 /* example */,
 				DA004481155D94FF0028A012 /* ArgumentParser */,
 				DA004493155D94FF0028A012 /* ArgumentParserTests */,
@@ -499,6 +505,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA004498155D94FF0028A012 /* InfoPlist.strings in Resources */,
+				DAA595071561B3610063A5B4 /* FSArgumentParser.podspec in Resources */,
+				DAA595081561B3610063A5B4 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
