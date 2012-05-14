@@ -8,33 +8,32 @@
 
 #import <Foundation/Foundation.h>
 
-/**
- * An argument signature defines a named argument, command, or flag in a command-line invocation.
- *
- * The precise taxonomy is thus:
- *
- * 1. Counted argument. These are usually interpreted as booleans. Things such as the "verbose" or "help" flag are implemented as these.
- * 2. Valued argument. These are best described as arguments that can be interpreted as dictionary values, such as "--file text.txt".
- * 3. Command arguments. These are special strings which trigger something like a boolean switch, but don't need to be preceded by dashes.
- * 
- * Everything that remains is left as a simple array of strings.
- *
- * You are free to modify these objects as much as you want, but they must not be modified during parsing or undefined behavior will ensue.
- */
 @interface FSArgumentSignature : NSObject < NSCopying >
 
-/** If this argument is invoked, inject this set of argument signatures into the current parser. */
-@property (strong) NSSet * injectedArguments;
+/**
+ * A switch is defined as a dash-prefixed invocation, which come in two flavors:
+ *
+ * 1. Flags, which are composed of a single dash, then a single non-whitespace, non-dash character. Flags may be grouped, and will grab values (for valued signatures) in the order in which they appear in the grouping.
+ * 2. Banners, which are composed of two dashes, then a string. This string may not start with a dash, but may contain any non-whitespace character within it. You may not group banner arguments.
+ */
+@property (strong) NSSet * switches;
 
-/** If this argument is found, ignore the "required" attributes of all named arguments. */
-@property (assign) bool nullifyRequired;
-/** If this argument is found and nullifies required arguments, extend this nullification upward by this many levels. */
-@property (assign) NSUInteger nullifyRequiredAncestorPropagation;
-/** If this argument is found and nullifies required arguments, extend this nullification downward (through positiveInjectors) by this many levels, or NSNotFound for inifinite. */
-@property (assign) NSUInteger nullifyRequiredDescendentPropagation;
+/**
+ * An alias is defined as a string which is not preceded by any dashes, which triggers behavior in the argument parser. For example, you might assign the alias `of` as the output file argument. Thus, you could invoke that argument using the terse syntax `of=file.txt` (but not `of file.txt`), omitting any dashes.
+ *
+ * You should be very careful with aliases, since the definition of an alias will disqualify any input string from behaving as an argument value (assuming you want values including an equals sign).
+ */
+@property (strong) NSSet * aliases;
 
-/** If this is not nil, then this block will be called to retrieve special text given for the description of the signature. The arguments are the current signature, the indent level, and the current terminal width (if available). */
-@property (copy) NSString * (^descriptionHelper) (FSArgumentSignature *, NSUInteger, NSUInteger);
+/**
+ * If this argument is invoked, inject this set of argument signatures into the current parser.
+ */
+@property (strong) NSSet * injectedSignatures;
+
+/**
+ * If this is not nil, then this block will be called to retrieve special text given for the description of the signature. The arguments are the current signature, the indent level, and the current terminal width (if available).
+ */
+@property (copy) NSString * (^descriptionHelper) (FSArgumentSignature * currentSignature, NSUInteger indentLevel, NSUInteger terminalWidth);
 
 - (NSString *)descriptionForHelp:(NSUInteger)indent terminalWidth:(NSUInteger)width;
 

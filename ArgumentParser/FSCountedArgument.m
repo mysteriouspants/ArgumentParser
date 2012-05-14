@@ -7,7 +7,7 @@
 //
 
 #import "FSCountedArgument.h"
-#import "FSArgumentSignature_Internal.h"
+#import "FSArgumentSignature_Private.h"
 #import "FSArguments_Coalescer_Internal.h"
 #import "NSString+Indenter.h"
 
@@ -16,47 +16,22 @@
 
 @implementation FSCountedArgument
 
-@synthesize switchAliases = _switchAliases;
-@synthesize longAliases = _longAliases;
-
-@synthesize shouldAllowMultipleInvocations = _shouldAllowMultipleInvocations;
-
-+ (id)countedArgumentWithSwitches:(id)switchAliases longAliases:(id)longAliases allowMultipleInvocations:(bool)shouldAllowMultipleInvocations
++ (id)countedArgumentWithSwitches:(id)switches aliases:(id)aliases
 {
-    return [[self alloc] initWithSwitches:switchAliases longAliases:longAliases allowMultipleInvocations:shouldAllowMultipleInvocations];
+    return [[self alloc] initWithSwitches:switches aliases:aliases];
 }
 
-- (id)initWithSwitches:(id)switchAliases longAliases:(id)longAliases allowMultipleInvocations:(bool)shouldAllowMultipleInvocations
+- (id)initWithSwitches:(id)switches aliases:(id)aliases
 {
-    self = [super init];
-    
-    if (self) {
-        _switchAliases = __fsargs_coalesceToCharacterSet(switchAliases);
-        _longAliases = __fsargs_coalesceToSet(longAliases);
-        _shouldAllowMultipleInvocations = shouldAllowMultipleInvocations;
-    }
-    
-    return self;
-}
-
-#pragma mark FSExplicitArgument
-
-- (NSArray *)switchAliasesAsArray
-{
-    return __fsargs_charactersFromCharacterSetAsArray(_switchAliases);
-}
-
-- (NSString *)switchAliasesAsString
-{
-    return __fsargs_charactersFromCharacterSetAsString(_switchAliases);
+    return [super initWithSwitches:switches aliases:aliases];
 }
 
 #pragma mark FSArgumentSignature
 
 - (NSString *)descriptionForHelp:(NSUInteger)indent terminalWidth:(NSUInteger)width
 {
-    if (self.descriptionHelper)
-        return self.descriptionHelper(self, indent, width);
+    if (_descriptionHelper)
+        return _descriptionHelper(self, indent, width);
     
     if (width < 20) width = 20; // just make sure
     
@@ -65,19 +40,15 @@
          i < indent * 2;
          ++i) [prefix appendString:@" "];
     
-    NSMutableArray * switches = [[self switchAliasesAsArray] mutableCopy];
-    for (NSUInteger i = 0;
-         i < [switches count];
-         ++i) {
-        NSString * character = [switches objectAtIndex:i];
-        [switches replaceObjectAtIndex:i withObject:[NSString stringWithFormat:@"-%@", character]];
-    }
+    NSMutableArray * invocations = [NSMutableArray arrayWithCapacity:[_switches count] + [_aliases count]];
+    [invocations addObjectsFromArray:__fsargs_expandAllSwitches(_switches)];
+    [invocations addObjectsFromArray:[_aliases allObjects]];
     
-    NSString * unmangled = [NSString stringWithFormat:@"%@ %@\nallowsMultipleInvocations: %@\nnullifiesRequired: %@\nnullifiesRequiredAncestorPropagation: %lu\nnullifiesRequiredDescendentPropagation: %lu", [switches componentsJoinedByString:@" "], [[_longAliases allObjects] componentsJoinedByString:@" "], _shouldAllowMultipleInvocations?@"true":@"false", [self nullifyRequired]?@"true":@"false", [self nullifyRequiredAncestorPropagation], [self nullifyRequiredDescendentPropagation]];
+    NSString * unmangled = [NSString stringWithFormat:@"[%@]", [invocations componentsJoinedByString:@" "]];
     
     NSMutableString * s = [unmangled fsargs_mutableStringByIndentingToWidth:indent*2 lineLength:width];
     
-    for (FSArgumentSignature * signature in [self injectedArguments]) {
+    for (FSArgumentSignature * signature in _injectedSignatures) {
         [s appendString:[signature descriptionForHelp:indent+1 terminalWidth:width]];
     }
     
@@ -91,9 +62,7 @@
     FSCountedArgument * copy = [super copy];
     
     if (copy) {
-        copy->_switchAliases = _switchAliases;
-        copy->_longAliases = _longAliases;
-        copy->_shouldAllowMultipleInvocations = _shouldAllowMultipleInvocations;
+        // no additional fields to copy
     }
     
     return copy;
@@ -108,16 +77,8 @@
     CC_MD5_CTX md5;
     CC_MD5_Init(&md5);
     
-    [super internal_updateMD5:&md5]; // add shared stuff to the hash
-        
-    CC_MD5_Update(&md5, (const void *)&_shouldAllowMultipleInvocations, sizeof(bool));
-    
-    NSUInteger shortnameshash = [_switchAliases hash];
-    CC_MD5_Update(&md5, (const void*)&shortnameshash, sizeof(NSUInteger));
-    for (id o in _longAliases) {
-        NSUInteger longnamehash = [[o description] hash];
-        CC_MD5_Update(&md5, (const void*)&longnamehash, sizeof(NSUInteger));
-    }
+    [super updateHash:&md5];
+
     unsigned char* md5_final = (unsigned char*)malloc(sizeof(unsigned char)*CC_MD5_DIGEST_LENGTH);
     CC_MD5_Final(md5_final, &md5);
     return *((NSUInteger *)md5_final);
@@ -125,7 +86,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@:%p switches:%@ longAliases:%@ shouldAllowMultipleInvocations:%@>", NSStringFromClass([self class]), self, __fsargs_charactersFromCharacterSetAsString(_switchAliases), [[_longAliases allObjects] componentsJoinedByString:@","], _shouldAllowMultipleInvocations?@"true":@"false"];
+    return [NSString stringWithFormat:@"<%@:%p switches:[%@] aliases:[%@]>", NSStringFromClass([self class]), self, [__fsargs_expandAllSwitches(_switches) componentsJoinedByString:@" "], [[_aliases allObjects] componentsJoinedByString:@" "]];
 }
 
 @end

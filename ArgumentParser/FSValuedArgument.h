@@ -7,20 +7,16 @@
 //
 
 #import "FSArgumentSignature.h"
-#import "FSExplicitArgument.h"
 
 /** An argument which has one or more values attached to it. */
 @interface FSValuedArgument : FSArgumentSignature
 
-@property (strong) NSCharacterSet * switchAliases;
-@property (strong) NSSet * longAliases;
-
-@property (assign) bool shouldAllowMultipleInvocations;
-
-@property (assign) bool required;
-
-/** The number of values per invocation, which should be between 1 and NSNotFound. */
-@property (assign) NSUInteger valuesPerInvocation;
+/**
+ * The number of values per invocation, which should start at one and have a maximum of NSNotFound (infinity).
+ *
+ * Note that this is not used as NSRange is normally used! The `location` is the *minimum* number of values per invocation, and the `length` is the *maximum* number of values per invocation.
+ */
+@property (assign) NSRange valuesPerInvocation;
 
 /**
  * If set, this argument will continue to try and grab values beyond barriers, which are defined as any other explicit argument invocation or a double dash.
@@ -41,9 +37,11 @@
  */
 @property (assign) bool shouldGrabBeyondBarrier;
 
-+ (id)valuedArgumentWithSwitches:(id)switchAliases longAliases:(id)longAliases allowsMultipleInvocations:(bool)shouldAllowMultipleInvocations required:(bool)required;
-+ (id)valuedArgumentWithSwitches:(id)switchAliases longAliases:(id)longAliases allowsMultipleInvocations:(bool)shouldAllowMultipleInvocations required:(bool)required valuesPerInvocation:(NSUInteger)valuesPerInvocation grabBeyondBarrier:(bool)shouldGrabBeyondBarrier;
-- (id)initWithSwitches:(id)switchAliases longAliases:(id)longAliases allowMultipleInvocations:(bool)shouldAllowMultipleInvocations required:(bool)required;
-- (id)initWithSwitches:(id)switchAliases longAliases:(id)longAliases allowMultipleInvocations:(bool)shouldAllowMultipleInvocations required:(bool)required valuesPerInvocation:(NSUInteger)valuesPerInvocation grabBeyondBarrier:(bool)shouldGrabBeyondBarrier;
++ (id)valuedArgumentWithSwitches:(id)switches aliases:(id)aliases;
+- (id)initWithSwitches:(id)switches aliases:(id)aliases;
+
++ (id)valuedArgumentWithSwitches:(id)switches aliases:(id)aliases valuesPerInvocation:(NSRange)valuesPerInvocation shouldGrabBeyondBarrier:(bool)shouldGrabBeyondBarrier;
+- (id)initWithSwitches:(id)switches aliases:(id)aliases valuesPerInvocation:(NSRange)valuesPerInvocation shouldGrabBeyondBarrier:(bool)shouldGrabBeyondBarrier;
+
 
 @end

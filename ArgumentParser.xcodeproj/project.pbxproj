@@ -20,8 +20,6 @@
 		DA0044B2155D99FF0028A012 /* FSCountedArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044B0155D99FF0028A012 /* FSCountedArgument.m */; };
 		DA0044B7155D9B2F0028A012 /* FSValuedArgument.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0044B5155D9B2F0028A012 /* FSValuedArgument.h */; };
 		DA0044B8155D9B2F0028A012 /* FSValuedArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044B6155D9B2F0028A012 /* FSValuedArgument.m */; };
-		DA0044BB155D9C850028A012 /* FSCommandArgument.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0044B9155D9C850028A012 /* FSCommandArgument.h */; };
-		DA0044BC155D9C850028A012 /* FSCommandArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044BA155D9C850028A012 /* FSCommandArgument.m */; };
 		DA0044C0155DA7BC0028A012 /* FSArguments_Coalescer_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0044BE155DA7BC0028A012 /* FSArguments_Coalescer_Internal.h */; };
 		DA0044C1155DA7BC0028A012 /* FSArguments_Coalescer_Internal.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044BF155DA7BC0028A012 /* FSArguments_Coalescer_Internal.m */; };
 		DA0044C4155DAC320028A012 /* SignatureHashTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044C3155DAC320028A012 /* SignatureHashTests.m */; };
@@ -128,12 +126,8 @@
 		DA0044AD155D966F0028A012 /* FSArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSArguments.h; sourceTree = "<group>"; };
 		DA0044AF155D99FF0028A012 /* FSCountedArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCountedArgument.h; sourceTree = "<group>"; };
 		DA0044B0155D99FF0028A012 /* FSCountedArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCountedArgument.m; sourceTree = "<group>"; };
-		DA0044B4155D9A370028A012 /* FSExplicitArgument.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSExplicitArgument.h; sourceTree = "<group>"; };
 		DA0044B5155D9B2F0028A012 /* FSValuedArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSValuedArgument.h; sourceTree = "<group>"; };
 		DA0044B6155D9B2F0028A012 /* FSValuedArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSValuedArgument.m; sourceTree = "<group>"; };
-		DA0044B9155D9C850028A012 /* FSCommandArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCommandArgument.h; sourceTree = "<group>"; };
-		DA0044BA155D9C850028A012 /* FSCommandArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCommandArgument.m; sourceTree = "<group>"; };
-		DA0044BD155DA32E0028A012 /* FSArgumentSignature_Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSArgumentSignature_Internal.h; sourceTree = "<group>"; };
 		DA0044BE155DA7BC0028A012 /* FSArguments_Coalescer_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSArguments_Coalescer_Internal.h; sourceTree = "<group>"; };
 		DA0044BF155DA7BC0028A012 /* FSArguments_Coalescer_Internal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSArguments_Coalescer_Internal.m; sourceTree = "<group>"; };
 		DA0044C2155DAC320028A012 /* SignatureHashTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureHashTests.h; sourceTree = "<group>"; };
@@ -156,6 +150,7 @@
 		DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSArgumentSignature.m; path = ArgumentParser/FSArgumentSignature.m; sourceTree = SOURCE_ROOT; };
 		DACF2F1414FD75AC0097C754 /* chocolat-app-example */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "chocolat-app-example"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DACF2F2114FD75FD0097C754 /* chocolat-app.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "chocolat-app.m"; sourceTree = "<group>"; };
+		DAEF09EB1561682800BED247 /* FSArgumentSignature_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSArgumentSignature_Private.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +228,8 @@
 				DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */,
 				DA0044C5155DC1160028A012 /* NSString+Indenter.h */,
 				DA0044C6155DC1160028A012 /* NSString+Indenter.m */,
+				DA0044BE155DA7BC0028A012 /* FSArguments_Coalescer_Internal.h */,
+				DA0044BF155DA7BC0028A012 /* FSArguments_Coalescer_Internal.m */,
 				DA004482155D94FF0028A012 /* Supporting Files */,
 			);
 			path = ArgumentParser;
@@ -269,17 +266,12 @@
 			isa = PBXGroup;
 			children = (
 				DACF2F0514FD3BED0097C754 /* FSArgumentSignature.h */,
-				DA0044BD155DA32E0028A012 /* FSArgumentSignature_Internal.h */,
+				DAEF09EB1561682800BED247 /* FSArgumentSignature_Private.h */,
 				DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */,
-				DA0044B4155D9A370028A012 /* FSExplicitArgument.h */,
 				DA0044AF155D99FF0028A012 /* FSCountedArgument.h */,
 				DA0044B0155D99FF0028A012 /* FSCountedArgument.m */,
 				DA0044B5155D9B2F0028A012 /* FSValuedArgument.h */,
 				DA0044B6155D9B2F0028A012 /* FSValuedArgument.m */,
-				DA0044B9155D9C850028A012 /* FSCommandArgument.h */,
-				DA0044BA155D9C850028A012 /* FSCommandArgument.m */,
-				DA0044BE155DA7BC0028A012 /* FSArguments_Coalescer_Internal.h */,
-				DA0044BF155DA7BC0028A012 /* FSArguments_Coalescer_Internal.m */,
 			);
 			name = Signatures;
 			sourceTree = "<group>";
@@ -349,7 +341,6 @@
 				DA0044AE155D966F0028A012 /* FSArguments.h in Headers */,
 				DA0044B1155D99FF0028A012 /* FSCountedArgument.h in Headers */,
 				DA0044B7155D9B2F0028A012 /* FSValuedArgument.h in Headers */,
-				DA0044BB155D9C850028A012 /* FSCommandArgument.h in Headers */,
 				DA0044C0155DA7BC0028A012 /* FSArguments_Coalescer_Internal.h in Headers */,
 				DA0044C7155DC1160028A012 /* NSString+Indenter.h in Headers */,
 			);
@@ -534,7 +525,6 @@
 				DA0044A4155D95110028A012 /* FSArgumentSignature.m in Sources */,
 				DA0044B2155D99FF0028A012 /* FSCountedArgument.m in Sources */,
 				DA0044B8155D9B2F0028A012 /* FSValuedArgument.m in Sources */,
-				DA0044BC155D9C850028A012 /* FSCommandArgument.m in Sources */,
 				DA0044C1155DA7BC0028A012 /* FSArguments_Coalescer_Internal.m in Sources */,
 				DA0044C8155DC1160028A012 /* NSString+Indenter.m in Sources */,
 			);
@@ -797,6 +787,7 @@
 				DA00449E155D94FF0028A012 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DA00449F155D94FF0028A012 /* Build configuration list for PBXNativeTarget "ArgumentParserTests" */ = {
 			isa = XCConfigurationList;
@@ -805,6 +796,7 @@
 				DA0044A1155D94FF0028A012 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DACF2EBE14FD3B2F0097C754 /* Build configuration list for PBXProject "ArgumentParser" */ = {
 			isa = XCConfigurationList;

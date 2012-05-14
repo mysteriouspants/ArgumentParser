@@ -89,3 +89,20 @@ NSString * __fsargs_charactersFromCharacterSetAsString(NSCharacterSet * characte
         if ([characterSet characterIsMember:c]) [s appendFormat:@"%c", c];
     return [s copy];
 }
+
+NSString * __fsargs_expandSwitch(NSString * s)
+{
+    if ([s length] == 1)
+        return [NSString stringWithFormat:@"-%@", s];
+    else
+        return [NSString stringWithFormat:@"--%@", s];
+}
+
+NSArray * __fsargs_expandAllSwitches(id switches)
+{
+    NSMutableArray * a = [NSMutableArray arrayWithCapacity:[switches count]];
+    for (NSString * s in switches) {
+        [a addObject:__fsargs_expandSwitch(s)];
+    }
+    return [a copy];
+}

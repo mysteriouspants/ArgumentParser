@@ -7,17 +7,11 @@
 //
 
 #import "FSArgumentSignature.h"
-#import "FSExplicitArgument.h"
 
 /** Counted or boolean argument signature. */
-@interface FSCountedArgument : FSArgumentSignature < FSExplicitArgument >
+@interface FSCountedArgument : FSArgumentSignature
 
-@property (strong) NSCharacterSet * switchAliases;
-@property (strong) NSSet * longAliases;
-
-@property (assign) bool shouldAllowMultipleInvocations;
-
-+ (id)countedArgumentWithSwitches:(id)switchAliases longAliases:(id)longAliases allowMultipleInvocations:(bool)shouldAllowMultipleInvocations;
-- (id)initWithSwitches:(id)switchAliases longAliases:(id)longAliases allowMultipleInvocations:(bool)shouldAllowMultipleInvocations;
++ (id)countedArgumentWithSwitches:(id)switches aliases:(id)aliases;
+- (id)initWithSwitches:(id)switches aliases:(id)aliases;
 
 @end

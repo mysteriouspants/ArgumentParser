@@ -13,3 +13,5 @@ NSArray * __fsargs_coalesceToArray(id);
 NSSet * __fsargs_coalesceToSet(id);
 NSArray * __fsargs_charactersFromCharacterSetAsArray(NSCharacterSet *);
 NSString * __fsargs_charactersFromCharacterSetAsString(NSCharacterSet *);
+NSString * __fsargs_expandSwitch(NSString *); // expand a switch, taking c to -c and config to --config
+NSArray * __fsargs_expandAllSwitches(id);
