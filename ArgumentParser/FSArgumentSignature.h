@@ -37,4 +37,35 @@
 
 - (NSString *)descriptionForHelp:(NSUInteger)indent terminalWidth:(NSUInteger)width;
 
+/**
+ * Create a new argument signature using the terse format language.
+ *
+ * @see initWithFormat:
+ */
++ (id)argumentSignatureWithFormat:(NSString *)format, ...;
+
+/**
+ * Create a new argument signature using a terse format language, the format specifiers of which are interpreted by NSString's format specifiers.
+ *
+ * The format language is quite simple:
+ *
+ * Counted Arguments are constructed using a simple list of invocation signatures they should respond to, enclosed in brackets:
+ *
+ *     [-v --verbose doVerbose]
+ *
+ * `-v` becomes a flag switch, `--verbose` becomes a banner switch, and `doVerbose` is added to the aliases list. You'll get back an FSCountedArgument object.
+ *
+ * Valued arguments are slightly more complex. They use the same kind of syntax to define their switches and aliases, but also include another set of grammar, some of which is optional. The following are equivalent:
+ *
+ *     [-f --file]={1,1:false}
+ *     [-f --file]={1,1}
+ *     [-f --file]=
+ *
+ * The equals sign indicates a valued argument, then the minimum and maximum captured values per invocation are provided with a regex-like syntax. The colon followed by a boolean statement indicates whether the invocation should grab beyond barriers. (See the documentation for FSValuedArgument).
+ */
+- (id)initWithFormat:(NSString *)format, ...;
+
++ (id)argumentSignatureWithFormat:(NSString *)format arguments:(va_list)args;
+- (id)initWithFormat:(NSString *)format arguments:(va_list)args;
+
 @end

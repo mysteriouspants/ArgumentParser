@@ -25,6 +25,7 @@
 		DA0044C4155DAC320028A012 /* SignatureHashTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044C3155DAC320028A012 /* SignatureHashTests.m */; };
 		DA0044C7155DC1160028A012 /* NSString+Indenter.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0044C5155DC1160028A012 /* NSString+Indenter.h */; };
 		DA0044C8155DC1160028A012 /* NSString+Indenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044C6155DC1160028A012 /* NSString+Indenter.m */; };
+		DAA595031561A4B80063A5B4 /* SignatureFormatConstructionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA595021561A4B80063A5B4 /* SignatureFormatConstructionTests.m */; };
 		DACF2EC914FD3B2F0097C754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACF2EC814FD3B2F0097C754 /* Foundation.framework */; };
 		DACF2ECC14FD3B2F0097C754 /* desc.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2ECB14FD3B2F0097C754 /* desc.m */; };
 		DACF2EE114FD3B630097C754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACF2EC814FD3B2F0097C754 /* Foundation.framework */; };
@@ -134,6 +135,8 @@
 		DA0044C3155DAC320028A012 /* SignatureHashTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureHashTests.m; sourceTree = "<group>"; };
 		DA0044C5155DC1160028A012 /* NSString+Indenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Indenter.h"; sourceTree = "<group>"; };
 		DA0044C6155DC1160028A012 /* NSString+Indenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Indenter.m"; sourceTree = "<group>"; };
+		DAA595011561A4B80063A5B4 /* SignatureFormatConstructionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureFormatConstructionTests.h; sourceTree = "<group>"; };
+		DAA595021561A4B80063A5B4 /* SignatureFormatConstructionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureFormatConstructionTests.m; sourceTree = "<group>"; };
 		DACF2EC414FD3B2F0097C754 /* example */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = example; path = desc; sourceTree = BUILT_PRODUCTS_DIR; };
 		DACF2EC814FD3B2F0097C754 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DACF2ECB14FD3B2F0097C754 /* desc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = desc.m; sourceTree = "<group>"; };
@@ -248,6 +251,8 @@
 			children = (
 				DA0044C2155DAC320028A012 /* SignatureHashTests.h */,
 				DA0044C3155DAC320028A012 /* SignatureHashTests.m */,
+				DAA595011561A4B80063A5B4 /* SignatureFormatConstructionTests.h */,
+				DAA595021561A4B80063A5B4 /* SignatureFormatConstructionTests.m */,
 				DA004494155D94FF0028A012 /* Supporting Files */,
 			);
 			path = ArgumentParserTests;
@@ -535,6 +540,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA0044C4155DAC320028A012 /* SignatureHashTests.m in Sources */,
+				DAA595031561A4B80063A5B4 /* SignatureFormatConstructionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

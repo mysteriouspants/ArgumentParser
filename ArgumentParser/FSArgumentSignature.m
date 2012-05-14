@@ -28,6 +28,9 @@
 {
     self = [self init];
     
+    switches = __fsargs_coalesceToSet(switches);
+    aliases = __fsargs_coalesceToSet(aliases);
+    
     if (self) {
         _switches = switches?:_switches; // keep empty set
         _aliases = aliases?:_aliases; // keep empty set
@@ -38,7 +41,123 @@
 
 - (NSString *)descriptionForHelp:(NSUInteger)indent terminalWidth:(NSUInteger)width
 {
-    return [NSString stringWithFormat:@"Hey, you found the root object. This isn't actually supposed to be an argument though, just a kind of pure virtual class. It isn't really, so you haven't done anything wrong though."];
+    return @"";
+}
+
+#pragma mark Format String Constructors
+
++ (id)argumentSignatureWithFormat:(NSString *)format, ...
+{
+    va_list args;
+    va_start(args, format);
+    
+    FSArgumentSignature * signature = [FSArgumentSignature argumentSignatureWithFormat:format arguments:args];
+    
+    va_end(args);
+    
+    return signature;
+}
+
+- (id)initWithFormat:(NSString *)format, ...
+{
+    va_list args;
+    va_start(args, format);
+    
+    self = [self initWithFormat:format arguments:args];
+    
+    va_end(args);
+    
+    return self;
+}
+
++ (id)argumentSignatureWithFormat:(NSString *)format arguments:(va_list)args
+{
+    return [[[self class] alloc] initWithFormat:format arguments:args];
+}
+
+- (id)initWithFormat:(NSString *)format arguments:(va_list)args
+{
+    NSString * input = [[NSString alloc] initWithFormat:format arguments:args];
+    
+    NSMutableSet * invocationAliases = [NSMutableSet set];
+    NSMutableSet * invocationSwitches = [NSMutableSet set];
+    bool isValued = false;
+    NSRange valuesPerInvocation = NSMakeRange(NSNotFound, 0);
+    bool shouldGrabBeyondBarrier = false;
+    
+    NSError * error;
+    NSRegularExpression * generalRegex = __fsargs_generalRegex(&error);
+    if (error) {
+        [NSException raise:@"net.fsdev.ArgumentParser.RegexConstructionError" format:@"there's been a problem constructing the general regex. error is %@", error];
+        return nil;
+    }
+    
+    NSArray * results =
+    [generalRegex matchesInString:input options:0 range:NSMakeRange(0, [input length])];
+    
+    if ([results count]==0)
+        return nil; // no match
+    
+    NSTextCheckingResult * generalResult = [results objectAtIndex:0];
+    
+    NSAssert([generalResult numberOfRanges]==6, @"expected 6 capture groups. has the regex changed?");
+    
+    NSRange rAliases = [generalResult rangeAtIndex:1]; NSString * sAliases = rAliases.location==NSNotFound?nil:[input substringWithRange:rAliases]; 
+    NSRange rValued = [generalResult rangeAtIndex:2]; NSString * sValued = rValued.location==NSNotFound?nil:[input substringWithRange:rValued];
+    NSRange rValuesPerInvocationMinimum = [generalResult rangeAtIndex:3]; NSString * sValuesPerInvocationMinimum = rValuesPerInvocationMinimum.location==NSNotFound?nil:[input substringWithRange:rValuesPerInvocationMinimum];
+    NSRange rValuesPerInvocationMaximum = [generalResult rangeAtIndex:4]; NSString * sValuesPerInvocationMaximum = rValuesPerInvocationMaximum.location==NSNotFound?nil:[input substringWithRange:rValuesPerInvocationMaximum];
+    NSRange rShouldGrabBeyondBarrier = [generalResult rangeAtIndex:5]; NSString * sShouldGrabBeyondBarrier = rShouldGrabBeyondBarrier.location==NSNotFound?nil:[input substringWithRange:rShouldGrabBeyondBarrier];
+    
+    if (!sAliases) return nil;
+    
+    // run some stuff on the aliases
+    NSScanner * aliasScanner = [NSScanner scannerWithString:sAliases];
+    NSCharacterSet * wspace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    while (![aliasScanner isAtEnd]) {
+        NSString * s;
+        if ([aliasScanner scanUpToCharactersFromSet:wspace intoString:&s]) {
+            if ([s hasPrefix:@"--"])
+                [invocationSwitches addObject:[s substringFromIndex:2]];
+            else if ([s hasPrefix:@"-"])
+                [invocationSwitches addObject:[s substringFromIndex:1]];
+            else
+                [invocationAliases addObject:s];
+        }
+    }
+    
+    if (sValued && [sValued isEqualToString:@"="]) isValued = true;
+    
+    if (isValued) {
+        
+        if (sValuesPerInvocationMinimum)
+            valuesPerInvocation.location = [sValuesPerInvocationMinimum integerValue];
+        else
+            valuesPerInvocation.location = 1;
+        
+        if (sValuesPerInvocationMinimum)
+            valuesPerInvocation.length = [sValuesPerInvocationMaximum integerValue];
+        else
+            valuesPerInvocation.length = 1;
+        
+        if (sShouldGrabBeyondBarrier && [sShouldGrabBeyondBarrier isEqualToString:@"true"])
+            shouldGrabBeyondBarrier = true;
+        
+    } else {
+        // if any other bits are set, then it's a malformed format
+        
+        if (sValuesPerInvocationMaximum || sValuesPerInvocationMinimum || sShouldGrabBeyondBarrier)
+            return nil;
+    }
+    
+    FSArgumentSignature * retVal;
+    
+    if (isValued) {
+        retVal = [FSValuedArgument valuedArgumentWithSwitches:invocationSwitches aliases:invocationAliases valuesPerInvocation:valuesPerInvocation shouldGrabBeyondBarrier:shouldGrabBeyondBarrier];
+    } else {
+        retVal = [FSCountedArgument countedArgumentWithSwitches:invocationSwitches aliases:invocationAliases];
+    }
+    
+    return retVal;
 }
 
 #pragma mark Private Implementation
@@ -113,3 +232,19 @@
 }
 
 @end
+
+NSRegularExpression * __fsargs_generalRegex(NSError ** error)
+{
+    static NSRegularExpression * r;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        r = [NSRegularExpression regularExpressionWithPattern:@"\\A\\[([^\\]]*)\\](=)?\\{?(\\d)?,?(\\d)?\\:?(true|false|YES|NO)?\\}?\\z" options:0 error:error];
+        // \A\[([^\]]*)\](=)?\{?(\d)?,?(\d)?\:?(true|false|YES|NO)?\}?\z
+        // "[-f --file if]={1,1:false}" => "-f --file if", "=", "1", "1", "false"
+        // "[-f --file if]={1,1}"       => "-f --file if", "=", "1", "1", nil
+        // "[-f --file if]={1,}"        => "-f --file if", "=", "1", nil, nil
+        // "[-f --file if]={1,:false}"  => "-f --file if", "=", "1", nil, "false"
+        // "[-f --file if]="            => "-f --file if", "=", nil, nil, nil
+    });
+    return r;
+}

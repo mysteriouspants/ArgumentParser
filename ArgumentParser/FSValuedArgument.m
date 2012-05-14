@@ -123,7 +123,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@:%p switches:[%@] aliases:[%@] valuesPerInvocation:%@ shouldGrabBeyondBarrier:%@>", NSStringFromClass([self class]), self, [__fsargs_expandAllSwitches(_switches) componentsJoinedByString:@" "], [[_aliases allObjects] componentsJoinedByString:@" "], _shouldGrabBeyondBarrier?@"true":@"false"];
+    return [NSString stringWithFormat:@"<%@:%p switches:[%@] aliases:[%@] valuesPerInvocation:%@ shouldGrabBeyondBarrier:%@>", NSStringFromClass([self class]), self, [__fsargs_expandAllSwitches(_switches) componentsJoinedByString:@" "], [[_aliases allObjects] componentsJoinedByString:@" "], NSStringFromRange(_valuesPerInvocation), _shouldGrabBeyondBarrier?@"true":@"false"];
 }
 
 @end

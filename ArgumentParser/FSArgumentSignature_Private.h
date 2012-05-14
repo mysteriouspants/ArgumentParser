@@ -11,6 +11,8 @@
 // used in computing the hash value
 #import <CommonCrypto/CommonDigest.h>
 
+NSRegularExpression * __fsargs_generalRegex(NSError **);
+
 @interface FSArgumentSignature () {
 @protected
     NSSet * _switches;
