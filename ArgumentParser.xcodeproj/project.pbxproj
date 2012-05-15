@@ -28,6 +28,17 @@
 		DA42159A15629EF800F82E8E /* FSMutableAttributedArray.h in Headers */ = {isa = PBXBuildFile; fileRef = DA42159815629EF800F82E8E /* FSMutableAttributedArray.h */; };
 		DA42159B15629EF800F82E8E /* FSMutableAttributedArray.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42159915629EF800F82E8E /* FSMutableAttributedArray.m */; };
 		DA42159F1562AA8700F82E8E /* AttributedArrayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42159E1562AA8700F82E8E /* AttributedArrayTests.m */; };
+		DA4215A21562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA4215A01562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.h */; };
+		DA4215A31562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215A11562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.m */; };
+		DA4215A61562AD2500F82E8E /* NSArray+FSArgumentParser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA4215A41562AD2500F82E8E /* NSArray+FSArgumentParser.h */; };
+		DA4215A71562AD2500F82E8E /* NSArray+FSArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215A51562AD2500F82E8E /* NSArray+FSArgumentParser.m */; };
+		DA4215AB1562DB0C00F82E8E /* NSDictionary+RubyDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = DA4215A91562DB0C00F82E8E /* NSDictionary+RubyDescription.h */; };
+		DA4215AC1562DB0C00F82E8E /* NSDictionary+RubyDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215AA1562DB0C00F82E8E /* NSDictionary+RubyDescription.m */; };
+		DA4215AF1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.h in Headers */ = {isa = PBXBuildFile; fileRef = DA4215AD1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.h */; };
+		DA4215B01562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215AE1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.m */; };
+		DA4215B31562DC6800F82E8E /* ArgumentNormalizerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215B21562DC6800F82E8E /* ArgumentNormalizerTests.m */; };
+		DA4215B61562E09100F82E8E /* FSArgsKonstants.h in Headers */ = {isa = PBXBuildFile; fileRef = DA4215B41562E09100F82E8E /* FSArgsKonstants.h */; };
+		DA4215B71562E09100F82E8E /* FSArgsKonstants.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215B51562E09100F82E8E /* FSArgsKonstants.m */; };
 		DAA595031561A4B80063A5B4 /* SignatureFormatConstructionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA595021561A4B80063A5B4 /* SignatureFormatConstructionTests.m */; };
 		DAA595071561B3610063A5B4 /* FSArgumentParser.podspec in Resources */ = {isa = PBXBuildFile; fileRef = DAA595051561B3610063A5B4 /* FSArgumentParser.podspec */; };
 		DAA595081561B3610063A5B4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DAA595061561B3610063A5B4 /* README.md */; };
@@ -144,6 +155,18 @@
 		DA42159915629EF800F82E8E /* FSMutableAttributedArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSMutableAttributedArray.m; sourceTree = "<group>"; };
 		DA42159D1562AA8700F82E8E /* AttributedArrayTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedArrayTests.h; sourceTree = "<group>"; };
 		DA42159E1562AA8700F82E8E /* AttributedArrayTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributedArrayTests.m; sourceTree = "<group>"; };
+		DA4215A01562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSProcessInfo+FSArgumentParser.h"; sourceTree = "<group>"; };
+		DA4215A11562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSProcessInfo+FSArgumentParser.m"; sourceTree = "<group>"; };
+		DA4215A41562AD2500F82E8E /* NSArray+FSArgumentParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FSArgumentParser.h"; sourceTree = "<group>"; };
+		DA4215A51562AD2500F82E8E /* NSArray+FSArgumentParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FSArgumentParser.m"; sourceTree = "<group>"; };
+		DA4215A91562DB0C00F82E8E /* NSDictionary+RubyDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+RubyDescription.h"; sourceTree = "<group>"; };
+		DA4215AA1562DB0C00F82E8E /* NSDictionary+RubyDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+RubyDescription.m"; sourceTree = "<group>"; };
+		DA4215AD1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FSArgumentsNormalizer.h"; sourceTree = "<group>"; };
+		DA4215AE1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FSArgumentsNormalizer.m"; sourceTree = "<group>"; };
+		DA4215B11562DC6800F82E8E /* ArgumentNormalizerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArgumentNormalizerTests.h; sourceTree = "<group>"; };
+		DA4215B21562DC6800F82E8E /* ArgumentNormalizerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArgumentNormalizerTests.m; sourceTree = "<group>"; };
+		DA4215B41562E09100F82E8E /* FSArgsKonstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSArgsKonstants.h; sourceTree = "<group>"; };
+		DA4215B51562E09100F82E8E /* FSArgsKonstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSArgsKonstants.m; sourceTree = "<group>"; };
 		DAA595011561A4B80063A5B4 /* SignatureFormatConstructionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureFormatConstructionTests.h; sourceTree = "<group>"; };
 		DAA595021561A4B80063A5B4 /* SignatureFormatConstructionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureFormatConstructionTests.m; sourceTree = "<group>"; };
 		DAA595051561B3610063A5B4 /* FSArgumentParser.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FSArgumentParser.podspec; path = ../FSArgumentParser.podspec; sourceTree = "<group>"; };
@@ -236,14 +259,15 @@
 			children = (
 				DA0044AD155D966F0028A012 /* FSArguments.h */,
 				DA0044B3155D9A050028A012 /* Signatures */,
+				DA4215A81562AD3500F82E8E /* Categories */,
 				DACF2F0114FD3BED0097C754 /* FSArgumentPackage.h */,
 				DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */,
 				DACF2F0314FD3BED0097C754 /* FSArgumentParser.h */,
 				DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */,
-				DA0044C5155DC1160028A012 /* NSString+Indenter.h */,
-				DA0044C6155DC1160028A012 /* NSString+Indenter.m */,
 				DA0044BE155DA7BC0028A012 /* FSArguments_Coalescer_Internal.h */,
 				DA0044BF155DA7BC0028A012 /* FSArguments_Coalescer_Internal.m */,
+				DA4215B41562E09100F82E8E /* FSArgsKonstants.h */,
+				DA4215B51562E09100F82E8E /* FSArgsKonstants.m */,
 				DA42159815629EF800F82E8E /* FSMutableAttributedArray.h */,
 				DA42159915629EF800F82E8E /* FSMutableAttributedArray.m */,
 				DA004482155D94FF0028A012 /* Supporting Files */,
@@ -269,6 +293,8 @@
 				DAA595021561A4B80063A5B4 /* SignatureFormatConstructionTests.m */,
 				DA42159D1562AA8700F82E8E /* AttributedArrayTests.h */,
 				DA42159E1562AA8700F82E8E /* AttributedArrayTests.m */,
+				DA4215B11562DC6800F82E8E /* ArgumentNormalizerTests.h */,
+				DA4215B21562DC6800F82E8E /* ArgumentNormalizerTests.m */,
 				DA004494155D94FF0028A012 /* Supporting Files */,
 			);
 			path = ArgumentParserTests;
@@ -295,6 +321,23 @@
 				DA0044B6155D9B2F0028A012 /* FSValuedArgument.m */,
 			);
 			name = Signatures;
+			sourceTree = "<group>";
+		};
+		DA4215A81562AD3500F82E8E /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				DA4215A01562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.h */,
+				DA4215A11562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.m */,
+				DA4215A41562AD2500F82E8E /* NSArray+FSArgumentParser.h */,
+				DA4215A51562AD2500F82E8E /* NSArray+FSArgumentParser.m */,
+				DA4215AD1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.h */,
+				DA4215AE1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.m */,
+				DA0044C5155DC1160028A012 /* NSString+Indenter.h */,
+				DA0044C6155DC1160028A012 /* NSString+Indenter.m */,
+				DA4215A91562DB0C00F82E8E /* NSDictionary+RubyDescription.h */,
+				DA4215AA1562DB0C00F82E8E /* NSDictionary+RubyDescription.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		DACF2EB914FD3B2F0097C754 = {
@@ -366,6 +409,11 @@
 				DA0044C0155DA7BC0028A012 /* FSArguments_Coalescer_Internal.h in Headers */,
 				DA0044C7155DC1160028A012 /* NSString+Indenter.h in Headers */,
 				DA42159A15629EF800F82E8E /* FSMutableAttributedArray.h in Headers */,
+				DA4215A21562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.h in Headers */,
+				DA4215A61562AD2500F82E8E /* NSArray+FSArgumentParser.h in Headers */,
+				DA4215AB1562DB0C00F82E8E /* NSDictionary+RubyDescription.h in Headers */,
+				DA4215AF1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.h in Headers */,
+				DA4215B61562E09100F82E8E /* FSArgsKonstants.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,6 +601,11 @@
 				DA0044C1155DA7BC0028A012 /* FSArguments_Coalescer_Internal.m in Sources */,
 				DA0044C8155DC1160028A012 /* NSString+Indenter.m in Sources */,
 				DA42159B15629EF800F82E8E /* FSMutableAttributedArray.m in Sources */,
+				DA4215A31562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.m in Sources */,
+				DA4215A71562AD2500F82E8E /* NSArray+FSArgumentParser.m in Sources */,
+				DA4215AC1562DB0C00F82E8E /* NSDictionary+RubyDescription.m in Sources */,
+				DA4215B01562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.m in Sources */,
+				DA4215B71562E09100F82E8E /* FSArgsKonstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,6 +616,7 @@
 				DA0044C4155DAC320028A012 /* SignatureHashTests.m in Sources */,
 				DAA595031561A4B80063A5B4 /* SignatureFormatConstructionTests.m in Sources */,
 				DA42159F1562AA8700F82E8E /* AttributedArrayTests.m in Sources */,
+				DA4215B31562DC6800F82E8E /* ArgumentNormalizerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

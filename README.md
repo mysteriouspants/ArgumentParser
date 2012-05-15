@@ -33,7 +33,7 @@ Supposing you have two or more flags that require values, how does that work? FS
         # the lazy way
     spiffy -io file1 file2
     
-Personally, I prefer the lazy way. The values are assigned respective to the order of the flags in the group.
+Personally, I prefer the lazy way. The values are assigned respective to the order of the flags in the group. Note that equals signs are not really logical in argument groups. If you do something like `-cfg=file.txt`, it will assign `file.txt` to `f` (if that's the first flag that takes a value), but it will not do anything fancy, like force that flag to take only one value if it supports multiple values. For that you need to use a barrier.
 
 ### Many Values per Argument
 

@@ -7,6 +7,7 @@
 //
 
 #import "FSMutableAttributedArray.h"
+#import "NSDictionary+RubyDescription.h"
 
 @interface FSMutableAttributedArray ()
 @property (strong) NSMutableArray * bucket;
@@ -153,10 +154,20 @@
     [_bucket removeLastObject];
 }
 
+#pragma mark NSObject
+
+- (NSString *)description
+{
+    return [_bucket description];
+}
 
 @end
 
 @implementation __FSMutableAttributedArray_Container__
 @synthesize value = _value;
 @synthesize attributes = _attributes;
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%@:%p value:%@ attributes:%@>", NSStringFromClass([self class]), (const void *)self, _value, [_attributes fs_rubyHashDescription]];
+}
 @end

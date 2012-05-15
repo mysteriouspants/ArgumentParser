@@ -12,7 +12,7 @@
 #import "FSArgumentSignature.h"
 #import "FSCountedArgument.h"
 #import "FSValuedArgument.h"
-#import "FSCommandArgument.h"
+#import "NSProcessInfo+FSArgumentParser.h"
 #import "FSArgumentParser.h"
 #import "FSArgumentPackage.h"
 
