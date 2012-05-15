@@ -94,7 +94,9 @@
 - (bool)booleanValueOfAttribute:(id)key forObjectAtIndex:(NSUInteger)index
 {
     __FSMutableAttributedArray_Container__ * c = [_bucket objectAtIndex:index];
-    return (bool)[[c->_attributes objectForKey:key] boolValue];
+    NSNumber * n = [c->_attributes objectForKey:key];
+    if (n) return (bool)[n boolValue];
+    else return false;
 }
 
 #pragma mark Sending Messages to Elements

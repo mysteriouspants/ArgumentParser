@@ -61,7 +61,7 @@
             }
         } else if ([type isEqual:__fsargs_value]) {
             // uncaptured valued
-            if ([_arguments hasAttribute:__fsargs_isValueCaptured forObjectAtIndex:i] && [_arguments booleanValueOfAttribute:__fsargs_isValueCaptured forObjectAtIndex:i]) {
+            if ([_arguments booleanValueOfAttribute:__fsargs_isValueCaptured forObjectAtIndex:i]) {
                 continue; // just skip this one
             } else {
                 // it's an uncaptured value, which is really quite rare. The only way to pre-mark a value to with an equals-sign, which means that an equals sign assignment was used on a signature which doesn't capture values.

@@ -10,6 +10,8 @@
 
 /**
  * A very fancy way of wrapping dictionaries in an array. This is a convenience class to make other code look more clear.
+ *
+ * Methods that have been commented out haven't been implemented.
  */
 @interface FSMutableAttributedArray : NSObject
 
@@ -32,7 +34,7 @@
 - (NSMutableDictionary *)attributesOfObjectAtIndex:(NSUInteger)index;
 - (bool)hasAttribute:(id)key forObjectAtIndex:(NSUInteger)index;
 - (id)valueOfAttribute:(id)key forObjectAtIndex:(NSUInteger)index;
-- (bool)booleanValueOfAttribute:(id)key forObjectAtIndex:(NSUInteger)index;
+- (bool)booleanValueOfAttribute:(id)key forObjectAtIndex:(NSUInteger)index; // note that this returns false if the attribute isn't there
 
 #pragma mark Finding Objects in an Array
 
