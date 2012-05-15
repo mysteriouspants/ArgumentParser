@@ -79,10 +79,22 @@
     return c->_attributes;
 }
 
+- (bool)hasAttribute:(id)key forObjectAtIndex:(NSUInteger)index
+{
+    __FSMutableAttributedArray_Container__ * c = [_bucket objectAtIndex:index];
+    return ![c->_attributes objectForKey:key];
+}
+
 - (id)valueOfAttribute:(id)key forObjectAtIndex:(NSUInteger)index
 {
     __FSMutableAttributedArray_Container__ * c = [_bucket objectAtIndex:index];
     return [c->_attributes objectForKey:key];
+}
+
+- (bool)booleanValueOfAttribute:(id)key forObjectAtIndex:(NSUInteger)index
+{
+    __FSMutableAttributedArray_Container__ * c = [_bucket objectAtIndex:index];
+    return (bool)[[c->_attributes objectForKey:key] boolValue];
 }
 
 #pragma mark Sending Messages to Elements
@@ -140,6 +152,12 @@
 {
     __FSMutableAttributedArray_Container__ * c = [_bucket objectAtIndex:index];
     [c->_attributes setObject:value forKey:key];
+}
+
+- (void)setBooleanValue:(bool)value ofAttribute:(id)key forObjectAtIndex:(NSUInteger)index
+{
+    __FSMutableAttributedArray_Container__ * c = [_bucket objectAtIndex:index];
+    [c->_attributes setObject:[NSNumber numberWithBool:(BOOL)value] forKey:key];
 }
 
 #pragma mark Removing Objects

@@ -7,13 +7,17 @@
 //
 
 #import "NSProcessInfo+FSArgumentParser.h"
-#import "NSArray+FSArgumentParser.h"
+
+#import "FSArgumentParser.h"
 
 @implementation NSProcessInfo (FSArgumentParser)
 
 - (id)fsargs_parseArgumentsWithSignatures:(id)signatures
 {
-    return [[self arguments] fsargs_parseArgumentsWithSignatures:signatures];
+    FSArgumentParser * p = [[FSArgumentParser alloc] initWithArguments:[self arguments] signatures:signatures];
+    id retVal = [p parse];
+    p = nil;
+    return retVal;
 }
 
 @end

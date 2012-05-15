@@ -13,3 +13,4 @@ NSString * __fsargs_switch = @"switch";
 NSString * __fsargs_unknown = @"unknown";
 NSString * __fsargs_barrier = @"barrier";
 NSString * __fsargs_value = @"value";
+NSString * __fsargs_isValueCaptured = @"isValueCaptured?";

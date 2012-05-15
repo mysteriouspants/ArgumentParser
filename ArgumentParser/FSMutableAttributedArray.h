@@ -30,7 +30,9 @@
 // - (NSEnumerator *)objectEnumerator;
 // - (NSEnumerator *)reverseObjectEnumerator;
 - (NSMutableDictionary *)attributesOfObjectAtIndex:(NSUInteger)index;
+- (bool)hasAttribute:(id)key forObjectAtIndex:(NSUInteger)index;
 - (id)valueOfAttribute:(id)key forObjectAtIndex:(NSUInteger)index;
+- (bool)booleanValueOfAttribute:(id)key forObjectAtIndex:(NSUInteger)index;
 
 #pragma mark Finding Objects in an Array
 
@@ -60,6 +62,7 @@
 
 - (void)replaceObjectAtIndex:(NSUInteger)index withObject:(id)object attributes:(NSDictionary *)attributes;
 - (void)setValue:(id)value ofAttribute:(id)key forObjectAtIndex:(NSUInteger)index;
+- (void)setBooleanValue:(bool)value ofAttribute:(id)key forObjectAtIndex:(NSUInteger)index;
 
 #pragma mark Removing Objects
 

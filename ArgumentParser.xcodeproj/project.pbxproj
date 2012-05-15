@@ -30,8 +30,6 @@
 		DA42159F1562AA8700F82E8E /* AttributedArrayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42159E1562AA8700F82E8E /* AttributedArrayTests.m */; };
 		DA4215A21562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA4215A01562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.h */; };
 		DA4215A31562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215A11562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.m */; };
-		DA4215A61562AD2500F82E8E /* NSArray+FSArgumentParser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA4215A41562AD2500F82E8E /* NSArray+FSArgumentParser.h */; };
-		DA4215A71562AD2500F82E8E /* NSArray+FSArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215A51562AD2500F82E8E /* NSArray+FSArgumentParser.m */; };
 		DA4215AB1562DB0C00F82E8E /* NSDictionary+RubyDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = DA4215A91562DB0C00F82E8E /* NSDictionary+RubyDescription.h */; };
 		DA4215AC1562DB0C00F82E8E /* NSDictionary+RubyDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215AA1562DB0C00F82E8E /* NSDictionary+RubyDescription.m */; };
 		DA4215AF1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.h in Headers */ = {isa = PBXBuildFile; fileRef = DA4215AD1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.h */; };
@@ -157,8 +155,6 @@
 		DA42159E1562AA8700F82E8E /* AttributedArrayTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributedArrayTests.m; sourceTree = "<group>"; };
 		DA4215A01562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSProcessInfo+FSArgumentParser.h"; sourceTree = "<group>"; };
 		DA4215A11562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSProcessInfo+FSArgumentParser.m"; sourceTree = "<group>"; };
-		DA4215A41562AD2500F82E8E /* NSArray+FSArgumentParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FSArgumentParser.h"; sourceTree = "<group>"; };
-		DA4215A51562AD2500F82E8E /* NSArray+FSArgumentParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FSArgumentParser.m"; sourceTree = "<group>"; };
 		DA4215A91562DB0C00F82E8E /* NSDictionary+RubyDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+RubyDescription.h"; sourceTree = "<group>"; };
 		DA4215AA1562DB0C00F82E8E /* NSDictionary+RubyDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+RubyDescription.m"; sourceTree = "<group>"; };
 		DA4215AD1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FSArgumentsNormalizer.h"; sourceTree = "<group>"; };
@@ -328,8 +324,6 @@
 			children = (
 				DA4215A01562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.h */,
 				DA4215A11562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.m */,
-				DA4215A41562AD2500F82E8E /* NSArray+FSArgumentParser.h */,
-				DA4215A51562AD2500F82E8E /* NSArray+FSArgumentParser.m */,
 				DA4215AD1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.h */,
 				DA4215AE1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.m */,
 				DA0044C5155DC1160028A012 /* NSString+Indenter.h */,
@@ -410,7 +404,6 @@
 				DA0044C7155DC1160028A012 /* NSString+Indenter.h in Headers */,
 				DA42159A15629EF800F82E8E /* FSMutableAttributedArray.h in Headers */,
 				DA4215A21562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.h in Headers */,
-				DA4215A61562AD2500F82E8E /* NSArray+FSArgumentParser.h in Headers */,
 				DA4215AB1562DB0C00F82E8E /* NSDictionary+RubyDescription.h in Headers */,
 				DA4215AF1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.h in Headers */,
 				DA4215B61562E09100F82E8E /* FSArgsKonstants.h in Headers */,
@@ -602,7 +595,6 @@
 				DA0044C8155DC1160028A012 /* NSString+Indenter.m in Sources */,
 				DA42159B15629EF800F82E8E /* FSMutableAttributedArray.m in Sources */,
 				DA4215A31562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.m in Sources */,
-				DA4215A71562AD2500F82E8E /* NSArray+FSArgumentParser.m in Sources */,
 				DA4215AC1562DB0C00F82E8E /* NSDictionary+RubyDescription.m in Sources */,
 				DA4215B01562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.m in Sources */,
 				DA4215B71562E09100F82E8E /* FSArgsKonstants.m in Sources */,
