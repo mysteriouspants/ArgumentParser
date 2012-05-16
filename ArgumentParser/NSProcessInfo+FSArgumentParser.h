@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class FSArgumentPackage;
+
 @interface NSProcessInfo (FSArgumentParser)
 
-- (id)fsargs_parseArgumentsWithSignatures:(id)signatures;
+- (FSArgumentPackage *)fsargs_parseArgumentsWithSignatures:(id)signatures;
 
 @end

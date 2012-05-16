@@ -12,7 +12,7 @@
 
 @implementation NSProcessInfo (FSArgumentParser)
 
-- (id)fsargs_parseArgumentsWithSignatures:(id)signatures
+- (FSArgumentPackage *)fsargs_parseArgumentsWithSignatures:(id)signatures
 {
     FSArgumentParser * p = [[FSArgumentParser alloc] initWithArguments:[self arguments] signatures:signatures];
     id retVal = [p parse];

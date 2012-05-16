@@ -9,8 +9,18 @@ A short, awesome, and *really useful* tool for rapidly parsing command-line argu
       * inputFile = [FSArgumentSignature argumentSignatureWithFormat:@"[-i --input-file if]={1,}"];
       
     NSArray * signatures = [NSArray arrayWithObjects:force, soft, outputFile, inputFile, nil];
-      
-    // TODO: pending rewrite
+    
+    FSArgumentPackage * package =
+     [[NSProcessInfo currentProcess] fsargs_parseArgumentsWithSignatures:signatures];
+
+    if ([package booleanValueOfSignature:soft]) {
+        // presumably you'd do something
+    }
+
+    if ([package firstObjectForSignature:inputFile]) {
+        printf("dude, you gotta specify a file!\n");
+        return -1;
+    }
 
 ## Features: It Just Works
 
@@ -81,4 +91,25 @@ Wouldn't it be nice to build out a tree of possible arguments, with some argumen
 
 ## Descriptions
 
-TODO: Fixup descriptions
+By default the `-description` method returns a very simple programmer-friendly text. However, you can use the `descriptionHelper` block property on `FSArgumentSignature`. A different description method which you can call for emitting command-line help will use this. For example:
+
+    FSArgumentSignature * verbose = [FSArgumentSignature argumentSignatureWithFormat:@"[-v --verbose]"];
+    FSArgumentSignature * help = [FSArgumentSignature argumentSignatureWithFormat:@"[-h --help]"];
+
+    [verbose setDescriptionHelper:(NSString *)(^)(FSArgumentSignature * currentSignature, NSUInteger indentLevel, NSUInteger terminalWidth) {
+        return [@"-v --verbose  Emit more information." fsargs_mutableStringByIndentingToWidth:indentLevel * 2 lineLength:terminalWidth];
+    }];
+    [help setDescriptionHelper:(NSString *)(^)(FSArgumentSignature * currentSignature, NSUInteger indentLevel, NSUInteger terminalWidth) {
+        return [@"-h --help     Show this message." fsargs_mutableStringByIndentingToWidth:indentLevel * 2 lineLength:terminalWidth];
+    }];
+
+    FSArgumentPackage * package = 
+     [[NSProcessInfo processInfo] fsargs_parseArgumentsWithSignatures:[NSSet setWithObjects:verbose, help, nil]];
+    
+    if ([package booleanValueOfFlag:help]) {
+        printf("My Really Cool CLI Tool v0.1\n\n");
+        printf("%s\n", [[verbose descriptionForHelp:2 width:80] UTF8String]);
+        printf("%s\n", [[help descriptionForHelp:2 width:80] UTF8String]);
+        printf("\n(C) 2012 by Your Face. All your base are belong to us.\n");
+    }
+

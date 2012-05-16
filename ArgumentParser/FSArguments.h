@@ -12,8 +12,10 @@
 #import "FSArgumentSignature.h"
 #import "FSCountedArgument.h"
 #import "FSValuedArgument.h"
-#import "NSProcessInfo+FSArgumentParser.h"
+
 #import "FSArgumentParser.h"
 #import "FSArgumentPackage.h"
+
+#import "NSProcessInfo+FSArgumentParser.h"
 
 #endif
