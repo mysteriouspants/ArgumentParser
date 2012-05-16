@@ -10,6 +10,8 @@
 
 #import "FSArgumentSignature.h"
 #import "FSArgumentParser.h"
+#import "FSArgumentPackage.h"
+#import "FSArgumentPackage_Private.h"
 
 @implementation ParserTests
 
@@ -22,9 +24,9 @@
     [NSSet setWithObjects:[FSArgumentSignature argumentSignatureWithFormat:@"[-c --conflate]"], [FSArgumentSignature argumentSignatureWithFormat:@"[-f --file]="], [FSArgumentSignature argumentSignatureWithFormat:@"[-g --goober]"], [FSArgumentSignature argumentSignatureWithFormat:@"[-v --verbose]"], nil];
     
     FSArgumentParser * parser = [[FSArgumentParser alloc] initWithArguments:t0 signatures:s0];
-    id retVal = [parser parse];
+    FSArgumentPackage * retVal = [parser parse];
     
-    NSLog(@"retVal = %@", retVal);
+    NSLog(@"retVal = %@", [retVal prettyDescription]);
 }
 
 @end

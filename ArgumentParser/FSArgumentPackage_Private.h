@@ -21,5 +21,6 @@
 
 - (void)incrementCountOfSignature:(FSArgumentSignature *)signature;
 - (void)addObject:(id)object toSignature:(FSArgumentSignature *)signature;
+- (NSString *)prettyDescription;
 
 @end

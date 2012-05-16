@@ -171,6 +171,7 @@
         return false;
     }] - retVal.location;
     
+    if (retVal.length == 0) retVal.length ++ ;
     if (retVal.length == NSNotFound) retVal.length = 1;
             
     return retVal;

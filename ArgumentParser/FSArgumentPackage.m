@@ -131,6 +131,7 @@ NSString * __fsargs_expect_countedSig = @"Please don't ask for counts from a val
 - (void)incrementCountOfSignature:(FSArgumentSignature *)signature
 {
     NSAssert([signature isKindOfClass:[FSCountedArgument class]], __fsargs_expect_countedSig);
+    [_allSignatures addObject:signature];
     size_t * value;
     if (CFDictionaryContainsKey(_countedValues, (__bridge const void *)signature)) {
         value = (size_t *)CFDictionaryGetValue(_countedValues, (__bridge const void *)signature);
@@ -145,6 +146,7 @@ NSString * __fsargs_expect_countedSig = @"Please don't ask for counts from a val
 - (void)addObject:(id)object toSignature:(FSArgumentSignature *)signature
 {
     NSAssert([signature isKindOfClass:[FSValuedArgument class]], __fsargs_expect_valuedSig);
+    [_allSignatures addObject:signature];
     NSMutableArray * values = [_valuedValues objectForKey:signature];
     if (values) [values addObject:object];
     else [_valuedValues setObject:[NSMutableArray arrayWithObject:object] forKey:signature];
@@ -173,6 +175,24 @@ NSString * __fsargs_expect_countedSig = @"Please don't ask for counts from a val
     for (FSArgumentSignature * signature in _allSignatures)
         if ([signature respondsToAlias:alias]) return signature;
     return nil;
+}
+
+- (NSString *)prettyDescription
+{
+    NSMutableDictionary * countedDict = [NSMutableDictionary dictionaryWithCapacity:CFDictionaryGetCount(_countedValues)];
+    for (FSArgumentSignature * s in _allSignatures) {
+        if (CFDictionaryContainsKey(_countedValues, (__bridge const void *)s)) {
+            NSUInteger v = [self countOfSignature:s];
+            [countedDict setObject:[NSNumber numberWithUnsignedInteger:v] forKey:s];
+        }
+    }
+    
+    return [[NSDictionary dictionaryWithObjectsAndKeys:
+             countedDict, @"countedValues",
+             _valuedValues, @"valuedValues",
+             _uncapturedValues, @"uncapturedValues",
+             [_allSignatures allObjects], @"allSignatures", // get around stupid Foundation description bs. (only dicts and arrays get pretty print).
+             _unknownSwitches, @"unknownSwitches", nil] description];
 }
 
 #pragma mark NSObject
