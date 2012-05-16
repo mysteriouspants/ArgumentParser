@@ -16,6 +16,7 @@
     NSMutableDictionary * _valuedValues;
     NSMutableArray * _uncapturedValues;
     NSMutableSet * _allSignatures;
+    NSMutableArray * _unknownSwitches;
 }
 
 - (void)incrementCountOfSignature:(FSArgumentSignature *)signature;

@@ -44,7 +44,7 @@
 // - (NSUInteger)indexOfObjectIdenticalTo:(id)object inRange:(NSRange)range;
 // - (NSUInteger)indexOfObjectPassingTest:(bool (^)(id object, NSMutableDictionary * attributes, NSUInteger idx, bool * stop))predicate;
 // - (NSUInteger)indexOfObjectWithOptions:(NSEnumerationOptions)opts passingTest:(bool (^)(id obj, NSMutableDictionary * attributes, NSUInteger idx, bool *stop))predicate;
-// - (NSUInteger)indexOfObjectAtIndexes:(NSIndexSet *)indexSet options:(NSEnumerationOptions)opts passingTest:(bool (^)(id obj, NSMutableDictionary * attributes, NSUInteger idx, bool *stop))predicate;
+- (NSUInteger)indexOfObjectAtIndexes:(NSIndexSet *)indexSet options:(NSEnumerationOptions)opts passingTest:(bool (^)(id obj, NSMutableDictionary * attributes, NSUInteger idx, BOOL *stop))predicate;
 // - (NSIndexSet *)indexesOfObjectsPassingTest:(bool (^)(id obj, NSMutableDictionary * attributes, NSUInteger idx, bool *stop))predicate;
 // - (NSIndexSet *)indexesOfObjectsWithOptions:(NSEnumerationOptions)opts passingTest:(bool (^)(id obj, NSMutableDictionary * attributes, NSUInteger idx, bool *stop))predicate;
 // - (NSIndexSet *)indexesOfObjectsAtIndexes:(NSIndexSet *)indexSet options:(NSEnumerationOptions)opts passingTest:(bool (^)(id obj, NSMutableDictionary * attributes, NSUInteger idx, bool *stop))predicate;

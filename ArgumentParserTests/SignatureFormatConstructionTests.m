@@ -19,7 +19,7 @@
     NSDictionary * d =
     [NSDictionary dictionaryWithObjectsAndKeys:
      [NSNull null], @"",
-     [FSValuedArgument valuedArgumentWithSwitches:[NSSet setWithObjects:@"f", @"file", nil] aliases:@"if" valuesPerInvocation:NSMakeRange(1, 1) shouldGrabBeyondBarrier:false], @"[-f --file if]={1,1:false}",
+     [FSValuedArgument valuedArgumentWithSwitches:[NSSet setWithObjects:@"f", @"file", nil] aliases:@"if" valuesPerInvocation:NSMakeRange(1, 1)], @"[-f --file if]={1,1}",
      [FSCountedArgument countedArgumentWithSwitches:[NSSet setWithObjects:@"v", @"verbose", nil] aliases:nil], @"[-v --verbose]"
      , nil];
     
@@ -35,13 +35,7 @@
     }];
     
     NSArray * s = [NSArray arrayWithObjects:
-                   @"[-f --file if]={1,1:false}",
-                   @"[-f --file if]={1,1:}",
                    @"[-f --file if]={1,1}",
-                   @"[-f --file if]={1,:false}",
-                   @"[-f --file if]={1,:}",
-                   @"[-f --file if]={:false}",
-                   @"[-f --file if]={:}",
                    @"[-f --file if]={}",
                    @"[-f --file if]=",
                    @"[-f --file if]", nil];

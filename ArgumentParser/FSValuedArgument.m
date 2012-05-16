@@ -17,7 +17,6 @@
 @implementation FSValuedArgument
 
 @synthesize valuesPerInvocation = _valuesPerInvocation;
-@synthesize shouldGrabBeyondBarrier = _shouldGrabBeyondBarrier;
 
 + (id)valuedArgumentWithSwitches:(id)switches aliases:(id)aliases
 {
@@ -29,18 +28,17 @@
     return [super initWithSwitches:switches aliases:aliases];
 }
 
-+ (id)valuedArgumentWithSwitches:(id)switches aliases:(id)aliases valuesPerInvocation:(NSRange)valuesPerInvocation shouldGrabBeyondBarrier:(bool)shouldGrabBeyondBarrier
++ (id)valuedArgumentWithSwitches:(id)switches aliases:(id)aliases valuesPerInvocation:(NSRange)valuesPerInvocation
 {
-    return [[self alloc] initWithSwitches:switches aliases:aliases valuesPerInvocation:valuesPerInvocation shouldGrabBeyondBarrier:shouldGrabBeyondBarrier];
+    return [[self alloc] initWithSwitches:switches aliases:aliases valuesPerInvocation:valuesPerInvocation];
 }
 
-- (id)initWithSwitches:(id)switches aliases:(id)aliases valuesPerInvocation:(NSRange)valuesPerInvocation shouldGrabBeyondBarrier:(bool)shouldGrabBeyondBarrier
+- (id)initWithSwitches:(id)switches aliases:(id)aliases valuesPerInvocation:(NSRange)valuesPerInvocation
 {
     self = [super initWithSwitches:switches aliases:aliases];
     
     if (self) {
         _valuesPerInvocation = valuesPerInvocation;
-        _shouldGrabBeyondBarrier = shouldGrabBeyondBarrier;
     }
     
     return self;
@@ -65,7 +63,7 @@
     [invocations addObjectsFromArray:__fsargs_expandAllSwitches(_switches)];
     [invocations addObjectsFromArray:[_aliases allObjects]];
     
-    NSString * unmangled = [NSString stringWithFormat:@"[%@]={%lu,%lu:%@}", [invocations componentsJoinedByString:@" "], _valuesPerInvocation.location, _valuesPerInvocation.length, _shouldGrabBeyondBarrier?@"true":@"false"];
+    NSString * unmangled = [NSString stringWithFormat:@"[%@]={%lu,%lu}", [invocations componentsJoinedByString:@" "], _valuesPerInvocation.location, _valuesPerInvocation.length];
     
     NSMutableString * s = [unmangled fsargs_mutableStringByIndentingToWidth:indent*2 lineLength:width];
     
@@ -84,7 +82,6 @@
     
     if (copy) {
         copy->_valuesPerInvocation = _valuesPerInvocation;
-        copy->_shouldGrabBeyondBarrier = _shouldGrabBeyondBarrier;
     }
     
     return copy;
@@ -98,7 +95,6 @@
     
     if (self) {
         _valuesPerInvocation = NSMakeRange(1, 1);
-        _shouldGrabBeyondBarrier = false;
     }
     
     return self;
@@ -114,7 +110,6 @@
     [super updateHash:&md5];
     
     CC_MD5_Update(&md5, (const void *)&_valuesPerInvocation, sizeof(NSUInteger));
-    CC_MD5_Update(&md5, (const void *)&_shouldGrabBeyondBarrier, sizeof(bool));
     
     unsigned char* md5_final = (unsigned char*)malloc(sizeof(unsigned char)*CC_MD5_DIGEST_LENGTH);
     CC_MD5_Final(md5_final, &md5);
@@ -123,7 +118,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@:%p switches:[%@] aliases:[%@] valuesPerInvocation:%@ shouldGrabBeyondBarrier:%@>", NSStringFromClass([self class]), self, [__fsargs_expandAllSwitches(_switches) componentsJoinedByString:@" "], [[_aliases allObjects] componentsJoinedByString:@" "], NSStringFromRange(_valuesPerInvocation), _shouldGrabBeyondBarrier?@"true":@"false"];
+    return [NSString stringWithFormat:@"<%@:%p switches:[%@] aliases:[%@] valuesPerInvocation:%@>", NSStringFromClass([self class]), self, [__fsargs_expandAllSwitches(_switches) componentsJoinedByString:@" "], [[_aliases allObjects] componentsJoinedByString:@" "], NSStringFromRange(_valuesPerInvocation)];
 }
 
 @end

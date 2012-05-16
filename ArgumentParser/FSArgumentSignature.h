@@ -57,7 +57,6 @@
  *
  * Valued arguments are slightly more complex. They use the same kind of syntax to define their switches and aliases, but also include another set of grammar, some of which is optional. The following are equivalent:
  *
- *     [-f --file]={1,1:false}
  *     [-f --file]={1,1}
  *     [-f --file]=
  *

@@ -99,6 +99,15 @@
     else return false;
 }
 
+#pragma mark Finding Objects in an Array
+
+- (NSUInteger)indexOfObjectAtIndexes:(NSIndexSet *)indexSet options:(NSEnumerationOptions)opts passingTest:(bool (^)(id obj, NSMutableDictionary * attributes, NSUInteger idx, BOOL *stop))predicate
+{
+    return [_bucket indexOfObjectAtIndexes:indexSet options:opts passingTest:^BOOL(__FSMutableAttributedArray_Container__ * obj, NSUInteger idx, BOOL *stop) {
+        return predicate(obj->_value, obj->_attributes, idx, stop);
+    }];
+}
+
 #pragma mark Sending Messages to Elements
 
 - (void)enumerateObjectsUsingBlock:(void (^)(id obj, NSMutableDictionary * attributes, NSUInteger idx, BOOL *stop))block

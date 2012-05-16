@@ -28,6 +28,7 @@
 }
 - (void)injectSignatures:(NSSet *)signatures;
 - (void)performSignature:(FSArgumentSignature *)signature fromIndex:(NSUInteger)index;
+- (NSRange)rangeOfValuesStartingFromIndex:(NSUInteger)index tryFor:(NSRange)wantedArguments;
 @end
 
 @implementation FSArgumentParser
@@ -48,7 +49,7 @@
     return self;
 }
 
-- (id)parse
+- (FSArgumentPackage *)parse
 {
     for (NSUInteger i = 0;
          i < [_arguments count];
@@ -60,40 +61,39 @@
             // switch
             if ((signature = [_switches objectForKey:v]) != nil) {
                 // perform the argument
-                NSLog(@"Found the %@ signature", signature);
                 [self performSignature:signature fromIndex:i];
             } else {
                 // it's an unknown switch, drop it into a bucket of unknown switches or something.
-                
+                [_package->_unknownSwitches addObject:v];
             }
-        } else if ([type isEqual:__fsargs_value]) {
+        } else if ([type isEqual:__fsargs_value] && ![_arguments booleanValueOfAttribute:__fsargs_isValueCaptured forObjectAtIndex:i]) {
             // uncaptured valued
             if ([_arguments booleanValueOfAttribute:__fsargs_isValueCaptured forObjectAtIndex:i]) {
                 continue; // just skip this one
             } else {
                 // it's an uncaptured value, which is really quite rare. The only way to pre-mark a value to with an equals-sign, which means that an equals sign assignment was used on a signature which doesn't capture values.
                 // find a way to associate this with what it wanted to be associated with in a weak way.
-                NSLog(@"Unknown value %@ detected", v);
                 [_package->_uncapturedValues addObject:v];
             }
-        } else if ([type isEqual:__fsargs_unknown]) {
+        } else if ([type isEqual:__fsargs_unknown] && ![_arguments booleanValueOfAttribute:__fsargs_isValueCaptured forObjectAtIndex:i]) {
             // potentially uncaptured value, or else it could be an alias
             if ((signature = [_aliases objectForKey:v]) != nil) {
                 // perform the argument
-                NSLog(@"Found the signature %@ (alias)", signature);
                 [self performSignature:signature fromIndex:i];
             } else {
                 // it's an uncaptured value, not strongly associated with anything else
                 // it could be weakly associated with something, however
-                NSLog(@"Uncaptured value %@", v);
-                
+                [_package->_uncapturedValues addObject:v];
             }
+        } else if ([type isEqualToString:__fsargs_barrier]) {
+            // skip the barrier
         } else {
             // unknown type
             NSLog(@"Unknown type: %@", type);
         }
     }
-    return nil;
+    
+    return _package;
 }
 
 /**
@@ -118,12 +118,62 @@
 {
     // 1. is it valued?
     if ([signature isKindOfClass:[FSValuedArgument class]]) {
+        FSValuedArgument * valuedSignature = (FSValuedArgument *)signature;
+        
         // pop forward to find possible arguments
+        
+        NSRange rangeOfValues = [self rangeOfValuesStartingFromIndex:index+1 tryFor:valuedSignature.valuesPerInvocation];
+        NSLog(@"Range of indexes for %@ is %@", valuedSignature, NSStringFromRange(rangeOfValues));
+        NSIndexSet * indexSetOfValues = [NSIndexSet indexSetWithIndexesInRange:rangeOfValues];
+        [indexSetOfValues enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+            // grab that value
+            NSString * value = [_arguments objectAtIndex:idx];
+            [_arguments setBooleanValue:true ofAttribute:__fsargs_isValueCaptured forObjectAtIndex:idx];
+            [_package addObject:value toSignature:valuedSignature];
+        }];
+        
     } else {
-        // increment this signature count
+        [_package incrementCountOfSignature:signature];
     }
     // 2. inject subsignatures
     [self injectSignatures:signature.injectedSignatures];
+}
+
+- (NSRange)rangeOfValuesStartingFromIndex:(NSUInteger)index tryFor:(NSRange)wantedArguments
+{
+    bool (^isValue)(NSMutableDictionary *) = ^(NSMutableDictionary * attributes) {
+        NSString * vType = [attributes objectForKey:__fsargs_typeKey];
+        return (bool)([vType isEqual:__fsargs_value] || [vType isEqual:__fsargs_unknown]);
+    };
+    bool (^isBarrier)(NSMutableDictionary *)= ^(NSMutableDictionary * attributes) {
+        return (bool)([[attributes objectForKey:__fsargs_typeKey] isEqual:__fsargs_barrier]);
+    };
+    bool (^isCaptured)(NSMutableDictionary *)= ^(NSMutableDictionary * attributes){
+        return (bool)([[attributes objectForKey:__fsargs_isValueCaptured] boolValue] == YES);
+    };
+    
+    NSRange retVal={0,0};
+    retVal.location = [_arguments indexOfObjectAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(index, [_arguments count] - index)] options:0 passingTest:^bool(id obj, NSMutableDictionary *attributes, NSUInteger idx, BOOL *stop) {
+        if (isBarrier(attributes) && !isCaptured(attributes)) {
+            [attributes setObject:[NSNumber numberWithBool:YES] forKey:__fsargs_isValueCaptured]; // capture this barrier
+            *stop = YES;
+            return NO;
+        } else if (isValue(attributes) && !isCaptured(attributes))
+            return YES;
+        
+        return NO;
+    }];
+    
+    if (retVal.location == NSNotFound) return retVal;
+    
+    retVal.length = [_arguments indexOfObjectAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(retVal.location, MIN(wantedArguments.length, [_arguments count] - retVal.location))] options:0 passingTest:^bool(id obj, NSMutableDictionary *attributes, NSUInteger idx, BOOL *stop) {
+        if (isValue(attributes) && !isCaptured(attributes)) return true;
+        return false;
+    }] - retVal.location;
+    
+    if (retVal.length == NSNotFound) retVal.length = 1;
+            
+    return retVal;
 }
 
 @end

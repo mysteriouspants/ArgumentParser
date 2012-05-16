@@ -19,4 +19,7 @@
 - (bool)booleanValueForSignature:(id)signature;
 - (NSUInteger)countOfSignature:(id)signature;
 
+- (NSArray *)unknownSwitches;
+- (NSArray *)uncapturedValues;
+
 @end

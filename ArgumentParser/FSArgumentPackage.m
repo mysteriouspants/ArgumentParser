@@ -118,6 +118,16 @@ NSString * __fsargs_expect_countedSig = @"Please don't ask for counts from a val
     return NSNotFound;
 }
 
+- (NSArray *)unknownSwitches
+{
+    return _unknownSwitches;
+}
+
+- (NSArray *)uncapturedValues
+{
+    return _uncapturedValues;
+}
+
 - (void)incrementCountOfSignature:(FSArgumentSignature *)signature
 {
     NSAssert([signature isKindOfClass:[FSCountedArgument class]], __fsargs_expect_countedSig);
@@ -176,6 +186,7 @@ NSString * __fsargs_expect_countedSig = @"Please don't ask for counts from a val
         _valuedValues = [[NSMutableDictionary alloc] init];
         _uncapturedValues = [[NSMutableArray alloc] init];
         _allSignatures = [[NSMutableSet alloc] init];
+        _unknownSwitches = [[NSMutableArray alloc] init];
     }
     
     return self;

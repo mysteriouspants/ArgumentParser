@@ -83,7 +83,6 @@
     NSMutableSet * invocationSwitches = [NSMutableSet set];
     bool isValued = false;
     NSRange valuesPerInvocation = NSMakeRange(NSNotFound, 0);
-    bool shouldGrabBeyondBarrier = false;
     
     NSError * error;
     NSRegularExpression * generalRegex = __fsargs_generalRegex(&error);
@@ -100,13 +99,12 @@
     
     NSTextCheckingResult * generalResult = [results objectAtIndex:0];
     
-    NSAssert([generalResult numberOfRanges]==6, @"expected 6 capture groups. has the regex changed?");
+    NSAssert([generalResult numberOfRanges]==5, @"expected 6 capture groups. has the regex changed?");
     
     NSRange rAliases = [generalResult rangeAtIndex:1]; NSString * sAliases = rAliases.location==NSNotFound?nil:[input substringWithRange:rAliases]; 
     NSRange rValued = [generalResult rangeAtIndex:2]; NSString * sValued = rValued.location==NSNotFound?nil:[input substringWithRange:rValued];
     NSRange rValuesPerInvocationMinimum = [generalResult rangeAtIndex:3]; NSString * sValuesPerInvocationMinimum = rValuesPerInvocationMinimum.location==NSNotFound?nil:[input substringWithRange:rValuesPerInvocationMinimum];
     NSRange rValuesPerInvocationMaximum = [generalResult rangeAtIndex:4]; NSString * sValuesPerInvocationMaximum = rValuesPerInvocationMaximum.location==NSNotFound?nil:[input substringWithRange:rValuesPerInvocationMaximum];
-    NSRange rShouldGrabBeyondBarrier = [generalResult rangeAtIndex:5]; NSString * sShouldGrabBeyondBarrier = rShouldGrabBeyondBarrier.location==NSNotFound?nil:[input substringWithRange:rShouldGrabBeyondBarrier];
     
     if (!sAliases) return nil;
     
@@ -139,20 +137,17 @@
         else
             valuesPerInvocation.length = 1;
         
-        if (sShouldGrabBeyondBarrier && [sShouldGrabBeyondBarrier isEqualToString:@"true"])
-            shouldGrabBeyondBarrier = true;
-        
     } else {
         // if any other bits are set, then it's a malformed format
         
-        if (sValuesPerInvocationMaximum || sValuesPerInvocationMinimum || sShouldGrabBeyondBarrier)
+        if (sValuesPerInvocationMaximum || sValuesPerInvocationMinimum)
             return nil;
     }
     
     FSArgumentSignature * retVal;
     
     if (isValued) {
-        retVal = [FSValuedArgument valuedArgumentWithSwitches:invocationSwitches aliases:invocationAliases valuesPerInvocation:valuesPerInvocation shouldGrabBeyondBarrier:shouldGrabBeyondBarrier];
+        retVal = [FSValuedArgument valuedArgumentWithSwitches:invocationSwitches aliases:invocationAliases valuesPerInvocation:valuesPerInvocation];
     } else {
         retVal = [FSCountedArgument countedArgumentWithSwitches:invocationSwitches aliases:invocationAliases];
     }
@@ -251,12 +246,10 @@ NSRegularExpression * __fsargs_generalRegex(NSError ** error)
     static NSRegularExpression * r;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        r = [NSRegularExpression regularExpressionWithPattern:@"\\A\\[([^\\]]*)\\](=)?\\{?(\\d)?,?(\\d)?\\:?(true|false|YES|NO)?\\}?\\z" options:0 error:error];
-        // \A\[([^\]]*)\](=)?\{?(\d)?,?(\d)?\:?(true|false|YES|NO)?\}?\z
-        // "[-f --file if]={1,1:false}" => "-f --file if", "=", "1", "1", "false"
+        r = [NSRegularExpression regularExpressionWithPattern:@"\\A\\[([^\\]]*)\\](=)?\\{?(\\d)?,?(\\d)?\\}?\\z" options:0 error:error];
+        // \A\[([^\]]*)\](=)?\{?(\d)?,?(\d)?\}?\z
         // "[-f --file if]={1,1}"       => "-f --file if", "=", "1", "1", nil
         // "[-f --file if]={1,}"        => "-f --file if", "=", "1", nil, nil
-        // "[-f --file if]={1,:false}"  => "-f --file if", "=", "1", nil, "false"
         // "[-f --file if]="            => "-f --file if", "=", nil, nil, nil
     });
     return r;

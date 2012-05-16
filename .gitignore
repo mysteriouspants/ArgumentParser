@@ -2,3 +2,4 @@
 .rbx
 *.o
 bin
+*.swp

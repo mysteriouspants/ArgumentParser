@@ -18,10 +18,11 @@
     [NSArray arrayWithObjects:
      [NSArray arrayWithObjects:@"-cfg", @"--file", @"foo", @"--", @"--asplode", nil],
      [NSArray arrayWithObjects:@"-cfg", @"--file=foo", @"--", @"--asplode", nil], nil];
-    
-    NSArray * expectedOutputs =
-    [NSArray arrayWithObjects:
-     [NSNull null], nil];
+
+    // TODO: Test against prefilled data
+//    NSArray * expectedOutputs =
+//    [NSArray arrayWithObjects:
+//     [NSNull null], nil];
     
     [inputs enumerateObjectsUsingBlock:^(NSArray * input, NSUInteger idx, BOOL *stop) {
         FSMutableAttributedArray * actualResult = [input fsargs_normalize];
