@@ -54,7 +54,7 @@
             // switch
             if ((signature = [_switches objectForKey:v]) != nil) {
                 // perform the argument
-                
+                NSLog(@"Found the %@ signature", signature);
             } else {
                 // it's an unknown switch
                 
@@ -66,16 +66,18 @@
             } else {
                 // it's an uncaptured value, which is really quite rare. The only way to pre-mark a value to with an equals-sign, which means that an equals sign assignment was used on a signature which doesn't capture values.
                 // find a way to associate this with what it wanted to be associated with in a weak way.
-                
+                NSLog(@"Unknown value %@ detected", v);
             }
         } else if ([type isEqual:__fsargs_unknown]) {
             // potentially uncaptured value, or else it could be an alias
             if ((signature = [_aliases objectForKey:v]) != nil) {
                 // perform the argument
+                NSLog(@"Found the signature %@ (alias)", signature);
                 
             } else {
                 // it's an uncaptured value, not strongly associated with anything else
                 // it could be weakly associated with something, however
+                NSLog(@"Uncaptured value %@", v);
                 
             }
         } else {

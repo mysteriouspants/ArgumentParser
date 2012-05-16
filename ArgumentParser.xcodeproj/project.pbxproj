@@ -25,6 +25,7 @@
 		DA0044C4155DAC320028A012 /* SignatureHashTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044C3155DAC320028A012 /* SignatureHashTests.m */; };
 		DA0044C7155DC1160028A012 /* NSString+Indenter.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0044C5155DC1160028A012 /* NSString+Indenter.h */; };
 		DA0044C8155DC1160028A012 /* NSString+Indenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044C6155DC1160028A012 /* NSString+Indenter.m */; };
+		DA119F2E1563FF8300BDFBAB /* ParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA119F2D1563FF8300BDFBAB /* ParserTests.m */; };
 		DA42159A15629EF800F82E8E /* FSMutableAttributedArray.h in Headers */ = {isa = PBXBuildFile; fileRef = DA42159815629EF800F82E8E /* FSMutableAttributedArray.h */; };
 		DA42159B15629EF800F82E8E /* FSMutableAttributedArray.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42159915629EF800F82E8E /* FSMutableAttributedArray.m */; };
 		DA42159F1562AA8700F82E8E /* AttributedArrayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42159E1562AA8700F82E8E /* AttributedArrayTests.m */; };
@@ -149,6 +150,8 @@
 		DA0044C3155DAC320028A012 /* SignatureHashTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureHashTests.m; sourceTree = "<group>"; };
 		DA0044C5155DC1160028A012 /* NSString+Indenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Indenter.h"; sourceTree = "<group>"; };
 		DA0044C6155DC1160028A012 /* NSString+Indenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Indenter.m"; sourceTree = "<group>"; };
+		DA119F2C1563FF8300BDFBAB /* ParserTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserTests.h; sourceTree = "<group>"; };
+		DA119F2D1563FF8300BDFBAB /* ParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserTests.m; sourceTree = "<group>"; };
 		DA42159815629EF800F82E8E /* FSMutableAttributedArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMutableAttributedArray.h; sourceTree = "<group>"; };
 		DA42159915629EF800F82E8E /* FSMutableAttributedArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSMutableAttributedArray.m; sourceTree = "<group>"; };
 		DA42159D1562AA8700F82E8E /* AttributedArrayTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedArrayTests.h; sourceTree = "<group>"; };
@@ -291,6 +294,8 @@
 				DA42159E1562AA8700F82E8E /* AttributedArrayTests.m */,
 				DA4215B11562DC6800F82E8E /* ArgumentNormalizerTests.h */,
 				DA4215B21562DC6800F82E8E /* ArgumentNormalizerTests.m */,
+				DA119F2C1563FF8300BDFBAB /* ParserTests.h */,
+				DA119F2D1563FF8300BDFBAB /* ParserTests.m */,
 				DA004494155D94FF0028A012 /* Supporting Files */,
 			);
 			path = ArgumentParserTests;
@@ -609,6 +614,7 @@
 				DAA595031561A4B80063A5B4 /* SignatureFormatConstructionTests.m in Sources */,
 				DA42159F1562AA8700F82E8E /* AttributedArrayTests.m in Sources */,
 				DA4215B31562DC6800F82E8E /* ArgumentNormalizerTests.m in Sources */,
+				DA119F2E1563FF8300BDFBAB /* ParserTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
