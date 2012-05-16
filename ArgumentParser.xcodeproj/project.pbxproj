@@ -26,6 +26,7 @@
 		DA0044C7155DC1160028A012 /* NSString+Indenter.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0044C5155DC1160028A012 /* NSString+Indenter.h */; };
 		DA0044C8155DC1160028A012 /* NSString+Indenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044C6155DC1160028A012 /* NSString+Indenter.m */; };
 		DA119F2E1563FF8300BDFBAB /* ParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA119F2D1563FF8300BDFBAB /* ParserTests.m */; };
+		DA119F3315640F7200BDFBAB /* PackageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA119F3215640F7200BDFBAB /* PackageTests.m */; };
 		DA42159A15629EF800F82E8E /* FSMutableAttributedArray.h in Headers */ = {isa = PBXBuildFile; fileRef = DA42159815629EF800F82E8E /* FSMutableAttributedArray.h */; };
 		DA42159B15629EF800F82E8E /* FSMutableAttributedArray.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42159915629EF800F82E8E /* FSMutableAttributedArray.m */; };
 		DA42159F1562AA8700F82E8E /* AttributedArrayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42159E1562AA8700F82E8E /* AttributedArrayTests.m */; };
@@ -152,6 +153,9 @@
 		DA0044C6155DC1160028A012 /* NSString+Indenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Indenter.m"; sourceTree = "<group>"; };
 		DA119F2C1563FF8300BDFBAB /* ParserTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParserTests.h; sourceTree = "<group>"; };
 		DA119F2D1563FF8300BDFBAB /* ParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParserTests.m; sourceTree = "<group>"; };
+		DA119F30156405FA00BDFBAB /* FSArgumentPackage_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSArgumentPackage_Private.h; sourceTree = "<group>"; };
+		DA119F3115640F7200BDFBAB /* PackageTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageTests.h; sourceTree = "<group>"; };
+		DA119F3215640F7200BDFBAB /* PackageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageTests.m; sourceTree = "<group>"; };
 		DA42159815629EF800F82E8E /* FSMutableAttributedArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMutableAttributedArray.h; sourceTree = "<group>"; };
 		DA42159915629EF800F82E8E /* FSMutableAttributedArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSMutableAttributedArray.m; sourceTree = "<group>"; };
 		DA42159D1562AA8700F82E8E /* AttributedArrayTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedArrayTests.h; sourceTree = "<group>"; };
@@ -260,6 +264,7 @@
 				DA0044B3155D9A050028A012 /* Signatures */,
 				DA4215A81562AD3500F82E8E /* Categories */,
 				DACF2F0114FD3BED0097C754 /* FSArgumentPackage.h */,
+				DA119F30156405FA00BDFBAB /* FSArgumentPackage_Private.h */,
 				DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */,
 				DACF2F0314FD3BED0097C754 /* FSArgumentParser.h */,
 				DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */,
@@ -294,6 +299,8 @@
 				DA42159E1562AA8700F82E8E /* AttributedArrayTests.m */,
 				DA4215B11562DC6800F82E8E /* ArgumentNormalizerTests.h */,
 				DA4215B21562DC6800F82E8E /* ArgumentNormalizerTests.m */,
+				DA119F3115640F7200BDFBAB /* PackageTests.h */,
+				DA119F3215640F7200BDFBAB /* PackageTests.m */,
 				DA119F2C1563FF8300BDFBAB /* ParserTests.h */,
 				DA119F2D1563FF8300BDFBAB /* ParserTests.m */,
 				DA004494155D94FF0028A012 /* Supporting Files */,
@@ -615,6 +622,7 @@
 				DA42159F1562AA8700F82E8E /* AttributedArrayTests.m in Sources */,
 				DA4215B31562DC6800F82E8E /* ArgumentNormalizerTests.m in Sources */,
 				DA119F2E1563FF8300BDFBAB /* ParserTests.m in Sources */,
+				DA119F3315640F7200BDFBAB /* PackageTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

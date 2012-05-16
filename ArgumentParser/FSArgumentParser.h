@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class FSArgumentPackage;
+
 @interface FSArgumentParser : NSObject
 
 - (id)initWithArguments:(NSArray *)arguments signatures:(id)signatures;
-- (id)parse;
+- (FSArgumentPackage *)parse;
 
 @end

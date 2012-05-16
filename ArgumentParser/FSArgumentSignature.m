@@ -181,6 +181,19 @@
     }
 }
 
+- (bool)respondsToSwitch:(NSString *)s
+{
+    if ([s hasPrefix:@"--"]) s = [s substringFromIndex:2];
+    else if ([s hasPrefix:@"-"]) s = [s substringFromIndex:1];
+    
+    return (bool)[_switches containsObject:s];
+}
+
+- (bool)respondsToAlias:(NSString *)alias
+{
+    return (bool)[_aliases containsObject:alias];
+}
+
 #pragma mark NSCopying
 
 - (id)copy

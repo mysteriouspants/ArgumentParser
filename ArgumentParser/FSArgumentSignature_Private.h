@@ -25,4 +25,7 @@ NSRegularExpression * __fsargs_generalRegex(NSError **);
 
 - (void)updateHash:(CC_MD5_CTX *)md5; // update the hash value with shared bits
 
+- (bool)respondsToSwitch:(NSString *)s;
+- (bool)respondsToAlias:(NSString *)alias;
+
 @end
