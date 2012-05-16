@@ -109,7 +109,7 @@ NSString * __fsargs_expect_countedSig = @"Please don't ask for counts from a val
         } else if ([signature isKindOfClass:[FSValuedArgument class]]) {
             NSMutableArray * values = [_valuedValues objectForKey:signature];
             if (values) return [values count];
-            else return NSNotFound;
+            else return 0;
         } else {
             NSAssert(true==false, @"Dude, third eye?");
         }
