@@ -8,6 +8,8 @@
 
 #import "FSArgumentSignature.h"
 
+#import "CoreParse.h"
+
 // used in computing the hash value
 #import <CommonCrypto/CommonDigest.h>
 
@@ -27,5 +29,9 @@ NSRegularExpression * __fsargs_generalRegex(NSError **);
 
 - (bool)respondsToSwitch:(NSString *)s;
 - (bool)respondsToAlias:(NSString *)alias;
+
++ (CPTokeniser *)formatTokens;
++ (CPGrammar *)formatGrammar;
++ (CPParser *)formatParser;
 
 @end

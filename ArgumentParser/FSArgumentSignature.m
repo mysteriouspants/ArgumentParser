@@ -13,6 +13,12 @@
 #import "FSCountedArgument.h"
 #import "FSValuedArgument.h"
 
+// more robust format ctors
+#import "CoreParse.h"
+
+#import "FSSwitchRecognizer.h"
+#import "FSAliasRecognizer.h"
+
 // used in computing the hash value
 #import <CommonCrypto/CommonDigest.h>
 
@@ -187,6 +193,43 @@
 - (bool)respondsToAlias:(NSString *)alias
 {
     return (bool)[_aliases containsObject:alias];
+}
+
++ (CPTokeniser *)formatTokens
+{
+    static CPTokeniser * expressionTokens;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        expressionTokens = [[CPTokeniser alloc] init];
+        [expressionTokens addTokenRecogniser:[CPNumberRecogniser numberRecogniser]];
+        [expressionTokens addTokenRecogniser:[CPWhiteSpaceRecogniser whiteSpaceRecogniser]];
+        [expressionTokens addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"["]];
+        [expressionTokens addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"]"]];
+        [expressionTokens addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"{"]];
+        [expressionTokens addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"}"]];
+        [expressionTokens addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@","]];
+        [expressionTokens addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"="]];
+        [expressionTokens addTokenRecogniser:[FSSwitchRecognizer switchRecognizer]];
+        [expressionTokens addTokenRecogniser:[FSAliasRecognizer aliasRecognizer]];
+    });
+    return expressionTokens;
+}
+
++ (CPGrammar *)formatGrammar
+{
+    static CPGrammar * expressionGrammer;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSString * bnfFormat =
+        @"FormatSequence ::= (<FormatInvocation> \" \")+"
+        @"";
+    });
+    return expressionGrammer;
+}
+
++ (CPParser *)formatParser
+{
+    return nil;
 }
 
 #pragma mark NSCopying
