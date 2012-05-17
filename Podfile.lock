@@ -1,0 +1,5 @@
+PODS:
+  - CoreParse (1.0.0)
+
+DEPENDENCIES:
+  - CoreParse (~> 1.0.0)

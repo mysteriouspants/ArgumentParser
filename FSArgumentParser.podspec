@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'FSArgumentParser'
-  s.version  = '0.3.0-dev'
+  s.version  = '0.3.0dev'
   s.license  = 'FDOSL'
   s.summary  = 'Totally awesome tool for parsing command line arguments in a declarative way.'
   s.homepage = 'https://github.com/NSError/ArgumentParser'
@@ -10,5 +10,6 @@ Pod::Spec.new do |s|
   s.source_files = 'ArgumentParser/*.{h,m}'
   s.clean_paths = %w{ bin/ example ArgumentParser.xcodeproj ArgumentParserTests }
   s.framework = 'Foundation'
+  s.dependency 'CoreParse', '~> 1.0.0'
   s.requires_arc = true
 end
