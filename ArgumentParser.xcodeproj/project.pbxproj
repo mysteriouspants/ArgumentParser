@@ -44,6 +44,8 @@
 		DA17B9201565961C00BDDA7E /* NSScanner+EscapedScanning.m in Sources */ = {isa = PBXBuildFile; fileRef = DA17B91E1565961C00BDDA7E /* NSScanner+EscapedScanning.m */; };
 		DA2B1DFC1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = DA2B1DFA1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.h */; };
 		DA2B1DFD1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2B1DFB1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.m */; };
+		DA2B1E001566DC37002FDBD7 /* FSFormatCtorParserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = DA2B1DFE1566DC37002FDBD7 /* FSFormatCtorParserDelegate.h */; };
+		DA2B1E011566DC37002FDBD7 /* FSFormatCtorParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2B1DFF1566DC37002FDBD7 /* FSFormatCtorParserDelegate.m */; };
 		DA42159A15629EF800F82E8E /* FSMutableAttributedArray.h in Headers */ = {isa = PBXBuildFile; fileRef = DA42159815629EF800F82E8E /* FSMutableAttributedArray.h */; };
 		DA42159B15629EF800F82E8E /* FSMutableAttributedArray.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42159915629EF800F82E8E /* FSMutableAttributedArray.m */; };
 		DA42159F1562AA8700F82E8E /* AttributedArrayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42159E1562AA8700F82E8E /* AttributedArrayTests.m */; };
@@ -187,6 +189,8 @@
 		DA17B91E1565961C00BDDA7E /* NSScanner+EscapedScanning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScanner+EscapedScanning.m"; sourceTree = "<group>"; };
 		DA2B1DFA1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSFormatCtorTokeniserDelegate.h; sourceTree = "<group>"; };
 		DA2B1DFB1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSFormatCtorTokeniserDelegate.m; sourceTree = "<group>"; };
+		DA2B1DFE1566DC37002FDBD7 /* FSFormatCtorParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSFormatCtorParserDelegate.h; sourceTree = "<group>"; };
+		DA2B1DFF1566DC37002FDBD7 /* FSFormatCtorParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSFormatCtorParserDelegate.m; sourceTree = "<group>"; };
 		DA42159815629EF800F82E8E /* FSMutableAttributedArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMutableAttributedArray.h; sourceTree = "<group>"; };
 		DA42159915629EF800F82E8E /* FSMutableAttributedArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSMutableAttributedArray.m; sourceTree = "<group>"; };
 		DA42159D1562AA8700F82E8E /* AttributedArrayTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedArrayTests.h; sourceTree = "<group>"; };
@@ -373,6 +377,8 @@
 				DA17B9161565890500BDDA7E /* FSAliasToken.m */,
 				DA2B1DFA1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.h */,
 				DA2B1DFB1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.m */,
+				DA2B1DFE1566DC37002FDBD7 /* FSFormatCtorParserDelegate.h */,
+				DA2B1DFF1566DC37002FDBD7 /* FSFormatCtorParserDelegate.m */,
 			);
 			name = Signatures;
 			sourceTree = "<group>";
@@ -475,6 +481,7 @@
 				DA17B91B1565891600BDDA7E /* FSAliasRecognizer.h in Headers */,
 				DA17B91F1565961C00BDDA7E /* NSScanner+EscapedScanning.h in Headers */,
 				DA2B1DFC1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.h in Headers */,
+				DA2B1E001566DC37002FDBD7 /* FSFormatCtorParserDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,6 +699,7 @@
 				DA17B91C1565891600BDDA7E /* FSAliasRecognizer.m in Sources */,
 				DA17B9201565961C00BDDA7E /* NSScanner+EscapedScanning.m in Sources */,
 				DA2B1DFD1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.m in Sources */,
+				DA2B1E011566DC37002FDBD7 /* FSFormatCtorParserDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

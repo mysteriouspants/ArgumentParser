@@ -19,6 +19,7 @@
 #import "FSSwitchRecognizer.h"
 #import "FSAliasRecognizer.h"
 #import "FSFormatCtorTokeniserDelegate.h"
+#import "FSFormatCtorParserDelegate.h"
 
 // used in computing the hash value
 #import <CommonCrypto/CommonDigest.h>
@@ -238,9 +239,12 @@
 + (CPParser *)formatParser
 {
     static CPParser * expressionParser;
+    static FSFormatCtorParserDelegate * delegate;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         expressionParser = [CPSLRParser parserWithGrammar:[self formatGrammar]];
+        delegate = [[FSFormatCtorParserDelegate alloc] init];
+        [expressionParser setDelegate:delegate];
     });
     return expressionParser;
 }

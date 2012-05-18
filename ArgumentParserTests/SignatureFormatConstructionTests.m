@@ -155,11 +155,15 @@
     STAssertNotNil(parser, @"Parser was nil!");
     
     CPTokeniser * tk = [FSArgumentSignature formatTokens];
-    CPTokenStream * ts = [tk tokenise:@"[-f --file]="];
     
-    id retVal = [parser parse:ts];
+    id retVal = [parser parse:[tk tokenise:@"[-f --file if]="]];
+    NSLog(@"[-f --file]=: %@", retVal);
     
-    NSLog(@"retVal: %@", retVal);
+    retVal = [parser parse:[tk tokenise:@"[-f --file if]={1,}"]];
+    NSLog(@"[-f --file]={1,}: %@", retVal);
+    
+    retVal = [parser parse:[tk tokenise:@"[-f --file if]={1,5}"]];
+    NSLog(@"[-f --file if]={1,5}: %@", retVal);
 }
 
 @end
