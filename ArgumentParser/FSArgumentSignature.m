@@ -17,7 +17,9 @@
 #import "CoreParse.h"
 
 #import "FSSwitchRecognizer.h"
+#import "FSSwitchToken.h"
 #import "FSAliasRecognizer.h"
+#import "FSAliasToken.h"
 #import "FSFormatCtorTokeniserDelegate.h"
 #import "FSFormatCtorParserDelegate.h"
 
@@ -87,80 +89,67 @@
 {
     NSString * input = [[NSString alloc] initWithFormat:format arguments:args];
     
-    NSMutableSet * invocationAliases = [NSMutableSet set];
-    NSMutableSet * invocationSwitches = [NSMutableSet set];
-    bool isValued = false;
-    NSRange valuesPerInvocation = NSMakeRange(NSNotFound, 0);
+    CPTokeniser * tokeniser = [[self class] formatTokens];
+    CPParser * parser = [[self class] formatParser];
     
-    NSError * error;
-    NSRegularExpression * generalRegex = __fsargs_generalRegex(&error);
-    if (error) {
-        [NSException raise:@"net.fsdev.ArgumentParser.RegexConstructionError" format:@"there's been a problem constructing the general regex. error is %@", error];
+    CPSyntaxTree * tree = [parser parse:[tokeniser tokenise:input]];
+    
+    if (tree) {
+        // grab some data from the tree
+        bool valued = false;
+        NSRange valueRange = NSMakeRange(1, 1);
+        NSArray * aliasesAndSwitches = [[tree children] objectAtIndex:1];
+        NSArray * values = [[tree children] objectAtIndex:3];
+        if ([values count] > 0) {
+            values = [values objectAtIndex:0]; // some random inner array for no good reason
+            valued = true;
+            if ([values count] >= 5) {
+                // it has value. 0:= 1:{ 2:number 3:, 4:(number or }) 5:}?
+                NSAssert([[values objectAtIndex:0] isKindOfClass:[CPKeywordToken class]], @"expecting keyword token");
+                NSAssert([[values objectAtIndex:1] isKindOfClass:[CPKeywordToken class]], @"expecting keyword token");
+                NSAssert([[values objectAtIndex:3] isKindOfClass:[CPKeywordToken class]], @"expecting keyword token");
+                NSNumber * location = [[values objectAtIndex:2] number];
+                valueRange.location = [location integerValue];
+                valueRange.length = [location integerValue];
+                NSNumber * length;
+                if ([[values objectAtIndex:4] isKindOfClass:[CPNumberToken class]]) {
+                    length = [[values objectAtIndex:4] number];
+                    valueRange.length = MAX(valueRange.location, [length integerValue]);
+                } else {
+                    valueRange.length = NSNotFound; // infinite
+                }
+            }
+        }
+        
+        NSMutableSet * aliases = [NSMutableSet set];
+        NSMutableSet * switches = [NSMutableSet set];
+        for (CPToken * t in aliasesAndSwitches) {
+            if ([t isKindOfClass:[FSSwitchToken class]]) {
+                NSString * sw = [((FSSwitchToken *)t) identifier];
+                if ([sw hasPrefix:@"--"])
+                    [switches addObject:[sw substringFromIndex:2]];
+                else if ([sw hasPrefix:@"-"])
+                    [switches addObject:[sw substringFromIndex:1]];
+                else
+                    NSAssert(YES==NO, @"Dude, seriously?");
+            } else if ([t isKindOfClass:[FSAliasToken class]]) {
+                [aliases addObject:[((FSAliasToken *)t) identifier]];
+            } else {
+                NSAssert(YES==NO, @"dude, seriously?");
+            }
+        }        
+        
+        // init a subclass based on what that says
+        if (valued)
+            self = [FSValuedArgument valuedArgumentWithSwitches:[switches copy] aliases:[aliases copy] valuesPerInvocation:valueRange];
+        else
+            self = [FSCountedArgument countedArgumentWithSwitches:[switches copy] aliases:[aliases copy]];
+        
+    } else {
         return nil;
     }
     
-    NSArray * results =
-    [generalRegex matchesInString:input options:0 range:NSMakeRange(0, [input length])];
-    
-    if ([results count]==0)
-        return nil; // no match
-    
-    NSTextCheckingResult * generalResult = [results objectAtIndex:0];
-    
-    NSAssert([generalResult numberOfRanges]==5, @"expected 6 capture groups. has the regex changed?");
-    
-    NSRange rAliases = [generalResult rangeAtIndex:1]; NSString * sAliases = rAliases.location==NSNotFound?nil:[input substringWithRange:rAliases]; 
-    NSRange rValued = [generalResult rangeAtIndex:2]; NSString * sValued = rValued.location==NSNotFound?nil:[input substringWithRange:rValued];
-    NSRange rValuesPerInvocationMinimum = [generalResult rangeAtIndex:3]; NSString * sValuesPerInvocationMinimum = rValuesPerInvocationMinimum.location==NSNotFound?nil:[input substringWithRange:rValuesPerInvocationMinimum];
-    NSRange rValuesPerInvocationMaximum = [generalResult rangeAtIndex:4]; NSString * sValuesPerInvocationMaximum = rValuesPerInvocationMaximum.location==NSNotFound?nil:[input substringWithRange:rValuesPerInvocationMaximum];
-    
-    if (!sAliases) return nil;
-    
-    // run some stuff on the aliases
-    NSScanner * aliasScanner = [NSScanner scannerWithString:sAliases];
-    NSCharacterSet * wspace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-    while (![aliasScanner isAtEnd]) {
-        NSString * s;
-        if ([aliasScanner scanUpToCharactersFromSet:wspace intoString:&s]) {
-            if ([s hasPrefix:@"--"])
-                [invocationSwitches addObject:[s substringFromIndex:2]];
-            else if ([s hasPrefix:@"-"])
-                [invocationSwitches addObject:[s substringFromIndex:1]];
-            else
-                [invocationAliases addObject:s];
-        }
-    }
-    
-    if (sValued && [sValued isEqualToString:@"="]) isValued = true;
-    
-    if (isValued) {
-        
-        if (sValuesPerInvocationMinimum)
-            valuesPerInvocation.location = [sValuesPerInvocationMinimum integerValue];
-        else
-            valuesPerInvocation.location = 1;
-        
-        if (sValuesPerInvocationMinimum)
-            valuesPerInvocation.length = [sValuesPerInvocationMaximum integerValue];
-        else
-            valuesPerInvocation.length = 1;
-        
-    } else {
-        // if any other bits are set, then it's a malformed format
-        
-        if (sValuesPerInvocationMaximum || sValuesPerInvocationMinimum)
-            return nil;
-    }
-    
-    FSArgumentSignature * retVal;
-    
-    if (isValued) {
-        retVal = [FSValuedArgument valuedArgumentWithSwitches:invocationSwitches aliases:invocationAliases valuesPerInvocation:valuesPerInvocation];
-    } else {
-        retVal = [FSCountedArgument countedArgumentWithSwitches:invocationSwitches aliases:invocationAliases];
-    }
-    
-    return retVal;
+    return self;
 }
 
 #pragma mark Private Implementation

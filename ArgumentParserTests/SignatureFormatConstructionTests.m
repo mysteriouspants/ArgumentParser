@@ -17,7 +17,6 @@
 
 #import "FSSwitchToken.h"
 #import "FSAliasToken.h"
-#import "FSFormatCtorTokeniserDelegate.h"
 
 #define FSTAssertKindOfClass(obj, cls) \
     do { \
@@ -151,19 +150,25 @@
 
 - (void)testParser
 {
-    CPParser * parser = [FSArgumentSignature formatParser];
-    STAssertNotNil(parser, @"Parser was nil!");
+    FSArgumentSignature * format;
+    FSArgumentSignature * expected;
     
-    CPTokeniser * tk = [FSArgumentSignature formatTokens];
+    format = [FSArgumentSignature argumentSignatureWithFormat:@"[-f --file if]={1,5}"];
+    expected = [FSValuedArgument valuedArgumentWithSwitches:[NSSet setWithObjects:@"f", @"file", nil] aliases:[NSSet setWithObject:@"if"] valuesPerInvocation:NSMakeRange(1, 5)];
+    STAssertEqualObjects(format, expected, @"Format constructor failure.");
     
-    id retVal = [parser parse:[tk tokenise:@"[-f --file if]="]];
-    NSLog(@"[-f --file]=: %@", retVal);
+    format = [FSArgumentSignature argumentSignatureWithFormat:@"[-f --file if]={1,}"];
+    expected = [FSValuedArgument valuedArgumentWithSwitches:[NSSet setWithObjects:@"f", @"file", nil] aliases:[NSSet setWithObject:@"if"] valuesPerInvocation:NSMakeRange(1, NSNotFound)];
+    STAssertEqualObjects(format, expected, @"Format constructor failure.");
     
-    retVal = [parser parse:[tk tokenise:@"[-f --file if]={1,}"]];
-    NSLog(@"[-f --file]={1,}: %@", retVal);
+    format = [FSArgumentSignature argumentSignatureWithFormat:@"[-f --file if]="];
+    expected = [FSValuedArgument valuedArgumentWithSwitches:[NSSet setWithObjects:@"f", @"file", nil] aliases:[NSSet setWithObject:@"if"] valuesPerInvocation:NSMakeRange(1, 1)];
+    STAssertEqualObjects(format, expected, @"Format constructor failure.");
+
+    format = [FSArgumentSignature argumentSignatureWithFormat:@"[-f --file if]"];
+    expected = [FSCountedArgument countedArgumentWithSwitches:[NSSet setWithObjects:@"f", @"file", nil] aliases:[NSSet setWithObject:@"if"]];
     
-    retVal = [parser parse:[tk tokenise:@"[-f --file if]={1,5}"]];
-    NSLog(@"[-f --file if]={1,5}: %@", retVal);
+    STAssertEqualObjects(format, expected, @"Format constructor failure.");
 }
 
 @end
