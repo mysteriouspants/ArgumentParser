@@ -19,7 +19,7 @@
         if (s)
             [retVal appendString:s];
         
-        if ([escapedBy characterIsMember:[[self string] characterAtIndex:[self scanLocation]]]) {
+        if ([escapedBy characterIsMember:[[self string] characterAtIndex:[self scanLocation]-1]]) {
             // pop the last character from retVal
             [retVal deleteCharactersInRange:NSMakeRange([retVal length]-1, 1)];
             // add the next character

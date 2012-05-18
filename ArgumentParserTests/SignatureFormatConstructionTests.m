@@ -96,70 +96,93 @@
     
     /* 2012-05-17 14:40:03.348 otest[5274:403] ts for "[-f --file if]={1,1}": <Keyword: [> <Switch: -f> <Whitespace> <Switch: --file> <Whitespace> <Alias: if> <Keyword: ]> <Keyword: => <Keyword: {> <Number: 1> <Keyword: ,> <Number: 1> <Keyword: }> <EOF> */
     ts = [t tokenise:@"[-f --file if]={1,1}"];
-    FSTAssertKeywordEquals([ts popToken], @"["); // <Keyword: [>
-    FSTAssertSwitchEquals([ts popToken], @"-f"); // <Switch: -f>
-    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken); // <Whitespace>
-    FSTAssertSwitchEquals([ts popToken], @"--file"); // <Switch: --file>
-    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken); // <Whitespace>
-    FSTAssertAliasEquals([ts popToken], @"if"); // <Alias: if>
-    FSTAssertKeywordEquals([ts popToken], @"]"); // <Keyword: ]>
-    FSTAssertKeywordEquals([ts popToken], @"="); // <Keyword: =>
-    FSTAssertKeywordEquals([ts popToken], @"{"); // <Keyword: {>
-    FSTAssertIntegerNumberEquals([ts popToken], 1); // <Number: 1>
-    FSTAssertKeywordEquals([ts popToken], @","); // <Keyword: ,>
-    FSTAssertIntegerNumberEquals([ts popToken], 1); // <Number: 1>
-    FSTAssertKeywordEquals([ts popToken], @"}"); // <Keyword: }>
-    FSTAssertKindOfClass([ts popToken], CPEOFToken); // <EOF>
+    FSTAssertKeywordEquals([ts popToken], @"[");
+    FSTAssertSwitchEquals([ts popToken], @"-f");
+    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken);
+    FSTAssertSwitchEquals([ts popToken], @"--file");
+    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken);
+    FSTAssertAliasEquals([ts popToken], @"if");
+    FSTAssertKeywordEquals([ts popToken], @"]");
+    FSTAssertKeywordEquals([ts popToken], @"=");
+    FSTAssertKeywordEquals([ts popToken], @"{");
+    FSTAssertIntegerNumberEquals([ts popToken], 1);
+    FSTAssertKeywordEquals([ts popToken], @",");
+    FSTAssertIntegerNumberEquals([ts popToken], 1);
+    FSTAssertKeywordEquals([ts popToken], @"}");
+    FSTAssertKindOfClass([ts popToken], CPEOFToken);
     
     /* 2012-05-17 14:40:03.349 otest[5274:403] ts for "[-f --file if]={1,}": <Keyword: [> <Switch: -f> <Whitespace> <Switch: --file> <Whitespace> <Alias: if> <Keyword: ]> <Keyword: => <Keyword: {> <Number: 1> <Keyword: ,> <Keyword: }> <EOF> */
     ts = [t tokenise:@"[-f --file if]={1,}"];
-    FSTAssertKeywordEquals([ts popToken], @"["); // <Keyword: [>
-    FSTAssertSwitchEquals([ts popToken], @"-f"); // <Switch: -f>
-    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken); // <Whitespace>
-    FSTAssertSwitchEquals([ts popToken], @"--file"); // <Switch: --file>
-    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken); // <Whitespace>
-    FSTAssertAliasEquals([ts popToken], @"if"); // <Alias: if>
-    FSTAssertKeywordEquals([ts popToken], @"]"); // <Keyword: ]>
-    FSTAssertKeywordEquals([ts popToken], @"="); // <Keyword: =>
-    FSTAssertKeywordEquals([ts popToken], @"{"); // <Keyword: {>
-    FSTAssertIntegerNumberEquals([ts popToken], 1); // <Number: 1>
-    FSTAssertKeywordEquals([ts popToken], @","); // <Keyword: ,>
-    FSTAssertKeywordEquals([ts popToken], @"}"); // <Keyword: }>
-    FSTAssertKindOfClass([ts popToken], CPEOFToken); // <EOF>
+    FSTAssertKeywordEquals([ts popToken], @"[");
+    FSTAssertSwitchEquals([ts popToken], @"-f");
+    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken);
+    FSTAssertSwitchEquals([ts popToken], @"--file");
+    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken);
+    FSTAssertAliasEquals([ts popToken], @"if");
+    FSTAssertKeywordEquals([ts popToken], @"]");
+    FSTAssertKeywordEquals([ts popToken], @"=");
+    FSTAssertKeywordEquals([ts popToken], @"{");
+    FSTAssertIntegerNumberEquals([ts popToken], 1);
+    FSTAssertKeywordEquals([ts popToken], @",");
+    FSTAssertKeywordEquals([ts popToken], @"}");
+    FSTAssertKindOfClass([ts popToken], CPEOFToken);
     
     /* 2012-05-17 14:40:03.349 otest[5274:403] ts for "[-f --file if]={}": <Keyword: [> <Switch: -f> <Whitespace> <Switch: --file> <Whitespace> <Alias: if> <Keyword: ]> <Keyword: => <Keyword: {> <Keyword: }> <EOF> */
     ts = [t tokenise:@"[-f --file if]={}"];
-    FSTAssertKeywordEquals([ts popToken], @"["); // <Keyword: [>
-    FSTAssertSwitchEquals([ts popToken], @"-f"); // <Switch: -f>
-    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken); // <Whitespace>
-    FSTAssertSwitchEquals([ts popToken], @"--file"); // <Switch: --file>
-    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken); // <Whitespace>
-    FSTAssertAliasEquals([ts popToken], @"if"); // <Alias: if>
-    FSTAssertKeywordEquals([ts popToken], @"]"); // <Keyword: ]>
-    FSTAssertKeywordEquals([ts popToken], @"="); // <Keyword: =>
-    FSTAssertKeywordEquals([ts popToken], @"{"); // <Keyword: {>
-    FSTAssertKeywordEquals([ts popToken], @"}"); // <Keyword: }>
-    FSTAssertKindOfClass([ts popToken], CPEOFToken); // <EOF>
+    FSTAssertKeywordEquals([ts popToken], @"[");
+    FSTAssertSwitchEquals([ts popToken], @"-f");
+    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken);
+    FSTAssertSwitchEquals([ts popToken], @"--file");
+    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken);
+    FSTAssertAliasEquals([ts popToken], @"if");
+    FSTAssertKeywordEquals([ts popToken], @"]");
+    FSTAssertKeywordEquals([ts popToken], @"=");
+    FSTAssertKeywordEquals([ts popToken], @"{");
+    FSTAssertKeywordEquals([ts popToken], @"}");
+    FSTAssertKindOfClass([ts popToken], CPEOFToken);
     
     /* 2012-05-17 14:40:03.351 otest[5274:403] ts for "[-f --file if]=": <Keyword: [> <Switch: -f> <Whitespace> <Switch: --file> <Whitespace> <Alias: if> <Keyword: ]> <Keyword: => <EOF> */
     ts = [t tokenise:@"[-f --file if]="];
-    
+    FSTAssertKeywordEquals([ts popToken], @"[");
+    FSTAssertSwitchEquals([ts popToken], @"-f");
+    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken);
+    FSTAssertSwitchEquals([ts popToken], @"--file");
+    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken);
+    FSTAssertAliasEquals([ts popToken], @"if");
+    FSTAssertKeywordEquals([ts popToken], @"]");
+    FSTAssertKeywordEquals([ts popToken], @"=");
+    FSTAssertKindOfClass([ts popToken], CPEOFToken);
     
     /* 2012-05-17 14:40:03.352 otest[5274:403] ts for "[-f --file if]": <Keyword: [> <Switch: -f> <Whitespace> <Switch: --file> <Whitespace> <Alias: if> <Keyword: ]> <EOF> */
     ts = [t tokenise:@"[-f --file if]"];
-    
+    FSTAssertKeywordEquals([ts popToken], @"[");
+    FSTAssertSwitchEquals([ts popToken], @"-f");
+    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken);
+    FSTAssertSwitchEquals([ts popToken], @"--file");
+    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken);
+    FSTAssertAliasEquals([ts popToken], @"if");
+    FSTAssertKeywordEquals([ts popToken], @"]");
+    FSTAssertKindOfClass([ts popToken], CPEOFToken);
     
     // a very specific test case for improperly escaped characters in flag-style switches
     /* 2012-05-18 10:25:14.578 otest[2800:403] ts: <Keyword: [> <Error> */
     ts = [t tokenise:@"[-\\[]"];
-    FSTAssertKeywordEquals([ts popToken], @"["); // <Keyword: [>
-    FSTAssertKindOfClass([ts popToken], CPErrorToken); // <Error>
+    FSTAssertKeywordEquals([ts popToken], @"[");
+    FSTAssertKindOfClass([ts popToken], CPErrorToken);
     
-    /* 2012-05-17 14:40:03.353 otest[5274:403] ts for "[-f -[]": <Keyword: [> <Switch: -f> <Whitespace> <Switch: -[> <Keyword: ]> <EOF> */
-    ts = [t tokenise:@"[-[]]"];
+    /* 2012-05-17 14:40:03.353 otest[5274:403] ts for "[-[]": <Keyword: [> <Switch: -[> <Keyword: ]> <EOF> */
+    ts = [t tokenise:@"[-[]"];
+    FSTAssertKeywordEquals([ts popToken], @"[");
+    FSTAssertSwitchEquals([ts popToken], @"-[");
+    FSTAssertKeywordEquals([ts popToken], @"]");
+    FSTAssertKindOfClass([ts popToken], CPEOFToken);
     
-    /* 2012-05-17 14:40:03.353 otest[5274:403] ts for "[-f -\]]": <Keyword: [> <Switch: -f> <Whitespace> <Switch: -\> <Keyword: ]> <Keyword: ]> <EOF> */
+    /* 2012-05-18 10:30:45.854 otest[2925:403] ts: <Keyword: [> <Switch: -]> <Keyword: ]> <EOF> */
     ts = [t tokenise:@"[-\\]]"];
+    FSTAssertKeywordEquals([ts popToken], @"[");
+    FSTAssertSwitchEquals([ts popToken], @"-]");
+    FSTAssertKeywordEquals([ts popToken], @"]");
+    FSTAssertKindOfClass([ts popToken], CPEOFToken);
 }
 
 @end
