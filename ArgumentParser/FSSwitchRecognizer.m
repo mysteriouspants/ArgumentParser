@@ -42,6 +42,10 @@
         NSString * rawPart;
         
         [scanner fsargs_scanUpToCharacterFromSet:cs unlessPrecededByCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"\\"] intoString:&rawPart];
+        
+        if (![rawPart hasPrefix:@"--"] && [rawPart length] > 2)
+            return nil; // it can't be so, that's just an error
+        
         *tokenPosition = [scanner scanLocation];
         
         return [FSSwitchToken switchTokenWithIdentifier:rawPart];
