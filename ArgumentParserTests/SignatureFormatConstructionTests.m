@@ -22,14 +22,14 @@
     do { \
         id _obj = obj; /* this escapes the potential multiple invocations of popToken */ \
         STAssertTrue([_obj isKindOfClass:[cls class]], @"Expecting a kind of class %@; got class %@ from object %@.", NSStringFromClass([_obj class]), NSStringFromClass([cls class]), _obj); \
-    } while (0);
+    } while (0)
 #define _FSTAssertKindOfClass_Unsafe(obj, cls) STAssertTrue([obj isKindOfClass:[cls class]], @"Expecting a kind of class %@; got class %@ from object %@.", NSStringFromClass([obj class]), NSStringFromClass([cls class]), obj);
 #define FSTAssertKeywordEquals(token, expectation) \
     do { \
         CPKeywordToken * t = (CPKeywordToken *)token; /* this escapes the potential multiple invocations of popToken */ \
         _FSTAssertKindOfClass_Unsafe(t, CPKeywordToken); \
         STAssertEqualObjects([t keyword], expectation, @"Keyword doesn't match expectation."); \
-    } while (0);
+    } while (0)
 #define FSTAssertIntegerNumberEquals(token, expectation) \
     do { \
         CPNumberToken * t = (CPNumberToken *)token; /* this escapes the potential multiple invocations of popToken */ \
@@ -37,19 +37,19 @@
         NSNumber * n = [t number]; \
         STAssertTrue(0==strcmp([n objCType], @encode(NSInteger)), @"Type expectation failure. Wanted %s, got %s.", @encode(NSInteger), [n objCType]); \
         STAssertEquals([n integerValue], ((NSInteger)expectation), @"Number fails expectation."); \
-    } while (0);
+    } while (0)
 #define FSTAssertSwitchEquals(token, expectation) \
     do { \
         FSSwitchToken * t = (FSSwitchToken *)token; /* this escapes the potential multiple invocations of popToken */ \
         _FSTAssertKindOfClass_Unsafe(t, FSSwitchToken); \
         STAssertEqualObjects([t identifier], expectation, @"Switch identifier doesn't match expectation."); \
-    } while (0);
+    } while (0)
 #define FSTAssertAliasEquals(token, expectation) \
     do { \
         FSAliasToken * t = (FSAliasToken *)token; /* this escapes the potential multiple invocations of popToken */ \
         _FSTAssertKindOfClass_Unsafe(t, FSAliasToken); \
         STAssertEqualObjects([t identifier], expectation, @"Alias identifier doesn't match expectation."); \
-    } while (0);
+    } while (0)
 
 @implementation SignatureFormatConstructionTests
 
