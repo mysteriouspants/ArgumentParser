@@ -18,12 +18,12 @@
 #import "FSSwitchToken.h"
 #import "FSAliasToken.h"
 
-#define FSTAssertKindOfClass(obj, ct) STAssertTrue([obj isKindOfClass:[ct class]], @"Expecting a kind of class %@; got class %@ from object %@.", NSStringFromClass([obj class]), NSStringFromClass([ct class]), obj);
-#define _FSTAssertKindOfClass_Unsafe(obj, cls) \
+#define FSTAssertKindOfClass(obj, cls) \
     do { \
         id _obj = obj; /* this escapes the potential multiple invocations of popToken */ \
         STAssertTrue([_obj isKindOfClass:[cls class]], @"Expecting a kind of class %@; got class %@ from object %@.", NSStringFromClass([_obj class]), NSStringFromClass([cls class]), _obj); \
     } while (0);
+#define _FSTAssertKindOfClass_Unsafe(obj, cls) STAssertTrue([obj isKindOfClass:[cls class]], @"Expecting a kind of class %@; got class %@ from object %@.", NSStringFromClass([obj class]), NSStringFromClass([cls class]), obj);
 #define FSTAssertKeywordEquals(token, expectation) \
     do { \
         CPKeywordToken * t = (CPKeywordToken *)token; /* this escapes the potential multiple invocations of popToken */ \
@@ -94,23 +94,22 @@
     
     CPTokenStream * ts;
     
-    /* 
-     2012-05-17 14:40:03.349 otest[5274:403] ts for "[-f --file if]={1,}": <Keyword: [> <Switch: -f> <Whitespace> <Switch: --file> <Whitespace> <AliasToken: if> <Keyword: ]> <Keyword: => <Keyword: {> <Number: 1> <Keyword: ,> <Keyword: }> <EOF> 
-     2012-05-17 14:40:03.349 otest[5274:403] ts for "[-f --file if]={}": <Keyword: [> <Switch: -f> <Whitespace> <Switch: --file> <Whitespace> <AliasToken: if> <Keyword: ]> <Keyword: => <Keyword: {> <Keyword: }> <EOF> 
-     2012-05-17 14:40:03.351 otest[5274:403] ts for "[-f --file if]=": <Keyword: [> <Switch: -f> <Whitespace> <Switch: --file> <Whitespace> <AliasToken: if> <Keyword: ]> <Keyword: => <EOF> 
-     2012-05-17 14:40:03.352 otest[5274:403] ts for "[-f --file if]": <Keyword: [> <Switch: -f> <Whitespace> <Switch: --file> <Whitespace> <AliasToken: if> <Keyword: ]> <EOF> 
+    /*
+     2012-05-17 14:40:03.351 otest[5274:403] ts for "[-f --file if]=": <Keyword: [> <Switch: -f> <Whitespace> <Switch: --file> <Whitespace> <Alias: if> <Keyword: ]> <Keyword: => <EOF> 
+     2012-05-17 14:40:03.352 otest[5274:403] ts for "[-f --file if]": <Keyword: [> <Switch: -f> <Whitespace> <Switch: --file> <Whitespace> <Alias: if> <Keyword: ]> <EOF> 
      2012-05-17 14:40:03.352 otest[5274:403] ts for "[-f -\[]": <Keyword: [> <Switch: -f> <Whitespace> <Switch: -\[> <Keyword: ]> <EOF> 
      2012-05-17 14:40:03.353 otest[5274:403] ts for "[-f -[]": <Keyword: [> <Switch: -f> <Whitespace> <Switch: -[> <Keyword: ]> <EOF> 
-     2012-05-17 14:40:03.353 otest[5274:403] ts for "[-f -\]]": <Keyword: [> <Switch: -f> <Whitespace> <Switch: -\> <Keyword: ]> <Keyword: ]> <EOF> */
+     2012-05-17 14:40:03.353 otest[5274:403] ts for "[-f -\]]": <Keyword: [> <Switch: -f> <Whitespace> <Switch: -\> <Keyword: ]> <Keyword: ]> <EOF>
+     */
     
-    /* 2012-05-17 14:40:03.348 otest[5274:403] ts for "[-f --file if]={1,1}": <Keyword: [> <Switch: -f> <Whitespace> <Switch: --file> <Whitespace> <AliasToken: if> <Keyword: ]> <Keyword: => <Keyword: {> <Number: 1> <Keyword: ,> <Number: 1> <Keyword: }> <EOF> */
+    /* 2012-05-17 14:40:03.348 otest[5274:403] ts for "[-f --file if]={1,1}": <Keyword: [> <Switch: -f> <Whitespace> <Switch: --file> <Whitespace> <Alias: if> <Keyword: ]> <Keyword: => <Keyword: {> <Number: 1> <Keyword: ,> <Number: 1> <Keyword: }> <EOF> */
     ts = [t tokenise:@"[-f --file if]={1,1}"];
     FSTAssertKeywordEquals([ts popToken], @"["); // <Keyword: [>
     FSTAssertSwitchEquals([ts popToken], @"-f"); // <Switch: -f>
     FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken); // <Whitespace>
     FSTAssertSwitchEquals([ts popToken], @"--file"); // <Switch: --file>
     FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken); // <Whitespace>
-    FSTAssertAliasEquals([ts popToken], @"if"); // <AliasToken: if>
+    FSTAssertAliasEquals([ts popToken], @"if"); // <Alias: if>
     FSTAssertKeywordEquals([ts popToken], @"]"); // <Keyword: ]>
     FSTAssertKeywordEquals([ts popToken], @"="); // <Keyword: =>
     FSTAssertKeywordEquals([ts popToken], @"{"); // <Keyword: {>
@@ -120,20 +119,24 @@
     FSTAssertKeywordEquals([ts popToken], @"}"); // <Keyword: }>
     FSTAssertKindOfClass([ts popToken], CPEOFToken); // <EOF>
     
-    NSArray * s = [NSArray arrayWithObjects:
-                   @"[-f --file if]={1,1}",
-                   @"[-f --file if]={1,}",
-                   @"[-f --file if]={}",
-                   @"[-f --file if]=",
-                   @"[-f --file if]",
-                   @"[-f -\\[]", // some weird ones
-                   @"[-f -[]",
-                   @"[-f -\\]]", nil];
+    /* 2012-05-17 14:40:03.349 otest[5274:403] ts for "[-f --file if]={1,}": <Keyword: [> <Switch: -f> <Whitespace> <Switch: --file> <Whitespace> <Alias: if> <Keyword: ]> <Keyword: => <Keyword: {> <Number: 1> <Keyword: ,> <Keyword: }> <EOF> */
+    ts = [t tokenise:@"[-f --file if]={1,}"];
+    FSTAssertKeywordEquals([ts popToken], @"["); // <Keyword: [>
+    FSTAssertSwitchEquals([ts popToken], @"-f"); // <Switch: -f>
+    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken); // <Whitespace>
+    FSTAssertSwitchEquals([ts popToken], @"--file"); // <Switch: --file>
+    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken); // <Whitespace>
+    FSTAssertAliasEquals([ts popToken], @"if"); // <Alias: if>
+    FSTAssertKeywordEquals([ts popToken], @"]"); // <Keyword: ]>
+    FSTAssertKeywordEquals([ts popToken], @"="); // <Keyword: =>
+    FSTAssertKeywordEquals([ts popToken], @"{"); // <Keyword: {>
+    FSTAssertIntegerNumberEquals([ts popToken], 1); // <Number: 1>
+    FSTAssertKeywordEquals([ts popToken], @","); // <Keyword: ,>
+    FSTAssertKeywordEquals([ts popToken], @"}"); // <Keyword: }>
+    FSTAssertKindOfClass([ts popToken], CPEOFToken); // <EOF>
     
-    for (NSString * si in s) {
-        CPTokenStream * ts = [t tokenise:si];
-        NSLog(@"ts for \"%@\": %@", si, ts);
-    }
+    /* 2012-05-17 14:40:03.349 otest[5274:403] ts for "[-f --file if]={}": <Keyword: [> <Switch: -f> <Whitespace> <Switch: --file> <Whitespace> <Alias: if> <Keyword: ]> <Keyword: => <Keyword: {> <Keyword: }> <EOF> */
+    
 }
 
 @end

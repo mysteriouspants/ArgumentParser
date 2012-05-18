@@ -32,6 +32,6 @@
 #pragma mark NSObject
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<AliasToken: %@>", _identifier];
+    return [NSString stringWithFormat:@"<Alias: %@>", _identifier];
 }
 @end
