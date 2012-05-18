@@ -17,6 +17,7 @@
 
 #import "FSSwitchToken.h"
 #import "FSAliasToken.h"
+#import "FSFormatCtorTokeniserDelegate.h"
 
 #define FSTAssertKindOfClass(obj, cls) \
     do { \
@@ -53,54 +54,20 @@
 
 @implementation SignatureFormatConstructionTests
 
-- (void)testArgumentConstruction
-{
-    NSDictionary * d =
-    [NSDictionary dictionaryWithObjectsAndKeys:
-     [NSNull null], @"",
-     [FSValuedArgument valuedArgumentWithSwitches:[NSSet setWithObjects:@"f", @"file", nil] aliases:@"if" valuesPerInvocation:NSMakeRange(1, 1)], @"[-f --file if]={1,1}",
-     [FSCountedArgument countedArgumentWithSwitches:[NSSet setWithObjects:@"v", @"verbose", nil] aliases:nil], @"[-v --verbose]"
-     , nil];
-    
-    [d enumerateKeysAndObjectsUsingBlock:^(NSString * format, id expectedResult, BOOL *stop) {
-
-        FSArgumentSignature * result = [FSArgumentSignature argumentSignatureWithFormat:format];
-        
-        if (expectedResult == [NSNull null])
-            STAssertNil(result, @"Expectation of nil did not yield so.");
-        else
-            STAssertEqualObjects(expectedResult, result, @"Objects were not equal when equality was expected. expectedResult:%@ result:%@", expectedResult, result);
-        
-    }];
-    
-    NSArray * s = [NSArray arrayWithObjects:
-                   @"[-f --file if]={1,1}",
-                   @"[-f --file if]={}",
-                   @"[-f --file if]=",
-                   @"[-f --file if]", nil];
-    
-    for (NSUInteger i = 0;
-         i != [s count];
-         ++i) {
-        NSLog(@"s%lu:\"%@\" a%lu:%@", i, [s objectAtIndex:i], i, [FSArgumentSignature argumentSignatureWithFormat:[s objectAtIndex:i]]);
-    }
-}
-
-- (void)testTokenizer
+- (void)testTokenizerAndDelegate
 {
     CPTokeniser * t = [FSArgumentSignature formatTokens];
     
     STAssertNotNil(t, @"Cannot create a tokenizer.");
+    STAssertNotNil([t delegate], @"Cannot create a tokenizer delegate.");
     
     CPTokenStream * ts;
     
-    /* 2012-05-17 14:40:03.348 otest[5274:403] ts for "[-f --file if]={1,1}": <Keyword: [> <Switch: -f> <Whitespace> <Switch: --file> <Whitespace> <Alias: if> <Keyword: ]> <Keyword: => <Keyword: {> <Number: 1> <Keyword: ,> <Number: 1> <Keyword: }> <EOF> */
+    /* 2012-05-17 14:40:03.348 otest[5274:403] ts for "[-f --file if]={1,1}": <Keyword: [> <Switch: -f> <Switch: --file> <Alias: if> <Keyword: ]> <Keyword: => <Keyword: {> <Number: 1> <Keyword: ,> <Number: 1> <Keyword: }> <EOF> */
     ts = [t tokenise:@"[-f --file if]={1,1}"];
     FSTAssertKeywordEquals([ts popToken], @"[");
     FSTAssertSwitchEquals([ts popToken], @"-f");
-    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken);
     FSTAssertSwitchEquals([ts popToken], @"--file");
-    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken);
     FSTAssertAliasEquals([ts popToken], @"if");
     FSTAssertKeywordEquals([ts popToken], @"]");
     FSTAssertKeywordEquals([ts popToken], @"=");
@@ -111,13 +78,11 @@
     FSTAssertKeywordEquals([ts popToken], @"}");
     FSTAssertKindOfClass([ts popToken], CPEOFToken);
     
-    /* 2012-05-17 14:40:03.349 otest[5274:403] ts for "[-f --file if]={1,}": <Keyword: [> <Switch: -f> <Whitespace> <Switch: --file> <Whitespace> <Alias: if> <Keyword: ]> <Keyword: => <Keyword: {> <Number: 1> <Keyword: ,> <Keyword: }> <EOF> */
+    /* 2012-05-17 14:40:03.349 otest[5274:403] ts for "[-f --file if]={1,}": <Keyword: [> <Switch: -f> <Switch: --file> <Alias: if> <Keyword: ]> <Keyword: => <Keyword: {> <Number: 1> <Keyword: ,> <Keyword: }> <EOF> */
     ts = [t tokenise:@"[-f --file if]={1,}"];
     FSTAssertKeywordEquals([ts popToken], @"[");
     FSTAssertSwitchEquals([ts popToken], @"-f");
-    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken);
     FSTAssertSwitchEquals([ts popToken], @"--file");
-    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken);
     FSTAssertAliasEquals([ts popToken], @"if");
     FSTAssertKeywordEquals([ts popToken], @"]");
     FSTAssertKeywordEquals([ts popToken], @"=");
@@ -127,13 +92,11 @@
     FSTAssertKeywordEquals([ts popToken], @"}");
     FSTAssertKindOfClass([ts popToken], CPEOFToken);
     
-    /* 2012-05-17 14:40:03.349 otest[5274:403] ts for "[-f --file if]={}": <Keyword: [> <Switch: -f> <Whitespace> <Switch: --file> <Whitespace> <Alias: if> <Keyword: ]> <Keyword: => <Keyword: {> <Keyword: }> <EOF> */
+    /* 2012-05-17 14:40:03.349 otest[5274:403] ts for "[-f --file if]={}": <Keyword: [> <Switch: -f> <Switch: --file> <Alias: if> <Keyword: ]> <Keyword: => <Keyword: {> <Keyword: }> <EOF> */
     ts = [t tokenise:@"[-f --file if]={}"];
     FSTAssertKeywordEquals([ts popToken], @"[");
     FSTAssertSwitchEquals([ts popToken], @"-f");
-    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken);
     FSTAssertSwitchEquals([ts popToken], @"--file");
-    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken);
     FSTAssertAliasEquals([ts popToken], @"if");
     FSTAssertKeywordEquals([ts popToken], @"]");
     FSTAssertKeywordEquals([ts popToken], @"=");
@@ -141,25 +104,21 @@
     FSTAssertKeywordEquals([ts popToken], @"}");
     FSTAssertKindOfClass([ts popToken], CPEOFToken);
     
-    /* 2012-05-17 14:40:03.351 otest[5274:403] ts for "[-f --file if]=": <Keyword: [> <Switch: -f> <Whitespace> <Switch: --file> <Whitespace> <Alias: if> <Keyword: ]> <Keyword: => <EOF> */
+    /* 2012-05-17 14:40:03.351 otest[5274:403] ts for "[-f --file if]=": <Keyword: [> <Switch: -f> <Switch: --file> <Alias: if> <Keyword: ]> <Keyword: => <EOF> */
     ts = [t tokenise:@"[-f --file if]="];
     FSTAssertKeywordEquals([ts popToken], @"[");
     FSTAssertSwitchEquals([ts popToken], @"-f");
-    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken);
     FSTAssertSwitchEquals([ts popToken], @"--file");
-    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken);
     FSTAssertAliasEquals([ts popToken], @"if");
     FSTAssertKeywordEquals([ts popToken], @"]");
     FSTAssertKeywordEquals([ts popToken], @"=");
     FSTAssertKindOfClass([ts popToken], CPEOFToken);
     
-    /* 2012-05-17 14:40:03.352 otest[5274:403] ts for "[-f --file if]": <Keyword: [> <Switch: -f> <Whitespace> <Switch: --file> <Whitespace> <Alias: if> <Keyword: ]> <EOF> */
+    /* 2012-05-17 14:40:03.352 otest[5274:403] ts for "[-f --file if]": <Keyword: [> <Switch: -f> <Switch: --file> <Alias: if> <Keyword: ]> <EOF> */
     ts = [t tokenise:@"[-f --file if]"];
     FSTAssertKeywordEquals([ts popToken], @"[");
     FSTAssertSwitchEquals([ts popToken], @"-f");
-    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken);
     FSTAssertSwitchEquals([ts popToken], @"--file");
-    FSTAssertKindOfClass([ts popToken], CPWhiteSpaceToken);
     FSTAssertAliasEquals([ts popToken], @"if");
     FSTAssertKeywordEquals([ts popToken], @"]");
     FSTAssertKindOfClass([ts popToken], CPEOFToken);
@@ -183,6 +142,24 @@
     FSTAssertSwitchEquals([ts popToken], @"-]");
     FSTAssertKeywordEquals([ts popToken], @"]");
     FSTAssertKindOfClass([ts popToken], CPEOFToken);
+}
+
+- (void)testGrammar
+{
+    STAssertNotNil([FSArgumentSignature formatGrammar], @"Format grammar was nil. That can't be good.");
+}
+
+- (void)testParser
+{
+    CPParser * parser = [FSArgumentSignature formatParser];
+    STAssertNotNil(parser, @"Parser was nil!");
+    
+    CPTokeniser * tk = [FSArgumentSignature formatTokens];
+    CPTokenStream * ts = [tk tokenise:@"[-f --file]="];
+    
+    id retVal = [parser parse:ts];
+    
+    NSLog(@"retVal: %@", retVal);
 }
 
 @end

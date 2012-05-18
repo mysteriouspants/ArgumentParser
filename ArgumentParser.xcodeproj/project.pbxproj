@@ -42,6 +42,8 @@
 		DA17B91C1565891600BDDA7E /* FSAliasRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA17B91A1565891600BDDA7E /* FSAliasRecognizer.m */; };
 		DA17B91F1565961C00BDDA7E /* NSScanner+EscapedScanning.h in Headers */ = {isa = PBXBuildFile; fileRef = DA17B91D1565961C00BDDA7E /* NSScanner+EscapedScanning.h */; };
 		DA17B9201565961C00BDDA7E /* NSScanner+EscapedScanning.m in Sources */ = {isa = PBXBuildFile; fileRef = DA17B91E1565961C00BDDA7E /* NSScanner+EscapedScanning.m */; };
+		DA2B1DFC1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = DA2B1DFA1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.h */; };
+		DA2B1DFD1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2B1DFB1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.m */; };
 		DA42159A15629EF800F82E8E /* FSMutableAttributedArray.h in Headers */ = {isa = PBXBuildFile; fileRef = DA42159815629EF800F82E8E /* FSMutableAttributedArray.h */; };
 		DA42159B15629EF800F82E8E /* FSMutableAttributedArray.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42159915629EF800F82E8E /* FSMutableAttributedArray.m */; };
 		DA42159F1562AA8700F82E8E /* AttributedArrayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42159E1562AA8700F82E8E /* AttributedArrayTests.m */; };
@@ -183,6 +185,8 @@
 		DA17B91A1565891600BDDA7E /* FSAliasRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAliasRecognizer.m; sourceTree = "<group>"; };
 		DA17B91D1565961C00BDDA7E /* NSScanner+EscapedScanning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScanner+EscapedScanning.h"; sourceTree = "<group>"; };
 		DA17B91E1565961C00BDDA7E /* NSScanner+EscapedScanning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScanner+EscapedScanning.m"; sourceTree = "<group>"; };
+		DA2B1DFA1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSFormatCtorTokeniserDelegate.h; sourceTree = "<group>"; };
+		DA2B1DFB1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSFormatCtorTokeniserDelegate.m; sourceTree = "<group>"; };
 		DA42159815629EF800F82E8E /* FSMutableAttributedArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMutableAttributedArray.h; sourceTree = "<group>"; };
 		DA42159915629EF800F82E8E /* FSMutableAttributedArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSMutableAttributedArray.m; sourceTree = "<group>"; };
 		DA42159D1562AA8700F82E8E /* AttributedArrayTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedArrayTests.h; sourceTree = "<group>"; };
@@ -367,6 +371,8 @@
 				DA17B91A1565891600BDDA7E /* FSAliasRecognizer.m */,
 				DA17B9151565890500BDDA7E /* FSAliasToken.h */,
 				DA17B9161565890500BDDA7E /* FSAliasToken.m */,
+				DA2B1DFA1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.h */,
+				DA2B1DFB1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.m */,
 			);
 			name = Signatures;
 			sourceTree = "<group>";
@@ -468,6 +474,7 @@
 				DA17B9171565890500BDDA7E /* FSAliasToken.h in Headers */,
 				DA17B91B1565891600BDDA7E /* FSAliasRecognizer.h in Headers */,
 				DA17B91F1565961C00BDDA7E /* NSScanner+EscapedScanning.h in Headers */,
+				DA2B1DFC1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,6 +691,7 @@
 				DA17B9181565890500BDDA7E /* FSAliasToken.m in Sources */,
 				DA17B91C1565891600BDDA7E /* FSAliasRecognizer.m in Sources */,
 				DA17B9201565961C00BDDA7E /* NSScanner+EscapedScanning.m in Sources */,
+				DA2B1DFD1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

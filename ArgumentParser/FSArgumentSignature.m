@@ -18,6 +18,7 @@
 
 #import "FSSwitchRecognizer.h"
 #import "FSAliasRecognizer.h"
+#import "FSFormatCtorTokeniserDelegate.h"
 
 // used in computing the hash value
 #import <CommonCrypto/CommonDigest.h>
@@ -198,6 +199,7 @@
 + (CPTokeniser *)formatTokens
 {
     static CPTokeniser * expressionTokens;
+    static FSFormatCtorTokeniserDelegate * delegate;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         expressionTokens = [[CPTokeniser alloc] init];
@@ -211,6 +213,8 @@
         [expressionTokens addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"="]];
         [expressionTokens addTokenRecogniser:[FSSwitchRecognizer switchRecognizer]];
         [expressionTokens addTokenRecogniser:[FSAliasRecognizer aliasRecognizer]];
+        delegate = [[FSFormatCtorTokeniserDelegate alloc] init];
+        [expressionTokens setDelegate:delegate];
     });
     return expressionTokens;
 }
@@ -221,15 +225,24 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSString * bnfFormat =
-        @"FormatSequence ::= (<FormatInvocation> \" \")+"
-        @"";
+        @"FormatSequence   ::= \"[\" <FormatInvocation>+ \"]\" <ValueInvocation>?;"
+        @"FormatInvocation ::= \"Switch\" | \"Alias\";"
+        @"ValueInvocation  ::= \"=\" <ValueSpecifier>?;"
+        @"ValueSpecifier   ::= \"{\" \"Number\" \",\" \"Number\"? \"}\";"
+        ;
+        expressionGrammer = [CPGrammar grammarWithStart:@"FormatSequence" backusNaurForm:bnfFormat];
     });
     return expressionGrammer;
 }
 
 + (CPParser *)formatParser
 {
-    return nil;
+    static CPParser * expressionParser;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        expressionParser = [CPSLRParser parserWithGrammar:[self formatGrammar]];
+    });
+    return expressionParser;
 }
 
 #pragma mark NSCopying

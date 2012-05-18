@@ -41,9 +41,6 @@
     STAssertTrue([retVal booleanValueForSignature:verbose], @"Verbosity is on.");
     STAssertEquals([[retVal uncapturedValues] count], 1UL, @"There is an uncaptured refridgerator.");
     STAssertEqualObjects([[retVal uncapturedValues] lastObject], @"refridgerator", @"There is an uncaptured refridgerator.");
-    
-    
-    NSLog(@"retVal = %@", [retVal prettyDescription]);
 }
 
 @end
