@@ -201,7 +201,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         expressionTokens = [[CPTokeniser alloc] init];
-        [expressionTokens addTokenRecogniser:[CPNumberRecogniser numberRecogniser]];
+        [expressionTokens addTokenRecogniser:[CPNumberRecogniser integerRecogniser]];
         [expressionTokens addTokenRecogniser:[CPWhiteSpaceRecogniser whiteSpaceRecogniser]];
         [expressionTokens addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"["]];
         [expressionTokens addTokenRecogniser:[CPKeywordRecogniser recogniserForKeyword:@"]"]];

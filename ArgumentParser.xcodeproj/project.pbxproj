@@ -11,7 +11,6 @@
 		8DE929625D3341C1AAEE532A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24743B8C677041959A78F803 /* libPods.a */; };
 		92F3BA645DBB4FF8A724C1E3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24743B8C677041959A78F803 /* libPods.a */; };
 		A595F9F2EE814C589FA95E5E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24743B8C677041959A78F803 /* libPods.a */; };
-		AC6A712EA3B34F5AAF39006C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24743B8C677041959A78F803 /* libPods.a */; };
 		B815CD4DFDDA4A45BE18C1FF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24743B8C677041959A78F803 /* libPods.a */; };
 		DA00447C155D94FF0028A012 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA00447B155D94FF0028A012 /* Cocoa.framework */; };
 		DA00448E155D94FF0028A012 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA00448D155D94FF0028A012 /* SenTestingKit.framework */; };
@@ -238,7 +237,6 @@
 				DA00448E155D94FF0028A012 /* SenTestingKit.framework in Frameworks */,
 				DA00448F155D94FF0028A012 /* Cocoa.framework in Frameworks */,
 				DA004492155D94FF0028A012 /* ArgumentParser.dylib in Frameworks */,
-				AC6A712EA3B34F5AAF39006C /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
