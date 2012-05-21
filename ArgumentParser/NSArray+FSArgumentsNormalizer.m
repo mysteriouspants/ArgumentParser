@@ -27,18 +27,16 @@
         }
         
         if ([arg hasPrefix:@"--"]) {
-            arg = [arg substringFromIndex:2];
-            if ([arg length] == 0)
+            if ([arg length] == 2)
                 [args addObject:[NSNull null] withAttributes:[NSDictionary dictionaryWithObject:__fsargs_barrier forKey:__fsargs_typeKey]];
             else
                 [args addObject:arg withAttributes:[NSDictionary dictionaryWithObject:__fsargs_switch forKey:__fsargs_typeKey]];
         } else if ([arg hasPrefix:@"-"]) {
-            arg = [arg substringFromIndex:1];
             for (NSUInteger i = 0;
                  i < [arg length];
                  ++i) {
                 unichar c = [arg characterAtIndex:i];
-                [args addObject:[NSString stringWithCharacters:&c length:1] withAttributes:[NSDictionary dictionaryWithObject:__fsargs_switch forKey:__fsargs_typeKey]];
+                [args addObject:[NSString stringWithFormat:@"-%c", c] withAttributes:[NSDictionary dictionaryWithObject:__fsargs_switch forKey:__fsargs_typeKey]];
             }
         } else {
             [args addObject:arg withAttributes:[NSDictionary dictionaryWithObject:__fsargs_unknown forKey:__fsargs_typeKey]];

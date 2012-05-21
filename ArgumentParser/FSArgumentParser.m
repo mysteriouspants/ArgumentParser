@@ -167,12 +167,12 @@
     if (retVal.location == NSNotFound) return retVal;
     
     retVal.length = [_arguments indexOfObjectAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(retVal.location, MIN(wantedArguments.length, [_arguments count] - retVal.location))] options:0 passingTest:^bool(id obj, NSMutableDictionary *attributes, NSUInteger idx, BOOL *stop) {
-        if (isValue(attributes) && !isCaptured(attributes)) return true;
-        return false;
+        if (isValue(attributes) && !isCaptured(attributes)) return false;
+        return true;
     }] - retVal.location;
     
     if (retVal.length == 0) retVal.length ++ ;
-    if (retVal.length == NSNotFound) retVal.length = 1;
+    if (retVal.length == NSNotFound - retVal.location) retVal.length = 1;
             
     return retVal;
 }
