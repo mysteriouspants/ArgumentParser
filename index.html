@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Argumentparser by NSError</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Argumentparser</h1>
+        <h2>Faster, easier, more declarative parsing of command line arguments in Objective-C/Foundation.</h2>
+        <a href="https://github.com/NSError/ArgumentParser" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>FSArgumentParser</h1>
+
+<p>A short, awesome, and <em>really useful</em> tool for rapidly parsing command-line arguments in a declarative manner using Objective-C.</p>
+
+<pre><code>FSArgumentSignature
+  * force = [FSArgumentSignature argumentSignatureWithFormat:@"[-f --force]"],
+  * soft = [FSArgumentSignature argumentSignatureWithFormat:@"[-s --soft]"],
+  * outputFile = [FSArgumentSignature argumentSignatureWithFormat:@"[-o --output-file of]=",
+  * inputFile = [FSArgumentSignature argumentSignatureWithFormat:@"[-i --input-file if]={1,}"];
+
+NSArray * signatures = [NSArray arrayWithObjects:force, soft, outputFile, inputFile, nil];
+
+FSArgumentPackage * package =
+ [[NSProcessInfo currentProcess] fsargs_parseArgumentsWithSignatures:signatures];
+
+if ([package booleanValueOfSignature:soft]) {
+    // presumably you'd do something
+}
+
+if ([package firstObjectForSignature:inputFile]) {
+    printf("dude, you gotta specify a file!\n");
+    return -1;
+}
+</code></pre>
+
+<h2>Features: It Just Works</h2>
+
+<p>You're probably already excited about the nice format ctors, which are admittedly a nice touch. But the real power of FSArgumentParser is on the command line. It's designed to "just work" in a variety of situations.</p>
+
+<h3>Flag Grouping</h3>
+
+<p>It seems natural to us: we like to group flags together. <code>tar -cvvf</code>, anyone? FSArgumentParser understands that quite well.</p>
+
+<h3>Equals Signs</h3>
+
+<p>Some tools require an equals sign for value assignment (<code>foo -f=t</code> works, but <code>foo -f t</code> doesn't). FSArgumentParser doesn't mind either formats.</p>
+
+<h3>Multiple Values in a Group</h3>
+
+<p>Supposing you have two or more flags that require values, how does that work? FSArgumentParser gives you two ways to work:</p>
+
+<pre><code>    # the long way
+spiffy -i file1 -o file2
+    # the lazy way
+spiffy -io file1 file2
+</code></pre>
+
+<p>Personally, I prefer the lazy way. The values are assigned respective to the order of the flags in the group. Note that equals signs are not really logical in argument groups. If you do something like <code>-cfg=file.txt</code>, it will assign <code>file.txt</code> to <code>f</code> (if that's the first flag that takes a value), but it will not do anything fancy, like force that flag to take only one value if it supports multiple values. For that you need to use a barrier.</p>
+
+<h3>Many Values per Argument</h3>
+
+<p>New in this version is the ability to have more than one value per time an argument is invoked. You define the number of arguments per invocation as a range, minimum to maximum.</p>
+
+<pre><code>FSArgumentSignature * files =
+    [FSArgumentSignature argumentSignatureWithFormat:@"[-f --files]={1,5}"];
+</code></pre>
+
+<p>And boom, you can specify between one and five files per time you use the <code>-f</code> flag. You might think that this could be a little awkward if you have a flag group with two flags that take multiple arguments. Well, it isn't. FSArgumentParser understands "value barriers," which segragate between lists of values. A value barrier is either two dashes (<code>--</code>), or any other kind of argument invocation. So, given the following:</p>
+
+<pre><code>FSArgumentSignature
+  *inFiles = [FSArgumentSignature argumentSignatureWithFormat:@"[-f --input-files]={1,5}"],
+  *outputFiles = [FSArgumentSignature argumentSignatureWithFormat:@"[-o --output-files]={1,5}"];
+
+// on the command line:
+
+foo -ofv ouput1 output2 output3 -- input1 input2 input3 input4 # use the double-dash to separate
+foo -of ouput1 output2 output3 -v input1 input2 input3 input4 # use the verbose flag to separate
+</code></pre>
+
+<p>See how it "just works" for you?</p>
+
+<h3>Undecorated Arguments</h3>
+
+<p>Who here is in love with how the <code>dd</code> utility takes its arguments? So perhaps not many, but FSArgumentParser understands that, too.</p>
+
+<pre><code>foo if=infile of=outfile
+</code></pre>
+
+<p>Is perfectly valid. This can also be used to create "subcommands."</p>
+
+<pre><code>foo commit -Am "Why are you reinventing git?"
+</code></pre>
+
+<h3>Argument Injection</h3>
+
+<p>Wouldn't it be nice to build out a tree of possible arguments, with some arguments which are scanned if and only if a certain argument is present? So thought I, which is why the following invocation could be created like this:</p>
+
+<pre><code>foo commit -Am "Why are you reinventing git?"
+
+// can be accomplished with
+
+FSArgumentSignature * commitSubcommand =
+  [FSArgumentSignature argumentSignatureWithFormat:@"[commit]"];
+[commitSubcommand setInjectedSignatures:[NSSet setWithObjects:
+  [FSArgumentSignature argumentSignatureWithFormat:@"[-A --all]"],
+  [FSArgumentSignature argumentSignatureWithFormat:@"[-m --commit-message]="], nil]];
+</code></pre>
+
+<h2>Descriptions</h2>
+
+<p>By default the <code>-description</code> method returns a very simple programmer-friendly text. However, you can use the <code>descriptionHelper</code> block property on <code>FSArgumentSignature</code>. A different description method which you can call for emitting command-line help will use this. For example:</p>
+
+<pre><code>FSArgumentSignature * verbose = [FSArgumentSignature argumentSignatureWithFormat:@"[-v --verbose]"];
+FSArgumentSignature * help = [FSArgumentSignature argumentSignatureWithFormat:@"[-h --help]"];
+
+[verbose setDescriptionHelper:(NSString *)(^)(FSArgumentSignature * currentSignature, NSUInteger indentLevel, NSUInteger terminalWidth) {
+    return [@"-v --verbose  Emit more information." fsargs_mutableStringByIndentingToWidth:indentLevel * 2 lineLength:terminalWidth];
+}];
+[help setDescriptionHelper:(NSString *)(^)(FSArgumentSignature * currentSignature, NSUInteger indentLevel, NSUInteger terminalWidth) {
+    return [@"-h --help     Show this message." fsargs_mutableStringByIndentingToWidth:indentLevel * 2 lineLength:terminalWidth];
+}];
+
+FSArgumentPackage * package = 
+ [[NSProcessInfo processInfo] fsargs_parseArgumentsWithSignatures:[NSSet setWithObjects:verbose, help, nil]];
+
+if ([package booleanValueOfFlag:help]) {
+    printf("My Really Cool CLI Tool v0.1\n\n");
+    printf("%s\n", [[verbose descriptionForHelp:2 width:80] UTF8String]);
+    printf("%s\n", [[help descriptionForHelp:2 width:80] UTF8String]);
+    printf("\n(C) 2012 by Your Face. All your base are belong to us.\n");
+}
+</code></pre>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/NSError/ArgumentParser/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/NSError/ArgumentParser/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/NSError/ArgumentParser"></a> is maintained by <a href="https://github.com/NSError">NSError</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
