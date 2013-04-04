@@ -59,14 +59,15 @@
         NSString * type = [_arguments valueOfAttribute:__fsargs_typeKey forObjectAtIndex:i];
         if ([type isEqual:__fsargs_switch]) {
             // switch
-            if ((signature = [_switches objectForKey:v]) != nil) {
+            NSString *switchKey = [v stringByReplacingOccurrencesOfString:@"-" withString:@""];
+            if ((signature = [_switches objectForKey:switchKey]) != nil) {
                 // perform the argument
                 [self performSignature:signature fromIndex:i];
             } else {
                 // it's an unknown switch, drop it into a bucket of unknown switches or something.
                 [_package->_unknownSwitches addObject:v];
             }
-        } else if ([type isEqual:__fsargs_value] && ![_arguments booleanValueOfAttribute:__fsargs_isValueCaptured forObjectAtIndex:i]) {
+        } else if ([type isEqual:__fsargs_value]) {
             // uncaptured valued
             if ([_arguments booleanValueOfAttribute:__fsargs_isValueCaptured forObjectAtIndex:i]) {
                 continue; // just skip this one
@@ -123,7 +124,6 @@
         // pop forward to find possible arguments
         
         NSRange rangeOfValues = [self rangeOfValuesStartingFromIndex:index+1 tryFor:valuedSignature.valuesPerInvocation];
-        NSLog(@"Range of indexes for %@ is %@", valuedSignature, NSStringFromRange(rangeOfValues));
         NSIndexSet * indexSetOfValues = [NSIndexSet indexSetWithIndexesInRange:rangeOfValues];
         [indexSetOfValues enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
             // grab that value
