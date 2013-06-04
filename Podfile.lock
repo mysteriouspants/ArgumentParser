@@ -1,10 +1,10 @@
 PODS:
-  - CoreParse (1.0.0)
+  - CoreParse (1.1)
 
 DEPENDENCIES:
-  - CoreParse (~> 1.0.0)
+  - CoreParse (~> 1.1.0)
 
 SPEC CHECKSUMS:
-  CoreParse: fc6a33c91b6540a9cc99ca856af5c0943afccc94
+  CoreParse: e9523576597e5860fba525888784378d8379fd4f
 
-COCOAPODS: 0.17.2
+COCOAPODS: 0.20.2

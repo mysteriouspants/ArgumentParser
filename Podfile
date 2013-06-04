@@ -1,3 +1,3 @@
 platform :osx
 
-dependency 'CoreParse', '~> 1.0.0'
+pod 'CoreParse', '~> 1.1.0'
