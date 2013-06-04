@@ -220,7 +220,10 @@
         @"ValueInvocation  ::= \"=\" <ValueSpecifier>?;"
         @"ValueSpecifier   ::= \"{\" \"Number\" \",\" \"Number\"? \"}\";"
         ;
-        expressionGrammer = [CPGrammar grammarWithStart:@"FormatSequence" backusNaurForm:bnfFormat];
+        NSError * error = nil;
+        expressionGrammer = [CPGrammar grammarWithStart:@"FormatSequence" backusNaurForm:bnfFormat error:&error];
+        
+        // try and blow up if error isn't nil; i'd be more worried if I hadn't already tested this grammar
     });
     return expressionGrammer;
 }
