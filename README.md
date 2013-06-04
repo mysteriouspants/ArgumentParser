@@ -8,7 +8,7 @@ A short, awesome, and *really useful* tool for rapidly parsing command-line argu
       * outputFile = [FSArgumentSignature argumentSignatureWithFormat:@"[-o --output-file of]=",
       * inputFile = [FSArgumentSignature argumentSignatureWithFormat:@"[-i --input-file if]={1,}"];
       
-    NSArray * signatures = [NSArray arrayWithObjects:force, soft, outputFile, inputFile, nil];
+    NSArray * signatures = @[force, soft, outputFile, inputFile];
     
     FSArgumentPackage * package =
      [[NSProcessInfo currentProcess] fsargs_parseArgumentsWithSignatures:signatures];
