@@ -17,8 +17,7 @@
 
 - (void)testCommonCases
 {
-    NSArray * t0 =
-    [NSArray arrayWithObjects:@"-cfg=file.txt", @"--verbose", @"refridgerator", nil];
+    NSArray * t0 = @[@"-cfg=file.txt", @"--verbose", @"refridgerator"];
     
     FSArgumentSignature * conflate = [FSArgumentSignature argumentSignatureWithFormat:@"[-c --conflate]"];
     FSArgumentSignature * file = [FSArgumentSignature argumentSignatureWithFormat:@"[-f --file]="];

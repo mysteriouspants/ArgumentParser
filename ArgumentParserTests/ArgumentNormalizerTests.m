@@ -20,36 +20,36 @@
 {
     FSMutableAttributedArray * array = [[NSArray arrayWithObjects:@"-cfg", @"--file", @"foo", @"--", @"--asplode", nil] fsargs_normalize];
     STAssertEquals([array count], 7UL, @"Expecting seven elements!");
-    FSTExpectValueAt(array, 0, @"c");
+    FSTExpectValueAt(array, 0, @"-c");
     FSTExpectTypeAt(array, 0, __fsargs_switch);
-    FSTExpectValueAt(array, 1, @"f");
+    FSTExpectValueAt(array, 1, @"-f");
     FSTExpectTypeAt(array, 1, __fsargs_switch);
-    FSTExpectValueAt(array, 2, @"g");
+    FSTExpectValueAt(array, 2, @"-g");
     FSTExpectTypeAt(array, 2, __fsargs_switch);
-    FSTExpectValueAt(array, 3, @"file");
+    FSTExpectValueAt(array, 3, @"--file");
     FSTExpectTypeAt(array, 3, __fsargs_switch);
     FSTExpectValueAt(array, 4, @"foo");
     FSTExpectTypeAt(array, 4, __fsargs_unknown);
     FSTExpectValueAt(array, 5, [NSNull null]);
     FSTExpectTypeAt(array, 5, __fsargs_barrier);
-    FSTExpectValueAt(array, 6, @"asplode");
+    FSTExpectValueAt(array, 6, @"--asplode");
     FSTExpectTypeAt(array, 6, __fsargs_switch);
     
     array = [[NSArray arrayWithObjects:@"-cfg", @"--file=foo", @"--", @"--asplode", nil] fsargs_normalize];
     STAssertEquals([array count], 7UL, @"Expecting seven elements!");
-    FSTExpectValueAt(array, 0, @"c");
+    FSTExpectValueAt(array, 0, @"-c");
     FSTExpectTypeAt(array, 0, __fsargs_switch);
-    FSTExpectValueAt(array, 1, @"f");
+    FSTExpectValueAt(array, 1, @"-f");
     FSTExpectTypeAt(array, 1, __fsargs_switch);
-    FSTExpectValueAt(array, 2, @"g");
+    FSTExpectValueAt(array, 2, @"-g");
     FSTExpectTypeAt(array, 2, __fsargs_switch);
-    FSTExpectValueAt(array, 3, @"file");
+    FSTExpectValueAt(array, 3, @"--file");
     FSTExpectTypeAt(array, 3, __fsargs_switch);
     FSTExpectValueAt(array, 4, @"foo");
     FSTExpectTypeAt(array, 4, __fsargs_value);
     FSTExpectValueAt(array, 5, [NSNull null]);
     FSTExpectTypeAt(array, 5, __fsargs_barrier);
-    FSTExpectValueAt(array, 6, @"asplode");
+    FSTExpectValueAt(array, 6, @"--asplode");
     FSTExpectTypeAt(array, 6, __fsargs_switch);
     
 }

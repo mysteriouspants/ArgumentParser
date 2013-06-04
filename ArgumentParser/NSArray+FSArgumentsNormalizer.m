@@ -26,13 +26,14 @@
             arg = [arg substringToIndex:r.location];
         }
         
+        // long form switch
         if ([arg hasPrefix:@"--"]) {
             if ([arg length] == 2)
                 [args addObject:[NSNull null] withAttributes:[NSDictionary dictionaryWithObject:__fsargs_barrier forKey:__fsargs_typeKey]];
             else
                 [args addObject:arg withAttributes:[NSDictionary dictionaryWithObject:__fsargs_switch forKey:__fsargs_typeKey]];
-        } else if ([arg hasPrefix:@"-"]) {
-            for (NSUInteger i = 0;
+        } else if ([arg hasPrefix:@"-"]) { // condensed switches
+            for (NSUInteger i = 1;
                  i < [arg length];
                  ++i) {
                 unichar c = [arg characterAtIndex:i];
