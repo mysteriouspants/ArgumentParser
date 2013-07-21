@@ -79,7 +79,7 @@
     
     [super updateHash:&md5];
 
-    unsigned char* md5_final = (unsigned char*)malloc(sizeof(unsigned char)*CC_MD5_DIGEST_LENGTH);
+    unsigned char md5_final[CC_MD5_DIGEST_LENGTH];
     CC_MD5_Final(md5_final, &md5);
     return *((NSUInteger *)md5_final);
 }
