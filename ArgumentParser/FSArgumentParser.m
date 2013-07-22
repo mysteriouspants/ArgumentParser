@@ -76,15 +76,19 @@
                 // find a way to associate this with what it wanted to be associated with in a weak way.
                 [_package->_uncapturedValues addObject:v];
             }
-        } else if ([type isEqual:__fsargs_unknown] && ![_arguments booleanValueOfAttribute:__fsargs_isValueCaptured forObjectAtIndex:i]) {
-            // potentially uncaptured value, or else it could be an alias
-            if ((signature = [_aliases objectForKey:v]) != nil) {
-                // perform the argument
-                [self performSignature:signature fromIndex:i];
+        } else if ([type isEqual:__fsargs_unknown]) {
+            if ([_arguments booleanValueOfAttribute:__fsargs_isValueCaptured forObjectAtIndex:i]) {
+                continue; // just skip this one
             } else {
-                // it's an uncaptured value, not strongly associated with anything else
-                // it could be weakly associated with something, however
-                [_package->_uncapturedValues addObject:v];
+                // potentially uncaptured value, or else it could be an alias
+                if ((signature = [_aliases objectForKey:v]) != nil) {
+                    // perform the argument
+                    [self performSignature:signature fromIndex:i];
+                } else {
+                    // it's an uncaptured value, not strongly associated with anything else
+                    // it could be weakly associated with something, however
+                    [_package->_uncapturedValues addObject:v];
+                }
             }
         } else if ([type isEqualToString:__fsargs_barrier]) {
             // skip the barrier
