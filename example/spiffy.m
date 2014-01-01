@@ -3,42 +3,38 @@
 //  FSArgumentParser
 //
 //  Created by Christopher Miller on 2/28/12.
-//  Copyright (c) 2012 Christopher Miller. All rights reserved.
+//  Copyright (c) 2012, 2013 Christopher Miller. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-#import "FSArgumentSignature.h"
-#import "FSArgumentParser.h"
-#import "FSArgumentPackage.h"
+#import "FSArguments.h"
 
 #include <stdio.h>
 
 int main (int argc, const char * argv[]) {
     @autoreleasepool {
         FSArgumentSignature
-            * helpSig = [FSArgumentSignature argumentSignatureAsFlag:@"h" longNames:@"help" multipleAllowed:NO],
-            * ifSig = [FSArgumentSignature argumentSignatureAsNamedArgument:@"i" longNames:@"if" required:YES multipleAllowed:NO],
-            * ofSig = [FSArgumentSignature argumentSignatureAsNamedArgument:@"o" longNames:@"of" required:YES multipleAllowed:NO];
-        NSArray * signatures = [[NSArray alloc] initWithObjects:helpSig, ifSig, ofSig, nil];
+            * helpSig = [FSArgumentSignature argumentSignatureWithFormat:@"[-h --help]"],
+            * ifSig = [FSArgumentSignature argumentSignatureWithFormat:@"[-i --if]="],
+            * ofSig = [FSArgumentSignature argumentSignatureWithFormat:@"[-o --of]="];
+        NSArray * signatures = @[helpSig, ifSig, ofSig];
 
-        NSError * err;
-        FSArgumentPackage * arguments = [FSArgumentParser parseArguments:[[NSProcessInfo processInfo] arguments]
-                                                          withSignatures:signatures
-                                                                   error:&err];
+        FSArgumentPackage * arguments = [[NSProcessInfo processInfo] fsargs_parseArgumentsWithSignatures:signatures];
 
-        if (!err) {
-            printf("Example program:\n");
-            printf("  Input File: %s\n", [[arguments objectForNamedArgument:ifSig] UTF8String]);
-            printf("  OutputFile: %s\n", [[arguments objectForNamedArgument:ofSig] UTF8String]);
+        bool print_help = false;
+        
+        if ([arguments booleanValueForSignature:helpSig]) {
+            print_help = true;
         } else {
-            printf("Example program with help flag!\n\n");
-
-            [signatures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                printf("%s\n", [[obj descriptionWithLocale:nil indent:1] UTF8String]);
-            }];
-            
-            if (err&&[arguments boolValueOfFlag:helpSig]==NO) printf("\nOh, PS, there was an error: %s\n", [[[err userInfo] description] UTF8String]);
+            printf("  Input File: %s\n", [[[arguments firstObjectForSignature:ifSig] description] UTF8String]);
+            printf("  OutputFile: %s\n", [[[arguments firstObjectForSignature:ofSig] description] UTF8String]);
+        }
+        
+        if (print_help) {
+            printf("Example program:\n");
+            printf("  %s Input file\n", [[ifSig descriptionForHelp:2 terminalWidth:80] UTF8String]);
+            printf("  %s Output file\n", [[ofSig descriptionForHelp:2 terminalWidth:80] UTF8String]);
         }
 
     }

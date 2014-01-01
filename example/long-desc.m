@@ -3,35 +3,61 @@
 //  FSArgumentParser
 //
 //  Created by Christopher Miller on 2/28/12.
-//  Copyright (c) 2012 Christopher Miller. All rights reserved.
+//  Copyright (c) 2012, 2013 Christopher Miller. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-#import "FSArgumentSignature.h"
-#import "FSArgumentParser.h"
-#import "FSArgumentPackage.h"
+#import "FSArguments.h"
+#import "FSArguments_Coalescer_Internal.h" // for __fsargs_expandAllSwitches
+#import "NSString+FilledString.h"
 
 #include <stdio.h>
 
 int main (int argc, const char * argv[]) {
     @autoreleasepool {
         FSArgumentSignature
-            * helpSig = [FSArgumentSignature argumentSignatureAsFlag:@"h" longNames:@"help" multipleAllowed:NO],
-            * outFileSig = [FSArgumentSignature argumentSignatureAsNamedArgument:@"o" longNames:@"out-file" required:NO multipleAllowed:YES description:@"-o file --out-file file (not required) specify zero or more output files. I'm not really sure why you'd want to pipe the output to more than one file, but the main point of this is to show how the program can wrap really long lines without screwing up the indentation."];
-        NSArray * signatures = [[NSArray alloc] initWithObjects:helpSig, outFileSig, nil];
+            * helpSig = [FSArgumentSignature argumentSignatureWithFormat:@"[-h --help]"],
+            * outFileSig = [FSArgumentSignature argumentSignatureWithFormat:@"[-o --out-file]="];
+        [outFileSig setDescriptionHelper:^NSString *(FSArgumentSignature * signature, NSUInteger indent, NSUInteger width) {
+            NSMutableArray * invocations = [NSMutableArray arrayWithCapacity:[signature.switches count] + [signature.aliases count]];
+            [invocations addObjectsFromArray:__fsargs_expandAllSwitches(signature.switches)];
+            [invocations addObjectsFromArray:[signature.aliases allObjects]];
+            
+            NSString * unmangled = [NSString stringWithFormat:@"[%@]", [invocations componentsJoinedByString:@" "]];
+            
+            NSString * block_text = @"specify zero or more output files. I'm not really sure why you'd want to pipe the output to more than one file, but the main point of this is to show how the program can wrap really long lines without screwing up the indentation.";
+            
+            NSUInteger block_indent = indent * 4 + [unmangled length];
+            
+            assert(block_indent + 10 <= width); // ensure that there's some room to print our stuff
+            
+            NSMutableArray * exploding_rubbish_bins = [[NSMutableArray alloc] init];
+            
+            for (NSRange bin_range={0,width-block_indent}; bin_range.location<[block_text length]; bin_range.location += bin_range.length) {
+                if (bin_range.length + bin_range.location > [block_text length]) {
+                    bin_range.length = [block_text length] - bin_range.location;
+                }
+                [exploding_rubbish_bins addObject:[block_text substringWithRange:bin_range]];
+            }
+            
+            exploding_rubbish_bins[0] = [NSString stringWithFormat:@"%@%@ %@", [NSString fs_stringByFillingWithCharacter:' ' repeated:indent*4], unmangled, exploding_rubbish_bins[0]];
+            for (NSUInteger i = 1; i < [exploding_rubbish_bins count]; ++i) {
+                exploding_rubbish_bins[i] = [NSString stringWithFormat:@"%@%@", [NSString fs_stringByFillingWithCharacter:' ' repeated:indent*4+[unmangled length]+1], exploding_rubbish_bins[i]];
+            }
+            
+            return [exploding_rubbish_bins componentsJoinedByString:@"\n"];
+        }];
+    
+        NSArray * signatures = @[helpSig, outFileSig];
+        
+        FSArgumentPackage * arguments = [[NSProcessInfo processInfo] fsargs_parseArgumentsWithSignatures:signatures];
 
-        NSError * err;
-        FSArgumentPackage * arguments = [FSArgumentParser parseArguments:[[NSProcessInfo processInfo] arguments]
-                                                          withSignatures:signatures
-                                                                   error:&err];
-        if (err) { NSLog(@"%@", err); return -1; }
-
-        if ([arguments boolValueOfFlag:helpSig]==YES) {
+        if (YES==[arguments booleanValueForSignature:helpSig]) {
             printf("Example program with help flag!\n\n");
 
             [signatures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                printf("%s\n", [[obj descriptionWithLocale:nil indent:1] UTF8String]);
+                printf("%s\n", [[obj descriptionForHelp:1 terminalWidth:80] UTF8String]);
             }];
         }
 

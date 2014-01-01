@@ -113,3 +113,7 @@ By default the `-description` method returns a very simple programmer-friendly t
         printf("\n(C) 2012 by Your Face. All your base are belong to us.\n");
     }
 
+### Alternatives
+
+* [BRLOptionParser](https://github.com/barrelage/BRLOptionParser) - An
+  Objective-C wrapper for `getopt_long`. Looks to be well-constructed.

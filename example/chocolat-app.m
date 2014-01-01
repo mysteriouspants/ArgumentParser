@@ -3,7 +3,7 @@
 //  FSArgumentParser
 //
 //  Created by Christopher Miller on 2/28/12.
-//  Copyright (c) 2012 FSDEV. All rights reserved.
+//  Copyright (c) 2012 Christopher Miller. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

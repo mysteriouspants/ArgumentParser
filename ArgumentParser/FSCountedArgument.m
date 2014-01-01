@@ -3,7 +3,7 @@
 //  ArgumentParser
 //
 //  Created by Christopher Miller on 5/11/12.
-//  Copyright (c) 2012 FSDEV. All rights reserved.
+//  Copyright (c) 2012 Christopher Miller. All rights reserved.
 //
 
 #import "FSCountedArgument.h"
@@ -35,21 +35,21 @@
     
     if (width < 20) width = 20; // just make sure
     
-    NSMutableString * prefix = [NSMutableString stringWithCapacity:indent*2];
-    for (NSUInteger i = 0;
-         i < indent * 2;
-         ++i) [prefix appendString:@" "];
-    
     NSMutableArray * invocations = [NSMutableArray arrayWithCapacity:[_switches count] + [_aliases count]];
     [invocations addObjectsFromArray:__fsargs_expandAllSwitches(_switches)];
     [invocations addObjectsFromArray:[_aliases allObjects]];
     
     NSString * unmangled = [NSString stringWithFormat:@"[%@]", [invocations componentsJoinedByString:@" "]];
     
-    NSMutableString * s = [unmangled fsargs_mutableStringByIndentingToWidth:indent*2 lineLength:width];
+    NSMutableString * s = [unmangled fsargs_mutableStringByIndentingToWidth:indent*4 lineLength:width];
     
     for (FSArgumentSignature * signature in _injectedSignatures) {
         [s appendString:[signature descriptionForHelp:indent+1 terminalWidth:width]];
+    }
+    
+    NSRange last_character = NSMakeRange([s length]-1, 1);
+    if ([[s substringWithRange:last_character] isEqualToString:@"\n"]) {
+        [s deleteCharactersInRange:last_character];
     }
     
     return [s copy];
