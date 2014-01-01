@@ -13,6 +13,9 @@
 #import "FSArgumentPackage.h"
 #import "FSArgumentPackage_Private.h"
 
+// Utilize http://www.ruby-doc.org/stdlib-2.0.0/libdoc/shellwords/rdoc/Shellwords.html#method-c-shellsplit
+// to perform full tests?
+
 @implementation ParserTests
 
 - (void)testCommonCases

@@ -8,8 +8,7 @@ PRODUCTS = {
   # exe => src
   :desc => 'example/desc.m',
   :'long-desc' => 'example/long-desc.m',
-  :spiffy => 'example/spiffy.m',
-  :'chocolat-app' => 'example/chocolat-app.m',
+  :spiffy => 'example/spiffy.m'
 }
 
 CFLAGS = [
@@ -17,7 +16,16 @@ CFLAGS = [
   '-DDEBUG',
   '-std=c99',
   '-I ArgumentParser',
-  '-I Pods/Headers/CoreParse',
+  '-I  CoreParse/CoreParse',
+  '-I "CoreParse/CoreParse/Built In Parsers"',
+  '-I  CoreParse/CoreParse/Grammar',
+  '-I  CoreParse/CoreParse/Parsers',
+  '-I  CoreParse/CoreParse/Parsers/CPShiftReduceParsers',
+  '-I "CoreParse/CoreParse/Parsers/Error Recovery"',
+  '-I "CoreParse/CoreParse/Syntax Tree"',
+  '-I  CoreParse/CoreParse/Tokenisation',
+  '-I "CoreParse/CoreParse/Tokenisation/Token Recognisers"',
+  '-I "CoreParse/CoreParse/Tokenisation/Token Types"',
   '-include example/example-Prefix.pch',
 ].join(' ')
 
@@ -26,7 +34,7 @@ LIBS = [
 ].join(' ')
 
 OBJC_SOURCES = FileList['ArgumentParser/*.m', 'example/*.m']
-OBJC_SOURCES_NO_ARC = FileList['Pods/CoreParse/CoreParse/**/*.m']
+OBJC_SOURCES_NO_ARC = FileList['CoreParse/CoreParse/**/*.m']
 O_FILES = OBJC_SOURCES.ext('.o') + OBJC_SOURCES_NO_ARC.ext('.o')
 
 rule '.o' => ['.m'] do |t|

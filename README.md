@@ -52,7 +52,7 @@ New in this version is the ability to have more than one value per time an argum
     FSArgumentSignature * files =
         [FSArgumentSignature argumentSignatureWithFormat:@"[-f --files]={1,5}"];
         
-And boom, you can specify between one and five files per time you use the `-f` flag. You might think that this could be a little awkward if you have a flag group with two flags that take multiple arguments. Well, it isn't. FSArgumentParser understands "value barriers," which segragate between lists of values. A value barrier is either two dashes (`--`), or any other kind of argument invocation. So, given the following:
+And boom, you can specify between one and five files per time you use the `-f` flag. You might think that this could be a little awkward if you have a flag group with two flags that take multiple arguments. Well, it isn't. FSArgumentParser understands "value barriers," which segregate between lists of values. A value barrier is either two dashes (`--`), or any other kind of argument invocation. So, given the following:
 
     FSArgumentSignature
       *inFiles = [FSArgumentSignature argumentSignatureWithFormat:@"[-f --input-files]={1,5}"],
