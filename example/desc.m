@@ -11,6 +11,7 @@
 #import "FSArguments.h"
 
 #include <stdio.h>
+#include <sys/ioctl.h>
 
 int main (int argc, const char * argv[]) {
     @autoreleasepool {
@@ -25,7 +26,10 @@ int main (int argc, const char * argv[]) {
             printf("Example program with help flag!\n\n");
             
             [signatures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                printf("%s\n", [[obj descriptionWithLocale:nil indent:1] UTF8String]);
+                struct winsize ws;
+                ioctl(0, TIOCGWINSZ, &ws);
+                
+                printf("%s\n", [[obj descriptionForHelpWithIndent:1 terminalWidth:(NSUInteger)ws.ws_col] UTF8String]);
             }];
         } else {
             printf("%s\n", [[signatures description] UTF8String]);

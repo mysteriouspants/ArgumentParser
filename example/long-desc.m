@@ -13,6 +13,7 @@
 #import "NSString+FilledString.h"
 
 #include <stdio.h>
+#include <sys/ioctl.h>
 
 int main (int argc, const char * argv[]) {
     @autoreleasepool {
@@ -54,10 +55,13 @@ int main (int argc, const char * argv[]) {
         FSArgumentPackage * arguments = [[NSProcessInfo processInfo] fsargs_parseArgumentsWithSignatures:signatures];
 
         if (YES==[arguments booleanValueForSignature:helpSig]) {
+            struct winsize ws;
+            ioctl(0, TIOCGWINSZ, &ws);
+            
             printf("Example program with help flag!\n\n");
 
             [signatures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                printf("%s\n", [[obj descriptionForHelp:1 terminalWidth:80] UTF8String]);
+                printf("%s\n", [[obj descriptionForHelpWithIndent:1 terminalWidth:(NSUInteger)ws.ws_col] UTF8String]);
             }];
         }
 

@@ -28,7 +28,7 @@
 
 #pragma mark FSArgumentSignature
 
-- (NSString *)descriptionForHelp:(NSUInteger)indent terminalWidth:(NSUInteger)width
+- (NSString *)descriptionForHelpWithIndent:(NSUInteger)indent terminalWidth:(NSUInteger)width
 {
     if (_descriptionHelper)
         return _descriptionHelper(self, indent, width);
@@ -44,7 +44,7 @@
     NSMutableString * s = [unmangled fsargs_mutableStringByIndentingToWidth:indent*4 lineLength:width];
     
     for (FSArgumentSignature * signature in _injectedSignatures) {
-        [s appendString:[signature descriptionForHelp:indent+1 terminalWidth:width]];
+        [s appendString:[signature descriptionForHelpWithIndent:indent+1 terminalWidth:width]];
     }
     
     NSRange last_character = NSMakeRange([s length]-1, 1);

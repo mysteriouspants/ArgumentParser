@@ -35,7 +35,7 @@
  */
 @property (copy) NSString * (^descriptionHelper) (FSArgumentSignature * currentSignature, NSUInteger indentLevel, NSUInteger terminalWidth);
 
-- (NSString *)descriptionForHelp:(NSUInteger)indent terminalWidth:(NSUInteger)width;
+- (NSString *)descriptionForHelpWithIndent:(NSUInteger)indent terminalWidth:(NSUInteger)width;
 
 /**
  * Create a new argument signature using the terse format language.

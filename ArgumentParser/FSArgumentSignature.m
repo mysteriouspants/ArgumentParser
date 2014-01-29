@@ -49,7 +49,7 @@
     return self;
 }
 
-- (NSString *)descriptionForHelp:(NSUInteger)indent terminalWidth:(NSUInteger)width
+- (NSString *)descriptionForHelpWithIndent:(NSUInteger)indent terminalWidth:(NSUInteger)width
 {
     return @"";
 }

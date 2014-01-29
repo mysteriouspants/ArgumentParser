@@ -108,8 +108,8 @@ By default the `-description` method returns a very simple programmer-friendly t
     
     if ([package booleanValueOfFlag:help]) {
         printf("My Really Cool CLI Tool v0.1\n\n");
-        printf("%s\n", [[verbose descriptionForHelp:2 width:80] UTF8String]);
-        printf("%s\n", [[help descriptionForHelp:2 width:80] UTF8String]);
+        printf("%s\n", [[verbose descriptionForHelpWithIndent:2 width:80] UTF8String]);
+        printf("%s\n", [[help descriptionForHelpWithIndent:2 width:80] UTF8String]);
         printf("\n(C) 2012 by Your Face. All your base are belong to us.\n");
     }
 

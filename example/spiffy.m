@@ -11,6 +11,7 @@
 #import "FSArguments.h"
 
 #include <stdio.h>
+#include <sys/ioctl.h>
 
 int main (int argc, const char * argv[]) {
     @autoreleasepool {
@@ -32,9 +33,12 @@ int main (int argc, const char * argv[]) {
         }
         
         if (print_help) {
+            struct winsize ws;
+            ioctl(0, TIOCGWINSZ, &ws);
+            
             printf("Example program:\n");
-            printf("  %s Input file\n", [[ifSig descriptionForHelp:2 terminalWidth:80] UTF8String]);
-            printf("  %s Output file\n", [[ofSig descriptionForHelp:2 terminalWidth:80] UTF8String]);
+            printf("  %s Input file\n", [[ifSig descriptionForHelpWithIndent:2 terminalWidth:(NSUInteger)ws.ws_col] UTF8String]);
+            printf("  %s Output file\n", [[ofSig descriptionForHelpWithIndent:2 terminalWidth:(NSUInteger)ws.ws_col] UTF8String]);
         }
 
     }
