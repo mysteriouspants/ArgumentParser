@@ -33,21 +33,21 @@ int main (int argc, const char * argv[]) {
             
             assert(block_indent + 10 <= width); // ensure that there's some room to print our stuff
             
-            NSMutableArray * exploding_rubbish_bins = [[NSMutableArray alloc] init];
+            NSMutableArray * explodingGarbageCans = [[NSMutableArray alloc] init];
             
             for (NSRange bin_range={0,width-block_indent}; bin_range.location<[block_text length]; bin_range.location += bin_range.length) {
                 if (bin_range.length + bin_range.location > [block_text length]) {
                     bin_range.length = [block_text length] - bin_range.location;
                 }
-                [exploding_rubbish_bins addObject:[block_text substringWithRange:bin_range]];
+                [explodingGarbageCans addObject:[block_text substringWithRange:bin_range]];
             }
             
-            exploding_rubbish_bins[0] = [NSString stringWithFormat:@"%@%@ %@", [NSString fs_stringByFillingWithCharacter:' ' repeated:indent*4], unmangled, exploding_rubbish_bins[0]];
-            for (NSUInteger i = 1; i < [exploding_rubbish_bins count]; ++i) {
-                exploding_rubbish_bins[i] = [NSString stringWithFormat:@"%@%@", [NSString fs_stringByFillingWithCharacter:' ' repeated:indent*4+[unmangled length]+1], exploding_rubbish_bins[i]];
+            explodingGarbageCans[0] = [NSString stringWithFormat:@"%@%@ %@", [NSString fs_stringByFillingWithCharacter:' ' repeated:indent*4], unmangled, explodingGarbageCans[0]];
+            for (NSUInteger i = 1; i < [explodingGarbageCans count]; ++i) {
+                explodingGarbageCans[i] = [NSString stringWithFormat:@"%@%@", [NSString fs_stringByFillingWithCharacter:' ' repeated:indent*4+[unmangled length]+1], explodingGarbageCans[i]];
             }
             
-            return [exploding_rubbish_bins componentsJoinedByString:@"\n"];
+            return [explodingGarbageCans componentsJoinedByString:@"\n"];
         }];
     
         NSArray * signatures = @[helpSig, outFileSig];

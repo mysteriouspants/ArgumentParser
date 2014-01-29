@@ -107,9 +107,12 @@ By default the `-description` method returns a very simple programmer-friendly t
      [[NSProcessInfo processInfo] fsargs_parseArgumentsWithSignatures:[NSSet setWithObjects:verbose, help, nil]];
     
     if ([package booleanValueOfFlag:help]) {
+        struct winsize ws;
+        ioctl(0, TIOCGWINSZ, &ws);
+
         printf("My Really Cool CLI Tool v0.1\n\n");
-        printf("%s\n", [[verbose descriptionForHelpWithIndent:2 width:80] UTF8String]);
-        printf("%s\n", [[help descriptionForHelpWithIndent:2 width:80] UTF8String]);
+        printf("%s\n", [[verbose descriptionForHelpWithIndent:2 width:ws.ws_col] UTF8String]);
+        printf("%s\n", [[help descriptionForHelpWithIndent:2 width:ws.ws_col] UTF8String]);
         printf("\n(C) 2012 by Your Face. All your base are belong to us.\n");
     }
 
