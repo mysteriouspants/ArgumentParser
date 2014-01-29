@@ -13,16 +13,16 @@
 #include <stdio.h>
 #include <sys/ioctl.h>
 
-int main (int argc, const char * argv[]) {
+int main (int argc, const char *argv[]) {
     @autoreleasepool {
         FSArgumentSignature
-            * helpSig = [FSArgumentSignature argumentSignatureWithFormat:@"[-h --help]"],
-            * outFileSig = [FSArgumentSignature argumentSignatureWithFormat:@"[-o --out-file]={1,}"];
-        NSArray * signatures = @[helpSig, outFileSig];
+            *helpSig = [FSArgumentSignature argumentSignatureWithFormat:@"[-h --help]"],
+            *outFileSig = [FSArgumentSignature argumentSignatureWithFormat:@"[-o --out-file]={1,}"];
+        NSArray *signatures = @[helpSig, outFileSig];
     
-        FSArgumentPackage * arguments = [[NSProcessInfo processInfo] fsargs_parseArgumentsWithSignatures:signatures];
+        FSArgumentPackage *arguments = [[NSProcessInfo processInfo] fsargs_parseArgumentsWithSignatures:signatures];
         
-        if (YES==[arguments booleanValueForSignature:helpSig]) {
+        if ([arguments booleanValueForSignature:helpSig]) {
             printf("Example program with help flag!\n\n");
             
             [signatures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
