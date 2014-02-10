@@ -7,3 +7,4 @@ ArgumentParser.xcworkspace
 Pods
 ArgumentParser.xcodeproj/xcuserdata/
 *.xcodeproj/*.xcworkspace
+build
