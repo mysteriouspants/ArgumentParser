@@ -197,6 +197,17 @@
 		DACF2EF414FD3B7A0097C754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACF2EC814FD3B2F0097C754 /* Foundation.framework */; };
 		DACF2F0014FD3B840097C754 /* spiffy.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2EFF14FD3B840097C754 /* spiffy.m */; };
 		DADCF2C91873E48200B47AF1 /* NSString+FilledString.m in Sources */ = {isa = PBXBuildFile; fileRef = DADCF2C81873E48200B47AF1 /* NSString+FilledString.m */; };
+		FF77826018A970F20006D56D /* CPLALR1Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA37A18737DB9001A7138 /* CPLALR1Parser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FF77826118A970F20006D56D /* CPLR1Item.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA37C18737DB9001A7138 /* CPLR1Item.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FF77826218A970F20006D56D /* CPShiftReduceState.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA38918737DB9001A7138 /* CPShiftReduceState.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FF77826318A970F20006D56D /* CPSLRParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA38B18737DB9001A7138 /* CPSLRParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FF77826418A971360006D56D /* CPItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA37818737DB9001A7138 /* CPItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FF77826518A971360006D56D /* CPLR1Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA37E18737DB9001A7138 /* CPLR1Parser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FF77826618A971360006D56D /* CPShiftAction.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA38018737DB9001A7138 /* CPShiftAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FF77826718A971360006D56D /* CPShiftReduceAction.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA38218737DB9001A7138 /* CPShiftReduceAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FF77826818A971360006D56D /* CPShiftReduceActionTable.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA38418737DB9001A7138 /* CPShiftReduceActionTable.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FF77826918A971360006D56D /* CPShiftReduceGotoTable.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA38618737DB9001A7138 /* CPShiftReduceGotoTable.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FF77826A18A971360006D56D /* CPRecoveryAction.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA38E18737DB9001A7138 /* CPRecoveryAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1151,6 +1162,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF77826418A971360006D56D /* CPItem.m in Sources */,
+				FF77826518A971360006D56D /* CPLR1Parser.m in Sources */,
+				FF77826618A971360006D56D /* CPShiftAction.m in Sources */,
+				FF77826718A971360006D56D /* CPShiftReduceAction.m in Sources */,
+				FF77826818A971360006D56D /* CPShiftReduceActionTable.m in Sources */,
+				FF77826918A971360006D56D /* CPShiftReduceGotoTable.m in Sources */,
+				FF77826A18A971360006D56D /* CPRecoveryAction.m in Sources */,
+				FF77826018A970F20006D56D /* CPLALR1Parser.m in Sources */,
+				FF77826118A970F20006D56D /* CPLR1Item.m in Sources */,
+				FF77826218A970F20006D56D /* CPShiftReduceState.m in Sources */,
+				FF77826318A970F20006D56D /* CPSLRParser.m in Sources */,
 				DA8734B218970B0B00113896 /* NSScanner+EscapedScanning.m in Sources */,
 				DA8734CC18970B9000113896 /* CPKeywordRecogniser.m in Sources */,
 				DA8734B118970B0700113896 /* NSDictionary+RubyDescription.m in Sources */,
@@ -1521,6 +1543,7 @@
 				DA8734A518970AB800113896 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DACF2EBE14FD3B2F0097C754 /* Build configuration list for PBXProject "ArgumentParser" */ = {
 			isa = XCConfigurationList;
