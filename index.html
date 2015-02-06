@@ -3,32 +3,33 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <title>Argumentparser by NSError</title>
+    <title>Argumentparser by mysteriouspants</title>
   </head>
 
   <body>
+
     <header>
-      <div class="inner">
+      <div class="container">
         <h1>Argumentparser</h1>
         <h2>Faster, easier, more declarative parsing of command line arguments in Objective-C/Foundation.</h2>
-        <a href="https://github.com/NSError/ArgumentParser" class="button"><small>View project on</small>GitHub</a>
+
+        <section id="downloads">
+          <a href="https://github.com/mysteriouspants/ArgumentParser/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/mysteriouspants/ArgumentParser/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/mysteriouspants/ArgumentParser" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
       </div>
     </header>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h1>FSArgumentParser</h1>
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a id="fsargumentparser" class="anchor" href="#fsargumentparser" aria-hidden="true"><span class="octicon octicon-link"></span></a>FSArgumentParser</h1>
 
 <p>A short, awesome, and <em>really useful</em> tool for rapidly parsing command-line arguments in a declarative manner using Objective-C.</p>
 
@@ -38,7 +39,7 @@
   * outputFile = [FSArgumentSignature argumentSignatureWithFormat:@"[-o --output-file of]=",
   * inputFile = [FSArgumentSignature argumentSignatureWithFormat:@"[-i --input-file if]={1,}"];
 
-NSArray * signatures = [NSArray arrayWithObjects:force, soft, outputFile, inputFile, nil];
+NSArray * signatures = @[force, soft, outputFile, inputFile];
 
 FSArgumentPackage * package =
  [[NSProcessInfo currentProcess] fsargs_parseArgumentsWithSignatures:signatures];
@@ -53,19 +54,23 @@ if ([package firstObjectForSignature:inputFile]) {
 }
 </code></pre>
 
-<h2>Features: It Just Works</h2>
+<h2>
+<a id="features-it-just-works" class="anchor" href="#features-it-just-works" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features: It Just Works</h2>
 
 <p>You're probably already excited about the nice format ctors, which are admittedly a nice touch. But the real power of FSArgumentParser is on the command line. It's designed to "just work" in a variety of situations.</p>
 
-<h3>Flag Grouping</h3>
+<h3>
+<a id="flag-grouping" class="anchor" href="#flag-grouping" aria-hidden="true"><span class="octicon octicon-link"></span></a>Flag Grouping</h3>
 
 <p>It seems natural to us: we like to group flags together. <code>tar -cvvf</code>, anyone? FSArgumentParser understands that quite well.</p>
 
-<h3>Equals Signs</h3>
+<h3>
+<a id="equals-signs" class="anchor" href="#equals-signs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Equals Signs</h3>
 
 <p>Some tools require an equals sign for value assignment (<code>foo -f=t</code> works, but <code>foo -f t</code> doesn't). FSArgumentParser doesn't mind either formats.</p>
 
-<h3>Multiple Values in a Group</h3>
+<h3>
+<a id="multiple-values-in-a-group" class="anchor" href="#multiple-values-in-a-group" aria-hidden="true"><span class="octicon octicon-link"></span></a>Multiple Values in a Group</h3>
 
 <p>Supposing you have two or more flags that require values, how does that work? FSArgumentParser gives you two ways to work:</p>
 
@@ -77,7 +82,8 @@ spiffy -io file1 file2
 
 <p>Personally, I prefer the lazy way. The values are assigned respective to the order of the flags in the group. Note that equals signs are not really logical in argument groups. If you do something like <code>-cfg=file.txt</code>, it will assign <code>file.txt</code> to <code>f</code> (if that's the first flag that takes a value), but it will not do anything fancy, like force that flag to take only one value if it supports multiple values. For that you need to use a barrier.</p>
 
-<h3>Many Values per Argument</h3>
+<h3>
+<a id="many-values-per-argument" class="anchor" href="#many-values-per-argument" aria-hidden="true"><span class="octicon octicon-link"></span></a>Many Values per Argument</h3>
 
 <p>New in this version is the ability to have more than one value per time an argument is invoked. You define the number of arguments per invocation as a range, minimum to maximum.</p>
 
@@ -85,7 +91,7 @@ spiffy -io file1 file2
     [FSArgumentSignature argumentSignatureWithFormat:@"[-f --files]={1,5}"];
 </code></pre>
 
-<p>And boom, you can specify between one and five files per time you use the <code>-f</code> flag. You might think that this could be a little awkward if you have a flag group with two flags that take multiple arguments. Well, it isn't. FSArgumentParser understands "value barriers," which segragate between lists of values. A value barrier is either two dashes (<code>--</code>), or any other kind of argument invocation. So, given the following:</p>
+<p>And boom, you can specify between one and five files per time you use the <code>-f</code> flag. You might think that this could be a little awkward if you have a flag group with two flags that take multiple arguments. Well, it isn't. FSArgumentParser understands "value barriers," which segregate between lists of values. A value barrier is either two dashes (<code>--</code>), or any other kind of argument invocation. So, given the following:</p>
 
 <pre><code>FSArgumentSignature
   *inFiles = [FSArgumentSignature argumentSignatureWithFormat:@"[-f --input-files]={1,5}"],
@@ -99,7 +105,8 @@ foo -of ouput1 output2 output3 -v input1 input2 input3 input4 # use the verbose 
 
 <p>See how it "just works" for you?</p>
 
-<h3>Undecorated Arguments</h3>
+<h3>
+<a id="undecorated-arguments" class="anchor" href="#undecorated-arguments" aria-hidden="true"><span class="octicon octicon-link"></span></a>Undecorated Arguments</h3>
 
 <p>Who here is in love with how the <code>dd</code> utility takes its arguments? So perhaps not many, but FSArgumentParser understands that, too.</p>
 
@@ -111,7 +118,8 @@ foo -of ouput1 output2 output3 -v input1 input2 input3 input4 # use the verbose 
 <pre><code>foo commit -Am "Why are you reinventing git?"
 </code></pre>
 
-<h3>Argument Injection</h3>
+<h3>
+<a id="argument-injection" class="anchor" href="#argument-injection" aria-hidden="true"><span class="octicon octicon-link"></span></a>Argument Injection</h3>
 
 <p>Wouldn't it be nice to build out a tree of possible arguments, with some arguments which are scanned if and only if a certain argument is present? So thought I, which is why the following invocation could be created like this:</p>
 
@@ -126,7 +134,8 @@ FSArgumentSignature * commitSubcommand =
   [FSArgumentSignature argumentSignatureWithFormat:@"[-m --commit-message]="], nil]];
 </code></pre>
 
-<h2>Descriptions</h2>
+<h2>
+<a id="descriptions" class="anchor" href="#descriptions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Descriptions</h2>
 
 <p>By default the <code>-description</code> method returns a very simple programmer-friendly text. However, you can use the <code>descriptionHelper</code> block property on <code>FSArgumentSignature</code>. A different description method which you can call for emitting command-line help will use this. For example:</p>
 
@@ -144,31 +153,27 @@ FSArgumentPackage * package =
  [[NSProcessInfo processInfo] fsargs_parseArgumentsWithSignatures:[NSSet setWithObjects:verbose, help, nil]];
 
 if ([package booleanValueOfFlag:help]) {
+    struct winsize ws;
+    ioctl(0, TIOCGWINSZ, &amp;ws);
+
     printf("My Really Cool CLI Tool v0.1\n\n");
-    printf("%s\n", [[verbose descriptionForHelp:2 width:80] UTF8String]);
-    printf("%s\n", [[help descriptionForHelp:2 width:80] UTF8String]);
+    printf("%s\n", [[verbose descriptionForHelpWithIndent:2 width:ws.ws_col] UTF8String]);
+    printf("%s\n", [[help descriptionForHelpWithIndent:2 width:ws.ws_col] UTF8String]);
     printf("\n(C) 2012 by Your Face. All your base are belong to us.\n");
 }
 </code></pre>
-        </section>
 
-        <aside id="sidebar">
-          <a href="https://github.com/NSError/ArgumentParser/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/NSError/ArgumentParser/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
+<h3>
+<a id="alternatives" class="anchor" href="#alternatives" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alternatives</h3>
 
-          <p class="repo-owner"><a href="https://github.com/NSError/ArgumentParser"></a> is maintained by <a href="https://github.com/NSError">NSError</a>.</p>
-
-          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
+<ul>
+<li>
+<a href="https://github.com/barrelage/BRLOptionParser">BRLOptionParser</a> - An
+Objective-C wrapper for <code>getopt_long</code>. Looks to be well-constructed.</li>
+</ul>
+      </section>
     </div>
 
-  
+    
   </body>
 </html>
