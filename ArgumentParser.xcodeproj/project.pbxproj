@@ -8,16 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		DA00447C155D94FF0028A012 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA00447B155D94FF0028A012 /* Cocoa.framework */; };
-		DA0044A2155D950A0028A012 /* FSArgumentPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */; };
-		DA0044A3155D950E0028A012 /* FSArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */; };
-		DA0044A4155D95110028A012 /* FSArgumentSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */; };
-		DA0044AE155D966F0028A012 /* FSArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0044AD155D966F0028A012 /* FSArguments.h */; };
-		DA0044B1155D99FF0028A012 /* FSCountedArgument.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0044AF155D99FF0028A012 /* FSCountedArgument.h */; };
-		DA0044B2155D99FF0028A012 /* FSCountedArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044B0155D99FF0028A012 /* FSCountedArgument.m */; };
-		DA0044B7155D9B2F0028A012 /* FSValuedArgument.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0044B5155D9B2F0028A012 /* FSValuedArgument.h */; };
-		DA0044B8155D9B2F0028A012 /* FSValuedArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044B6155D9B2F0028A012 /* FSValuedArgument.m */; };
-		DA0044C0155DA7BC0028A012 /* FSArguments_Coalescer_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0044BE155DA7BC0028A012 /* FSArguments_Coalescer_Internal.h */; };
-		DA0044C1155DA7BC0028A012 /* FSArguments_Coalescer_Internal.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044BF155DA7BC0028A012 /* FSArguments_Coalescer_Internal.m */; };
+		DA0044A2155D950A0028A012 /* XPMArgumentPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0214FD3BED0097C754 /* XPMArgumentPackage.m */; };
+		DA0044A3155D950E0028A012 /* XPMArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0414FD3BED0097C754 /* XPMArgumentParser.m */; };
+		DA0044A4155D95110028A012 /* XPMArgumentSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0614FD3BED0097C754 /* XPMArgumentSignature.m */; };
+		DA0044AE155D966F0028A012 /* XPMArguments.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0044AD155D966F0028A012 /* XPMArguments.h */; };
+		DA0044B1155D99FF0028A012 /* XPMCountedArgument.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0044AF155D99FF0028A012 /* XPMCountedArgument.h */; };
+		DA0044B2155D99FF0028A012 /* XPMCountedArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044B0155D99FF0028A012 /* XPMCountedArgument.m */; };
+		DA0044B7155D9B2F0028A012 /* XPMValuedArgument.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0044B5155D9B2F0028A012 /* XPMValuedArgument.h */; };
+		DA0044B8155D9B2F0028A012 /* XPMValuedArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044B6155D9B2F0028A012 /* XPMValuedArgument.m */; };
+		DA0044C0155DA7BC0028A012 /* XPMArguments_Coalescer_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0044BE155DA7BC0028A012 /* XPMArguments_Coalescer_Internal.h */; };
+		DA0044C1155DA7BC0028A012 /* XPMArguments_Coalescer_Internal.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044BF155DA7BC0028A012 /* XPMArguments_Coalescer_Internal.m */; };
 		DA0044C7155DC1160028A012 /* NSString+Indenter.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0044C5155DC1160028A012 /* NSString+Indenter.h */; };
 		DA0044C8155DC1160028A012 /* NSString+Indenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044C6155DC1160028A012 /* NSString+Indenter.m */; };
 		DA01E3051A8471E20012BCAE /* ArgumentParser-Dynamic.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA00447A155D94FF0028A012 /* ArgumentParser-Dynamic.dylib */; };
@@ -27,165 +27,35 @@
 		DA01E3121A8474C10012BCAE /* XPMAttributedArrayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA01E3111A8474C10012BCAE /* XPMAttributedArrayTests.m */; };
 		DA01E3141A8475370012BCAE /* XPMArgumentSignatureFormatConstructionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA01E3131A8475370012BCAE /* XPMArgumentSignatureFormatConstructionTests.m */; };
 		DA01E3161A8475F10012BCAE /* XPMSignatureHashTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA01E3151A8475F10012BCAE /* XPMSignatureHashTests.m */; };
-		DA17B90E156584EB00BDDA7E /* FSSwitchRecognizer.h in Headers */ = {isa = PBXBuildFile; fileRef = DA17B90C156584EB00BDDA7E /* FSSwitchRecognizer.h */; };
-		DA17B90F156584EB00BDDA7E /* FSSwitchRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA17B90D156584EB00BDDA7E /* FSSwitchRecognizer.m */; };
-		DA17B9131565853E00BDDA7E /* FSSwitchToken.h in Headers */ = {isa = PBXBuildFile; fileRef = DA17B9111565853E00BDDA7E /* FSSwitchToken.h */; };
-		DA17B9141565853E00BDDA7E /* FSSwitchToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DA17B9121565853E00BDDA7E /* FSSwitchToken.m */; };
-		DA17B9171565890500BDDA7E /* FSAliasToken.h in Headers */ = {isa = PBXBuildFile; fileRef = DA17B9151565890500BDDA7E /* FSAliasToken.h */; };
-		DA17B9181565890500BDDA7E /* FSAliasToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DA17B9161565890500BDDA7E /* FSAliasToken.m */; };
-		DA17B91B1565891600BDDA7E /* FSAliasRecognizer.h in Headers */ = {isa = PBXBuildFile; fileRef = DA17B9191565891600BDDA7E /* FSAliasRecognizer.h */; };
-		DA17B91C1565891600BDDA7E /* FSAliasRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA17B91A1565891600BDDA7E /* FSAliasRecognizer.m */; };
 		DA17B91F1565961C00BDDA7E /* NSScanner+EscapedScanning.h in Headers */ = {isa = PBXBuildFile; fileRef = DA17B91D1565961C00BDDA7E /* NSScanner+EscapedScanning.h */; };
 		DA17B9201565961C00BDDA7E /* NSScanner+EscapedScanning.m in Sources */ = {isa = PBXBuildFile; fileRef = DA17B91E1565961C00BDDA7E /* NSScanner+EscapedScanning.m */; };
-		DA2B1DFC1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = DA2B1DFA1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.h */; };
-		DA2B1DFD1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2B1DFB1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.m */; };
-		DA2B1E001566DC37002FDBD7 /* FSFormatCtorParserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = DA2B1DFE1566DC37002FDBD7 /* FSFormatCtorParserDelegate.h */; };
-		DA2B1E011566DC37002FDBD7 /* FSFormatCtorParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2B1DFF1566DC37002FDBD7 /* FSFormatCtorParserDelegate.m */; };
 		DA3551D7186AC1F900EF7AAA /* ArgumentParser-Dynamic.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA00447A155D94FF0028A012 /* ArgumentParser-Dynamic.dylib */; };
 		DA3551D8186AC2E900EF7AAA /* ArgumentParser-Dynamic.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA00447A155D94FF0028A012 /* ArgumentParser-Dynamic.dylib */; };
-		DA42159A15629EF800F82E8E /* FSMutableAttributedArray.h in Headers */ = {isa = PBXBuildFile; fileRef = DA42159815629EF800F82E8E /* FSMutableAttributedArray.h */; };
-		DA42159B15629EF800F82E8E /* FSMutableAttributedArray.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42159915629EF800F82E8E /* FSMutableAttributedArray.m */; };
-		DA4215A21562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA4215A01562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.h */; };
-		DA4215A31562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215A11562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.m */; };
+		DA42159A15629EF800F82E8E /* XPMMutableAttributedArray.h in Headers */ = {isa = PBXBuildFile; fileRef = DA42159815629EF800F82E8E /* XPMMutableAttributedArray.h */; };
+		DA42159B15629EF800F82E8E /* XPMMutableAttributedArray.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42159915629EF800F82E8E /* XPMMutableAttributedArray.m */; };
+		DA4215A21562AC4100F82E8E /* NSProcessInfo+XPMArgumentParser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA4215A01562AC4100F82E8E /* NSProcessInfo+XPMArgumentParser.h */; };
+		DA4215A31562AC4100F82E8E /* NSProcessInfo+XPMArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215A11562AC4100F82E8E /* NSProcessInfo+XPMArgumentParser.m */; };
 		DA4215AB1562DB0C00F82E8E /* NSDictionary+RubyDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = DA4215A91562DB0C00F82E8E /* NSDictionary+RubyDescription.h */; };
 		DA4215AC1562DB0C00F82E8E /* NSDictionary+RubyDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215AA1562DB0C00F82E8E /* NSDictionary+RubyDescription.m */; };
-		DA4215AF1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.h in Headers */ = {isa = PBXBuildFile; fileRef = DA4215AD1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.h */; };
-		DA4215B01562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215AE1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.m */; };
-		DA4215B61562E09100F82E8E /* FSArgsKonstants.h in Headers */ = {isa = PBXBuildFile; fileRef = DA4215B41562E09100F82E8E /* FSArgsKonstants.h */; };
-		DA4215B71562E09100F82E8E /* FSArgsKonstants.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215B51562E09100F82E8E /* FSArgsKonstants.m */; };
+		DA4215AF1562DC0F00F82E8E /* NSArray+XPMArgumentsNormalizer.h in Headers */ = {isa = PBXBuildFile; fileRef = DA4215AD1562DC0F00F82E8E /* NSArray+XPMArgumentsNormalizer.h */; };
+		DA4215B01562DC0F00F82E8E /* NSArray+XPMArgumentsNormalizer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215AE1562DC0F00F82E8E /* NSArray+XPMArgumentsNormalizer.m */; };
+		DA4215B61562E09100F82E8E /* XPMArgsKonstants.h in Headers */ = {isa = PBXBuildFile; fileRef = DA4215B41562E09100F82E8E /* XPMArgsKonstants.h */; };
+		DA4215B71562E09100F82E8E /* XPMArgsKonstants.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215B51562E09100F82E8E /* XPMArgsKonstants.m */; };
 		DA59C5D118624A3C00DDE821 /* ArgumentParser-Dynamic.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DA00447A155D94FF0028A012 /* ArgumentParser-Dynamic.dylib */; };
-		DA7BA3B418737DB9001A7138 /* CPJSONParser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA35818737DB9001A7138 /* CPJSONParser.h */; };
-		DA7BA3B518737DB9001A7138 /* CPJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA35918737DB9001A7138 /* CPJSONParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3B618737DB9001A7138 /* CoreParse.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA35A18737DB9001A7138 /* CoreParse.h */; };
-		DA7BA3B718737DB9001A7138 /* CPSenTestKitAssertions.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA35B18737DB9001A7138 /* CPSenTestKitAssertions.h */; };
-		DA7BA3B818737DB9001A7138 /* CPGrammar.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA35D18737DB9001A7138 /* CPGrammar.h */; };
-		DA7BA3B918737DB9001A7138 /* CPGrammar.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA35E18737DB9001A7138 /* CPGrammar.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3BA18737DB9001A7138 /* CPGrammarInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA35F18737DB9001A7138 /* CPGrammarInternal.h */; };
-		DA7BA3BB18737DB9001A7138 /* CPGrammarInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA36018737DB9001A7138 /* CPGrammarInternal.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3BC18737DB9001A7138 /* CPGrammarPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA36118737DB9001A7138 /* CPGrammarPrivate.h */; };
-		DA7BA3BD18737DB9001A7138 /* CPGrammarPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA36218737DB9001A7138 /* CPGrammarPrivate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3BE18737DB9001A7138 /* CPGrammarSymbol.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA36318737DB9001A7138 /* CPGrammarSymbol.h */; };
-		DA7BA3BF18737DB9001A7138 /* CPGrammarSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA36418737DB9001A7138 /* CPGrammarSymbol.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3C018737DB9001A7138 /* CPRHSItem+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA36518737DB9001A7138 /* CPRHSItem+Private.h */; };
-		DA7BA3C118737DB9001A7138 /* CPRHSItem.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA36618737DB9001A7138 /* CPRHSItem.h */; };
-		DA7BA3C218737DB9001A7138 /* CPRHSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA36718737DB9001A7138 /* CPRHSItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3C318737DB9001A7138 /* CPRHSItemResult.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA36818737DB9001A7138 /* CPRHSItemResult.h */; };
-		DA7BA3C418737DB9001A7138 /* CPRHSItemResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA36918737DB9001A7138 /* CPRHSItemResult.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3C518737DB9001A7138 /* CPRule+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA36A18737DB9001A7138 /* CPRule+Internal.h */; };
-		DA7BA3C618737DB9001A7138 /* CPRule.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA36B18737DB9001A7138 /* CPRule.h */; };
-		DA7BA3C718737DB9001A7138 /* CPRule.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA36C18737DB9001A7138 /* CPRule.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3C818737DB9001A7138 /* NSArray+Functional.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA36D18737DB9001A7138 /* NSArray+Functional.h */; };
-		DA7BA3C918737DB9001A7138 /* NSArray+Functional.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA36E18737DB9001A7138 /* NSArray+Functional.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3CA18737DB9001A7138 /* NSSetFunctional.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA36F18737DB9001A7138 /* NSSetFunctional.h */; };
-		DA7BA3CB18737DB9001A7138 /* NSSetFunctional.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA37018737DB9001A7138 /* NSSetFunctional.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3CC18737DB9001A7138 /* CPParser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA37218737DB9001A7138 /* CPParser.h */; };
-		DA7BA3CD18737DB9001A7138 /* CPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA37318737DB9001A7138 /* CPParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3CE18737DB9001A7138 /* CPShiftReduceParser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA37418737DB9001A7138 /* CPShiftReduceParser.h */; };
-		DA7BA3CF18737DB9001A7138 /* CPShiftReduceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA37518737DB9001A7138 /* CPShiftReduceParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3D018737DB9001A7138 /* CPItem.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA37718737DB9001A7138 /* CPItem.h */; };
-		DA7BA3D118737DB9001A7138 /* CPItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA37818737DB9001A7138 /* CPItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3D218737DB9001A7138 /* CPLALR1Parser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA37918737DB9001A7138 /* CPLALR1Parser.h */; };
-		DA7BA3D318737DB9001A7138 /* CPLALR1Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA37A18737DB9001A7138 /* CPLALR1Parser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3D418737DB9001A7138 /* CPLR1Item.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA37B18737DB9001A7138 /* CPLR1Item.h */; };
-		DA7BA3D518737DB9001A7138 /* CPLR1Item.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA37C18737DB9001A7138 /* CPLR1Item.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3D618737DB9001A7138 /* CPLR1Parser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA37D18737DB9001A7138 /* CPLR1Parser.h */; };
-		DA7BA3D718737DB9001A7138 /* CPLR1Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA37E18737DB9001A7138 /* CPLR1Parser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3D818737DB9001A7138 /* CPShiftAction.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA37F18737DB9001A7138 /* CPShiftAction.h */; };
-		DA7BA3D918737DB9001A7138 /* CPShiftAction.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA38018737DB9001A7138 /* CPShiftAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3DA18737DB9001A7138 /* CPShiftReduceAction.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA38118737DB9001A7138 /* CPShiftReduceAction.h */; };
-		DA7BA3DB18737DB9001A7138 /* CPShiftReduceAction.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA38218737DB9001A7138 /* CPShiftReduceAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3DC18737DB9001A7138 /* CPShiftReduceActionTable.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA38318737DB9001A7138 /* CPShiftReduceActionTable.h */; };
-		DA7BA3DD18737DB9001A7138 /* CPShiftReduceActionTable.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA38418737DB9001A7138 /* CPShiftReduceActionTable.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3DE18737DB9001A7138 /* CPShiftReduceGotoTable.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA38518737DB9001A7138 /* CPShiftReduceGotoTable.h */; };
-		DA7BA3DF18737DB9001A7138 /* CPShiftReduceGotoTable.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA38618737DB9001A7138 /* CPShiftReduceGotoTable.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3E018737DB9001A7138 /* CPShiftReduceParserProtectedMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA38718737DB9001A7138 /* CPShiftReduceParserProtectedMethods.h */; };
-		DA7BA3E118737DB9001A7138 /* CPShiftReduceState.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA38818737DB9001A7138 /* CPShiftReduceState.h */; };
-		DA7BA3E218737DB9001A7138 /* CPShiftReduceState.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA38918737DB9001A7138 /* CPShiftReduceState.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3E318737DB9001A7138 /* CPSLRParser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA38A18737DB9001A7138 /* CPSLRParser.h */; };
-		DA7BA3E418737DB9001A7138 /* CPSLRParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA38B18737DB9001A7138 /* CPSLRParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3E518737DB9001A7138 /* CPRecoveryAction.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA38D18737DB9001A7138 /* CPRecoveryAction.h */; };
-		DA7BA3E618737DB9001A7138 /* CPRecoveryAction.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA38E18737DB9001A7138 /* CPRecoveryAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3E718737DB9001A7138 /* CPSyntaxTree.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA39018737DB9001A7138 /* CPSyntaxTree.h */; };
-		DA7BA3E818737DB9001A7138 /* CPSyntaxTree.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA39118737DB9001A7138 /* CPSyntaxTree.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3E918737DB9001A7138 /* CPTokeniser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA39318737DB9001A7138 /* CPTokeniser.h */; };
-		DA7BA3EA18737DB9001A7138 /* CPTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA39418737DB9001A7138 /* CPTokeniser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3EB18737DB9001A7138 /* CPTokenStream.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA39518737DB9001A7138 /* CPTokenStream.h */; };
-		DA7BA3EC18737DB9001A7138 /* CPTokenStream.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA39618737DB9001A7138 /* CPTokenStream.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3ED18737DB9001A7138 /* CPIdentifierRecogniser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA39818737DB9001A7138 /* CPIdentifierRecogniser.h */; };
-		DA7BA3EE18737DB9001A7138 /* CPIdentifierRecogniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA39918737DB9001A7138 /* CPIdentifierRecogniser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3EF18737DB9001A7138 /* CPKeywordRecogniser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA39A18737DB9001A7138 /* CPKeywordRecogniser.h */; };
-		DA7BA3F018737DB9001A7138 /* CPKeywordRecogniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA39B18737DB9001A7138 /* CPKeywordRecogniser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3F118737DB9001A7138 /* CPNumberRecogniser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA39C18737DB9001A7138 /* CPNumberRecogniser.h */; };
-		DA7BA3F218737DB9001A7138 /* CPNumberRecogniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA39D18737DB9001A7138 /* CPNumberRecogniser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3F318737DB9001A7138 /* CPQuotedRecogniser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA39E18737DB9001A7138 /* CPQuotedRecogniser.h */; };
-		DA7BA3F418737DB9001A7138 /* CPQuotedRecogniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA39F18737DB9001A7138 /* CPQuotedRecogniser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3F518737DB9001A7138 /* CPTokenRecogniser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA3A018737DB9001A7138 /* CPTokenRecogniser.h */; };
-		DA7BA3F618737DB9001A7138 /* CPWhiteSpaceRecogniser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA3A118737DB9001A7138 /* CPWhiteSpaceRecogniser.h */; };
-		DA7BA3F718737DB9001A7138 /* CPWhiteSpaceRecogniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA3A218737DB9001A7138 /* CPWhiteSpaceRecogniser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3F818737DB9001A7138 /* CPEOFToken.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA3A418737DB9001A7138 /* CPEOFToken.h */; };
-		DA7BA3F918737DB9001A7138 /* CPEOFToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA3A518737DB9001A7138 /* CPEOFToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3FA18737DB9001A7138 /* CPErrorToken.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA3A618737DB9001A7138 /* CPErrorToken.h */; };
-		DA7BA3FB18737DB9001A7138 /* CPErrorToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA3A718737DB9001A7138 /* CPErrorToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3FC18737DB9001A7138 /* CPIdentifierToken.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA3A818737DB9001A7138 /* CPIdentifierToken.h */; };
-		DA7BA3FD18737DB9001A7138 /* CPIdentifierToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA3A918737DB9001A7138 /* CPIdentifierToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA3FE18737DB9001A7138 /* CPKeywordToken.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA3AA18737DB9001A7138 /* CPKeywordToken.h */; };
-		DA7BA3FF18737DB9001A7138 /* CPKeywordToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA3AB18737DB9001A7138 /* CPKeywordToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA40018737DB9001A7138 /* CPNumberToken.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA3AC18737DB9001A7138 /* CPNumberToken.h */; };
-		DA7BA40118737DB9001A7138 /* CPNumberToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA3AD18737DB9001A7138 /* CPNumberToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA40218737DB9001A7138 /* CPQuotedToken.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA3AE18737DB9001A7138 /* CPQuotedToken.h */; };
-		DA7BA40318737DB9001A7138 /* CPQuotedToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA3AF18737DB9001A7138 /* CPQuotedToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA40418737DB9001A7138 /* CPToken.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA3B018737DB9001A7138 /* CPToken.h */; };
-		DA7BA40518737DB9001A7138 /* CPToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA3B118737DB9001A7138 /* CPToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA7BA40618737DB9001A7138 /* CPWhiteSpaceToken.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7BA3B218737DB9001A7138 /* CPWhiteSpaceToken.h */; };
-		DA7BA40718737DB9001A7138 /* CPWhiteSpaceToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA3B318737DB9001A7138 /* CPWhiteSpaceToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DA87348A18970AB800113896 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA00447B155D94FF0028A012 /* Cocoa.framework */; };
-		DA8734A918970AE600113896 /* FSArgumentPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */; };
-		DA8734AA18970AEB00113896 /* FSArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */; };
-		DA8734AB18970AEF00113896 /* FSArguments_Coalescer_Internal.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044BF155DA7BC0028A012 /* FSArguments_Coalescer_Internal.m */; };
-		DA8734AC18970AF300113896 /* FSArgsKonstants.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215B51562E09100F82E8E /* FSArgsKonstants.m */; };
-		DA8734AD18970AF800113896 /* FSMutableAttributedArray.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42159915629EF800F82E8E /* FSMutableAttributedArray.m */; };
-		DA8734AE18970AFE00113896 /* NSProcessInfo+FSArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215A11562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.m */; };
-		DA8734AF18970B0100113896 /* NSArray+FSArgumentsNormalizer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215AE1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.m */; };
+		DA8734A918970AE600113896 /* XPMArgumentPackage.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0214FD3BED0097C754 /* XPMArgumentPackage.m */; };
+		DA8734AA18970AEB00113896 /* XPMArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0414FD3BED0097C754 /* XPMArgumentParser.m */; };
+		DA8734AB18970AEF00113896 /* XPMArguments_Coalescer_Internal.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044BF155DA7BC0028A012 /* XPMArguments_Coalescer_Internal.m */; };
+		DA8734AC18970AF300113896 /* XPMArgsKonstants.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215B51562E09100F82E8E /* XPMArgsKonstants.m */; };
+		DA8734AD18970AF800113896 /* XPMMutableAttributedArray.m in Sources */ = {isa = PBXBuildFile; fileRef = DA42159915629EF800F82E8E /* XPMMutableAttributedArray.m */; };
+		DA8734AE18970AFE00113896 /* NSProcessInfo+XPMArgumentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215A11562AC4100F82E8E /* NSProcessInfo+XPMArgumentParser.m */; };
+		DA8734AF18970B0100113896 /* NSArray+XPMArgumentsNormalizer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215AE1562DC0F00F82E8E /* NSArray+XPMArgumentsNormalizer.m */; };
 		DA8734B018970B0400113896 /* NSString+Indenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044C6155DC1160028A012 /* NSString+Indenter.m */; };
 		DA8734B118970B0700113896 /* NSDictionary+RubyDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4215AA1562DB0C00F82E8E /* NSDictionary+RubyDescription.m */; };
 		DA8734B218970B0B00113896 /* NSScanner+EscapedScanning.m in Sources */ = {isa = PBXBuildFile; fileRef = DA17B91E1565961C00BDDA7E /* NSScanner+EscapedScanning.m */; };
-		DA8734B318970B1200113896 /* FSArgumentSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */; };
-		DA8734B418970B1600113896 /* FSCountedArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044B0155D99FF0028A012 /* FSCountedArgument.m */; };
-		DA8734B518970B1900113896 /* FSValuedArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044B6155D9B2F0028A012 /* FSValuedArgument.m */; };
-		DA8734B618970B1D00113896 /* FSSwitchRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA17B90D156584EB00BDDA7E /* FSSwitchRecognizer.m */; };
-		DA8734B718970B2100113896 /* FSSwitchToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DA17B9121565853E00BDDA7E /* FSSwitchToken.m */; };
-		DA8734B818970B2600113896 /* FSAliasRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA17B91A1565891600BDDA7E /* FSAliasRecognizer.m */; };
-		DA8734B918970B2900113896 /* FSAliasToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DA17B9161565890500BDDA7E /* FSAliasToken.m */; };
-		DA8734BA18970B2C00113896 /* FSFormatCtorTokeniserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2B1DFB1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.m */; };
-		DA8734BB18970B3300113896 /* FSFormatCtorParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2B1DFF1566DC37002FDBD7 /* FSFormatCtorParserDelegate.m */; };
-		DA8734BC18970B4700113896 /* CPJSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA35918737DB9001A7138 /* CPJSONParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734BD18970B4D00113896 /* NSArray+Functional.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA36E18737DB9001A7138 /* NSArray+Functional.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734BE18970B4F00113896 /* NSSetFunctional.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA37018737DB9001A7138 /* NSSetFunctional.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734BF18970B5900113896 /* CPGrammar.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA35E18737DB9001A7138 /* CPGrammar.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734C018970B5C00113896 /* CPGrammarInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA36018737DB9001A7138 /* CPGrammarInternal.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734C118970B5F00113896 /* CPGrammarPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA36218737DB9001A7138 /* CPGrammarPrivate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734C218970B6300113896 /* CPGrammarSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA36418737DB9001A7138 /* CPGrammarSymbol.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734C318970B6700113896 /* CPRHSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA36718737DB9001A7138 /* CPRHSItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734C418970B6B00113896 /* CPRHSItemResult.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA36918737DB9001A7138 /* CPRHSItemResult.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734C518970B7000113896 /* CPRule.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA36C18737DB9001A7138 /* CPRule.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734C618970B7700113896 /* CPParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA37318737DB9001A7138 /* CPParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734C718970B7A00113896 /* CPShiftReduceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA37518737DB9001A7138 /* CPShiftReduceParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734C818970B8000113896 /* CPSyntaxTree.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA39118737DB9001A7138 /* CPSyntaxTree.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734C918970B8500113896 /* CPTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA39418737DB9001A7138 /* CPTokeniser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734CA18970B8800113896 /* CPTokenStream.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA39618737DB9001A7138 /* CPTokenStream.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734CB18970B8D00113896 /* CPIdentifierRecogniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA39918737DB9001A7138 /* CPIdentifierRecogniser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734CC18970B9000113896 /* CPKeywordRecogniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA39B18737DB9001A7138 /* CPKeywordRecogniser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734CD18970B9500113896 /* CPNumberRecogniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA39D18737DB9001A7138 /* CPNumberRecogniser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734CE18970B9700113896 /* CPQuotedRecogniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA39F18737DB9001A7138 /* CPQuotedRecogniser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734CF18970B9B00113896 /* CPWhiteSpaceRecogniser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA3A218737DB9001A7138 /* CPWhiteSpaceRecogniser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734D018970BA200113896 /* CPEOFToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA3A518737DB9001A7138 /* CPEOFToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734D118970BA600113896 /* CPErrorToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA3A718737DB9001A7138 /* CPErrorToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734D218970BA900113896 /* CPIdentifierToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA3A918737DB9001A7138 /* CPIdentifierToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734D318970BAC00113896 /* CPKeywordToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA3AB18737DB9001A7138 /* CPKeywordToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734D418970BAF00113896 /* CPNumberToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA3AD18737DB9001A7138 /* CPNumberToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734D518970BB300113896 /* CPQuotedToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA3AF18737DB9001A7138 /* CPQuotedToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734D618970BB700113896 /* CPToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA3B118737DB9001A7138 /* CPToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DA8734D718970BBA00113896 /* CPWhiteSpaceToken.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA3B318737DB9001A7138 /* CPWhiteSpaceToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DA8734B318970B1200113896 /* XPMArgumentSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2F0614FD3BED0097C754 /* XPMArgumentSignature.m */; };
+		DA8734B418970B1600113896 /* XPMCountedArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044B0155D99FF0028A012 /* XPMCountedArgument.m */; };
+		DA8734B518970B1900113896 /* XPMValuedArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0044B6155D9B2F0028A012 /* XPMValuedArgument.m */; };
 		DACF2EC914FD3B2F0097C754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACF2EC814FD3B2F0097C754 /* Foundation.framework */; };
 		DACF2ECC14FD3B2F0097C754 /* desc.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2ECB14FD3B2F0097C754 /* desc.m */; };
 		DACF2EE114FD3B630097C754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACF2EC814FD3B2F0097C754 /* Foundation.framework */; };
@@ -193,17 +63,6 @@
 		DACF2EF414FD3B7A0097C754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACF2EC814FD3B2F0097C754 /* Foundation.framework */; };
 		DACF2F0014FD3B840097C754 /* spiffy.m in Sources */ = {isa = PBXBuildFile; fileRef = DACF2EFF14FD3B840097C754 /* spiffy.m */; };
 		DADCF2C91873E48200B47AF1 /* NSString+FilledString.m in Sources */ = {isa = PBXBuildFile; fileRef = DADCF2C81873E48200B47AF1 /* NSString+FilledString.m */; };
-		FF77826018A970F20006D56D /* CPLALR1Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA37A18737DB9001A7138 /* CPLALR1Parser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FF77826118A970F20006D56D /* CPLR1Item.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA37C18737DB9001A7138 /* CPLR1Item.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FF77826218A970F20006D56D /* CPShiftReduceState.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA38918737DB9001A7138 /* CPShiftReduceState.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FF77826318A970F20006D56D /* CPSLRParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA38B18737DB9001A7138 /* CPSLRParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FF77826418A971360006D56D /* CPItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA37818737DB9001A7138 /* CPItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FF77826518A971360006D56D /* CPLR1Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA37E18737DB9001A7138 /* CPLR1Parser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FF77826618A971360006D56D /* CPShiftAction.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA38018737DB9001A7138 /* CPShiftAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FF77826718A971360006D56D /* CPShiftReduceAction.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA38218737DB9001A7138 /* CPShiftReduceAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FF77826818A971360006D56D /* CPShiftReduceActionTable.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA38418737DB9001A7138 /* CPShiftReduceActionTable.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FF77826918A971360006D56D /* CPShiftReduceGotoTable.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA38618737DB9001A7138 /* CPShiftReduceGotoTable.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FF77826A18A971360006D56D /* CPRecoveryAction.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BA38E18737DB9001A7138 /* CPRecoveryAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -270,18 +129,15 @@
 /* Begin PBXFileReference section */
 		DA00447A155D94FF0028A012 /* ArgumentParser-Dynamic.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "ArgumentParser-Dynamic.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA00447B155D94FF0028A012 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		DA00447E155D94FF0028A012 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		DA00447F155D94FF0028A012 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		DA004480155D94FF0028A012 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DA004483155D94FF0028A012 /* ArgumentParser-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ArgumentParser-Prefix.pch"; sourceTree = "<group>"; };
-		DA00448D155D94FF0028A012 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		DA0044AD155D966F0028A012 /* FSArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSArguments.h; sourceTree = "<group>"; };
-		DA0044AF155D99FF0028A012 /* FSCountedArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCountedArgument.h; sourceTree = "<group>"; };
-		DA0044B0155D99FF0028A012 /* FSCountedArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCountedArgument.m; sourceTree = "<group>"; };
-		DA0044B5155D9B2F0028A012 /* FSValuedArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSValuedArgument.h; sourceTree = "<group>"; };
-		DA0044B6155D9B2F0028A012 /* FSValuedArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSValuedArgument.m; sourceTree = "<group>"; };
-		DA0044BE155DA7BC0028A012 /* FSArguments_Coalescer_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSArguments_Coalescer_Internal.h; sourceTree = "<group>"; };
-		DA0044BF155DA7BC0028A012 /* FSArguments_Coalescer_Internal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSArguments_Coalescer_Internal.m; sourceTree = "<group>"; };
+		DA0044AD155D966F0028A012 /* XPMArguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPMArguments.h; sourceTree = "<group>"; };
+		DA0044AF155D99FF0028A012 /* XPMCountedArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPMCountedArgument.h; sourceTree = "<group>"; };
+		DA0044B0155D99FF0028A012 /* XPMCountedArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPMCountedArgument.m; sourceTree = "<group>"; };
+		DA0044B5155D9B2F0028A012 /* XPMValuedArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPMValuedArgument.h; sourceTree = "<group>"; };
+		DA0044B6155D9B2F0028A012 /* XPMValuedArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPMValuedArgument.m; sourceTree = "<group>"; };
+		DA0044BE155DA7BC0028A012 /* XPMArguments_Coalescer_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPMArguments_Coalescer_Internal.h; sourceTree = "<group>"; };
+		DA0044BF155DA7BC0028A012 /* XPMArguments_Coalescer_Internal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPMArguments_Coalescer_Internal.m; sourceTree = "<group>"; };
 		DA0044C5155DC1160028A012 /* NSString+Indenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Indenter.h"; sourceTree = "<group>"; };
 		DA0044C6155DC1160028A012 /* NSString+Indenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Indenter.m"; sourceTree = "<group>"; };
 		DA01E2FF1A8471E20012BCAE /* ArgumentParser-Dynamic Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ArgumentParser-Dynamic Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -292,115 +148,19 @@
 		DA01E3111A8474C10012BCAE /* XPMAttributedArrayTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPMAttributedArrayTests.m; sourceTree = "<group>"; };
 		DA01E3131A8475370012BCAE /* XPMArgumentSignatureFormatConstructionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPMArgumentSignatureFormatConstructionTests.m; sourceTree = "<group>"; };
 		DA01E3151A8475F10012BCAE /* XPMSignatureHashTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPMSignatureHashTests.m; sourceTree = "<group>"; };
-		DA119F30156405FA00BDFBAB /* FSArgumentPackage_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSArgumentPackage_Private.h; sourceTree = "<group>"; };
-		DA17B90C156584EB00BDDA7E /* FSSwitchRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSwitchRecognizer.h; sourceTree = "<group>"; };
-		DA17B90D156584EB00BDDA7E /* FSSwitchRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSwitchRecognizer.m; sourceTree = "<group>"; };
-		DA17B9111565853E00BDDA7E /* FSSwitchToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSSwitchToken.h; sourceTree = "<group>"; };
-		DA17B9121565853E00BDDA7E /* FSSwitchToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSSwitchToken.m; sourceTree = "<group>"; };
-		DA17B9151565890500BDDA7E /* FSAliasToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSAliasToken.h; sourceTree = "<group>"; };
-		DA17B9161565890500BDDA7E /* FSAliasToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAliasToken.m; sourceTree = "<group>"; };
-		DA17B9191565891600BDDA7E /* FSAliasRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSAliasRecognizer.h; sourceTree = "<group>"; };
-		DA17B91A1565891600BDDA7E /* FSAliasRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAliasRecognizer.m; sourceTree = "<group>"; };
+		DA119F30156405FA00BDFBAB /* XPMArgumentPackage_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPMArgumentPackage_Private.h; sourceTree = "<group>"; };
 		DA17B91D1565961C00BDDA7E /* NSScanner+EscapedScanning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScanner+EscapedScanning.h"; sourceTree = "<group>"; };
 		DA17B91E1565961C00BDDA7E /* NSScanner+EscapedScanning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScanner+EscapedScanning.m"; sourceTree = "<group>"; };
-		DA2B1DFA1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSFormatCtorTokeniserDelegate.h; sourceTree = "<group>"; };
-		DA2B1DFB1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSFormatCtorTokeniserDelegate.m; sourceTree = "<group>"; };
-		DA2B1DFE1566DC37002FDBD7 /* FSFormatCtorParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSFormatCtorParserDelegate.h; sourceTree = "<group>"; };
-		DA2B1DFF1566DC37002FDBD7 /* FSFormatCtorParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSFormatCtorParserDelegate.m; sourceTree = "<group>"; };
-		DA42159815629EF800F82E8E /* FSMutableAttributedArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSMutableAttributedArray.h; sourceTree = "<group>"; };
-		DA42159915629EF800F82E8E /* FSMutableAttributedArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSMutableAttributedArray.m; sourceTree = "<group>"; };
-		DA4215A01562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSProcessInfo+FSArgumentParser.h"; sourceTree = "<group>"; };
-		DA4215A11562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSProcessInfo+FSArgumentParser.m"; sourceTree = "<group>"; };
+		DA42159815629EF800F82E8E /* XPMMutableAttributedArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPMMutableAttributedArray.h; sourceTree = "<group>"; };
+		DA42159915629EF800F82E8E /* XPMMutableAttributedArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPMMutableAttributedArray.m; sourceTree = "<group>"; };
+		DA4215A01562AC4100F82E8E /* NSProcessInfo+XPMArgumentParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSProcessInfo+XPMArgumentParser.h"; sourceTree = "<group>"; };
+		DA4215A11562AC4100F82E8E /* NSProcessInfo+XPMArgumentParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSProcessInfo+XPMArgumentParser.m"; sourceTree = "<group>"; };
 		DA4215A91562DB0C00F82E8E /* NSDictionary+RubyDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+RubyDescription.h"; sourceTree = "<group>"; };
 		DA4215AA1562DB0C00F82E8E /* NSDictionary+RubyDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+RubyDescription.m"; sourceTree = "<group>"; };
-		DA4215AD1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FSArgumentsNormalizer.h"; sourceTree = "<group>"; };
-		DA4215AE1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FSArgumentsNormalizer.m"; sourceTree = "<group>"; };
-		DA4215B41562E09100F82E8E /* FSArgsKonstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSArgsKonstants.h; sourceTree = "<group>"; };
-		DA4215B51562E09100F82E8E /* FSArgsKonstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSArgsKonstants.m; sourceTree = "<group>"; };
-		DA7BA35818737DB9001A7138 /* CPJSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPJSONParser.h; sourceTree = "<group>"; };
-		DA7BA35918737DB9001A7138 /* CPJSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPJSONParser.m; sourceTree = "<group>"; };
-		DA7BA35A18737DB9001A7138 /* CoreParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreParse.h; path = CoreParse/CoreParse/CoreParse.h; sourceTree = "<group>"; };
-		DA7BA35B18737DB9001A7138 /* CPSenTestKitAssertions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPSenTestKitAssertions.h; path = CoreParse/CoreParse/CPSenTestKitAssertions.h; sourceTree = "<group>"; };
-		DA7BA35D18737DB9001A7138 /* CPGrammar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGrammar.h; sourceTree = "<group>"; };
-		DA7BA35E18737DB9001A7138 /* CPGrammar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPGrammar.m; sourceTree = "<group>"; };
-		DA7BA35F18737DB9001A7138 /* CPGrammarInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGrammarInternal.h; sourceTree = "<group>"; };
-		DA7BA36018737DB9001A7138 /* CPGrammarInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPGrammarInternal.m; sourceTree = "<group>"; };
-		DA7BA36118737DB9001A7138 /* CPGrammarPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGrammarPrivate.h; sourceTree = "<group>"; };
-		DA7BA36218737DB9001A7138 /* CPGrammarPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPGrammarPrivate.m; sourceTree = "<group>"; };
-		DA7BA36318737DB9001A7138 /* CPGrammarSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGrammarSymbol.h; sourceTree = "<group>"; };
-		DA7BA36418737DB9001A7138 /* CPGrammarSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPGrammarSymbol.m; sourceTree = "<group>"; };
-		DA7BA36518737DB9001A7138 /* CPRHSItem+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CPRHSItem+Private.h"; sourceTree = "<group>"; };
-		DA7BA36618737DB9001A7138 /* CPRHSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRHSItem.h; sourceTree = "<group>"; };
-		DA7BA36718737DB9001A7138 /* CPRHSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRHSItem.m; sourceTree = "<group>"; };
-		DA7BA36818737DB9001A7138 /* CPRHSItemResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRHSItemResult.h; sourceTree = "<group>"; };
-		DA7BA36918737DB9001A7138 /* CPRHSItemResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRHSItemResult.m; sourceTree = "<group>"; };
-		DA7BA36A18737DB9001A7138 /* CPRule+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CPRule+Internal.h"; sourceTree = "<group>"; };
-		DA7BA36B18737DB9001A7138 /* CPRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRule.h; sourceTree = "<group>"; };
-		DA7BA36C18737DB9001A7138 /* CPRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRule.m; sourceTree = "<group>"; };
-		DA7BA36D18737DB9001A7138 /* NSArray+Functional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+Functional.h"; path = "CoreParse/CoreParse/NSArray+Functional.h"; sourceTree = "<group>"; };
-		DA7BA36E18737DB9001A7138 /* NSArray+Functional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Functional.m"; path = "CoreParse/CoreParse/NSArray+Functional.m"; sourceTree = "<group>"; };
-		DA7BA36F18737DB9001A7138 /* NSSetFunctional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSSetFunctional.h; path = CoreParse/CoreParse/NSSetFunctional.h; sourceTree = "<group>"; };
-		DA7BA37018737DB9001A7138 /* NSSetFunctional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSSetFunctional.m; path = CoreParse/CoreParse/NSSetFunctional.m; sourceTree = "<group>"; };
-		DA7BA37218737DB9001A7138 /* CPParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPParser.h; sourceTree = "<group>"; };
-		DA7BA37318737DB9001A7138 /* CPParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPParser.m; sourceTree = "<group>"; };
-		DA7BA37418737DB9001A7138 /* CPShiftReduceParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPShiftReduceParser.h; sourceTree = "<group>"; };
-		DA7BA37518737DB9001A7138 /* CPShiftReduceParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPShiftReduceParser.m; sourceTree = "<group>"; };
-		DA7BA37718737DB9001A7138 /* CPItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPItem.h; sourceTree = "<group>"; };
-		DA7BA37818737DB9001A7138 /* CPItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPItem.m; sourceTree = "<group>"; };
-		DA7BA37918737DB9001A7138 /* CPLALR1Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLALR1Parser.h; sourceTree = "<group>"; };
-		DA7BA37A18737DB9001A7138 /* CPLALR1Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLALR1Parser.m; sourceTree = "<group>"; };
-		DA7BA37B18737DB9001A7138 /* CPLR1Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLR1Item.h; sourceTree = "<group>"; };
-		DA7BA37C18737DB9001A7138 /* CPLR1Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLR1Item.m; sourceTree = "<group>"; };
-		DA7BA37D18737DB9001A7138 /* CPLR1Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLR1Parser.h; sourceTree = "<group>"; };
-		DA7BA37E18737DB9001A7138 /* CPLR1Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPLR1Parser.m; sourceTree = "<group>"; };
-		DA7BA37F18737DB9001A7138 /* CPShiftAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPShiftAction.h; sourceTree = "<group>"; };
-		DA7BA38018737DB9001A7138 /* CPShiftAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPShiftAction.m; sourceTree = "<group>"; };
-		DA7BA38118737DB9001A7138 /* CPShiftReduceAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPShiftReduceAction.h; sourceTree = "<group>"; };
-		DA7BA38218737DB9001A7138 /* CPShiftReduceAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPShiftReduceAction.m; sourceTree = "<group>"; };
-		DA7BA38318737DB9001A7138 /* CPShiftReduceActionTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPShiftReduceActionTable.h; sourceTree = "<group>"; };
-		DA7BA38418737DB9001A7138 /* CPShiftReduceActionTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPShiftReduceActionTable.m; sourceTree = "<group>"; };
-		DA7BA38518737DB9001A7138 /* CPShiftReduceGotoTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPShiftReduceGotoTable.h; sourceTree = "<group>"; };
-		DA7BA38618737DB9001A7138 /* CPShiftReduceGotoTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPShiftReduceGotoTable.m; sourceTree = "<group>"; };
-		DA7BA38718737DB9001A7138 /* CPShiftReduceParserProtectedMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPShiftReduceParserProtectedMethods.h; sourceTree = "<group>"; };
-		DA7BA38818737DB9001A7138 /* CPShiftReduceState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPShiftReduceState.h; sourceTree = "<group>"; };
-		DA7BA38918737DB9001A7138 /* CPShiftReduceState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPShiftReduceState.m; sourceTree = "<group>"; };
-		DA7BA38A18737DB9001A7138 /* CPSLRParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSLRParser.h; sourceTree = "<group>"; };
-		DA7BA38B18737DB9001A7138 /* CPSLRParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSLRParser.m; sourceTree = "<group>"; };
-		DA7BA38D18737DB9001A7138 /* CPRecoveryAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRecoveryAction.h; sourceTree = "<group>"; };
-		DA7BA38E18737DB9001A7138 /* CPRecoveryAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPRecoveryAction.m; sourceTree = "<group>"; };
-		DA7BA39018737DB9001A7138 /* CPSyntaxTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSyntaxTree.h; sourceTree = "<group>"; };
-		DA7BA39118737DB9001A7138 /* CPSyntaxTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSyntaxTree.m; sourceTree = "<group>"; };
-		DA7BA39318737DB9001A7138 /* CPTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTokeniser.h; sourceTree = "<group>"; };
-		DA7BA39418737DB9001A7138 /* CPTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTokeniser.m; sourceTree = "<group>"; };
-		DA7BA39518737DB9001A7138 /* CPTokenStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTokenStream.h; sourceTree = "<group>"; };
-		DA7BA39618737DB9001A7138 /* CPTokenStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPTokenStream.m; sourceTree = "<group>"; };
-		DA7BA39818737DB9001A7138 /* CPIdentifierRecogniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPIdentifierRecogniser.h; sourceTree = "<group>"; };
-		DA7BA39918737DB9001A7138 /* CPIdentifierRecogniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPIdentifierRecogniser.m; sourceTree = "<group>"; };
-		DA7BA39A18737DB9001A7138 /* CPKeywordRecogniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPKeywordRecogniser.h; sourceTree = "<group>"; };
-		DA7BA39B18737DB9001A7138 /* CPKeywordRecogniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPKeywordRecogniser.m; sourceTree = "<group>"; };
-		DA7BA39C18737DB9001A7138 /* CPNumberRecogniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNumberRecogniser.h; sourceTree = "<group>"; };
-		DA7BA39D18737DB9001A7138 /* CPNumberRecogniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNumberRecogniser.m; sourceTree = "<group>"; };
-		DA7BA39E18737DB9001A7138 /* CPQuotedRecogniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPQuotedRecogniser.h; sourceTree = "<group>"; };
-		DA7BA39F18737DB9001A7138 /* CPQuotedRecogniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPQuotedRecogniser.m; sourceTree = "<group>"; };
-		DA7BA3A018737DB9001A7138 /* CPTokenRecogniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTokenRecogniser.h; sourceTree = "<group>"; };
-		DA7BA3A118737DB9001A7138 /* CPWhiteSpaceRecogniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPWhiteSpaceRecogniser.h; sourceTree = "<group>"; };
-		DA7BA3A218737DB9001A7138 /* CPWhiteSpaceRecogniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPWhiteSpaceRecogniser.m; sourceTree = "<group>"; };
-		DA7BA3A418737DB9001A7138 /* CPEOFToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPEOFToken.h; sourceTree = "<group>"; };
-		DA7BA3A518737DB9001A7138 /* CPEOFToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPEOFToken.m; sourceTree = "<group>"; };
-		DA7BA3A618737DB9001A7138 /* CPErrorToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPErrorToken.h; sourceTree = "<group>"; };
-		DA7BA3A718737DB9001A7138 /* CPErrorToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPErrorToken.m; sourceTree = "<group>"; };
-		DA7BA3A818737DB9001A7138 /* CPIdentifierToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPIdentifierToken.h; sourceTree = "<group>"; };
-		DA7BA3A918737DB9001A7138 /* CPIdentifierToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPIdentifierToken.m; sourceTree = "<group>"; };
-		DA7BA3AA18737DB9001A7138 /* CPKeywordToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPKeywordToken.h; sourceTree = "<group>"; };
-		DA7BA3AB18737DB9001A7138 /* CPKeywordToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPKeywordToken.m; sourceTree = "<group>"; };
-		DA7BA3AC18737DB9001A7138 /* CPNumberToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPNumberToken.h; sourceTree = "<group>"; };
-		DA7BA3AD18737DB9001A7138 /* CPNumberToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPNumberToken.m; sourceTree = "<group>"; };
-		DA7BA3AE18737DB9001A7138 /* CPQuotedToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPQuotedToken.h; sourceTree = "<group>"; };
-		DA7BA3AF18737DB9001A7138 /* CPQuotedToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPQuotedToken.m; sourceTree = "<group>"; };
-		DA7BA3B018737DB9001A7138 /* CPToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPToken.h; sourceTree = "<group>"; };
-		DA7BA3B118737DB9001A7138 /* CPToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPToken.m; sourceTree = "<group>"; };
-		DA7BA3B218737DB9001A7138 /* CPWhiteSpaceToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPWhiteSpaceToken.h; sourceTree = "<group>"; };
-		DA7BA3B318737DB9001A7138 /* CPWhiteSpaceToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPWhiteSpaceToken.m; sourceTree = "<group>"; };
+		DA4215AD1562DC0F00F82E8E /* NSArray+XPMArgumentsNormalizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+XPMArgumentsNormalizer.h"; sourceTree = "<group>"; };
+		DA4215AE1562DC0F00F82E8E /* NSArray+XPMArgumentsNormalizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+XPMArgumentsNormalizer.m"; sourceTree = "<group>"; };
+		DA4215B41562E09100F82E8E /* XPMArgsKonstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPMArgsKonstants.h; sourceTree = "<group>"; };
+		DA4215B51562E09100F82E8E /* XPMArgsKonstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPMArgsKonstants.m; sourceTree = "<group>"; };
 		DA87347118970A5B00113896 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		DA87348918970AB800113896 /* libArgumentParser-Static.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libArgumentParser-Static.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAA595061561B3610063A5B4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -412,15 +172,15 @@
 		DACF2EEC14FD3B710097C754 /* long-desc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "long-desc.m"; sourceTree = "<group>"; };
 		DACF2EF214FD3B7A0097C754 /* spiffy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = spiffy; sourceTree = BUILT_PRODUCTS_DIR; };
 		DACF2EFF14FD3B840097C754 /* spiffy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spiffy.m; sourceTree = "<group>"; };
-		DACF2F0114FD3BED0097C754 /* FSArgumentPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSArgumentPackage.h; path = ArgumentParser/FSArgumentPackage.h; sourceTree = SOURCE_ROOT; };
-		DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSArgumentPackage.m; path = ArgumentParser/FSArgumentPackage.m; sourceTree = SOURCE_ROOT; };
-		DACF2F0314FD3BED0097C754 /* FSArgumentParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSArgumentParser.h; path = ArgumentParser/FSArgumentParser.h; sourceTree = SOURCE_ROOT; };
-		DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSArgumentParser.m; path = ArgumentParser/FSArgumentParser.m; sourceTree = SOURCE_ROOT; };
-		DACF2F0514FD3BED0097C754 /* FSArgumentSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FSArgumentSignature.h; path = ArgumentParser/FSArgumentSignature.h; sourceTree = SOURCE_ROOT; };
-		DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FSArgumentSignature.m; path = ArgumentParser/FSArgumentSignature.m; sourceTree = SOURCE_ROOT; };
+		DACF2F0114FD3BED0097C754 /* XPMArgumentPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPMArgumentPackage.h; path = ArgumentParser/XPMArgumentPackage.h; sourceTree = SOURCE_ROOT; };
+		DACF2F0214FD3BED0097C754 /* XPMArgumentPackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPMArgumentPackage.m; path = ArgumentParser/XPMArgumentPackage.m; sourceTree = SOURCE_ROOT; };
+		DACF2F0314FD3BED0097C754 /* XPMArgumentParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPMArgumentParser.h; path = ArgumentParser/XPMArgumentParser.h; sourceTree = SOURCE_ROOT; };
+		DACF2F0414FD3BED0097C754 /* XPMArgumentParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPMArgumentParser.m; path = ArgumentParser/XPMArgumentParser.m; sourceTree = SOURCE_ROOT; };
+		DACF2F0514FD3BED0097C754 /* XPMArgumentSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPMArgumentSignature.h; path = ArgumentParser/XPMArgumentSignature.h; sourceTree = SOURCE_ROOT; };
+		DACF2F0614FD3BED0097C754 /* XPMArgumentSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPMArgumentSignature.m; path = ArgumentParser/XPMArgumentSignature.m; sourceTree = SOURCE_ROOT; };
 		DADCF2C71873E48200B47AF1 /* NSString+FilledString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FilledString.h"; sourceTree = "<group>"; };
 		DADCF2C81873E48200B47AF1 /* NSString+FilledString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FilledString.m"; sourceTree = "<group>"; };
-		DAEF09EB1561682800BED247 /* FSArgumentSignature_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSArgumentSignature_Private.h; sourceTree = "<group>"; };
+		DAEF09EB1561682800BED247 /* XPMArgumentSignature_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPMArgumentSignature_Private.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -481,8 +241,6 @@
 		DA00447D155D94FF0028A012 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DA00447E155D94FF0028A012 /* AppKit.framework */,
-				DA00447F155D94FF0028A012 /* CoreData.framework */,
 				DA004480155D94FF0028A012 /* Foundation.framework */,
 			);
 			name = "Other Frameworks";
@@ -491,20 +249,20 @@
 		DA004481155D94FF0028A012 /* ArgumentParser */ = {
 			isa = PBXGroup;
 			children = (
-				DA0044AD155D966F0028A012 /* FSArguments.h */,
+				DA0044AD155D966F0028A012 /* XPMArguments.h */,
 				DA0044B3155D9A050028A012 /* Signatures */,
 				DA4215A81562AD3500F82E8E /* Categories */,
-				DACF2F0114FD3BED0097C754 /* FSArgumentPackage.h */,
-				DA119F30156405FA00BDFBAB /* FSArgumentPackage_Private.h */,
-				DACF2F0214FD3BED0097C754 /* FSArgumentPackage.m */,
-				DACF2F0314FD3BED0097C754 /* FSArgumentParser.h */,
-				DACF2F0414FD3BED0097C754 /* FSArgumentParser.m */,
-				DA0044BE155DA7BC0028A012 /* FSArguments_Coalescer_Internal.h */,
-				DA0044BF155DA7BC0028A012 /* FSArguments_Coalescer_Internal.m */,
-				DA4215B41562E09100F82E8E /* FSArgsKonstants.h */,
-				DA4215B51562E09100F82E8E /* FSArgsKonstants.m */,
-				DA42159815629EF800F82E8E /* FSMutableAttributedArray.h */,
-				DA42159915629EF800F82E8E /* FSMutableAttributedArray.m */,
+				DACF2F0114FD3BED0097C754 /* XPMArgumentPackage.h */,
+				DA119F30156405FA00BDFBAB /* XPMArgumentPackage_Private.h */,
+				DACF2F0214FD3BED0097C754 /* XPMArgumentPackage.m */,
+				DACF2F0314FD3BED0097C754 /* XPMArgumentParser.h */,
+				DACF2F0414FD3BED0097C754 /* XPMArgumentParser.m */,
+				DA0044BE155DA7BC0028A012 /* XPMArguments_Coalescer_Internal.h */,
+				DA0044BF155DA7BC0028A012 /* XPMArguments_Coalescer_Internal.m */,
+				DA4215B41562E09100F82E8E /* XPMArgsKonstants.h */,
+				DA4215B51562E09100F82E8E /* XPMArgsKonstants.m */,
+				DA42159815629EF800F82E8E /* XPMMutableAttributedArray.h */,
+				DA42159915629EF800F82E8E /* XPMMutableAttributedArray.m */,
 				DA004482155D94FF0028A012 /* Supporting Files */,
 			);
 			path = ArgumentParser;
@@ -521,25 +279,13 @@
 		DA0044B3155D9A050028A012 /* Signatures */ = {
 			isa = PBXGroup;
 			children = (
-				DACF2F0514FD3BED0097C754 /* FSArgumentSignature.h */,
-				DAEF09EB1561682800BED247 /* FSArgumentSignature_Private.h */,
-				DACF2F0614FD3BED0097C754 /* FSArgumentSignature.m */,
-				DA0044AF155D99FF0028A012 /* FSCountedArgument.h */,
-				DA0044B0155D99FF0028A012 /* FSCountedArgument.m */,
-				DA0044B5155D9B2F0028A012 /* FSValuedArgument.h */,
-				DA0044B6155D9B2F0028A012 /* FSValuedArgument.m */,
-				DA17B90C156584EB00BDDA7E /* FSSwitchRecognizer.h */,
-				DA17B90D156584EB00BDDA7E /* FSSwitchRecognizer.m */,
-				DA17B9111565853E00BDDA7E /* FSSwitchToken.h */,
-				DA17B9121565853E00BDDA7E /* FSSwitchToken.m */,
-				DA17B9191565891600BDDA7E /* FSAliasRecognizer.h */,
-				DA17B91A1565891600BDDA7E /* FSAliasRecognizer.m */,
-				DA17B9151565890500BDDA7E /* FSAliasToken.h */,
-				DA17B9161565890500BDDA7E /* FSAliasToken.m */,
-				DA2B1DFA1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.h */,
-				DA2B1DFB1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.m */,
-				DA2B1DFE1566DC37002FDBD7 /* FSFormatCtorParserDelegate.h */,
-				DA2B1DFF1566DC37002FDBD7 /* FSFormatCtorParserDelegate.m */,
+				DACF2F0514FD3BED0097C754 /* XPMArgumentSignature.h */,
+				DAEF09EB1561682800BED247 /* XPMArgumentSignature_Private.h */,
+				DACF2F0614FD3BED0097C754 /* XPMArgumentSignature.m */,
+				DA0044AF155D99FF0028A012 /* XPMCountedArgument.h */,
+				DA0044B0155D99FF0028A012 /* XPMCountedArgument.m */,
+				DA0044B5155D9B2F0028A012 /* XPMValuedArgument.h */,
+				DA0044B6155D9B2F0028A012 /* XPMValuedArgument.m */,
 			);
 			name = Signatures;
 			sourceTree = "<group>";
@@ -569,10 +315,10 @@
 		DA4215A81562AD3500F82E8E /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				DA4215A01562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.h */,
-				DA4215A11562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.m */,
-				DA4215AD1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.h */,
-				DA4215AE1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.m */,
+				DA4215A01562AC4100F82E8E /* NSProcessInfo+XPMArgumentParser.h */,
+				DA4215A11562AC4100F82E8E /* NSProcessInfo+XPMArgumentParser.m */,
+				DA4215AD1562DC0F00F82E8E /* NSArray+XPMArgumentsNormalizer.h */,
+				DA4215AE1562DC0F00F82E8E /* NSArray+XPMArgumentsNormalizer.m */,
 				DA0044C5155DC1160028A012 /* NSString+Indenter.h */,
 				DA0044C6155DC1160028A012 /* NSString+Indenter.m */,
 				DA4215A91562DB0C00F82E8E /* NSDictionary+RubyDescription.h */,
@@ -583,181 +329,12 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		DA7BA35618737D6C001A7138 /* CoreParse */ = {
-			isa = PBXGroup;
-			children = (
-				DA7BA35718737DB9001A7138 /* Built In Parsers */,
-				DA7BA35A18737DB9001A7138 /* CoreParse.h */,
-				DA7BA35B18737DB9001A7138 /* CPSenTestKitAssertions.h */,
-				DA7BA35C18737DB9001A7138 /* Grammar */,
-				DA7BA36D18737DB9001A7138 /* NSArray+Functional.h */,
-				DA7BA36E18737DB9001A7138 /* NSArray+Functional.m */,
-				DA7BA36F18737DB9001A7138 /* NSSetFunctional.h */,
-				DA7BA37018737DB9001A7138 /* NSSetFunctional.m */,
-				DA7BA37118737DB9001A7138 /* Parsers */,
-				DA7BA38F18737DB9001A7138 /* Syntax Tree */,
-				DA7BA39218737DB9001A7138 /* Tokenisation */,
-			);
-			name = CoreParse;
-			sourceTree = "<group>";
-		};
-		DA7BA35718737DB9001A7138 /* Built In Parsers */ = {
-			isa = PBXGroup;
-			children = (
-				DA7BA35818737DB9001A7138 /* CPJSONParser.h */,
-				DA7BA35918737DB9001A7138 /* CPJSONParser.m */,
-			);
-			name = "Built In Parsers";
-			path = "CoreParse/CoreParse/Built In Parsers";
-			sourceTree = "<group>";
-		};
-		DA7BA35C18737DB9001A7138 /* Grammar */ = {
-			isa = PBXGroup;
-			children = (
-				DA7BA35D18737DB9001A7138 /* CPGrammar.h */,
-				DA7BA35E18737DB9001A7138 /* CPGrammar.m */,
-				DA7BA35F18737DB9001A7138 /* CPGrammarInternal.h */,
-				DA7BA36018737DB9001A7138 /* CPGrammarInternal.m */,
-				DA7BA36118737DB9001A7138 /* CPGrammarPrivate.h */,
-				DA7BA36218737DB9001A7138 /* CPGrammarPrivate.m */,
-				DA7BA36318737DB9001A7138 /* CPGrammarSymbol.h */,
-				DA7BA36418737DB9001A7138 /* CPGrammarSymbol.m */,
-				DA7BA36518737DB9001A7138 /* CPRHSItem+Private.h */,
-				DA7BA36618737DB9001A7138 /* CPRHSItem.h */,
-				DA7BA36718737DB9001A7138 /* CPRHSItem.m */,
-				DA7BA36818737DB9001A7138 /* CPRHSItemResult.h */,
-				DA7BA36918737DB9001A7138 /* CPRHSItemResult.m */,
-				DA7BA36A18737DB9001A7138 /* CPRule+Internal.h */,
-				DA7BA36B18737DB9001A7138 /* CPRule.h */,
-				DA7BA36C18737DB9001A7138 /* CPRule.m */,
-			);
-			name = Grammar;
-			path = CoreParse/CoreParse/Grammar;
-			sourceTree = "<group>";
-		};
-		DA7BA37118737DB9001A7138 /* Parsers */ = {
-			isa = PBXGroup;
-			children = (
-				DA7BA37218737DB9001A7138 /* CPParser.h */,
-				DA7BA37318737DB9001A7138 /* CPParser.m */,
-				DA7BA37418737DB9001A7138 /* CPShiftReduceParser.h */,
-				DA7BA37518737DB9001A7138 /* CPShiftReduceParser.m */,
-				DA7BA37618737DB9001A7138 /* CPShiftReduceParsers */,
-				DA7BA38C18737DB9001A7138 /* Error Recovery */,
-			);
-			name = Parsers;
-			path = CoreParse/CoreParse/Parsers;
-			sourceTree = "<group>";
-		};
-		DA7BA37618737DB9001A7138 /* CPShiftReduceParsers */ = {
-			isa = PBXGroup;
-			children = (
-				DA7BA37718737DB9001A7138 /* CPItem.h */,
-				DA7BA37818737DB9001A7138 /* CPItem.m */,
-				DA7BA37918737DB9001A7138 /* CPLALR1Parser.h */,
-				DA7BA37A18737DB9001A7138 /* CPLALR1Parser.m */,
-				DA7BA37B18737DB9001A7138 /* CPLR1Item.h */,
-				DA7BA37C18737DB9001A7138 /* CPLR1Item.m */,
-				DA7BA37D18737DB9001A7138 /* CPLR1Parser.h */,
-				DA7BA37E18737DB9001A7138 /* CPLR1Parser.m */,
-				DA7BA37F18737DB9001A7138 /* CPShiftAction.h */,
-				DA7BA38018737DB9001A7138 /* CPShiftAction.m */,
-				DA7BA38118737DB9001A7138 /* CPShiftReduceAction.h */,
-				DA7BA38218737DB9001A7138 /* CPShiftReduceAction.m */,
-				DA7BA38318737DB9001A7138 /* CPShiftReduceActionTable.h */,
-				DA7BA38418737DB9001A7138 /* CPShiftReduceActionTable.m */,
-				DA7BA38518737DB9001A7138 /* CPShiftReduceGotoTable.h */,
-				DA7BA38618737DB9001A7138 /* CPShiftReduceGotoTable.m */,
-				DA7BA38718737DB9001A7138 /* CPShiftReduceParserProtectedMethods.h */,
-				DA7BA38818737DB9001A7138 /* CPShiftReduceState.h */,
-				DA7BA38918737DB9001A7138 /* CPShiftReduceState.m */,
-				DA7BA38A18737DB9001A7138 /* CPSLRParser.h */,
-				DA7BA38B18737DB9001A7138 /* CPSLRParser.m */,
-			);
-			path = CPShiftReduceParsers;
-			sourceTree = "<group>";
-		};
-		DA7BA38C18737DB9001A7138 /* Error Recovery */ = {
-			isa = PBXGroup;
-			children = (
-				DA7BA38D18737DB9001A7138 /* CPRecoveryAction.h */,
-				DA7BA38E18737DB9001A7138 /* CPRecoveryAction.m */,
-			);
-			path = "Error Recovery";
-			sourceTree = "<group>";
-		};
-		DA7BA38F18737DB9001A7138 /* Syntax Tree */ = {
-			isa = PBXGroup;
-			children = (
-				DA7BA39018737DB9001A7138 /* CPSyntaxTree.h */,
-				DA7BA39118737DB9001A7138 /* CPSyntaxTree.m */,
-			);
-			name = "Syntax Tree";
-			path = "CoreParse/CoreParse/Syntax Tree";
-			sourceTree = "<group>";
-		};
-		DA7BA39218737DB9001A7138 /* Tokenisation */ = {
-			isa = PBXGroup;
-			children = (
-				DA7BA39318737DB9001A7138 /* CPTokeniser.h */,
-				DA7BA39418737DB9001A7138 /* CPTokeniser.m */,
-				DA7BA39518737DB9001A7138 /* CPTokenStream.h */,
-				DA7BA39618737DB9001A7138 /* CPTokenStream.m */,
-				DA7BA39718737DB9001A7138 /* Token Recognisers */,
-				DA7BA3A318737DB9001A7138 /* Token Types */,
-			);
-			name = Tokenisation;
-			path = CoreParse/CoreParse/Tokenisation;
-			sourceTree = "<group>";
-		};
-		DA7BA39718737DB9001A7138 /* Token Recognisers */ = {
-			isa = PBXGroup;
-			children = (
-				DA7BA39818737DB9001A7138 /* CPIdentifierRecogniser.h */,
-				DA7BA39918737DB9001A7138 /* CPIdentifierRecogniser.m */,
-				DA7BA39A18737DB9001A7138 /* CPKeywordRecogniser.h */,
-				DA7BA39B18737DB9001A7138 /* CPKeywordRecogniser.m */,
-				DA7BA39C18737DB9001A7138 /* CPNumberRecogniser.h */,
-				DA7BA39D18737DB9001A7138 /* CPNumberRecogniser.m */,
-				DA7BA39E18737DB9001A7138 /* CPQuotedRecogniser.h */,
-				DA7BA39F18737DB9001A7138 /* CPQuotedRecogniser.m */,
-				DA7BA3A018737DB9001A7138 /* CPTokenRecogniser.h */,
-				DA7BA3A118737DB9001A7138 /* CPWhiteSpaceRecogniser.h */,
-				DA7BA3A218737DB9001A7138 /* CPWhiteSpaceRecogniser.m */,
-			);
-			path = "Token Recognisers";
-			sourceTree = "<group>";
-		};
-		DA7BA3A318737DB9001A7138 /* Token Types */ = {
-			isa = PBXGroup;
-			children = (
-				DA7BA3A418737DB9001A7138 /* CPEOFToken.h */,
-				DA7BA3A518737DB9001A7138 /* CPEOFToken.m */,
-				DA7BA3A618737DB9001A7138 /* CPErrorToken.h */,
-				DA7BA3A718737DB9001A7138 /* CPErrorToken.m */,
-				DA7BA3A818737DB9001A7138 /* CPIdentifierToken.h */,
-				DA7BA3A918737DB9001A7138 /* CPIdentifierToken.m */,
-				DA7BA3AA18737DB9001A7138 /* CPKeywordToken.h */,
-				DA7BA3AB18737DB9001A7138 /* CPKeywordToken.m */,
-				DA7BA3AC18737DB9001A7138 /* CPNumberToken.h */,
-				DA7BA3AD18737DB9001A7138 /* CPNumberToken.m */,
-				DA7BA3AE18737DB9001A7138 /* CPQuotedToken.h */,
-				DA7BA3AF18737DB9001A7138 /* CPQuotedToken.m */,
-				DA7BA3B018737DB9001A7138 /* CPToken.h */,
-				DA7BA3B118737DB9001A7138 /* CPToken.m */,
-				DA7BA3B218737DB9001A7138 /* CPWhiteSpaceToken.h */,
-				DA7BA3B318737DB9001A7138 /* CPWhiteSpaceToken.m */,
-			);
-			path = "Token Types";
-			sourceTree = "<group>";
-		};
 		DACF2EB914FD3B2F0097C754 = {
 			isa = PBXGroup;
 			children = (
 				DAA595061561B3610063A5B4 /* README.md */,
 				DACF2ECA14FD3B2F0097C754 /* example */,
 				DA004481155D94FF0028A012 /* ArgumentParser */,
-				DA7BA35618737D6C001A7138 /* CoreParse */,
 				DA01E3001A8471E20012BCAE /* ArgumentParser-Dynamic Tests */,
 				DACF2EC714FD3B2F0097C754 /* Frameworks */,
 				DACF2EC514FD3B2F0097C754 /* Products */,
@@ -782,7 +359,6 @@
 			children = (
 				DACF2EC814FD3B2F0097C754 /* Foundation.framework */,
 				DA00447B155D94FF0028A012 /* Cocoa.framework */,
-				DA00448D155D94FF0028A012 /* SenTestingKit.framework */,
 				DA87347118970A5B00113896 /* XCTest.framework */,
 				DA00447D155D94FF0028A012 /* Other Frameworks */,
 			);
@@ -817,68 +393,17 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA7BA3E318737DB9001A7138 /* CPSLRParser.h in Headers */,
-				DA7BA3ED18737DB9001A7138 /* CPIdentifierRecogniser.h in Headers */,
-				DA7BA3CC18737DB9001A7138 /* CPParser.h in Headers */,
-				DA0044AE155D966F0028A012 /* FSArguments.h in Headers */,
-				DA0044B1155D99FF0028A012 /* FSCountedArgument.h in Headers */,
-				DA7BA3E118737DB9001A7138 /* CPShiftReduceState.h in Headers */,
-				DA7BA3E518737DB9001A7138 /* CPRecoveryAction.h in Headers */,
-				DA7BA3FE18737DB9001A7138 /* CPKeywordToken.h in Headers */,
-				DA7BA3C618737DB9001A7138 /* CPRule.h in Headers */,
-				DA7BA3D618737DB9001A7138 /* CPLR1Parser.h in Headers */,
-				DA0044B7155D9B2F0028A012 /* FSValuedArgument.h in Headers */,
-				DA0044C0155DA7BC0028A012 /* FSArguments_Coalescer_Internal.h in Headers */,
-				DA7BA3E718737DB9001A7138 /* CPSyntaxTree.h in Headers */,
-				DA7BA3F318737DB9001A7138 /* CPQuotedRecogniser.h in Headers */,
-				DA7BA3DA18737DB9001A7138 /* CPShiftReduceAction.h in Headers */,
-				DA7BA3F818737DB9001A7138 /* CPEOFToken.h in Headers */,
-				DA7BA3D218737DB9001A7138 /* CPLALR1Parser.h in Headers */,
-				DA7BA3D818737DB9001A7138 /* CPShiftAction.h in Headers */,
-				DA7BA3C018737DB9001A7138 /* CPRHSItem+Private.h in Headers */,
+				DA0044AE155D966F0028A012 /* XPMArguments.h in Headers */,
+				DA0044B1155D99FF0028A012 /* XPMCountedArgument.h in Headers */,
+				DA0044B7155D9B2F0028A012 /* XPMValuedArgument.h in Headers */,
+				DA0044C0155DA7BC0028A012 /* XPMArguments_Coalescer_Internal.h in Headers */,
 				DA0044C7155DC1160028A012 /* NSString+Indenter.h in Headers */,
-				DA42159A15629EF800F82E8E /* FSMutableAttributedArray.h in Headers */,
-				DA7BA3B718737DB9001A7138 /* CPSenTestKitAssertions.h in Headers */,
-				DA7BA40018737DB9001A7138 /* CPNumberToken.h in Headers */,
-				DA7BA40218737DB9001A7138 /* CPQuotedToken.h in Headers */,
-				DA7BA3C118737DB9001A7138 /* CPRHSItem.h in Headers */,
-				DA7BA3F518737DB9001A7138 /* CPTokenRecogniser.h in Headers */,
-				DA7BA3E918737DB9001A7138 /* CPTokeniser.h in Headers */,
-				DA7BA3FC18737DB9001A7138 /* CPIdentifierToken.h in Headers */,
-				DA7BA3F618737DB9001A7138 /* CPWhiteSpaceRecogniser.h in Headers */,
-				DA7BA3B418737DB9001A7138 /* CPJSONParser.h in Headers */,
-				DA7BA3FA18737DB9001A7138 /* CPErrorToken.h in Headers */,
-				DA7BA40418737DB9001A7138 /* CPToken.h in Headers */,
-				DA7BA3CA18737DB9001A7138 /* NSSetFunctional.h in Headers */,
-				DA7BA3E018737DB9001A7138 /* CPShiftReduceParserProtectedMethods.h in Headers */,
-				DA7BA3C518737DB9001A7138 /* CPRule+Internal.h in Headers */,
-				DA7BA3B818737DB9001A7138 /* CPGrammar.h in Headers */,
-				DA4215A21562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.h in Headers */,
-				DA7BA3CE18737DB9001A7138 /* CPShiftReduceParser.h in Headers */,
+				DA42159A15629EF800F82E8E /* XPMMutableAttributedArray.h in Headers */,
+				DA4215A21562AC4100F82E8E /* NSProcessInfo+XPMArgumentParser.h in Headers */,
 				DA4215AB1562DB0C00F82E8E /* NSDictionary+RubyDescription.h in Headers */,
-				DA7BA3D018737DB9001A7138 /* CPItem.h in Headers */,
-				DA7BA3DC18737DB9001A7138 /* CPShiftReduceActionTable.h in Headers */,
-				DA7BA3F118737DB9001A7138 /* CPNumberRecogniser.h in Headers */,
-				DA4215AF1562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.h in Headers */,
-				DA7BA3C818737DB9001A7138 /* NSArray+Functional.h in Headers */,
-				DA4215B61562E09100F82E8E /* FSArgsKonstants.h in Headers */,
-				DA7BA3EF18737DB9001A7138 /* CPKeywordRecogniser.h in Headers */,
-				DA7BA3BC18737DB9001A7138 /* CPGrammarPrivate.h in Headers */,
-				DA7BA3DE18737DB9001A7138 /* CPShiftReduceGotoTable.h in Headers */,
-				DA17B90E156584EB00BDDA7E /* FSSwitchRecognizer.h in Headers */,
-				DA7BA3BE18737DB9001A7138 /* CPGrammarSymbol.h in Headers */,
-				DA7BA3EB18737DB9001A7138 /* CPTokenStream.h in Headers */,
-				DA7BA3C318737DB9001A7138 /* CPRHSItemResult.h in Headers */,
-				DA17B9131565853E00BDDA7E /* FSSwitchToken.h in Headers */,
-				DA17B9171565890500BDDA7E /* FSAliasToken.h in Headers */,
-				DA7BA40618737DB9001A7138 /* CPWhiteSpaceToken.h in Headers */,
-				DA7BA3BA18737DB9001A7138 /* CPGrammarInternal.h in Headers */,
-				DA7BA3D418737DB9001A7138 /* CPLR1Item.h in Headers */,
-				DA17B91B1565891600BDDA7E /* FSAliasRecognizer.h in Headers */,
-				DA7BA3B618737DB9001A7138 /* CoreParse.h in Headers */,
+				DA4215AF1562DC0F00F82E8E /* NSArray+XPMArgumentsNormalizer.h in Headers */,
+				DA4215B61562E09100F82E8E /* XPMArgsKonstants.h in Headers */,
 				DA17B91F1565961C00BDDA7E /* NSScanner+EscapedScanning.h in Headers */,
-				DA2B1DFC1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.h in Headers */,
-				DA2B1E001566DC37002FDBD7 /* FSFormatCtorParserDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1051,64 +576,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA7BA40318737DB9001A7138 /* CPQuotedToken.m in Sources */,
-				DA7BA3D318737DB9001A7138 /* CPLALR1Parser.m in Sources */,
-				DA0044A2155D950A0028A012 /* FSArgumentPackage.m in Sources */,
-				DA0044A3155D950E0028A012 /* FSArgumentParser.m in Sources */,
-				DA7BA3E618737DB9001A7138 /* CPRecoveryAction.m in Sources */,
-				DA7BA3EE18737DB9001A7138 /* CPIdentifierRecogniser.m in Sources */,
-				DA0044A4155D95110028A012 /* FSArgumentSignature.m in Sources */,
-				DA7BA3C718737DB9001A7138 /* CPRule.m in Sources */,
-				DA7BA3D918737DB9001A7138 /* CPShiftAction.m in Sources */,
-				DA0044B2155D99FF0028A012 /* FSCountedArgument.m in Sources */,
-				DA7BA3D118737DB9001A7138 /* CPItem.m in Sources */,
-				DA7BA40718737DB9001A7138 /* CPWhiteSpaceToken.m in Sources */,
-				DA7BA3D518737DB9001A7138 /* CPLR1Item.m in Sources */,
-				DA7BA3EC18737DB9001A7138 /* CPTokenStream.m in Sources */,
-				DA7BA3E218737DB9001A7138 /* CPShiftReduceState.m in Sources */,
-				DA7BA3EA18737DB9001A7138 /* CPTokeniser.m in Sources */,
-				DA0044B8155D9B2F0028A012 /* FSValuedArgument.m in Sources */,
-				DA7BA3B918737DB9001A7138 /* CPGrammar.m in Sources */,
-				DA0044C1155DA7BC0028A012 /* FSArguments_Coalescer_Internal.m in Sources */,
-				DA7BA3DD18737DB9001A7138 /* CPShiftReduceActionTable.m in Sources */,
-				DA7BA3BB18737DB9001A7138 /* CPGrammarInternal.m in Sources */,
+				DA0044A2155D950A0028A012 /* XPMArgumentPackage.m in Sources */,
+				DA0044A3155D950E0028A012 /* XPMArgumentParser.m in Sources */,
+				DA0044A4155D95110028A012 /* XPMArgumentSignature.m in Sources */,
+				DA0044B2155D99FF0028A012 /* XPMCountedArgument.m in Sources */,
+				DA0044B8155D9B2F0028A012 /* XPMValuedArgument.m in Sources */,
+				DA0044C1155DA7BC0028A012 /* XPMArguments_Coalescer_Internal.m in Sources */,
 				DA0044C8155DC1160028A012 /* NSString+Indenter.m in Sources */,
-				DA7BA3CF18737DB9001A7138 /* CPShiftReduceParser.m in Sources */,
-				DA7BA3B518737DB9001A7138 /* CPJSONParser.m in Sources */,
-				DA7BA3FF18737DB9001A7138 /* CPKeywordToken.m in Sources */,
-				DA42159B15629EF800F82E8E /* FSMutableAttributedArray.m in Sources */,
-				DA4215A31562AC4100F82E8E /* NSProcessInfo+FSArgumentParser.m in Sources */,
-				DA7BA3CB18737DB9001A7138 /* NSSetFunctional.m in Sources */,
-				DA7BA3BF18737DB9001A7138 /* CPGrammarSymbol.m in Sources */,
+				DA42159B15629EF800F82E8E /* XPMMutableAttributedArray.m in Sources */,
+				DA4215A31562AC4100F82E8E /* NSProcessInfo+XPMArgumentParser.m in Sources */,
 				DA4215AC1562DB0C00F82E8E /* NSDictionary+RubyDescription.m in Sources */,
-				DA7BA3E418737DB9001A7138 /* CPSLRParser.m in Sources */,
-				DA7BA40118737DB9001A7138 /* CPNumberToken.m in Sources */,
-				DA7BA3F018737DB9001A7138 /* CPKeywordRecogniser.m in Sources */,
-				DA4215B01562DC0F00F82E8E /* NSArray+FSArgumentsNormalizer.m in Sources */,
-				DA7BA3BD18737DB9001A7138 /* CPGrammarPrivate.m in Sources */,
-				DA4215B71562E09100F82E8E /* FSArgsKonstants.m in Sources */,
-				DA7BA40518737DB9001A7138 /* CPToken.m in Sources */,
-				DA7BA3F718737DB9001A7138 /* CPWhiteSpaceRecogniser.m in Sources */,
-				DA17B90F156584EB00BDDA7E /* FSSwitchRecognizer.m in Sources */,
-				DA17B9141565853E00BDDA7E /* FSSwitchToken.m in Sources */,
-				DA7BA3F418737DB9001A7138 /* CPQuotedRecogniser.m in Sources */,
-				DA17B9181565890500BDDA7E /* FSAliasToken.m in Sources */,
-				DA7BA3D718737DB9001A7138 /* CPLR1Parser.m in Sources */,
-				DA7BA3E818737DB9001A7138 /* CPSyntaxTree.m in Sources */,
-				DA7BA3C218737DB9001A7138 /* CPRHSItem.m in Sources */,
-				DA17B91C1565891600BDDA7E /* FSAliasRecognizer.m in Sources */,
+				DA4215B01562DC0F00F82E8E /* NSArray+XPMArgumentsNormalizer.m in Sources */,
+				DA4215B71562E09100F82E8E /* XPMArgsKonstants.m in Sources */,
 				DA17B9201565961C00BDDA7E /* NSScanner+EscapedScanning.m in Sources */,
-				DA2B1DFD1566CC80002FDBD7 /* FSFormatCtorTokeniserDelegate.m in Sources */,
-				DA7BA3FB18737DB9001A7138 /* CPErrorToken.m in Sources */,
-				DA7BA3C918737DB9001A7138 /* NSArray+Functional.m in Sources */,
-				DA7BA3CD18737DB9001A7138 /* CPParser.m in Sources */,
-				DA7BA3C418737DB9001A7138 /* CPRHSItemResult.m in Sources */,
-				DA7BA3F918737DB9001A7138 /* CPEOFToken.m in Sources */,
-				DA7BA3F218737DB9001A7138 /* CPNumberRecogniser.m in Sources */,
-				DA2B1E011566DC37002FDBD7 /* FSFormatCtorParserDelegate.m in Sources */,
-				DA7BA3FD18737DB9001A7138 /* CPIdentifierToken.m in Sources */,
-				DA7BA3DF18737DB9001A7138 /* CPShiftReduceGotoTable.m in Sources */,
-				DA7BA3DB18737DB9001A7138 /* CPShiftReduceAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1129,64 +609,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF77826418A971360006D56D /* CPItem.m in Sources */,
-				FF77826518A971360006D56D /* CPLR1Parser.m in Sources */,
-				FF77826618A971360006D56D /* CPShiftAction.m in Sources */,
-				FF77826718A971360006D56D /* CPShiftReduceAction.m in Sources */,
-				FF77826818A971360006D56D /* CPShiftReduceActionTable.m in Sources */,
-				FF77826918A971360006D56D /* CPShiftReduceGotoTable.m in Sources */,
-				FF77826A18A971360006D56D /* CPRecoveryAction.m in Sources */,
-				FF77826018A970F20006D56D /* CPLALR1Parser.m in Sources */,
-				FF77826118A970F20006D56D /* CPLR1Item.m in Sources */,
-				FF77826218A970F20006D56D /* CPShiftReduceState.m in Sources */,
-				FF77826318A970F20006D56D /* CPSLRParser.m in Sources */,
 				DA8734B218970B0B00113896 /* NSScanner+EscapedScanning.m in Sources */,
-				DA8734CC18970B9000113896 /* CPKeywordRecogniser.m in Sources */,
 				DA8734B118970B0700113896 /* NSDictionary+RubyDescription.m in Sources */,
-				DA8734B518970B1900113896 /* FSValuedArgument.m in Sources */,
-				DA8734B318970B1200113896 /* FSArgumentSignature.m in Sources */,
-				DA8734CE18970B9700113896 /* CPQuotedRecogniser.m in Sources */,
-				DA8734AE18970AFE00113896 /* NSProcessInfo+FSArgumentParser.m in Sources */,
-				DA8734D418970BAF00113896 /* CPNumberToken.m in Sources */,
-				DA8734D518970BB300113896 /* CPQuotedToken.m in Sources */,
-				DA8734AD18970AF800113896 /* FSMutableAttributedArray.m in Sources */,
+				DA8734B518970B1900113896 /* XPMValuedArgument.m in Sources */,
+				DA8734B318970B1200113896 /* XPMArgumentSignature.m in Sources */,
+				DA8734AE18970AFE00113896 /* NSProcessInfo+XPMArgumentParser.m in Sources */,
+				DA8734AD18970AF800113896 /* XPMMutableAttributedArray.m in Sources */,
 				DA8734B018970B0400113896 /* NSString+Indenter.m in Sources */,
-				DA8734BF18970B5900113896 /* CPGrammar.m in Sources */,
-				DA8734C318970B6700113896 /* CPRHSItem.m in Sources */,
-				DA8734BC18970B4700113896 /* CPJSONParser.m in Sources */,
-				DA8734CF18970B9B00113896 /* CPWhiteSpaceRecogniser.m in Sources */,
-				DA8734C718970B7A00113896 /* CPShiftReduceParser.m in Sources */,
-				DA8734CB18970B8D00113896 /* CPIdentifierRecogniser.m in Sources */,
-				DA8734C918970B8500113896 /* CPTokeniser.m in Sources */,
-				DA8734BA18970B2C00113896 /* FSFormatCtorTokeniserDelegate.m in Sources */,
-				DA8734C518970B7000113896 /* CPRule.m in Sources */,
-				DA8734D318970BAC00113896 /* CPKeywordToken.m in Sources */,
-				DA8734C218970B6300113896 /* CPGrammarSymbol.m in Sources */,
-				DA8734CD18970B9500113896 /* CPNumberRecogniser.m in Sources */,
-				DA8734AA18970AEB00113896 /* FSArgumentParser.m in Sources */,
-				DA8734AB18970AEF00113896 /* FSArguments_Coalescer_Internal.m in Sources */,
-				DA8734BD18970B4D00113896 /* NSArray+Functional.m in Sources */,
-				DA8734C018970B5C00113896 /* CPGrammarInternal.m in Sources */,
-				DA8734B818970B2600113896 /* FSAliasRecognizer.m in Sources */,
-				DA8734C818970B8000113896 /* CPSyntaxTree.m in Sources */,
-				DA8734C118970B5F00113896 /* CPGrammarPrivate.m in Sources */,
-				DA8734D218970BA900113896 /* CPIdentifierToken.m in Sources */,
-				DA8734C418970B6B00113896 /* CPRHSItemResult.m in Sources */,
-				DA8734B718970B2100113896 /* FSSwitchToken.m in Sources */,
-				DA8734D118970BA600113896 /* CPErrorToken.m in Sources */,
-				DA8734D018970BA200113896 /* CPEOFToken.m in Sources */,
-				DA8734B418970B1600113896 /* FSCountedArgument.m in Sources */,
-				DA8734A918970AE600113896 /* FSArgumentPackage.m in Sources */,
-				DA8734AF18970B0100113896 /* NSArray+FSArgumentsNormalizer.m in Sources */,
-				DA8734D618970BB700113896 /* CPToken.m in Sources */,
-				DA8734D718970BBA00113896 /* CPWhiteSpaceToken.m in Sources */,
-				DA8734B618970B1D00113896 /* FSSwitchRecognizer.m in Sources */,
-				DA8734CA18970B8800113896 /* CPTokenStream.m in Sources */,
-				DA8734BE18970B4F00113896 /* NSSetFunctional.m in Sources */,
-				DA8734BB18970B3300113896 /* FSFormatCtorParserDelegate.m in Sources */,
-				DA8734C618970B7700113896 /* CPParser.m in Sources */,
-				DA8734B918970B2900113896 /* FSAliasToken.m in Sources */,
-				DA8734AC18970AF300113896 /* FSArgsKonstants.m in Sources */,
+				DA8734AA18970AEB00113896 /* XPMArgumentParser.m in Sources */,
+				DA8734AB18970AEF00113896 /* XPMArguments_Coalescer_Internal.m in Sources */,
+				DA8734B418970B1600113896 /* XPMCountedArgument.m in Sources */,
+				DA8734A918970AE600113896 /* XPMArgumentPackage.m in Sources */,
+				DA8734AF18970B0100113896 /* NSArray+XPMArgumentsNormalizer.m in Sources */,
+				DA8734AC18970AF300113896 /* XPMArgsKonstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

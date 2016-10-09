@@ -1,15 +1,15 @@
 //
-//  FSValuedArgument.h
+//  XPMValuedArgument.h
 //  ArgumentParser
 //
-//  Created by Christopher Miller on 5/11/12.
-//  Copyright (c) 2012 Christopher Miller. All rights reserved.
+//  Created by Christopher R. Miller on 5/11/12.
+//  Copyright (c) 2012, 2016 Christopher R. Miller. All rights reserved.
 //
 
-#import "FSArgumentSignature.h"
+#import "XPMArgumentSignature.h"
 
 /** An argument which has one or more values attached to it. */
-@interface FSValuedArgument : FSArgumentSignature
+@interface XPMValuedArgument : XPMArgumentSignature
 
 /**
  * The number of values per invocation, which should start at one and have a maximum of NSNotFound (infinity).

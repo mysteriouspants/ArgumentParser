@@ -9,10 +9,10 @@
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 
-#import "FSArgumentSignature.h"
-#import "FSArgumentParser.h"
-#import "FSArgumentPackage.h"
-#import "FSArgumentPackage_Private.h"
+#import "XPMArgumentSignature.h"
+#import "XPMArgumentParser.h"
+#import "XPMArgumentPackage.h"
+#import "XPMArgumentPackage_Private.h"
 
 // Utilize http://www.ruby-doc.org/stdlib-2.0.0/libdoc/shellwords/rdoc/Shellwords.html#method-c-shellsplit
 // to perform full tests?
@@ -37,16 +37,16 @@
 {
   NSArray * t0 = @[@"-cfg=file.txt", @"--verbose", @"refridgerator"];
   
-  FSArgumentSignature * conflate = [FSArgumentSignature argumentSignatureWithFormat:@"[-c --conflate]"];
-  FSArgumentSignature * file = [FSArgumentSignature argumentSignatureWithFormat:@"[-f --file]="];
-  FSArgumentSignature * goober = [FSArgumentSignature argumentSignatureWithFormat:@"[-g --goober]"];
-  FSArgumentSignature * verbose = [FSArgumentSignature argumentSignatureWithFormat:@"[-v --verbose]"];
+  XPMArgumentSignature * conflate = [XPMArgumentSignature argumentSignatureWithFormat:@"[-c --conflate]"];
+  XPMArgumentSignature * file = [XPMArgumentSignature argumentSignatureWithFormat:@"[-f --file]="];
+  XPMArgumentSignature * goober = [XPMArgumentSignature argumentSignatureWithFormat:@"[-g --goober]"];
+  XPMArgumentSignature * verbose = [XPMArgumentSignature argumentSignatureWithFormat:@"[-v --verbose]"];
   
   NSSet * s0 =
   [NSSet setWithObjects:conflate, file, goober, verbose, nil];
   
-  FSArgumentParser * parser = [[FSArgumentParser alloc] initWithArguments:t0 signatures:s0];
-  FSArgumentPackage * retVal = [parser parse];
+  XPMArgumentParser * parser = [[XPMArgumentParser alloc] initWithArguments:t0 signatures:s0];
+  XPMArgumentPackage * retVal = [parser parse];
   
   XCTAssertEqual([retVal countOfSignature:conflate], 1UL, @"Conflation was set only once.");
   XCTAssertTrue([retVal booleanValueForSignature:conflate], @"Conflation is on, dude.");
@@ -66,16 +66,16 @@
   NSArray * t0 =
   [NSArray arrayWithObjects:@"-[", @"foo", @"bar", @"-]", nil];
   
-  FSArgumentSignature * lbracket = [FSArgumentSignature argumentSignatureWithFormat:@"[-[]={1,}"];
-  FSArgumentSignature * rbracket = [FSArgumentSignature argumentSignatureWithFormat:@"[-\\]]"];
+  XPMArgumentSignature * lbracket = [XPMArgumentSignature argumentSignatureWithFormat:@"[-[]={1,}"];
+  XPMArgumentSignature * rbracket = [XPMArgumentSignature argumentSignatureWithFormat:@"[-\\]]"];
   
   NSLog(@"%@", lbracket);
   
   NSSet * s0 =
   [NSSet setWithObjects:lbracket, rbracket, nil];
   
-  FSArgumentParser * parser = [[FSArgumentParser alloc] initWithArguments:t0 signatures:s0];
-  FSArgumentPackage * retVal = [parser parse];
+  XPMArgumentParser * parser = [[XPMArgumentParser alloc] initWithArguments:t0 signatures:s0];
+  XPMArgumentPackage * retVal = [parser parse];
   
   XCTAssertEqual([retVal countOfSignature:lbracket], 2UL, @"Only foo and bar were given.");
   XCTAssertEqualObjects([retVal firstObjectForSignature:lbracket], @"foo", @"Should be foo.");

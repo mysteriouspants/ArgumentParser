@@ -9,9 +9,9 @@
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 
-#import "FSArgumentSignature.h"
-#import "FSCountedArgument.h"
-#import "FSValuedArgument.h"
+#import "XPMArgumentSignature.h"
+#import "XPMCountedArgument.h"
+#import "XPMValuedArgument.h"
 
 @interface XPMSignatureHashTests : XCTestCase
 
@@ -20,22 +20,22 @@
 @implementation XPMSignatureHashTests
 
 - (void)setUp {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+	[super setUp];
+	// Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
+	// Put teardown code here. This method is called after the invocation of each test method in the class.
+	[super tearDown];
 }
 
 - (void)testCountedArgument
 {
-  FSCountedArgument * c0 = [FSCountedArgument countedArgumentWithSwitches:[NSSet setWithObjects:@"v", @"verbose", nil] aliases:nil];
-  FSCountedArgument * c0_copy = [c0 copy];
-  FSCountedArgument * c1 = [FSCountedArgument countedArgumentWithSwitches:[NSSet setWithObjects:@"v", @"verbose", nil] aliases:nil];
-  FSCountedArgument * c2 = [FSCountedArgument countedArgumentWithSwitches:[NSSet setWithObjects:@"f", @"file", nil] aliases:nil];
-  FSCountedArgument * c3 = [FSCountedArgument countedArgumentWithSwitches:[NSSet setWithObjects:@"v", [NSString stringWithFormat:@"%@%@", @"ver", @"bose"], nil] aliases:nil]; // should make it a different string in memory, too. I just want to check this to be sure. If it's right here, then it'll be correct in the other three tests, too.
+  XPMCountedArgument * c0 = [XPMCountedArgument countedArgumentWithSwitches:[NSSet setWithObjects:@"v", @"verbose", nil] aliases:nil];
+  XPMCountedArgument * c0_copy = [c0 copy];
+  XPMCountedArgument * c1 = [XPMCountedArgument countedArgumentWithSwitches:[NSSet setWithObjects:@"v", @"verbose", nil] aliases:nil];
+  XPMCountedArgument * c2 = [XPMCountedArgument countedArgumentWithSwitches:[NSSet setWithObjects:@"f", @"file", nil] aliases:nil];
+  XPMCountedArgument * c3 = [XPMCountedArgument countedArgumentWithSwitches:[NSSet setWithObjects:@"v", [NSString stringWithFormat:@"%@%@", @"ver", @"bose"], nil] aliases:nil]; // should make it a different string in memory, too. I just want to check this to be sure. If it's right here, then it'll be correct in the other three tests, too.
   
   XCTAssertEqual([c0 hash], [c0_copy hash], @"For some reason c0 has a different hash from c0_copy.");
   XCTAssertTrue([c0 isEqual:c0_copy], @"c0 isn't equal to its copy.");
@@ -52,10 +52,10 @@
 
 - (void)testValuedArgument
 {
-  FSValuedArgument * v0 = [FSValuedArgument valuedArgumentWithSwitches:[NSSet setWithObjects:@"f", @"file", nil] aliases:nil];
-  FSValuedArgument * v0_copy = [v0 copy];
-  FSValuedArgument * v1 = [FSValuedArgument valuedArgumentWithSwitches:[NSSet setWithObjects:@"f", @"file", nil] aliases:nil];
-  FSValuedArgument * v2 = [FSValuedArgument valuedArgumentWithSwitches:[NSSet setWithObjects:@"p", @"phallus", nil] aliases:nil];;
+  XPMValuedArgument * v0 = [XPMValuedArgument valuedArgumentWithSwitches:[NSSet setWithObjects:@"f", @"file", nil] aliases:nil];
+  XPMValuedArgument * v0_copy = [v0 copy];
+  XPMValuedArgument * v1 = [XPMValuedArgument valuedArgumentWithSwitches:[NSSet setWithObjects:@"f", @"file", nil] aliases:nil];
+  XPMValuedArgument * v2 = [XPMValuedArgument valuedArgumentWithSwitches:[NSSet setWithObjects:@"p", @"phallus", nil] aliases:nil];
   
   XCTAssertEqual([v0 hash], [v0_copy hash], @"For some reason v0 has a different hash from v0_copy.");
   XCTAssertTrue([v0 isEqual:v0_copy], @"v0 isn't equal to its copy.");

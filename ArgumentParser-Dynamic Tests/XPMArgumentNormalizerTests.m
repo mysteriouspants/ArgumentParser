@@ -9,12 +9,12 @@
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 
-#import "FSMutableAttributedArray.h"
-#import "NSArray+FSArgumentsNormalizer.h"
-#import "FSArgsKonstants.h"
+#import "XPMMutableAttributedArray.h"
+#import "NSArray+XPMArgumentsNormalizer.h"
+#import "XPMArgsKonstants.h"
 
 #define FSTExpectValueAt(array, location, expectedValue) XCTAssertEqualObjects([array objectAtIndex:location], expectedValue, @"Mismatched argument.");
-#define FSTExpectTypeAt(array, location, expectedType) XCTAssertEqualObjects([array valueOfAttribute:__fsargs_typeKey forObjectAtIndex:location], expectedType, @"Mismatched type.");
+#define FSTExpectTypeAt(array, location, expectedType) XCTAssertEqualObjects([array valueOfAttribute:xpmargs_typeKey forObjectAtIndex:location], expectedType, @"Mismatched type.");
 
 @interface XPMArgumentNormalizerTests : XCTestCase
 
@@ -23,50 +23,50 @@
 @implementation XPMArgumentNormalizerTests
 
 - (void)setUp {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+	[super setUp];
+	// Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
+	// Put teardown code here. This method is called after the invocation of each test method in the class.
+	[super tearDown];
 }
 
 - (void)testNormalizerCommonCases
 {
-  FSMutableAttributedArray * array = [[NSArray arrayWithObjects:@"-cfg", @"--file", @"foo", @"--", @"--asplode", nil] fsargs_normalize];
+  XPMMutableAttributedArray * array = [[NSArray arrayWithObjects:@"-cfg", @"--file", @"foo", @"--", @"--asplode", nil] xpmargs_normalize];
   XCTAssertEqual([array count], 7UL, @"Expecting seven elements!");
   FSTExpectValueAt(array, 0, @"-c");
-  FSTExpectTypeAt(array, 0, __fsargs_switch);
+  FSTExpectTypeAt(array, 0, xpmargs_switch);
   FSTExpectValueAt(array, 1, @"-f");
-  FSTExpectTypeAt(array, 1, __fsargs_switch);
+  FSTExpectTypeAt(array, 1, xpmargs_switch);
   FSTExpectValueAt(array, 2, @"-g");
-  FSTExpectTypeAt(array, 2, __fsargs_switch);
+  FSTExpectTypeAt(array, 2, xpmargs_switch);
   FSTExpectValueAt(array, 3, @"--file");
-  FSTExpectTypeAt(array, 3, __fsargs_switch);
+  FSTExpectTypeAt(array, 3, xpmargs_switch);
   FSTExpectValueAt(array, 4, @"foo");
-  FSTExpectTypeAt(array, 4, __fsargs_unknown);
+  FSTExpectTypeAt(array, 4, xpmargs_unknown);
   FSTExpectValueAt(array, 5, [NSNull null]);
-  FSTExpectTypeAt(array, 5, __fsargs_barrier);
+  FSTExpectTypeAt(array, 5, xpmargs_barrier);
   FSTExpectValueAt(array, 6, @"--asplode");
-  FSTExpectTypeAt(array, 6, __fsargs_switch);
+  FSTExpectTypeAt(array, 6, xpmargs_switch);
   
-  array = [[NSArray arrayWithObjects:@"-cfg", @"--file=foo", @"--", @"--asplode", nil] fsargs_normalize];
+  array = [[NSArray arrayWithObjects:@"-cfg", @"--file=foo", @"--", @"--asplode", nil] xpmargs_normalize];
   XCTAssertEqual([array count], 7UL, @"Expecting seven elements!");
   FSTExpectValueAt(array, 0, @"-c");
-  FSTExpectTypeAt(array, 0, __fsargs_switch);
+  FSTExpectTypeAt(array, 0, xpmargs_switch);
   FSTExpectValueAt(array, 1, @"-f");
-  FSTExpectTypeAt(array, 1, __fsargs_switch);
+  FSTExpectTypeAt(array, 1, xpmargs_switch);
   FSTExpectValueAt(array, 2, @"-g");
-  FSTExpectTypeAt(array, 2, __fsargs_switch);
+  FSTExpectTypeAt(array, 2, xpmargs_switch);
   FSTExpectValueAt(array, 3, @"--file");
-  FSTExpectTypeAt(array, 3, __fsargs_switch);
+  FSTExpectTypeAt(array, 3, xpmargs_switch);
   FSTExpectValueAt(array, 4, @"foo");
-  FSTExpectTypeAt(array, 4, __fsargs_value);
+  FSTExpectTypeAt(array, 4, xpmargs_value);
   FSTExpectValueAt(array, 5, [NSNull null]);
-  FSTExpectTypeAt(array, 5, __fsargs_barrier);
+  FSTExpectTypeAt(array, 5, xpmargs_barrier);
   FSTExpectValueAt(array, 6, @"--asplode");
-  FSTExpectTypeAt(array, 6, __fsargs_switch);
+  FSTExpectTypeAt(array, 6, xpmargs_switch);
   
 }
 

@@ -9,12 +9,12 @@
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 
-#import "FSArgumentSignature.h"
-#import "FSCountedArgument.h"
-#import "FSValuedArgument.h"
+#import "XPMArgumentSignature.h"
+#import "XPMCountedArgument.h"
+#import "XPMValuedArgument.h"
 
-#import "FSArgumentPackage.h"
-#import "FSArgumentPackage_Private.h"
+#import "XPMArgumentPackage.h"
+#import "XPMArgumentPackage_Private.h"
 
 @interface XPMPackageTests : XCTestCase
 
@@ -34,8 +34,8 @@
 
 - (void)testCountedArguments
 {
-  FSArgumentSignature * verbose = [FSArgumentSignature argumentSignatureWithFormat:@"[-v --verbose]"];
-  FSArgumentPackage * package = [[FSArgumentPackage alloc] init];
+  XPMArgumentSignature * verbose = [XPMArgumentSignature argumentSignatureWithFormat:@"[-v --verbose]"];
+  XPMArgumentPackage * package = [[XPMArgumentPackage alloc] init];
   
   XCTAssertEqual([package booleanValueForSignature:verbose], (bool)false, @"Verbosity hasn't been enabled yet!");
   XCTAssertEqual([package countOfSignature:verbose], 0UL, @"Verbosity should be zero.");
@@ -53,8 +53,8 @@
 
 - (void)testValuedArguments
 {
-  FSArgumentSignature * file = [FSArgumentSignature argumentSignatureWithFormat:@"[-f --file]="];
-  FSArgumentPackage * package = [[FSArgumentPackage alloc] init];
+  XPMArgumentSignature * file = [XPMArgumentSignature argumentSignatureWithFormat:@"[-f --file]="];
+  XPMArgumentPackage * package = [[XPMArgumentPackage alloc] init];
   
   XCTAssertEqual([package countOfSignature:file], 0UL, @"No files.");
   XCTAssertNil([package firstObjectForSignature:file], @"No files.");

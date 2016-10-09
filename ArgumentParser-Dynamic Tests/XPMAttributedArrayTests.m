@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 
-#import "FSMutableAttributedArray.h"
+#import "XPMMutableAttributedArray.h"
 
 @interface XPMAttributedArrayTests : XCTestCase
 
@@ -18,18 +18,18 @@
 @implementation XPMAttributedArrayTests
 
 - (void)setUp {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+	[super setUp];
+	// Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
+	// Put teardown code here. This method is called after the invocation of each test method in the class.
+	[super tearDown];
 }
 
 - (void)testAddition
 {
-  FSMutableAttributedArray * a = [FSMutableAttributedArray attributedArrayWithCapacity:2];
+  XPMMutableAttributedArray * a = [XPMMutableAttributedArray attributedArrayWithCapacity:2];
   
   [a addObject:@"one" withAttributes:nil];
   [a addObject:@"two" withAttributes:[NSDictionary dictionaryWithObject:@"bar" forKey:@"foo"]];

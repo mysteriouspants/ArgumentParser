@@ -1,14 +1,14 @@
 //
-//  FSArgumentSignature.h
-//  FSArgumentParser
+//  XPMArgumentSignature.h
+//  ArgumentParser
 //
-//  Created by Christopher Miller on 2/22/12.
-//  Copyright (c) 2012 Christopher Miller. All rights reserved.
+//  Created by Christopher R. Miller on 2/22/12.
+//  Copyright (c) 2012, 2016 Christopher R. Miller. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface FSArgumentSignature : NSObject < NSCopying >
+@interface XPMArgumentSignature : NSObject < NSCopying >
 
 /**
  * A switch is defined as a dash-prefixed invocation, which come in two flavors:
@@ -33,7 +33,7 @@
 /**
  * If this is not nil, then this block will be called to retrieve special text given for the description of the signature. The arguments are the current signature, the indent level, and the current terminal width (if available).
  */
-@property (copy) NSString * (^descriptionHelper) (FSArgumentSignature * currentSignature, NSUInteger indentLevel, NSUInteger terminalWidth);
+@property (copy) NSString * (^descriptionHelper) (XPMArgumentSignature * currentSignature, NSUInteger indentLevel, NSUInteger terminalWidth);
 
 - (NSString *)descriptionForHelpWithIndent:(NSUInteger)indent terminalWidth:(NSUInteger)width;
 
