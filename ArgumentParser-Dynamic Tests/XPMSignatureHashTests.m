@@ -2,7 +2,7 @@
 //  XPMSignatureHashTests.m
 //  ArgumentParser
 //
-//  Created by Chris Miller on 2/5/15.
+//  Created by Christopher R. Miller on 2/5/15.
 //
 //
 

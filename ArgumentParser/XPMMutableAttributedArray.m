@@ -206,7 +206,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"<%@:%p value:%@ attributes:%@>", NSStringFromClass([self class]), (const void *)self, _value, [_attributes fs_rubyHashDescription]];
+	return [NSString stringWithFormat:@"<%@:%p value:%@ attributes:%@>", NSStringFromClass([self class]), (const void *)self, _value, [_attributes xpmargs_rubyHashDescription]];
 }
 
 @end

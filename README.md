@@ -1,17 +1,17 @@
-# FSArgumentParser
+# XPMArgumentParser
 
 A short, awesome, and *really useful* tool for rapidly parsing command-line arguments in a declarative manner using Objective-C.
 
-    FSArgumentSignature
-      * force = [FSArgumentSignature argumentSignatureWithFormat:@"[-f --force]"],
-      * soft = [FSArgumentSignature argumentSignatureWithFormat:@"[-s --soft]"],
-      * outputFile = [FSArgumentSignature argumentSignatureWithFormat:@"[-o --output-file of]=",
-      * inputFile = [FSArgumentSignature argumentSignatureWithFormat:@"[-i --input-file if]={1,}"];
+    XPMArgumentSignature
+      * force = [XPMArgumentSignature argumentSignatureWithFormat:@"[-f --force]"],
+      * soft = [XPMArgumentSignature argumentSignatureWithFormat:@"[-s --soft]"],
+      * outputFile = [XPMArgumentSignature argumentSignatureWithFormat:@"[-o --output-file of]=",
+      * inputFile = [XPMArgumentSignature argumentSignatureWithFormat:@"[-i --input-file if]={1,}"];
       
     NSArray * signatures = @[force, soft, outputFile, inputFile];
     
-    FSArgumentPackage * package =
-     [[NSProcessInfo currentProcess] fsargs_parseArgumentsWithSignatures:signatures];
+    XPMArgumentPackage * package =
+     [[NSProcessInfo currentProcess] xpmargs_parseArgumentsWithSignatures:signatures];
 
     if ([package booleanValueOfSignature:soft]) {
         // presumably you'd do something
@@ -22,21 +22,30 @@ A short, awesome, and *really useful* tool for rapidly parsing command-line argu
         return -1;
     }
 
+## Updates
+
+2016
+
+- Removed CoreParse as a dependency, making it easier to include this project for everyone.
+- Reprefixed away from reserved prefix for filesystem work, now using XPM prefix. Should be a simple find/replace to update.
+
+---
+
 ## Features: It Just Works
 
-You're probably already excited about the nice format ctors, which are admittedly a nice touch. But the real power of FSArgumentParser is on the command line. It's designed to "just work" in a variety of situations.
+You're probably already excited about the nice format ctors, which are admittedly a nice touch. But the real power of XPMArgumentParser is on the command line. It's designed to "just work" in a variety of situations.
 
 ### Flag Grouping
 
-It seems natural to us: we like to group flags together. `tar -cvvf`, anyone? FSArgumentParser understands that quite well.
+It seems natural to us: we like to group flags together. `tar -cvvf`, anyone? XPMArgumentParser understands that quite well.
 
 ### Equals Signs
 
-Some tools require an equals sign for value assignment (`foo -f=t` works, but `foo -f t` doesn't). FSArgumentParser doesn't mind either formats.
+Some tools require an equals sign for value assignment (`foo -f=t` works, but `foo -f t` doesn't). XPMArgumentParser doesn't mind either formats.
 
 ### Multiple Values in a Group
 
-Supposing you have two or more flags that require values, how does that work? FSArgumentParser gives you two ways to work:
+Supposing you have two or more flags that require values, how does that work? XPMArgumentParser gives you two ways to work:
 
         # the long way
     spiffy -i file1 -o file2
@@ -49,14 +58,14 @@ Personally, I prefer the lazy way. The values are assigned respective to the ord
 
 New in this version is the ability to have more than one value per time an argument is invoked. You define the number of arguments per invocation as a range, minimum to maximum.
 
-    FSArgumentSignature * files =
-        [FSArgumentSignature argumentSignatureWithFormat:@"[-f --files]={1,5}"];
+    XPMArgumentSignature * files =
+        [XPMArgumentSignature argumentSignatureWithFormat:@"[-f --files]={1,5}"];
         
-And boom, you can specify between one and five files per time you use the `-f` flag. You might think that this could be a little awkward if you have a flag group with two flags that take multiple arguments. Well, it isn't. FSArgumentParser understands "value barriers," which segregate between lists of values. A value barrier is either two dashes (`--`), or any other kind of argument invocation. So, given the following:
+And boom, you can specify between one and five files per time you use the `-f` flag. You might think that this could be a little awkward if you have a flag group with two flags that take multiple arguments. Well, it isn't. XPMArgumentParser understands "value barriers," which segregate between lists of values. A value barrier is either two dashes (`--`), or any other kind of argument invocation. So, given the following:
 
-    FSArgumentSignature
-      *inFiles = [FSArgumentSignature argumentSignatureWithFormat:@"[-f --input-files]={1,5}"],
-      *outputFiles = [FSArgumentSignature argumentSignatureWithFormat:@"[-o --output-files]={1,5}"];
+    XPMArgumentSignature
+      *inFiles = [XPMArgumentSignature argumentSignatureWithFormat:@"[-f --input-files]={1,5}"],
+      *outputFiles = [XPMArgumentSignature argumentSignatureWithFormat:@"[-o --output-files]={1,5}"];
     
     // on the command line:
     
@@ -67,7 +76,7 @@ See how it "just works" for you?
 
 ### Undecorated Arguments
 
-Who here is in love with how the `dd` utility takes its arguments? So perhaps not many, but FSArgumentParser understands that, too.
+Who here is in love with how the `dd` utility takes its arguments? So perhaps not many, but XPMArgumentParser understands that, too.
 
     foo if=infile of=outfile
     
@@ -83,28 +92,28 @@ Wouldn't it be nice to build out a tree of possible arguments, with some argumen
     
     // can be accomplished with
     
-    FSArgumentSignature * commitSubcommand =
-      [FSArgumentSignature argumentSignatureWithFormat:@"[commit]"];
+    XPMArgumentSignature * commitSubcommand =
+      [XPMArgumentSignature argumentSignatureWithFormat:@"[commit]"];
     [commitSubcommand setInjectedSignatures:[NSSet setWithObjects:
-      [FSArgumentSignature argumentSignatureWithFormat:@"[-A --all]"],
-      [FSArgumentSignature argumentSignatureWithFormat:@"[-m --commit-message]="], nil]];
+      [XPMArgumentSignature argumentSignatureWithFormat:@"[-A --all]"],
+      [XPMArgumentSignature argumentSignatureWithFormat:@"[-m --commit-message]="], nil]];
 
 ## Descriptions
 
-By default the `-description` method returns a very simple programmer-friendly text. However, you can use the `descriptionHelper` block property on `FSArgumentSignature`. A different description method which you can call for emitting command-line help will use this. For example:
+By default the `-description` method returns a very simple programmer-friendly text. However, you can use the `descriptionHelper` block property on `XPMArgumentSignature`. A different description method which you can call for emitting command-line help will use this. For example:
 
-    FSArgumentSignature * verbose = [FSArgumentSignature argumentSignatureWithFormat:@"[-v --verbose]"];
-    FSArgumentSignature * help = [FSArgumentSignature argumentSignatureWithFormat:@"[-h --help]"];
+    XPMArgumentSignature * verbose = [XPMArgumentSignature argumentSignatureWithFormat:@"[-v --verbose]"];
+    XPMArgumentSignature * help = [XPMArgumentSignature argumentSignatureWithFormat:@"[-h --help]"];
 
-    [verbose setDescriptionHelper:(NSString *)(^)(FSArgumentSignature * currentSignature, NSUInteger indentLevel, NSUInteger terminalWidth) {
-        return [@"-v --verbose  Emit more information." fsargs_mutableStringByIndentingToWidth:indentLevel * 2 lineLength:terminalWidth];
+    [verbose setDescriptionHelper:(NSString *)(^)(XPMArgumentSignature * currentSignature, NSUInteger indentLevel, NSUInteger terminalWidth) {
+        return [@"-v --verbose  Emit more information." xpmargs_mutableStringByIndentingToWidth:indentLevel * 2 lineLength:terminalWidth];
     }];
-    [help setDescriptionHelper:(NSString *)(^)(FSArgumentSignature * currentSignature, NSUInteger indentLevel, NSUInteger terminalWidth) {
-        return [@"-h --help     Show this message." fsargs_mutableStringByIndentingToWidth:indentLevel * 2 lineLength:terminalWidth];
+    [help setDescriptionHelper:(NSString *)(^)(XPMArgumentSignature * currentSignature, NSUInteger indentLevel, NSUInteger terminalWidth) {
+        return [@"-h --help     Show this message." xpmargs_mutableStringByIndentingToWidth:indentLevel * 2 lineLength:terminalWidth];
     }];
 
-    FSArgumentPackage * package = 
-     [[NSProcessInfo processInfo] fsargs_parseArgumentsWithSignatures:[NSSet setWithObjects:verbose, help, nil]];
+    XPMArgumentPackage * package = 
+     [[NSProcessInfo processInfo] xpmargs_parseArgumentsWithSignatures:[NSSet setWithObjects:verbose, help, nil]];
     
     if ([package booleanValueOfFlag:help]) {
         struct winsize ws;
