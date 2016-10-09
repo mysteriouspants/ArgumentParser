@@ -23,7 +23,7 @@ int main (int argc, const char * argv[]) {
 		
 		[outFileSig setDescriptionHelper:^NSString *(XPMArgumentSignature * signature, NSUInteger indent, NSUInteger width) {
 			NSMutableArray * invocations = [NSMutableArray arrayWithCapacity:[signature.switches count] + [signature.aliases count]];
-			[invocations addObjectsFromArray:__xpmargs_expandAllSwitches(signature.switches)];
+			[invocations addObjectsFromArray:xpmargs_expandAllSwitches(signature.switches)];
 			[invocations addObjectsFromArray:[signature.aliases allObjects]];
 			
 			NSString * unmangled = [NSString stringWithFormat:@"[%@]", [invocations componentsJoinedByString:@" "]];
@@ -44,10 +44,10 @@ int main (int argc, const char * argv[]) {
 				[explodingGarbageCans addObject:[block_text substringWithRange:bin_range]];
 			}
 			
-			explodingGarbageCans[0] = [NSString stringWithFormat:@"%@%@ %@", [NSString fs_stringByFillingWithCharacter:' ' repeated:indent*4], unmangled, explodingGarbageCans[0]];
+			explodingGarbageCans[0] = [NSString stringWithFormat:@"%@%@ %@", [NSString xpm_stringByFillingWithCharacter:' ' repeated:indent*4], unmangled, explodingGarbageCans[0]];
 			
 			for (NSUInteger i = 1; i < [explodingGarbageCans count]; ++i) {
-				explodingGarbageCans[i] = [NSString stringWithFormat:@"%@%@", [NSString fs_stringByFillingWithCharacter:' ' repeated:indent*4+[unmangled length]+1], explodingGarbageCans[i]];
+				explodingGarbageCans[i] = [NSString stringWithFormat:@"%@%@", [NSString xpm_stringByFillingWithCharacter:' ' repeated:indent*4+[unmangled length]+1], explodingGarbageCans[i]];
 			}
 			
 			return [explodingGarbageCans componentsJoinedByString:@"\n"];
@@ -55,7 +55,7 @@ int main (int argc, const char * argv[]) {
 
 		NSArray * signatures = @[helpSig, outFileSig];
 		
-		FSArgumentPackage * arguments = [[NSProcessInfo processInfo] xpmargs_parseArgumentsWithSignatures:signatures];
+		XPMArgumentPackage * arguments = [[NSProcessInfo processInfo] xpmargs_parseArgumentsWithSignatures:signatures];
 
 		if (YES==[arguments booleanValueForSignature:helpSig]) {
 			struct winsize ws;

@@ -15,7 +15,7 @@
 
 int main (int argc, const char *argv[]) {
     @autoreleasepool {
-			FSArgumentSignature
+			XPMArgumentSignature
 				*helpSig = [XPMArgumentSignature argumentSignatureWithFormat:@"[-h --help]"],
 				*outFileSig = [XPMArgumentSignature argumentSignatureWithFormat:@"[-o --out-file]={1,}"];
 			NSArray *signatures = @[helpSig, outFileSig];
