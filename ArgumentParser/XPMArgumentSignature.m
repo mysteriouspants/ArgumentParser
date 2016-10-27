@@ -9,6 +9,7 @@
 #import "XPMArgumentSignature.h"
 #import "XPMArgumentSignature_Private.h"
 #import "XPMArguments_Coalescer_Internal.h"
+#import "NSScanner+EscapedScanning.h"
 
 #import "XPMCountedArgument.h"
 #import "XPMValuedArgument.h"
@@ -200,7 +201,7 @@ void xpmargs_ScanFormatCtorHead(NSScanner * scanner, NSMutableArray<NSString *> 
 	NSCharacterSet * closingBracket = [NSCharacterSet characterSetWithCharactersInString:@"]"];
 	
 	NSString * enclosedString;
-	[scanner scanUpToCharactersFromSet:closingBracket intoString:&enclosedString];
+	[scanner xpmargs_scanUpToCharacterFromSet:closingBracket unlessPrecededByCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"\\"] intoString:&enclosedString];
 	NSCAssert(enclosedString != nil, @"There must be some aliases in the argument signature format string");
 	
 	for (NSString * s in [enclosedString componentsSeparatedByString:@" "]) {
