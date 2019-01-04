@@ -1,0 +1,8 @@
+title: Argumentparser
+description: Faster, easier, more declarative parsing of command line arguments in Objective-C/Foundation.
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-modernist
+
+gems:
+  - jekyll-mentions
